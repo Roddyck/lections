@@ -1,0 +1,189 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{УМФ. лекция}
+\maketitle
+
+\begin{equation}
+    u_{t t} - a^2u_{xx}(x,t) = 0
+\end{equation}
+\begin{equation}
+    u(x,t) |_{t=0} =\phi(x) \quad x \in [O; l]
+\end{equation}
+\begin{equation}
+    u_t(x,t) |_{t=0} = \psi(x) \quad x \in [O; l]
+\end{equation}
+\begin{equation}
+    u(0,t) = u(l,t)=0
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        & u(0,0) &= 0 &= \phi(0)\\
+        & u_t(0,0) &= 0 &= \psi(0) \\
+        & u(l,0) &= 0 &= \phi(l) \\
+        & u_t(l,0) &= 0 &= \psi(l) 
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    u(x,t) = T(t)X(x)
+\end{equation}
+
+\[
+    T''(t)X(x) - a^2 T(t) X''(x) = 0 \ | \ : a^2 T(t) X(x)
+\]
+\[
+    \frac{T''(t)}{a^2T(t)} = \frac{X''(x)}{X(x)}  = - \lambda
+\]
+\begin{equation}
+    T''(t) + a^2 \lambda T(t) = 0
+\end{equation}
+
+\begin{equation}
+    X''(t) + \lambda X(t) = 0
+\end{equation}
+\begin{equation}
+    X(0) = X(l) = 0
+\end{equation}
+
+\[
+    T(t) X(0) = 0
+\]
+\[
+    T(t) X(l) = 0
+\]
+
+(8), (9) - задача Штурма-Лиувилля.\\
+Она заключается в нахождении собственных значений и собственных функций\\
+Собственными значениями называются те значения $ \lambda $ при которых есть хотя
+бы одно нетривиальное решение задачи. Сами эти нетривиальные решения $ X(x) $ 
+называются собственными функциями соответсвующие собственным значениям
+
+\[
+    p^2 + \lambda = 0
+\]
+\[
+    p^2 = -\lambda
+\]
+\[
+    1) \ \lambda < 0
+\]
+\[
+    p = \pm \sqrt{-\lambda} 
+\]
+\[
+    X(x) = C e^{\sqrt{-\lambda \cdot x}} + D e^{-\sqrt{-\lambda } }
+\]
+\[
+    \begin{cases}
+        X(0) = C + D = 0\\
+        X(l) = C(e^{\sqrt{-\lambda}l } - e^{-\sqrt{-\lambda} l})
+    \end{cases}
+\]
+\[
+    X(x) = Ax + B
+\]
+\[
+    2) \ \lambda = 0
+\]
+\[
+    X(0) = A \cdot 0 + B = 0 \implies B = 0
+\]
+\[
+    3) \ \lambda \ge 0
+\]
+\[
+    p = \pm \sqrt{\lambda} i
+\]
+\[
+    X(x) = C \cos(\sqrt{\lambda} x) + D \sin(\sqrt{\lambda} x)  
+\]
+\[
+    X(0) = C = 0
+\]
+\[
+    X(l) = D\sin(\sqrt{\lambda} l) = 0
+\]
+\[
+    \sin(\sqrt{\lambda} l) = 0
+\]
+\[
+    \sqrt{\lambda} l = \pi n, \ n \in \mathbb{N}
+\]
+\begin{equation}
+    \begin{cases}
+        \lambda_n = (\frac{\pi n}{l})^2, \ n \in \mathbb{N}\\
+        X(x) = D_n \cdot \sin \frac{\pi n x}{l} 
+    \end{cases}
+\end{equation}
+
+\[
+    T''_n(t) + \left(\frac{a \pi n}{l}\right)^2 T_n(t) = 0
+\]
+
+\[
+    T_n(t) = A_n \cos\left(\frac{a \pi n}{l} t\right) + B_n \sin\left(\frac{a \pi n}{l} t\right)
+\]
+\begin{equation}
+    u_n(x,t) = \left(A_n \cos\left(\frac{a \pi n}{l} t\right) + B_n \sin\left(\frac{a \pi n}{l} t\right)
+    \right) \sin \frac{\pi n x}{l} 
+\end{equation}
+
+2 этап завершающий\\
+Решение будет искать в виде:
+\[
+    u(x,t) = \sum_{n=1}^{\infty} u_n(x,t) = \sum_{n=1}^{\infty} \left(A_n 
+    \cos\left(\frac{a \pi n}{l} t\right) + B_n \sin\left(\frac{a \pi n}{l} 
+    t\right) \right) \sin \frac{\pi n x}{l}
+\]
+
+\begin{equation}
+   u |_{t=0} = \sum_{n=1}^{\infty} A_n \sin \frac{\pi n x}{l} = \phi(x)
+\end{equation}
+
+\begin{equation}
+    u_t |_{t=0} = \sum_{n=1}^{\infty} \frac{\pi n x}{l}
+    B_n \sin \frac{\pi n x}{l} = \psi(x) \  \big| \cdot \sin \frac{\pi m x}{l}, \int_{0}^{l} 
+\end{equation}
+
+\[
+    \int_{0}^{l} \sin \frac{\pi n x}{l} \cdot \sin \frac{\pi m x}{l} dx =
+    \begin{cases}
+        \frac{l}{2}, &\quad n = m\\
+        0, &\quad n \neq m
+    \end{cases}
+\]
+\[
+    \sum_{n=1}^{\infty} A_n \int_{0}^{l} \sin \frac{\pi n x}{l} \sin \frac{\pi m x}{l} 
+    dx = \int_{0}^{l} \phi(x) \sin \frac{\pi m x}{l} dx
+\]
+\begin{equation}
+    \begin{cases}
+        A_m &= \frac{2}{l}\int_{0}^{l} \phi(x) \sin \frac{\pi m x}{l} dx\\
+        B_m &= \frac{2}{l} \frac{l}{a \pi m} \int_{0}^{l} \psi(x) \sin \frac{\pi m x}{l} dx
+    \end{cases}
+\end{equation}
+\end{document}
