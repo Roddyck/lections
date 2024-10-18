@@ -1,0 +1,192 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+
+\begin{document}
+\begin{center}
+    \textbf{УМФ. Лекция (13.09.24)}\\ 
+\end{center}
+
+\[ 
+    \frac{\partial U}{\partial x} = U_x, \; \frac{\partial^2U}{\partial x \partial y} 
+    = u_{xy}, \dots
+\] 
+
+\begin{equation}
+    au_{xx} + 2bu_{xy} + cu_{yy} + du_x + eu_y + hu = f
+\end{equation}
+
+\[ 
+    b^2 - ac \begin{cases}
+        > 0, \quad & \text{гиперболический тип} \\
+        < 0, \quad & \text{эллиптический тип} \\
+        = 0, \quad & \text{параболический тип} \\
+        
+    \end{cases}
+\]
+
+Замена: 
+$
+\begin{cases}
+    \xi = \xi(x,y) \\
+    \eta = \eta(x, y) \\
+\end{cases}
+$
+\hspace{1cm}
+$ D(\xi, \eta) = \det
+\begin{pmatrix}
+    \xi_x & \xi_y \\
+    \eta_x & \eta_y
+\end{pmatrix}
+\neq 0
+$
+\begin{equation}
+    2\tilde{b}\, \frac{\tilde{U}(\xi, \eta)}{\partial\xi\partial\eta}
+    + \tilde{d} \tilde{u}_\xi + \tilde{e} \tilde{u}_\eta + h
+    \tilde{u} = \tilde{f}
+    \quad\text{(гиперболический тип КВ)}
+\end{equation}
+
+\begin{equation}
+    \tilde{u}(\xi, \eta) = u\left(\xi(x,y), \eta(x,y)\right) = u(x,y)
+\end{equation}
+
+\begin{align*}
+    \tilde{u}_x &= \frac{\partial}{\partial x} \tilde{u}(\xi, \eta) =
+    \tilde{u}_\xi \xi_x + \tilde{u}_\eta \eta_x \\
+    \tilde{u}_{xx} &= \frac{\partial}{\partial x} u_x = 
+    \frac{\partial}{\partial x} (\tilde{u}_\xi \xi_x + \tilde{u}_\eta \eta_x) =  
+    (\frac{\partial\tilde{u}_\xi}{\partial \xi} \xi_x + \frac{\partial\tilde{u}_\xi}
+    {\partial \eta} \eta_x) \xi_x + \tilde{u}_\xi \xi_{xx} + \dots
+\end{align*}
+
+\[
+    \tilde{a}\tilde{u}_{\xi\xi} + 2\tilde{b}\tilde{u}_{\xi\eta} + \tilde{c}
+    \tilde{u}_{\eta\eta} + \tilde{d}\tilde{u}_{\xi} + \tilde{e}\tilde{u}_\eta
+    + \tilde{h}\tilde{u} = \tilde{f}
+\]
+\begin{tcolorbox}
+    \begin{equation}
+        \begin{aligned}
+            \tilde{a} &= a(\xi_x)^2 + 2b\xi_x \xi_y + c(\xi_y)^2\\
+            \tilde{c} &= a(\eta_x)^2 + 2b\eta_x \eta_y + c(\eta_y)^2\\
+            \tilde{b} &= a \xi_x\eta_x + b(\xi_x\eta_y + \xi_y\eta_x) + c\xi_x\eta_y \\ 
+            \tilde{d} &= a\xi_{xx} + 2b \xi_{xy} + c \xi_{yy} + d \xi_x + e \xi_y \\
+            \tilde{e} &= a \eta_{xx} + 2b \eta_{xy} + c \eta_{yy} + d \eta_x + e \eta_y\\
+            \tilde{h} &= h \\
+            \tilde{f} &= f \\
+        \end{aligned}
+    \end{equation}
+\end{tcolorbox}
+
+\section*{\centering Гиперболический тип}
+гиперболическое ур-е:
+$
+\begin{cases}
+    \tilde{a} &= 0 \\
+    \tilde{c} &= 0
+\end{cases}
+$
+\begin{equation}
+    a(\phi_x)^2 + 2b(\phi_x\phi_y) + c(\phi_y)^2 = 0 \quad
+    \text{- характеристическое уравнение}
+\end{equation}
+\[
+    a \neq 0 \quad (\phi_x)_{1,2} = \frac{-b \pm \sqrt{b^2-ac}}{a} \cdot \phi_y
+\]
+
+\begin{equation}
+   \left[
+       \begin{array}{ll}
+           a\phi_x + (b - \sqrt{b^2 - ac})\phi_y &= 0 \\
+           a\phi_x + (b + \sqrt{b^2 - ac})\phi_y &= 0 \\
+       \end{array}
+   \right .
+\end{equation}
+\[
+    \alpha(x,y)\phi_x(x,y) + \beta(x,y)\phi_y(x,y) = 0
+\]
+
+\[
+    \tilde{b}^2 - \tilde{a}\tilde{b} = (b^2-ac)\left(\det
+        \begin{pmatrix}
+            \xi_x & \xi_y \\
+            \eta_x & \eta_y
+        \end{pmatrix}
+    \right)^2
+\]
+
+\begin{equation}
+   \left[
+       \begin{array}{ll}
+           \frac{dx}{a} &= \frac{dy}{b-\sqrt{b^2-ac}} \to \Phi \equiv \xi \\
+           \frac{dx}{a} &= \frac{dy}{b+\sqrt{b^2-ac}} \to \Phi \equiv \eta \\
+       \end{array}
+   \right .
+\end{equation}
+
+\section*{\centering Параболический тип}
+\[
+    \begin{cases}
+        \tilde{b} &= 0 \\
+        \tilde{a} &= 0
+    \end{cases}
+    \quad\text{или} \quad
+    \begin{cases}
+        \tilde{b} &= 0 \\
+        \tilde{c} &= 0
+    \end{cases}
+\]
+\[
+    \begin{aligned}
+        &a\phi_x + b\phi_y = 0 | \cdot b \\
+        &ab\phi_x + b^2\phi_y = 0 \\
+        &ab\phi_x + ac\phi_y = 0 \\
+        &b\phi_x + c\phi_y = 0
+    \end{aligned}
+\]
+Замена:
+$
+\begin{cases}
+    \phi \to \xi &= \xi(x,y) \\
+    \eta &= \eta(x,y)
+\end{cases}
+$ \\
+$ \tilde{b} = \eta_x(a\xi_x + b\xi_y) + \eta_y(b\xi_x + c\xi_y) = 0 $
+
+\section*{\centering Эллиптический тип}
+\[ b^2 - ac < 0 \quad \tilde{a}=\tilde{c} \quad \tilde{b} = 0 \]
+
+\begin{equation}
+   \left[
+       \begin{array}{ll}
+           a\phi_x + (b - i\sqrt{ac - b^2})\phi_y &= 0 \\
+           a\phi_x + (b + i\sqrt{ac - b^2})\phi_y &= 0 \\
+       \end{array}
+   \right .
+\end{equation}
+$ \Phi(x,y) $
+\[ \frac{dx}{a} = \frac{dy}{b-i\sqrt{ac-b^2}} \]
+\[ \Phi(x,y) = Re\Phi(x,y) + iIm\Phi(x,y) \quad \Phi = \xi + i \eta \]
+$
+\begin{cases}
+    \xi &= Re\Phi \\
+    \eta &= Im\Phi \\
+\end{cases}
+$
+\[
+    a(\xi_x^2 - \eta_x^2) + 2b(\xi_x\xi_y - \eta_x\eta_y) + c(\xi_y^2 - \eta_y^2)
+    + 2i(a\xi_x\eta_x + b(\xi_x\eta_y + \xi_y\eta_x) + c\xi_y\eta_y) = 0
+\]
+В получившимся уравении действительная часть равна ($\tilde{a} - \tilde{c}$)
+и действительная часть равна $\tilde{b}$. И притом обе равны 0.
+\end{document}

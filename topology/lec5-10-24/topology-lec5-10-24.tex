@@ -1,0 +1,242 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\begin{document}
+\title{Топология. Лекция}
+\author{Me}
+\maketitle
+
+\begin{tcolorbox}
+\underline{Th3.} $ (X, \tau_1), \; (X, \tau_2) \quad
+f: (Y, \omega)  \to (X_1 \times X_2, \tau_1 \times \tau_2) $\\
+$ f_{i} = pr_i f $ \\
+f непр $ \iff f_1, f_2$ непр 
+\[
+    \begin{tikzcd}
+        & (Y, \omega) \arrow[swap]{dl}{f} \arrow{dr}{f_{i}}\\
+        (X_1, \times X_2, \tau_1 \times \tau_2) \arrow[swap]{rr}{pr_1} &&(X_{i}, \tau_1)
+    \end{tikzcd}
+\]
+
+\underline{Proof} 1. $ \implies $ из непрерывности композиции \\
+2. $ \impliedby $ 
+\[
+    \forall U \times X \in \tau_1 \times \tau_2, \; U \in \tau_1, \; V \in \tau_2
+\]
+\[
+    f^{-1}_{i} = f^{-1} pr^{-1}_1
+\]
+\[
+    f_1^{-1}(U) \in \omega
+    f^{-1}_1 = f^{-1}(pr_1^{-1}(U)) = f^{-1}(U \times X_2) \in \omega
+\]
+\[
+    f_2^{-1}(V) = f^{-1}(X_1\times V) \in \omega
+\]
+\[
+    f^{-1}(U\times V) = f^{-1}((X_1 \times V) \cap (U \times X_2)) =
+    f^{-1}(X_1 \times V) \cap f^{-1}(U\times X) \in \omega
+\]
+
+\underline{Note} Отображения пр-ва непрерывно $ \iff $ оно непрерывно по каждой 
+координате
+\end{tcolorbox}
+
+\section*{\centering \S 4 Связность топологических пространств}
+
+\underline{Def} Топологическое пространство называется связным, если его нельзя
+представить в виде объеденения двух непересекающихся открытых множеств, 
+в противном случае называется несвязным
+
+\underline{Ex} $ A = (0, 1) \cup [2, 5) \quad (A, (\tau_0)_{A})$\\
+$ (0,1) \in (\tau_{0})_{A} \quad [2, 5) \in (\tau_{0})_{A} $ т.к. $ [2, 5) = (1.5, 10) \cap A $ 
+
+\underline{Ex} $ (\mathbb{Q}, \tau_0) $ \\
+$ U = \{ r \in \mathbb{Q} \; | \; r >\sqrt{2} \} $ \\
+$ V = \{ r \in \mathbb{Q} \; | \; r <\sqrt{2} \} $ \\
+$ Q = U \cup V, \; U \cap V = \varnothing $ \\
+$ U = \hat{U} \cap \mathbb{Q}, \; \tilde{U} = \{ x \in \mathbb{R} \; | \; x > \sqrt{2} \} $ \\
+$ V = \hat{V} \cap \mathbb{Q}, \; \tilde{V} = \{ x \in \mathbb{R} \; | \; x < \sqrt{2} \} $ 
+
+\begin{tcolorbox}
+\underline{Th1} Пр-во несвязно $ \iff $ в нем существует непустое открыто-замкнутое
+множество, не совпадающее со всем пространством
+
+\underline{Proof} 1 $ \implies (X, \tau) $ несвязно
+\[
+    \implies \exists U, V \in \tau\; U \neq \varnothing, \; V \neq \varnothing \; |
+    \; X = U \cup V, \; U \cap V = \varnothing
+\]
+\[
+    U = CV \implies U \text{ замкнуто}
+\]
+2. $ \impliedby $ Пусть $ \exists \; U $ открыто-замкнутое, $ U \neq \varnothing, \;
+U \neq X$. Пусть $ V = CU \implies X = U \cup CU $  
+\end{tcolorbox}
+
+\underline{Ex} $ (X, \tau_{D}) $ - любое открыто-замкнуто 
+
+\underline{Ex} $ (\mathbb{R}, \tau_{ир}) $ База ир. топ. - ир. точки\\
+связно т.к. нет открыто-замкнутых множеств (открытые состоят из иррациональных
+точек, замкнутые содержат $ \mathbb{Q} $)
+
+\begin{tcolorbox}
+    \underline{Th2} $ ([0,1], \tau_{0}) $ связно
+
+    \underline{Proof} М. от противного\\
+    \[
+        [0,1] = A \cup B \quad A, B \text{ открыты}
+    \]
+    \[
+        A \cap B = \varnothing, \; A,B \text{ непустые}
+    \]
+    Пусть $ 0 \in A $, A открыто 
+    \[
+        \implies [0, c) \in \tau_{0}[0,1]
+    \]
+    \[
+        c_0 = \sup c \text{ таких, что} [0,c) \subset A
+    \]
+    A замкнуто т.к. $ A = CB  \implies$ 
+    \[
+        \implies A = \overline{A} \implies c_0 \in A \implies [0, c_0) \subset A
+        \implies \exists \epsilon \; | \; (c_0 - \epsilon, c_0 + \epsilon) \subset A
+        \implies [0, c_0 + \epsilon) \subset A
+    \]
+    Противоречие $ \implies c = 1 $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.3} Пусть A связное подмножество $ (X, \tau) $ т.е. А связно как
+подпр-во в $ (X, \tau) $\\
+Пусть $U,V \in \tau \quad U \cap V =\varnothing $\\
+$ A \subset U \cup V $ \\
+Тогда $ A \subset U \lor A \subset V $ 
+
+\underline{Proof} От противного\\
+Пусть $ A \cap U = A_1 \neq \varnothing $ \\
+$ A \cap V = A_2 \neq \varnothing $ 
+\[
+    A = A_1 \cup A_2, \text{ в } \tau_{A}
+\]
+\[
+    A_1, A_2 \text{ открыты} \implies \text{ против со связностью А}
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.4} $ A_{i} \subset X_{i}, \; i \in I \quad \forall A_{i} $ связно\\
+$ \bigcap_{i \in I} A_{i} \neq \varnothing \implies \bigcup_{i \in I} A_{i} $ 
+связно
+
+\underline{Proof} $ \bigcup_{i \in I} A_{i} $ несвязно
+\[
+    \implies A = U \cup V, \; U \cap V = \varnothing
+\]
+\[
+    U,V \in \tau_{A}, \; U \neq \varnothing, \; V \neq \varnothing \implies
+    A_{i} \in \text{ только одному из множеств}
+\]
+\[
+    \implies A \in \text{ U или V}
+\]
+\end{tcolorbox}
+
+\underline{Ex} $ ((0,1], \tau_{0}) $ - св пр-во
+
+\begin{tcolorbox}
+\underline{Th.5} А связное подмн-во в $ (X, \tau) $ любое B лежащие между А
+и его замыкание т.е. $ A \subset B \subset \overline{A} $ связно 
+
+\underline{Proof} М от противного\\
+Пусть $ \exists U, V \in \tau\; | \; B = U \cup V, \; U \cap V = \varnothing,\;
+U \neq \varnothing, \; V \neq \varnothing$ 
+\[
+    \stackrel{Th.3}{\implies} A \text{ принадлежит одному из мн-в U или V}
+\]
+Пусть $ A \subset U $ 
+\[
+    \implies \exists x \in B \; | \; x \in V \implies x \in \overline{A}
+\]
+\[
+    V \text{ - окрестность точки x} \; | \; V \cap A = \varnothing
+\]
+
+\underline{Сл.1} замыкание связного мн-ва связно\\
+Пусть в т.5. $ B = \overline{A}, \; A \subset \overline{A} \subset \overline{A} $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.6} Непрерывный образ связного пространства связен
+
+\underline{Proof} М от противного
+\[
+    f: (X,\tau) \to (Y, \omega) 
+\]
+f - сюрьекция\\
+$ (X, \tau) $ связно\\
+Пусть $ Y = U \cup V,\; U, V \in \omega, \; U \cap V = \varnothing,\; U \neq \varnothing,
+\; V \neq \varnothing$ 
+\[
+    f^{-1}(U \cup V) = f^{-1}(U) \cup f^{-1}(V) \implies f^{-1}(U), f^{-1}(V) \in
+    \tau, \; f^{-1}(U) \cap f^{-1}(V) = \varnothing
+\]
+\[
+    f^{-1}(U) \neq \varnothing,\; f^{-1}(V) \neq \varnothing \implies
+    X = f^{-1}(U) \cup f^{-1}(V)
+\]
+Противоречие со связностью $ (X, \tau) $ 
+\end{tcolorbox}
+
+\underline{Ex} $ S^{1}: \{ (x,y) \in \mathbb{R} \; |\; x^2 + y^2 =1 \} $ связно\\
+Окрестность - образ отрезка $ I = [0,1] $ \\
+$ f(I) = \{ x = cos2\pi t, y = \sin 2\pi t\} $ 
+
+\begin{tcolorbox}
+\underline{Th.7} Произведение связных пр-в связно
+
+\underline{Proof} $ (X, \tau), \; (Y, \omega) $ - связные пр-ва\\
+М. от противного\\
+\[
+    (X \times Y, \tau \times \omega) \text{ несвязно} \implies X \times Y = 
+    U \cup V, \; U \cap V = \varnothing, \; U \neq \varnothing, \; V \neq \varnothing
+    \; U,V \in \tau \times \omega
+\]
+Пусть $ (x_0, y_0) \in U $\\
+Пусть $ f: (X, \tau) \to (X \times Y, \tau \times \omega): x \mapsto (x,y_0) 
+\implies f$ непрерывно, т.к. прообраз любого открытого открыт
+\[
+    \forall A \times B \in \tau \times \omega \implies f^{-1}(A \times B) =
+    \varnothing \text{ если } y_0 \notin B
+\]
+\[
+    f^{-1}(A \times B) = A \text{ если } y_0 \in B
+\]
+\[
+    \stackrel{Th.6}{\implies} (X \times \{y_0\}) \text{ связно}
+\]
+Аналогично $ (\{x_0\} \times Y) $ связно\\
+$ (X \times \{y_0\}) \cap (\{x_0\} \times Y) = (x_0,y_0) $
+\[
+    \implies X \times \{y_0\} \cup \{x_0\} \times Y \text{ связно}
+\]
+\[
+    X \times Y = \bigcup_{x_0 \in X} \{x_0\} \times Y \implies \{x\} \times Y
+    \cap X \times \{y_0\} \neq \varnothing \implies \bigcup_{x_0 \in X}\{x_0\} \times Y
+    \subset U
+\]
+\end{tcolorbox}
+\end{document}

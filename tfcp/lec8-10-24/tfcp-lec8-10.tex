@@ -1,0 +1,285 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\begin{document}
+\title{Комплан. Лекция}
+\author{Хуй}
+\maketitle
+\section*{\centering Линейная функция}
+\[
+    w = az + b, \; a,b \in \mathbb{C}
+    \text{ - линейная ф-ия}
+\]
+\[
+    w' = a \neq 0 \text{ конф на всей комп пл-ти}
+\]
+1. Преобразование переноса (сдвига)
+\[
+    w = z + c, \; c = c_1 + i c_2
+\]
+\[
+    z = x + iy, \; w = u + iv
+\]
+\[
+    u + iv = x + iy + c_1 + i c_2
+\]
+\[
+    \begin{cases}
+        u  = x + c_1\\
+        v = y + c_2
+    \end{cases}
+\]
+2. Преобразование поворота (вращения)
+\[
+    w = z \cdot e^{i\alpha}, \; \alpha \in \mathbb{R}
+\]
+\[
+    \alpha > 0 \text{ против}
+\]
+\[
+    \alpha < 0 \text{ по}
+\]
+\[
+    z = r e^{i\phi}
+\]
+\[
+    w = r e^{i(\phi + \alpha)}
+\]
+\[
+    |w| = r = |z| \quad \arg w = \phi + \alpha = \arg z + \alpha
+\]
+\[
+    e^{i(\phi + \alpha)} = r \cos(\phi  +\alpha)  + i \sin (\phi + \alpha)
+\]
+\[
+    \begin{cases}
+        u = r \cos(\phi + \alpha) \\
+        v = r \sin(\phi + \alpha) \\
+    \end{cases}
+\]
+3. Преобразование подобия (гомотетия)
+\[
+    w = k z, \; k > 0
+\]
+\[
+    w = k \cdot r e^{i\phi}, \; |w| = k |z|, \; \arg w = \phi = \arg z
+\]
+\[
+    k > 1 \text{ - растяжение}, \; k < 1 \text{ - сжатие}
+\]
+\[
+    w = az + b, \; a = k e^{i\alpha}, \; k = |a| > 0,\; \alpha = \arg a
+\]
+\[
+    w = k e^{i\alpha}z + b
+\]
+\[
+    1) \; w_1 = z e^{i\alpha}
+\]
+\[
+    2) \; w_2 = w_1 \cdot k
+\]
+\[
+    3) \; w_3 \equiv w = w_2 + b
+\]
+\subsection*{\centering Дробно-линейное преобразование}
+\[
+    w = \frac{az + b}{cz + d} \equiv L(z)
+\]
+\[
+    \delta = \begin{vmatrix}
+    a & b\\
+    c & d\\
+    
+    \end{vmatrix}
+    \neq 0    
+\]
+\[
+    \delta = 0 = ad - bc \implies ad = bc
+\]
+\[
+    \frac{a}{c} = \frac{b}{d} = \lambda \implies a = \lambda b,\; b = \lambda d
+\]
+\[
+    w = \frac{\lambda cz + \lambda d}{c z + d} \equiv \lambda
+\]
+1 Пусть c = 0, $ a \neq 0, \; d \neq 0 $ 
+\[
+    w = \frac{a}{d} z  + \frac{b}{d} \equiv a_1 z + b_1
+\]
+
+\underline{Def} Точки $ z_1, \, z_2 $ называются симметричными относительно 
+$ C: |z - z_0| = R $, если \\
+1) Лежат на одном луче, исходящем из центра окружности\\
+2) Произведение их расстояний от центра равно квадрату радиуса. $ |z_1 - z_0| \cdot
+|z_2 - z_0| = R^2$ \\
+$ |z_1 - z_0| < R \implies |z_2 - z_0| > R $ \\
+$ z_1 \rightarrow z_0 \implies z_2 \rightarrow \infty $ \\
+$ z_1 = z_0, \; z_2 = \infty $ 
+
+\underline{Def} Преобразование переводящие точки $ z $ в симметричные с ними
+относительно окружности C точки $ \xi $, называется симметрией (инверсией)
+относительно окружности
+
+4.
+\[
+     w  = \frac{R^2}{z} 
+\]
+\[
+    z = |z| e^{i\phi}, \; w = |w| e^{i\theta}
+\]
+\[
+    |w| e^{i\theta} = \frac{R^2}{|z|} e^{i\phi}
+\]
+\[
+    |w| = \frac{R^2}{|z|} \implies |z||w| = R^2
+\]
+\[
+    \theta = -\phi
+\]
+\[
+    1) \; w_1 = \frac{R^2}{\overline{z}} \quad \overline{z} = |z| e^{-i\phi}
+\]
+\[
+    w_1 = \frac{R^2}{|z|} e^{i\phi} \iff |w_1| |z| = R^2, \; \arg w_1 = \phi = \arg z
+\]
+$ w_1 $ - симметрия. $ |z| = R $ 
+\[
+    2) \; w = \overline{w_1}
+\]
+\[
+    w = \frac{R^2}{z} \text{ - симметрия отн} \; |z| = R \text{ с последующем
+    зеркальным отражением относительно действ. оси}
+\]
+
+\begin{tcolorbox}
+\underline{Th} (Конформность дробно-линейного преобразования)\\
+Дробно-линейное преобразование $ w = \frac{az + b}{cz + d}\; (\delta \neq 0) $ 
+отображает конформно расширенную компл. пл-ть z на расш. комп. пл-ть w
+(др. линейное преобр. конформно на всей расш компл. пл-ти)
+
+\underline{Proof}
+
+1. Взаимнооднозначность\\
+1) $ c \neq 0 $ 
+\[
+    \forall \, z = -\frac{d}{c} \text{ соотв } !\; w \neq \infty
+\]
+\[
+    w(cz+d) = az + b
+\]
+\[
+    wcz - az = b -wd
+\]
+\[
+    z = \frac{b - wd}{wc-a} 
+\]
+\[
+    \forall \; w \neq \frac{a}{c} \text{ соотв ! } z \neq \infty
+\]
+\[
+    L(-\frac{d}{c}) = \infty, \; L(\infty) = \frac{a}{c} 
+\]
+\[
+    \mathbb{\overline{C}}_{z} \stackrel{\text{вз-одн}}{\leftrightarrow}
+    \mathbb{\overline{C}}_{w}
+\]
+
+2) $ c = 0 $ 
+\[
+    w = a_1 z + b_1, \; a_1 \neq 0
+\]
+\[
+    \forall z \neq \infty \text{ соотв ! } w \neq \infty
+\]
+\[
+    z = \frac{w}{a_1} - \frac{b_1}{a_1} 
+\]
+\[
+    \forall w \neq \infty \text{ соотв !} z \neq \infty
+\]
+\[
+    L(\infty) = \infty
+\]
+
+2. Конформность\\
+1) $ c \neq 0 $ 
+\[
+    \frac{\partial w}{\partial z} = \frac{a(cz+d) - c(az+b)}{(cz+d)^2} 
+    \frac{ab - bc}{(cz+d)^2} 
+\]
+\begin{align*}
+    \left[
+    \begin{array}{ll}
+        \neq 0, &\quad z \neq \infty \\
+        \neq \infty, &\quad z \neq -\frac{d}{c} 
+    \end{array}
+    \right .
+    \end{align*}
+
+a) $ z = \infty $ 
+\[
+    z = \frac{1}{t}, \; z = \infty \rightarrow t = 0
+\]
+\[
+    w(t) = \frac{a \frac{1}{t} + b}{c \frac{1}{t} + d} 
+\]
+\[
+    w(t) = \frac{a + bt}{c + ^{}} 
+\]
+\[
+    \frac{\partial w}{\partial t} |_{t=0} \frac{a}{c} \neq 0
+\]
+
+b) $ z = \frac{-d}{c} \rightarrow w = \infty $ 
+\[
+    w = \frac{1}{\zeta} 
+\]
+\[
+    \frac{1}{\zeta} = \frac{az + b}{cz + d} \implies \zeta
+\]
+\[
+    \frac{\partial \zeta}{\partial z} |_{z = \frac{-d}{c} } \neq 0
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+2) $ c = 0 $ 
+\[
+    w = a_1 z + b_1 \quad \frac{dw}{dz} = a_1 \neq 0
+\]
+\[
+    L(\infty) = \infty
+\]
+\[
+    z = \frac{1}{t}, \; w = \frac{1}{\zeta} 
+\]
+\[
+    z = \infty \rightarrow t = 0, w = \infty \rightarrow \zeta = 0
+\]
+\[
+    \frac{d\zeta}{dt} |_{t=0} \neq 0
+\]
+\end{tcolorbox}
+
+\underline{Def} Окружность на $ \mathbb{\overline{C}} $ или окружность в широком
+смысле называется всякая кривая определяемая уравнением:
+\[
+    A(x^2 + y^2) + Bx + Cy + D = 0,\; A,B,C,D \in \mathbb{R}
+\]
+\[
+    A = 0 \text{ - прямая }, \; A \neq 0 \text{ - окружность}
+\]
+\end{document}

@@ -1,0 +1,46 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{ТВиМС. Лекция}
+\author{jdsadkfals}
+\maketitle
+
+\subsection*{Качество критериев}
+$ w $ - критическая область\\
+$ \alpha = P(x_n \in w \ | \ H_0) $ - размер критерия\\
+$ \beta = P(x_n \in w \ | \ H_1) $ - мощность
+
+\begin{tcolorbox}
+    \underline{Def} состоятельный $ \beta \xrightarrow[n \to \infty]{} 1$ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \underline{Def} не... $ \alpha \leq \beta $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \underline{Def} 1) Критерий 1 основан на 
+\end{tcolorbox}
+\end{document}

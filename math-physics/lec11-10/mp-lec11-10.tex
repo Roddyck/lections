@@ -1,0 +1,204 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\begin{document}
+\title{УМФ. Лекция}
+\author{Какой-то пидорас}
+\maketitle
+\begin{equation}
+    u_{t t}(x,t) - a^2 u_{xx}(x,t) = 0 \quad x \geq 0, \; t \geq 0
+\end{equation}
+\begin{equation}
+    u_x(x,t) |_{x=0} = 0
+\end{equation}
+\begin{equation}
+    u(x,t) |_{t=0} = \phi(x)
+\end{equation}
+\begin{equation}
+    u_t(x,t) |_{t=0} = \psi(x)
+\end{equation}
+\[
+    -\infty < x < \infty, \; t \geq 0
+\]
+\begin{equation}
+    U_{t t}(x,t) - a^2 u_{xx}(x,t) = 0
+\end{equation}
+\begin{equation}
+    U(x,t) |_{t=0} = \Phi(x)
+\end{equation}
+\begin{equation}
+    U_t(x,t) |_{t=0} = \Psi(x)
+\end{equation}
+\begin{equation}
+    \Phi(x) = \begin{cases}
+        \phi(x), &\quad x \geq 0\\
+        \phi(-x), &\quad x < 0
+    \end{cases}
+\end{equation}
+\begin{equation}
+    \Psi(x) = \begin{cases}
+        \psi(x), &\quad x \geq 0\\
+        \psi(-x), &\quad x < 0
+    \end{cases}
+\end{equation}
+\begin{equation}
+    U(x,t) = \frac{\Phi(x - at) + \Phi(x+at)}{2} + \frac{1}{2a} 
+    \int_{x-at}^{x+at} \Psi(z) dz
+\end{equation}
+\[
+    F(x) = \int_{\lambda(x)}^{\beta(x)} f(x,\xi) d\xi
+\]
+\[
+    F'(x) = \int_{\lambda(x)}^{\beta(x)} + f(x, \beta(x)) \beta'(x) - f(x, \alpha(x))
+    \alpha'(x)
+\]
+\[
+    U_x(x,t) = \frac{\Phi'(x-at)\cdot 1 + \Phi'(x+at)\cdot 1}{2} + \frac{1}{2a} 
+    \cdot (\Psi(x+at) \cdot 1 - \Psi(x-at)) \cdot 1
+\]
+\[
+    U_x |_{x=0} = \frac{\Phi'(-at) + \Phi'(at)}{2} + \frac{1}{2a} (\Psi(at) - \Psi(-at))
+    = 0
+\]
+\[
+    (2), \; (3) \implies \phi'(x) |_{x=0} = 0
+\]
+\begin{equation}
+    u_{t t}(x,t) - a^2 u_{xx}(x,t) = 0 \quad x \geq 0, \; t \geq 0
+\end{equation}
+\begin{equation}
+    u|_{t=0} = 0, \; x \geq 0
+\end{equation}
+\begin{equation}
+    u_t|_{t=0} = 0, \; x \geq 0
+\end{equation}
+\begin{equation}
+    u(0,t) = \mu(t), \; t \geq 0
+\end{equation}
+\begin{equation}
+    u(x,t) = F(x-at) + G(x+at)
+    \label{eq:11}
+\end{equation}
+
+Подставим $ (\ref{eq:11}) $ в начальные условия
+\[
+    F(x) + G(x) = 0
+\]
+\[
+    u_t(x,t) = F'(x-at)\cdot (-a) + G'(x-at)\cdot a
+\]
+\[
+    u_t |_{t=0} = -aF'(x) + aG'(x) = 0
+\]
+\[
+    \begin{cases}
+        F(x) + G(x) &= 0, \; x \geq 0\\
+        -F'(x) + G'(x) &= 0, \; x \geq 0
+    \end{cases}
+\]
+\[
+    \begin{cases}
+        G(x) = \frac{C}{2}, \\
+        F(x) = - \frac{C}{2}, 
+    \end{cases}
+    x \geq 0
+\]
+\[
+    u(x,t) = 0 \quad
+    \begin{cases}
+        x - at &\geq 0\\
+        x + ar &\geq 0
+    \end{cases}
+\]
+$ x - at < 0 $ 
+\[
+    u(x,t) = F(x -at) + \frac{c}{2}, \quad F(-at) + \frac{c}{2} = \mu(t)
+\]
+Замена:
+\[
+    -at = z, \; z < 0, \; t = -\frac{z}{a} 
+\]
+\[
+    F(z) = \mu(-\frac{z}{a}) - \frac{c}{2} 
+\]
+\[
+    x - at < 0: \quad u(x,t) = \mu(t - \frac{x}{a}) - \frac{c}{2} + \frac{c}{2} 
+\]
+\[
+    u(x,t) = 
+    \begin{cases}
+        \mu(t - \frac{x}{a}), &\quad t > \frac{x}{a} \\
+        0, &\quad t \leq \frac{x}{a} 
+    \end{cases}
+\]
+
+\section*{\centering Постановка основных задач для ур-й колебаний ограниченной
+струны}
+
+\begin{equation}
+    u_{t t}(x,t) + a^2 u_{xx}(x,t) = f(x,t) \quad x \in [0;l], \; t \geq 0
+\end{equation}
+\begin{equation}
+    u |_{t=0} = \phi(x), \; x \in [0;l] 
+\end{equation}
+\begin{equation}
+    u_t |_{t=0} = \psi(x), \; x \in [0;l] 
+\end{equation}
+\begin{subequations}
+\begin{align}
+    x = 0 &\qquad x = l\\
+    u(0,t) = \mu_0(t),\; t \geq 0 &\qquad u(l,t) = \mu_l(t), \; t \geq 0\\
+    u_x(O,t) = \nu_0(t), \; t \geq 0 &\qquad u_x(l,t) = \nu_l(t), \; t \geq 0\\
+    -u_x(O,t) + h_0 u(0,t) = \varkappa_0(t), \; h_0 > 0 &\qquad u_x (l,t) + h_l u(l,t) 
+    = \varkappa_l(t), \; h_l > 0
+\end{align}
+\end{subequations}
+
+\[
+    u_{t t}(x,t) + a^2 u_{xx}(x,t) = f(x,t)
+\]
+\[
+    u(x,t) = F(x-at) + G(x+at)
+\]
+\[
+    \begin{cases}
+        F(x) - G(x) &= \phi(x)\\
+        -aF'(x) + aG'(x) &= \psi(x)
+    \end{cases}
+    \quad x \in [0,l]
+\]
+\[
+    \begin{cases}
+        0 \leq x -at \leq l\\
+        0 \leq x +at \leq l\\
+    \end{cases}
+\]
+\[
+    x \in \mathbb{R}, \ t \geq 0
+\]
+\[
+    u_{t t}(x,t) + a^2 u_{xx}(x,t) = f(x,t)
+\]
+\[
+    u |_{t=0} = \phi(x), \; x \in \mathbb{R}
+\]
+\[
+    u_t |_{t=0} = \psi(x), \; x \in \mathbb{R}
+\]
+\[
+    u(x,t) = \frac{\phi(x - at) + \phi(x+at)}{2} + \frac{1}{2a}\int_{0}^{\infty}  
+    \int_{x-at}^{x+at} \psi(z) dz
+\]
+\end{document}

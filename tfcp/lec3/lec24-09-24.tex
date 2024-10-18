@@ -1,0 +1,179 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+
+\begin{document}
+    \begin{center}
+        \underline{Лекция. ТФКП(24.09.24)}
+    \end{center}
+    \begin{tcolorbox}
+        \underline{Proof} \\
+        Дана $  u= u(x,y) \quad \exists v(x,y) ? $  \\
+        1)\\
+        $ \frac{\partial v}{\partial y} =  u'_x = Q(x,y)  $ \\
+        $ \frac{\partial u}{\partial x} = -u'_y = P(x,y)$ 
+        \[
+            u''_{xx} + u'_{yy} =0 \quad -u'_{yy} = u'_{xx} \implies
+            \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x} 
+        \]
+        \[
+            \exists v(x,y) \text{ с точностью до аддитив. const }
+        \]
+        2)\[
+            \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x} 
+            \iff Pdx + Qdy = d\psi(x,y) \iff Pdx + Qdy = dv(x,y) \implies \exists
+            v(x,y)
+        \]
+        \[
+            v(x,y) = \int_{(x_0, y_0}^{(x,y)} Pdx + Qdy + C = 
+            \int_{(x_0, y_0}^{(x,y)} ( - \frac{\partial u}{\partial y} dx
+             + \frac{\partial u}{\partial x}) + C
+        \]
+        \[
+            \int_{\Gamma} Pdx + Qdy
+        \]
+        1. Не зависит от $ \Gamma $  \\
+        2. $ Pdx + Qdy = d\psi $  \\
+        3. $ \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}  $ \\
+        4. $\int_{\Gamma} Pdx + Q dy = 0$ \\
+    \end{tcolorbox}
+    \section*{\centering Элементарные функции комплексного переменного}
+    \subsection*{1. Показательная ф-ция}
+    \[
+        W = e^{z} \equiv \exp(z) = e^{x}(\cos y + i \sin y)
+    \]
+    \underline{Св-ва} \\ 
+    1. $ u = e^{x} \cos y \quad v = e^{x} \sin y $ \\
+    $ \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} $ \\
+    $ \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x} $ \\
+    \[
+        \frac{\partial u}{\partial x} = e^{x}\cos y \quad
+        \frac{\partial u}{\partial y} = -e^{x} \sin y \quad \frac{\partial v}{\partial x} 
+        = e^{x}\sin y \implies e^{z} \in H(\mathbb{C})
+    \]
+    \[
+        w = e^{z} \text{ целая }
+    \]
+    \[
+        (e^{z})' = u'_x + i v'_x = e^{z} \cos x + i \sin y = e^{z} (\cos y + i \sin y) =
+        e^{z}
+    \]
+    2.
+    \[
+        |e^{z}| = \sqrt{e^{2x}(\cos^2y + \sin^2 y)} = e^{x}
+    \]
+    \[
+        Arg e^{z} = y = Im z
+    \]
+    3. $ z_1, z_2 $ 
+    \[
+        e^{z_1} \cdot e^{z_2}= e^{x_1} e^{iy_1} e^{x_2} e^{iy_2} = 
+        e^{x_1 + x_2} e^{i (y_1+ y_2}= e^{z_1 + z_2}
+    \]
+    4.\[
+        e^{i 2\pi k} = \cos(2\pi k) + i\sin(2\pi k) = 1
+    \]
+    \[
+        e^{z + i 2\pi k} = e^{z} e ^{i 2 \pi k}= e^{z}
+    \]
+    \[
+        w(z+ i 2 \pi k) = w(z) \implies w = e^{z} \text{ - является переодической
+        функцией } T = 2\pi i
+    \]
+    \subsection*{2. Логарифмическая ф-ция}
+    \underline{Def} Логарифм z - число w: $ e^{w}= z $  обозн $ w = Ln(z) $, $ e^{Lnz}
+    \equiv z$ \\
+    \begin{equation*}
+        \begin{aligned}
+            w = u +iv, \quad z = r e ^{i(\phi + i 2 \pi k}, z \neq 0\\
+            r e^{\phi + 2 \pi k} = e^{u} \cdot e^{iv} \implies e^{u} \implies
+            u = \ln r \\
+            v = \phi  + 2\pi k\\
+            w \equiv Lnz = \ln r + i(\phi + 2\pi k) \equiv w_{k}(z)
+        \end{aligned}
+    \end{equation*}
+    \underline{Вывод} Показательное ур-е $ e^{W} = z $ при $ z \neq 0 $ имеет
+    бесконечно много корней \\
+    $ Ln z $ - бесконечнозначная, $ z \neq 0 $ \\
+    $  w_{k}(z)  $ - ветви логарифма $ z = 0 $ - точка ветвления \\
+    \[
+        k = 0 \quad \ln z \equiv w_0(z) = \ln|z| + i\phi, \quad \phi = argz \text{ - главная ветвь}
+    \]
+    \[
+        Ln z = \ln z + 2\pi k i, \quad k \in \mathbb{Z}
+    \]
+    \[
+        \ln z = \ln |z| + i \cdot argz
+    \]
+    \[
+        w = \ln z \quad w' = (\ln z)' = \frac{1}{(e^{w})'} = \frac{1}{e^{w}} =
+        \frac{1}{z} \implies (\ln z)' = \frac{1}{z} \implies (Lnz)' = \frac{1}{z} 
+    \]
+    \[
+        w_k(z) \text{ - регулярная } (z \neq 0, \; z \neq \infty)
+    \]
+    Lnz - многозначная аналитическая функция
+    \[
+        Ln(z_1 \cdot z_2) = Ln z_1 + Ln z_2
+    \]
+    \[
+        Ln \left(\frac{z_1}{z_2}\right) = Ln z_1 - Ln z_2
+    \]
+    \subsection*{3. Общая степенная и общая показательная функция}
+    \[
+        a^{b} = e^{b \cdot Ln a}, \; a,b \in \mathbb{C}, \; a \neq 0
+    \]
+    a) $ w = z^{\lambda} = \lambda Ln z = e $ \\
+    b) $ w = a^{z} = z Ln a = e, \; a \neq 0 $ 
+    \[
+        i^{i} = e^{i \cdot Ln i} = e^{i \cdot i(\frac{\pi}{2} + 2 \pi k}) =
+        e^{- \frac{\pi}{2} + 2k \pi}, \; k \in \mathbb{Z}
+    \]
+    \[
+        Ln i = \ln |i| + i \arg(i) + 2 \pi k i, \; k \in \mathbb{Z}
+    \]
+    \[
+        Ln i = \ln 1 + i \frac{\pi}{2} + 2 k \pi i = i(\frac{\pi}{2} + 2 k \pi), \;
+        k \in \mathbb{Z}
+    \]
+    \subsection*{4. Тригонометрические и гиперболические ф-ции}
+    \[
+        z \in \mathbb{R} \quad e^{iz} = \cos z + i \sin z
+    \]
+    \[
+        e^{-iz} = \cos z + - i \sin z
+    \]
+    \[
+        \cos z = \frac{e^{iz}+ e^{-iz}}{2} 
+    \]
+    \[
+        \sin z = \frac{e^{iz}- e^{-iz}}{2i} 
+    \]
+    \[
+        z \in \mathbb{C} \quad w = \cos z = \frac{e^{iz}+ e^{-iz}}{2}
+    \]
+    \[
+        w = \sin z = \frac{e^{iz}- e^{-iz}}{2i}
+    \]
+    \underline{Свойства} \\
+    1) $ z = x \in \mathbb{R} $ $ \cos x, \; \sin x $ \\
+    2) $  z \neq \infty $ $ \cos z, \; \sin z $  - целые \\
+    3) $ (\cos z)' = - \sin z $ \\
+    $ (\sin z)' = \cos z $ \\
+    4) $ \cos(z + 2 \pi) = \cos z $ \\
+    $ \sin ( z + 2 \pi) = \sin z $ \\
+    5) $ \cos(-z) = \cos z $ \\
+    $ \sin(-z) = -\sin z $ \\
+    6) $ \cos^2 z  + \sin^2 z = 1 $ \\
+    7) $ \sin z  = 0 \quad z = \pi k, k \in \mathbb{Z} $ \\
+    $ \cos z  = 0 \quad z = \frac{\pi}{2} + \pi k , k \in \mathbb{Z} $
+\end{document}

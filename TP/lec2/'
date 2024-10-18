@@ -1,0 +1,40 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{graphicx}
+\usepackage{tikz-cd}
+\graphicspath{ {./figures/} }
+
+\begin{document}
+
+\begin{center}
+    \textbf{\underline{ТВиМС. Лекция(20.09.24)}}
+\end{center}
+
+\section*{\centering Техника рандомизированного ответа}
+$ A \begin{cases}
+    1 \to \text{ справедливо} \\
+    0 \to \text{ наоборот }\\
+\end{cases} $  \\
+$ P(B) = \lambda $ - знаем \\
+$ \hat{q} = \frac{m}{n}$
+\[
+    q = P(A|B)P(B) + P(\overline{A} | \overline{B})
+P(\overline{B}) = p\lambda + (1-p)(1-\lambda) = p\lambda + 1 - p - \lambda + p\lambda 
+= p(2\lambda - 1) + 1 - \lambda
+\]
+
+\textbf{\underline{Эффективность}} \\
+Нужно вообще вставить картинку???
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+
+\end{document}

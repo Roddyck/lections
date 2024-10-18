@@ -1,0 +1,196 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+
+\begin{document}
+\underline{Def} $ f: (X, \tau) \to (Y, \omega)$ - гомеоморфизм, если\\
+1. f - биекция \\
+2. f непрерывна \\
+3. $ f^{-1} $ - непрерывна\\
+\underline{Def} 
+
+\begin{tcolorbox}
+    \underline{TH} Отношение гомеом на мн-ве топологических пр-в является отношением
+    эквивалентности \\
+\end{tcolorbox}
+
+\underline{Def} X - мн-во, $ U_{\alpha} $ - сем-во подмн-в X \\
+$ U_{\alpha} $ - покрытие, если $ \bigcup_{\alpha \in A} U_{\alpha}  = X $
+
+\underline{Def}  Покрытие называется фундаментальным, если $ \forall (Y, \omega)
+\; \forall \text{ отображения } f: (X, \tau) \to (Y, \omega) $ \\
+$ f |_{U_{\alpha}}: (U_{\alpha}, \tau_{\alpha}) \to (Y, \omega) \text{ непр. }
+\implies $ непрерывность f
+
+\begin{tcolorbox}
+    \underline{Def} Покрытие наз-ся открытым, если $ U_{\alpha} \in \tau \quad 
+    \forall \alpha $ 
+
+    \underline{Th.3} любое открытое покрытие пр-ва является фундаментальным
+
+    \underline{Proof} $ (X, \tau) $ \\
+\[
+    U_{\alpha}, \; \alpha \in A - \text{ покрытие }
+\]
+\[
+    U_{\alpha} \in \tau \quad \forall \alpha \in A
+\]
+Пусть $ f: (X, \tau)\to (Y, \omega)  $ $ f_{\alpha} = f |_{U_{\alpha}} $ -непр\\
+\[
+    \forall V \in \omega \implies f^{-1}(V) \in \tau
+\]
+\[
+    f^{-1}(V) = f^{-1}(V) \cap (\cup_{\alpha \in A} U_{\alpha} = 
+    \cup (f^{-1}(V) \cap U_{\alpha})= \cup_{\alpha \in A} f_{\alpha}^{-1}(V)
+\]
+\begin{equation*}
+    \begin{aligned}
+        \text{из непр } f_{\alpha}: (U_{\alpha}, \tau_{\alpha}) \to (Y, \omega) \implies
+        f^{-1}_{\alpha}(V) \in \tau_{\alpha} \implies \exists \tilde{U}_{\alpha} 
+        \in \tau \; | \; f_{\alpha}^{-1} = \tilde{U}_{\alpha} \cap U_{\alpha}\\
+        \text{ по условию } U_{\alpha} \in \tau \implies f_{\alpha}^{-1}(V) \in \tau
+    \end{aligned}
+\end{equation*}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \underline{Th} Конечное замкнутое покрытие является фундаментальным
+
+    Доказательство аналогично с учётом условия, что конечное объединение замкнутых
+    множеств замкнуто
+\end{tcolorbox}
+
+\underline{Ex} $ (\mathbb{Z}, \tau_{D}) \not\cong (\mathbb{Q} \cap [0, 1], \tau_{0})$ 
+- топология не явл $ \tau_{D} $ 
+
+\underline{Ex} $ ([0, 1], \tau_{D}) \quad ((0,1), \tau_{D})$ $ \exists f $ - биекция
+$ [0,1] $ на $ (0,1) $ т.к. мощности eовпадают f - гомеоморфизм
+
+\underline{Ex} $ ((0,1), \tau_{0}) \quad ((a,b), \tau_{0}) $ \\
+$ f(x) = a + (b - c)x $ 
+
+\underline{Note} $ f: (\mathbb{R}^{n}, \tau_{0} \to (\mathbb{R}, \tau_{0}) $ непр
+$ \iff $ 
+
+\begin{tcolorbox}
+    \underline{Th5} $ f:  (X, \tau)\to (Y, \omega)  $ непр \\
+    $ \forall A \subset X \implies f|_{a} $ непр
+
+    \underline{Proof}
+\end{tcolorbox}
+
+\underline{Ex} $ ([0,1], \tau_{0}) \not\cong ((0,1) \setminus \{ a \}, \tau_{0}) $ \\
+
+Идея док-ва\\
+М. от противного \\
+Пусть f - гомеоморфизм \\
+Пусть $ f(0) = a \in (0, 1) $
+\[
+    \tilde{f}: ((0,1], \tau_{0}) \to ((0,1), \tau_{0})
+\]
+$ \tilde{f} $ - ограничение f $ \implies \tilde{f} $ - гомеоморфизм
+
+\underline{Ex} $ s^{1} = \{ (x,y) \in \mathbb{R}^2 \; | \; x^2 + y^2 = 1 \}  $ \\
+$ \tilde{s}^{1} = \{ (x,y) \in \mathbb{R}^2 \; | \; \frac{x^2}{a^2}  + \frac{y^2}{b^2}  \} $\\
+\[
+    (s^{1}, \tau_{0}) \cong (\tilde{s}^{1}, \tau_{0})
+\]
+
+\[
+    F: \begin{cases}
+        x' &= ax \\
+        y' &= dy
+    \end{cases}
+\]
+
+\[
+    F: (\mathbb{R}^2, \tau_{0}) \to (\mathbb{R}^2, \tau_{0})
+\]
+
+\[
+    F|_{s^{1}}: (S^{1}, \tau_{0}) \to 
+\]
+
+
+\section*{\centering \S 3 Произведение топологических пространств}
+
+\underline{Note} "$ \tau \times \omega $" не является топологией
+
+\begin{tcolorbox}
+\underline{Th} Пусть $ (X,\tau), \; (Y, \omega) $ - т.п. $ \implies \tau 
+\times \omega$ - база некоторой топологии на $ X \times Y $. Эта топология 
+называется топологией произведения
+
+\underline{Proof} Проверим критерий базы на мн-ве $ \Sigma = \tau \times \omega $ \\
+Критерий базы на множестве $ X \times Y $ \\
+1. $ \bigcup_{\alpha \in A} = X \times Y $ \\
+2. $ \forall U, V \in \Sigma \; \forall x \in U \cap V \implies \exists W \in 
+\Sigma \; | \; x \in W \subset U \cap V$ \\
+
+1 очевидно выполнено\\
+2. \[
+    \forall U \in \Sigma \implies U = A_{1} \times B_2, \quad A_1 \in \tau, \; 
+    B_1 \in \omega \quad V = A_2 \times B_2\quad A_2 \in \tau, \; 
+    B_2 \in \omega
+\]
+Пусть $ x \in U \cap V \implies x = (a, b) \; a \in X, \; b \in Y $ 
+\begin{equation*}
+    \begin{aligned}
+        a \in A_1 \cap A_2 \\
+        b \in B_1 \cap B_2
+    \end{aligned}
+\end{equation*}
+Пусть $ W = (A_1 \cap A_2) \times (B_1 \cap B_2) $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \underline{Th} $ \Sigma_{1} $ - база $ (X, \tau) $ , $ \Sigma_{2} $ - база
+    $ (Y, \omega) $ \\
+    Тогда $ \Sigma_{1} \times \Sigma_{2} $  - база $ \tau \times \omega $ 
+
+    \underline{Proof}
+    Критерий базы в т.п.\\
+    1. $ \Sigma \subset \tau \times \omega $ - топология произведения\\
+    2. $ \forall U \in \tau \times \omega \; \forall x \in U \; \exists V \in \Sigma
+    \; | \; X \in V \subset U$ 
+    
+    1 из определения базы\\
+
+    2. \[
+        U = \bigcup_{i \in I} (A_{i} \times B_{i}) \; A_{i} \in \tau, \; B_{i} \in \omega
+    \]
+    \begin{equation*}
+        \begin{aligned}
+        \forall x \in U \implies \exists A_{i_0} \times B_{i_0}\; | \; x \in
+        A_{i_0} \times B_{i_0} \implies x = (a,b) \; a \in A_{i_0} \in \tau, 
+        \; b \in B_{i_0} \in \omega \implies \exists \tilde{A} \in \Sigma_{1} \;
+        | \; a \in \tilde{A} \subset A_{i_0}\; b \in \tilde{B} \subset B_{i_0}\\
+        \implies (a,b) \in (\tilde{A}, \tilde{B}) \subset U
+        \end{aligned}
+    \end{equation*}
+\end{tcolorbox}
+
+\underline{Def} Отобр $ pr_{1}: X\times Y \to X:(x,y) \mapsto x $ \\
+$ pr_{2}: X\times Y \to Y:(x,y) \mapsto y $
+
+\begin{tcolorbox}
+    \underline{Th} $ pr_{i} (X_1 \times X_2, \tau_{1} \times \tau_{2} \to
+    (X_{i}, \tau_{i})$ непрерывна
+
+    \underline{Proof}\[
+        \forall U \in \tau_{i} \implies pr_{1}^{-1}(U) = (U \times X_2)
+        \in \tau_{1} \times \tau_{2}
+    \]
+
+    Аналогично для $ pr_{2} $ 
+\end{tcolorbox}
+\end{document}

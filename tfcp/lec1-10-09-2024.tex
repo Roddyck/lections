@@ -1,0 +1,95 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+\begin{document}
+
+\begin{center}
+\section*{Комплан. Лекция(10.09.24)}
+\end{center}
+
+\underline{Зам.} $| z_1 z_2 | = |z_1| |z_2|$ \\
+$ |\frac{z_1}{z_2}| = \frac{|z_1|}{|z_2|} $ \\
+$ Arg(z_1 \cdot z_2) = Argz_1 + Argz_2 $ \\
+$ arg(z_1 \cdot z_2) \neq argz_1 + argz_2 $ \\
+$ Arg(\frac{z_1}{z_2}) = Argz_1 - Argz_2 $ \\
+\begin{center}
+    Стереографическая проекция Сфера Римана
+\end{center}
+
+"идеальное" число $z = \inf $
+$ \mathbb{C} \cap \{z=\inf\} = \bar{\mathbb{C}} $ \\ 
+$ \mathbb{C} $ - отрытая ( конечная) компл. пл-ть \\
+$ \bar{\mathbb{C}} $ - замкнутая компл. пл-ть \\
+Рассмотрим сферу един диаметра расп в пр-ве. И касающуюся плоскости Oxy в 
+начале коор-т \\
+
+где-то тут рисунок\\
+
+Таким образом устаналивается вз/одноз соответсвие м/у всеми точками сферы и
+всеми точками открытой комплексной плоскости $ \mathbb{C} $ \\
+$ \{ \text{N} \} \leftrightarrow \{ z = \inf\} $ \\
+$ \text{Z}(\xi, \eta, \zeta) $ - стереограф. проекция т-ки z(x,y) \\
+
+Св-ва стереограф. проекции №44, 45, 53, 56 \\
+1.$ \begin{cases} 
+    x =  \\ 
+    y = \\ 
+\end{cases}
+$
+2. Окружсность на S $\leftrightarrow $ окр-ть или прямая на $\bar{\mathbb{C}}$ \\
+
+$ N \in \text{окружности на S} \leftrightarrow \text{прямая} $ \\
+$ N \notin \text{окружности на S} \leftrightarrow \text{окружность} $ \\
+
+$ \xi^2 + \eta^2 + (\zeta - \frac{1}{2})^2 = \frac{1}{4} $\\
+$ \xi^2 + \eta^2 + \zeta^2 - \zeta = 0 $\\
+3. $r(z_1, z_2) = |z_1 - z_2|$  \\
+$ k(z_1, z_2) = r(Z_1, Z_2) $ k - хордальное(?) расстояние \\
+
+\underline{\textbf{Ф-ии комплексного переменного}} \\
+\underline{Опр.} Правило (закон) по которому каждому числу z $\in E=\{z\} \subset
+\mathbb{C} $ ставится в соответствие одно или несколько значений w, называется
+функцией комплексного переменного  и $w = f(z) $ \\
+$ f : E \rightarrow \mathbb{C} $ \\
+E - область определения \\
+$M = \{ f(z) \} $ - множество значений \\
+$ w = u + iv $
+$ w = f(z) \Leftrightarrow \begin{cases}
+    u = u(x,y) \\
+    v = v(x,y)
+\end{cases}
+$
+
+\underline{Опр.} Число A, если оно $ \exists $, наз-ся пределом ф-ии f(z) в точке
+$z =a $ $\lim\limits_{z\rightarrow a} f(z) = A $ \\
+$ \forall \epsilon > 0 \; \exists \delta=\delta(\epsilon) > 0 \; \forall z \in E: \;
+0 < |z-a| < \delta \Rightarrow |f(z) - A | < \epsilon $ \\
+$f(z) = u(z) + iv(z) \quad A = A_1 + iA_2 $ \\
+1. 
+$ 
+\lim\limits_{z\rightarrow a}f(z) = A \Leftrightarrow 
+\begin{cases}
+    \lim\limits_{z\rightarrow a} u(z) = A_1 \\
+    \lim\limits_{z\rightarrow a} v(z) = A_2 \\
+\end{cases}
+$ \\
+2. $ A \neq 0 \Rightarrow можно подобрать argf(z) $, что
+
+\lim\limits_{z\rightarrow a}f(z) = A \Leftrightarrow 
+\begin{cases}
+    \lim\limits_{z\rightarrow a} |f(z)| = |A| \\
+    \lim\limits_{z\rightarrow a} argf(z) = argA \\
+\end{cases}
+    
+\end{document}

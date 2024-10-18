@@ -1,0 +1,112 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+\begin{document}
+
+\begin{center}
+\textbf{Алгебра и Модули(10.09.24)}
+\end{center}
+
+\underline{Лит-ра} \\
+1. Ламбек И. "Кольца и модули" \\
+2. Каш Ф. "Кольца и модули"\\
+3. Passman D. "The course of ring theory" \ Выбор Любимцева \\
+
+\subsection*{Основные опр} 
+1. \underline{Группы}  \\
+Множество G - группа, если на G определена операция $\cdot $ со св-ми: \\
+1) $(ab)c = a(bc) \; \forall a,b,c \in G $ \\
+2) $ \exists e \in G \; | \forall a \in G: ae=ea=a $ $\quad $ /e обозн. 1/ \\
+3) $ \forall a \in G \; \exists b \in G \; | \; ab=ba=1 \quad $ /b обозн $a^{-1}$/ \\
+Если вып-но 4) $ab=ba \forall a,b\in G \Rightarrow G$ - коммутативная (абелева)
+группа \\
+
+2. \underline{Кольца} \\ 
+Всё тоже самое, что было неделю назад\\
+\underline{Классы колец} \\
+Всё тоже самое, что было неделю назад дубль 2\\
+\underline{Примеры} 1) ($ \mathbb{Z}, +, \cdot) \text{ - } \infty \text{ комм. кольцо} $ \\
+
+3. \underline{Модули} \\
+Пусть $(M, +)$ - абелева группа, R - кольцо. Тогда M называется \underline{левым модулем}
+над R (левым R-модулем), если определено умножения эл-тов из R на эл-ты из M слева
+со свойствами:\\
+M1) $(r+s)m = rm + rs \quad \forall r,s \in R, \; \forall m\in M$ \\
+M2) $ r(m + m') = rm+ rm' \quad \forall r \in R, \; \forall m, m' \in M $ \\
+M3) $(rs)m = r(sm) \quad \forall r,s \in R, \; m in M $ \\
+M4) $ 1 \cdot m = m \quad \forall m \in M $ \\
+Ан-но определяется правый R-модуль\\
+\underline{Примеры} \\
+1) Вект. пр-во - модуль над полем \\
+2) Абелевы группы - $\mathbb{Z}$ - модули \\
+3) $_RR$ - левый регулярный модуль \\
+4) Подмодуль N в $_RM$ (т.е. \\
+\indent 1) $ (N, +) $ - подгруппа в $(M, +)$ \\
+\indent 2) $\forall r \in r \; \forall n\in N: r \cdot n \in N $\\
+
+\subsection*{Гомоморфизмы}
+1) \underline{Абелевых групп} \\
+A,B - абелевы группы \\
+$ f: A \to B $ - гомоморфизм (абелевых групп), если  \\
+$ f(a, a') = f(a) + f(a') \quad \forall a,a' \in A $ \\
+
+$ \text{Hom}(A, B) = \{ f: A \to B \text{ - гомо} \} $ Hom - абелева группа \\
+$ \forall f,g \in \text{Hom}(A,B) \\
+(f+g)(a) = f(a) + g(a) \quad \forall a \in A$ \\
+$
+0 = f_0 \\
+(-f)(a) = -f(a) \\
+$
+$A = B \to Hom(A,A) = \text{End}A$ - кольцо эндоморфизмов группы A \\
+$ (f \cdot g)(a) = f(g(a)) \quad \forall a \in A $ \\
+f - изом-зм, если f - гомо-зм и биекция\\
+2) \underline{Гомо-змы колец} \\
+R,S - кольцо; $ f: R \to S $ - гомо-зм(колец), если \\
+\indent 1) $ f(a+b) = f(a) + f(b) $\\
+\indent 2) $f(ab) = f(a)f(b) $ \\
+\indent 3) $f(1_R) = 1_S $ \\
+3) \underline{Гомо-змы модулей} \\
+M,N - модули над R $ f: M \to N $ - гомо-зм(модулей) (R- гомо-зм), если \\
+\indent 1) $f(m+m') = f(m) + f(m') \quad \forall m, m' \in M $ \\
+\indent 2) $f(rm) = rf(m) $
+$ \text{Hom}_R(M,N) $ - подгруппа в Hom(M,N) \\
+
+\underline{Упр} \\
+$ f: M \to N - \text{R - homo } $ \\
+a) $ Kerf = \{m\in M \; | \; f(m) = 0 \} $ - подмодуль в M \\
+б) $ Imf = \{ n \in N \; | \; \exists m \in M: \; n = f(m) \} $ - подмодуль в N \\
+в) $ f - \text{иньетивно} \Leftrightarrow Kerf = 0 $ \\
+
+2. (Эквив. опр-е модуля) \\
+Пусть M - аблева группа, R - кольцо \\
+M - R-модуль $\Leftrightarrow \exists \text{гомо-зм колец} \; f: R \to EndM
+(r \to \phi_r$ , где $\phi_r(m) = rm \quad \forall m \in M) $
+
+3. A,B  - абелевы группы \\ 
+Hom(A.B) - левый EndB и правый EndA - модуль\\
+
+\subsection*{Фактормодуль}
+M - R-модуль, N - подмодуль в M \\
+$ (M/N ,+)$ - факторгруппа M по подгруппе N \\
+$ M/N = \{m+N \; | \; m \in M \} - \text{Ф/гр} $ \\
+с операцией: $ (m+N) + (m' + N) = (m + m') + N $ \\
+$ M/N $ - R-модуль с операцией: \\
+$ \forall r \in R, \, \forall m+N \in M/N: \; r(m+n) = rm + N $\\
+\underline{Корр-ть} Если $m+n = m' + N \Rightarrow r(m'+ N) = rm' + N 
+\stackrel{?}{\equiv} rm + N $ \\
+$ r(m' + N) = rm' + N = r(m+n)+N = rm + rn + N = rm+ N$\\
+
+
+\end{document}
+

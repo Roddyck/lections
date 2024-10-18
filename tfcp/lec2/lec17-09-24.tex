@@ -1,0 +1,155 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\begin{document}
+\begin{center}
+    \textbf{\underline{ТФКП. Лекция(17.09.24)}} \\
+\end{center}
+
+\textbf{\underline{Def}} Ф-я $ f(z) $ - непрерывная в $z = a$, если 
+$ \lim\limits_{z\to a} f(z) = f(a) \\
+    \forall \epsilon > 0 \; \exists \delta > 0 \; \forall z: \; |z-a|<\delta 
+    \Rightarrow |f(z) - f(a)| < \epsilon 
+$
+
+\textbf{\underline{Def}} Производной ф-и $w = f(z) $ в точке $z=a$ называется конечный
+$ \lim\limits_{\Delta z \to 0}  \frac{f(z+\Delta z) - f(z)}{\Delta z} = f'(z) $ \\
+$ \Delta f(z) = A \cdot \Delta z + o(|\Delta z|) \quad A\cdot \Delta z = df 
+\quad A = f'(z)$
+
+\textbf{\underline{Note.}} Теоремы о производных ф-ий комлексного переменного аналогичны
+теоремам о производных функций действительного переменного
+
+\begin{equation*}
+    \begin{aligned}
+        (cf(z))' &= c\cdot f'(z) \\
+        (f(z) + g(z))' &= f'(z) + g'(z) \\
+        \dots
+    \end{aligned}
+\end{equation*}
+
+\section*{\centering Дифференцируемость и условия Коши-Римана}
+
+\underline{Th}(критерий дифференцируемости) Для диф-сти ф-ии $ f(z) = u(x,y)
++ iv(x,y)$ в точке $ z  = x+iy $ необходимо и достаточно: \\
+1) $ u(x,y), \; v(x,y) $ дифференцируемы \\
+2) 
+$
+\begin{cases}
+    \frac{\partial u}{\partial x} &= \frac{\partial v}{\partial v} \\ 
+    \frac{\partial u}{\partial y} &= \frac{\partial v}{\partial x}  
+    
+\end{cases}
+$
+- Условия Коши-Римана(Даламбера-Эйлера)
+
+\underline{Proof} \\
+\begin{equation*}
+    \begin{aligned}
+        \Delta z &= \Delta x + i \Delta y\\
+        \Delta f(z) &= \Delta u(x,y) + i \Delta v(x,y) \\
+                &\Delta u, \; \Delta v \text{ - полные приращения ф-ий } \\
+                g(x,y) - \text{ - дифф  в } (x,y) \\
+                \Delta g = A^\star \Delta x + B^\star \Delta y + o(|\Delta z|)\\
+                A^\star = \frac{\partial g}{\partial x} , \; \frac{\partial g}
+                {\partial y} \quad |\Delta z| = \sqrt{\Delta x^2}{\Delta y^2} 
+    \end{aligned}
+\end{equation*}
+1) Необходимость \\
+\[
+    \exists f'(z) = A + iB
+\]
+\[
+    \Delta f(z) = f'(z) \Delta z + o(|\Delta z|)
+\]
+\[
+    \Delta u + i \Delta v = (A + iB)\cdot(\Delta x + i \Delta y) + o(|\Delta z|)
+\]
+
+\[
+\begin{aligned}
+    A = \frac{\partial u}{\partial x} \quad& -B = \frac{\partial u}{\partial y} \\
+    B = \frac{\partial v}{\partial x} \quad& A = \frac{\partial v}{\partial y}  
+\end{aligned}
+\]
+\[
+    f'(z) = \frac{\partial u}{\partial x} + i \frac{\partial v}{\partial x} =
+    \frac{\partial u}{\partial x} - i \frac{\partial u}{\partial y} =
+    \frac{\partial v}{\partial y} + i \frac{\partial v}{\partial x} =
+    \frac{\partial v}{\partial y} - i \frac{\partial v}{\partial y} 
+\]
+
+2) Достаточность \\
+$ u(x,y), \; v(x,y) $ - диф + Условия Коши-Римана: $u'_x = v'_y = A$ 
+$ v'_x = B = -u'_y $\\
+$ \Delta u = A \Delta x - B \Delta y + o(|\Delta z|) $ \\
+$ \Delta v = B \Delta x + A \Delta y + o(|\Delta z|) $ \\
+$ \Delta f(z) = \Delta u + i \Delta v = A \Delta x - B \Delta y + i(B \Delta x + 
+A \Delta y) + o(|\Delta z|) = (A + iB)(\Delta x + i \Delta y) + o(|\Delta z|)$ \\
+$ f'(z) = A + iB$ чтд\\
+
+\underline{Note.} Условия Коши-Римана  
+$
+\begin{cases}
+    \frac{\partial u}{\partial x} &= \frac{\partial v}{\partial v} \\ 
+    \frac{\partial u}{\partial y} &= \frac{\partial v}{\partial x}  
+\end{cases}
+$
+ являются лишь необходимыми
+
+ \section*{\centering Аналитические функции}
+
+ \textbf{\underline{Def.}} Ф-ия $f(z)$ дифференцируемая в каждой точке области
+ D называется регулярной(голоморфной, правильной, аналитической) в D \\
+ H(D) - класс аналитичекий в D ф-ий
+
+\textbf{\underline{Def.}} $f(z)$ - аналитическая в точке z, если она является 
+аналитической в некоторой окрестности точки z.\\
+
+\textbf{\underline{Def.}}  Ф-ия, регулярная в $\mathbb{C}$ - целая\\
+
+\textbf{\underline{Def.}} Ф-ия $\phi(x,y)$ гармоническая в D, если в D $\phi(x,y)$
+имеет непрерывные частные производные до 2-го порядка включительно и является
+решением уравнений Лапласа $\frac{\partial^2 \phi}{\partial x^2} + 
+\frac{\partial^2 \phi}{\partial y^2} = 0$
+
+\underline{Note.} $\phi(x,y), \psi(x,y) $ - гарм. $\Rightarrow A\phi + B \psi$ -
+гарм \\
+\textbf{\underline{TH.}} Дейст и мнимая часть ф-и $f(z) = u(x,y) + iv(x,y) \;
+f(z) \in H(D)$ являются ф-ими гармоническими
+
+\underline{Proof} $\begin{cases}
+    u'_x &= v'_v \text{ - по x } \\
+    u'_y &= -v'_x \text{ - по y }
+\end{cases}
+$ \\
+$
+\begin{cases}
+    u''_{xx} &= v''_{xy}\\
+    u''_{yy} &= -v''_{xy} 
+\end{cases}
+$ \quad $v''_{xy} = v''_{yx} $ \\
+$ u''_{xx} + u''_{xy} = 0 $ \\
+Аналогично, $v''_{xx} + v''_{xy} = 0 $
+
+\textbf{\underline{Def.}} Две ф-ии $u(x,y), v(x,y)$ гармоничекие в D, называются
+сопряжёнными гармоническими функциями, если они связваны условиями Коши-Римана \\
+
+Т.о. Ф-ия $f(z) = u(x,y) + iv(x,y) $ является аналитической в области D, если
+её действительная и мнимая части сопряженные гармнонические ф-ии.
+
+\textbf{\underline{Th}} Для всякой гармонической в односвязной области D ф-ии
+$u(x,y)\; \exists$ сопряженная с ней гармоническая ф-ия $v(x,y) \Rightarrow
+\exists$ аналитическая ф-ия $f(z) = u(x,y) + iv(x,y) $ с заданной действительной
+частью в виде гарм. ф-ии $u(x,y)$
+
+\end{document}

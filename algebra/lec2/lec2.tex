@@ -1,0 +1,126 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{xfrac}
+\usepackage{tikz-cd}
+
+\begin{document}
+Нуль в $ \sfrac{R}{I}$ есть I\\
+Единица в $ \sfrac{R}{I} $ R - кольцо, $ I \lhd R $ \\
+$ \sfrac{R}{I} = \{ r + I \; |\; r\in R\} \text{ - } \overline{r}$- факторколько с оп:
+$ \forall r,s \in R (r+I)  + (s + I) = (r+s) + I$ \\
+$ (r+I) (s + I) = rs + I $\\
+
+
+2) F - поле, $F[x]$ - Кги, $ I = f(x)F[x]= (f(x)) $\\
+$\sfrac{F[x]}{(f(x))}$ - Поле $\Leftrightarrow f(x) $ неприводим над F
+
+\textbf{\underline{Proof}} $1)\Rightarrow$: Против: $f=gh$, где $\deg g,h < \deg f \Rightarrow
+g + (f) \neq (f) \quad (f) = f\cdot F[x], \; h + (f) \neq (f)$ \\
+$ (g+(f))(h+(f)) = gh + (f) = f+ (f) = (f) \Rightarrow g + f \text{ и } h + (f) $
+- делители нуля в $\sfrac{F[x]}{(f)} $ - поле. Противоречие $\Rightarrow f$ неприводим в
+$F[x]$\\
+$2) \Leftarrow: \forall g + (f) \neq (f) $ f - неприводим $\Rightarrow g \nmid f
+\Rightarrow \exists u,v \in F[x] \; | \; uf+gv = 1 \Rightarrow uf + gv + (f) = 
+1 + (f) \Rightarrow (uf + (f)) + (gv + (f)) = 1 + (f) \Rightarrow (u + (f))(f+(f))
++ (g + (f)) (v + (f)) = 1 + (f) \Rightarrow (g + (f))(v+(f)) = 1 + (f) \Rightarrow
+v + (f) = (g + (f))^{-1}$ \\
+$ uf + gv = 1 \Rightarrow \overline{u}\overline{f} + \overline{g}\overline{v} = 
+\overline{1} $ \\
+Например,
+\[
+    \sfrac{\mathbb{R}[x]}{(x^2+1)} \cong \mathbb{C}
+\]
+\\
+\textbf{\underline{$ F = \mathbb{Z}_2 $}} $ = \{\overline{0}, \overline{1}\} $
+
+$ x^2 + x + \overline{1} $ - неприводим над $\mathbb{Z}_2$
+$ \mathbb{Z}[x] / (x^2 + x + 1) $ - поле из 4 элементов: $\{ \overline{0}, 
+\overline{1}, \overline{x}, \overline{x+1} \} \quad \overline{x} = x+(x^2+x+1)$ \\
+$ \overline{x^5 + x^3 + 1} = (\overline{x^2 + x + 1})(\overline{x^3 - x^2 +x}) +
+\overline{1 - x} $
+
+\section*{\centering Гомоморфизмы колец}
+R, S - кольца
+
+\textbf{\underline{Def.}} $ f: R \to S$ - гомо-зм, если \\
+1) $f(a+b) = f(a) + f(b) $\\
+2) $ f(ab) = f(a)f(b) $\\
+3) $ f(1) = 1 $\\
+$ \ker f = \{ r\in R \; | \; f(r) = 0 \} \lhd R \\
+Imf = \{ s \in S \; |\; s = f(r) \text{ для нек-го } r \in R \} - \text{подколько в S}\\
+$
+Если f - биекция $\Rightarrow $ f - изоморфизм
+    
+$\rho : R \to \sfrac{R}{I} $ -каноническйи гомоморфизм с $\ker \rho = I$
+
+\textbf{\underline{Th.}}(об изоморфизме) \\
+Пусть $f : R \to S $ - сюрьективный гомоморфизм(эпиморфизм) $\Rightarrow S \cong
+\sfrac{R}{\ker f} $
+
+\textbf{\underline{Proof}} 
+\[
+\begin{tikzcd}
+    R \arrow{rr}{f} \arrow[swap]{dr}{\rho} & & S \\[10pt]
+    & \sfrac{R}{\ker f} \arrow[swap]{ur}{\psi}
+\end{tikzcd}
+\]
+ $ f =\psi\rho $\\
+Строим $\psi : R/ \ker f \to S, \psi(r+\ker f) = f(r) $ \\
+\textbf{\underline{Корр-ть}} Если $r + \ker f = r' + \ker f, \text{then } \psi(r' + \ker f) =
+f(r') \stackrel{?}{=} f(r) $
+$ r' = r+x $, где $x\in \ker f$
+\[
+    \psi(r' + \ker f) = f(r')  =f(r+x) = f(r) + f(x) = f(r)
+\]
+
+$\psi \text{ гомо-зм } $:
+\[
+    \psi( (r+ \ker f)+(r' + \ker f)) = \psi(r + r' + \ker f) = f(r + r') =
+    f(r) + f(r') = \psi(r+ \ker f) + (r' + \ker f)
+\]
+\textbf{\underline{Иньективность}} $\psi \text{ - иньективен } \Leftrightarrow \ker \psi = 0$ \\
+$ r + \ker \psi \in \ker\psi \Rightarrow \psi(r + \ker f) = f(r) = 0 \Rightarrow 
+r\in\ker f \Rightarrow r + \ker f = \ker f = \overline{0}$ \\
+\textbf{\underline{Сюрьективность}}  \\
+$ \forall s \in S \stackrel{\text{f - эпи}}{\Rightarrow} s = f(r) = \psi(r + \ker f)
+\Rightarrow \psi \text{-эпи}$
+
+\textbf{\underline{Th.}}(о соответствии) \\
+Пусть $f : R \to S$ - эпи $\Rightarrow \exists $ вз/одноз соотв-е между идеалами
+в S и идеалами в R, содержащими kerf
+
+\textbf{\underline{Proof}} Th об изо $\Rightarrow S \cong \sfrac{R}{\ker f}$, поэтому рассмотрим
+$ \rho: R \to \sfrac{R}{I}, \text{ где } I = \ker f$ \\ 
+$ \Omega(R, I) $ - все идеалы в R, содержащие I\\
+$ \Omega(\sfrac{R}{I}) $ - все идеалы в \sfrac{R}{I}\\
+$ \psi: \Omega(R,I) \to \Omega(\sfrac{R}{I})$ \\
+$ I \subseteq J \mapsto \rho(J) = \{ j + I \; |\; j\in J \} \lhd \sfrac{R}{I} $ \\
+1) $ j_1 + I, j_2 + I \in \rho(J) \\
+(j_1 + I) + (j_2 + I) = (j_1 + j_2 ) + I \in \rho(J) $ \\
+2) $ j + I \in \rho(J), r + I \in \sfrac{R}{I} \Rightarrow (j + I)(r + I) = jr + I \in \rho(J) $\\
+
+\textbf{\underline{Иньективность}} $ \psi(J_1) = \psi(J_2) \Rightarrow J_1 + I = J_2 + I
+\Rightarrow \Rightarrow J_1 = J_2 + I = J_2$ \\
+
+\textbf{\underline{Сюрьективость}} $\forall \overline{K} \in \Omega(\sfrac{R}{I})$, где $\overline{K}
+= \{ k + I \; |\; k\in K \}$\\
+Then $\psi(K) = \overline{K} $ \\
+$ \forall k_1, k_2 \in K: (k_1 + I) + (k_2 + I) = (k_1 + k_2) + I \in \overline{K} 
+\Rightarrow k_1 + k_2 \in K$ \\
+$ \forall k\in K, r \in R: (k+I)(r+I) = kr + I \in \overline{K} \Rightarrow
+kr \in K $ \\
+Then $K \lhd R$
+
+
+\end{document}
+

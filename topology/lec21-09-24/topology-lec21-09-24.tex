@@ -1,0 +1,209 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\begin{document}
+\begin{center}
+    \textbf{ \underline{Топология. Лекция(21.09.24)}}
+\end{center}
+
+\begin{tcolorbox}
+\underline{Th. 6} $ (X, \tau) $ - т.п. $ A \subset X $ $ F \subset A $ \\
+F - замкнуто в $ \tau_A \iff \exists G \text{ - замкнутое подмн-во в } \tau \; |
+\; F  = G \cap A$ \\
+\underline{Proof} \\
+\begin{equation}
+    A \setminus ( A \cap B) = A \cap C(A \cap B) = A \cap CB
+\end{equation}
+
+$1) \stackrel{?}{\implies}$ 
+\[
+    \exists\, U \in \tau_A \; | \; F = A \setminus U
+\]
+\[
+    \exists U_1 \in \tau \; | \; U = U_1 \cap A
+\]
+\begin{equation*}
+    \begin{aligned}
+        F = A \setminus U = A \setminus (U_1 \cap A) \stackrel{(1)}{=} A \cap
+        CU_1 \text{ - замкнуто в A}
+    \end{aligned}
+\end{equation*}
+
+$2) \stackrel{?}{\impliedby}$ $ F = G \cap A \; G -\text{ замкнуто в } \tau $  
+\[
+    A \setminus F = A \setminus (G \cap A) = A \cap CG \in \tau \implies
+    A \cap CG \in \tau_A
+\]
+\end{tcolorbox} 
+
+\underline{Def.} Точка x наз-ся точкой прикосновения множества A, если $ 
+\forall U \implies U_x \cap A \neq \varnothing $ \\
+$ \overline{A} = ClA $ 
+
+\begin{tcolorbox}
+    \underline{Th.7} Замыкание любого множества замкнуто \\
+
+    \underline{Proof} $ A \subset X $ $ \overline{A} $ - замкнуто?\\
+    $ C \overline{A} \in \tau $ \\
+    \begin{equation*}
+        \begin{aligned}
+            &\forall x \in CA \implies x \notin \overline{A} \implies \exists U_x \;
+            | \; U_x \cap A = \varnothing \\
+            &\forall y \in U_x \implies U_x \text{ является иакде окр-тью т.y}\\
+            &U_x \cap A = \varnothing \implies y \notin \overline{A} \implies
+            y \in C \overline{A} \implies U_x \subset C \overline{A}, \text{т.е} \;
+            C \overline{A} - \text{ - замкнуто}
+        \end{aligned}
+    \end{equation*}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.8} замыкание мн-ва А является пересечением всех замкнутых мн-в,
+содержащих множество А, т.е. замыкание А является самым маленьким замкнутым мн-ом
+содержащим А \\
+$ \overline{A} = \bigcap\limits_{i \in I} A_i $ \\
+$ A_i \text{ - замкнуто } A_i \supset A  \; \forall i \in I $ 
+
+\underline{Proof} 1. $ \overline{A} \supset \bigcap\limits_{i \in I} A_i$ 
+\[
+    \exists A_{i_0} = \overline{A} \implies \text{ 1. выполнено из св-й }
+\]
+2. $ \overline{A} \subset \bigcap\limits_{i \in I} A_i$ \\
+\[
+    \forall x \in \overline{A} \implies \forall U_x \cap A \neq \varnothing 
+    \implies U_x \cap A_i \neq \varnothing \; \forall i \implies
+    X \in \overline{A}_i \; \forall i \stackrel{Th.7.5}{\implies} \overline{A}_i = 
+    A_i \implies X \in A_i \; \forall i \implies 
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.7.5} Замыкание замкнуто мн-во совпадает с этим мн-вом \\
+
+\underline{Proof} F замнуто $ \implies \overline{F} = F $  \\
+1. $ \overline{F} \supset F $ из опр-я\\
+2. $ \overline{F} \subset F $ для замкнутого F.\\
+От противного: \\
+\[
+    \text{ Let } \exists x \in \overline{F} \; \text{ и } x \notin F
+\]
+\[
+    CF \in \tau \text{ и } x\in CF \implies \exists U_x \; | \; U_x \subset CF
+    \implies x \notin \overline{F} \text{ противоречие}
+\]
+\end{tcolorbox}
+
+\underline{Следствие} $ \overline{A} = \overline{\overline{A}} $ \\
+\underline{Proof} $ \overline{A} $ замкнуто $ \implies $ по Теореме 7.5
+
+\begin{tcolorbox}
+    \underline{Th.9} (Св-ва замыкания)\\
+    1. $ A \subset B \implies \overline{A} \subset \overline{B} $ \\
+    2. $ \overline{A\cup B} = \overline{A} \cup \overline{B} $ \\
+    \underline{Proof} 1. из определения\\
+    2. $  \overline{A\cup B} \subset \overline{A} \cup \overline{B} $ \\
+    От противного:\\
+    \begin{equation*}
+        \begin{aligned}
+        \text{Пусть } x\in \overline{A\cap B} \text{ и } x \notin \overline{A}
+        \cup \overline{B} \implies \begin{cases}
+            x \notin \overline{A} \implies \exists U_x \; | \; U_x \cap A = \varnothing \\
+            x \notin \overline{B}\implies \exists V_x \; | \; V_x \cap A = \varnothing 
+        \end{cases}\\
+        \text{ Пусть } W_x = U_x \cap V_x \implies W_x \cap (A \cup B) = \varnothing
+        \implies x\notin \overline{A \cup B}
+        \end{aligned}
+    \end{equation*}
+    $ \overline{A \cup B} \stackrel{?}{\supset} \overline{A} \cup \overline{B} $ 
+    \[
+        \forall x \in \overline{A} \cup \overline{B} \implies \begin{cases}
+            x \in \overline{A} \implies \forall U-x \cap A \neq \varnothing \\
+            x \in \overline{B} \implies \forall U_x \cap B \neq \varnothing
+        \end{cases}
+    \]
+\end{tcolorbox}
+
+\underline{Пр} $ \overline{A\cap B} \stackrel{?}{=} \overline{A} \cap \overline{B} $ \\
+\[
+    A= (0, 1) \subset (\mathbb{R}, \tau_0)
+\]
+\[
+    B = (1, 2) \subset (\mathbb{R}, \tau_0)
+\]
+\[
+    A\cap B = \varnothing \implies \overline{A\cap B} = \varnothing
+\]
+\begin{equation*}
+    \begin{aligned}
+        \overline{A} &= [0,1]\\
+        \overline{B} &= [1,2]
+    \end{aligned}
+    \implies \overline{A} \cap \overline{B} = \varnothing
+\end{equation*}
+
+\underline{Def} точка а наз-ся граничной точкой А, если её любая окр-ть пересекается
+с самим мно-ом, а также с его дополнением $ FrA $ 
+
+\begin{tcolorbox}
+    \underline{Th.10} $ FrA = \overline{A} \setminus IntA $  \\
+
+    \underline{Proof} 1. $ FrA \stackrel{?}{\subset} A \setminus IntA $  \\
+    \[
+        \forall x \in FrA \implies \forall U_x \cap A \neq \varnothing \implies
+        x\in \overline{A}
+    \]
+    Докажем, что $ x \notin IntA $ \\
+    От противного:
+    \[
+        x\in IntA \implies \exists U_x \; | \; U_x \subset A \implies
+        \text{ противоречие с определением граничной точки}
+    \]
+1. $ FrA \stackrel{?}{\supset} A \setminus IntA $
+\[
+    \forall x \in \overline{A} \setminus IntA
+\]
+Те же рассуждения в обратном порядке
+\end{tcolorbox}
+
+\textbf{\underline{Def}} x называется предельной точкой мн-ва А, если любая
+проколотая окр-ть имеет непустое пересечение со мн-вом А, т.е.  
+$ \forall(U_x \setminus \{x\}) \cap A \neq \varnothing $. обозн.$ A' $ \\
+
+\textbf{\underline{Def}} $ a: \mathbb{N} \to X $ наз последовательностью в X\\
+
+\textbf{\underline{Def}}  Точка b называется пределом посл-ти $ a_n $, если
+$ \forall U_b \; \exists \, n_0 \; | \;  \forall n > n_0 \implies 
+a_n \in U_b $  $ b = \lim\limits_{n \to \infty}a_n  $ 
+
+\textbf{\underline{Def}} Точка a наз-ся изолировнной точкой множества А, если
+$ \exists U_a \; | \; U_a \cap A = \{a\} $  $ Iso A $
+
+\section*{\centering\S2. Непрерывные отображения в топологических пространствах}
+\textbf{\underline{Def}} Отображение $ f: (X, \tau) \to (Y, \omega)  $ называется
+непрерывным в т. $ x_0 $, если $ \forall U_{f(x_0)} \, \exists U_{x_0} \; | \;
+f(U_{x_0}) \subset U_{f(x_0)}$ 
+
+\begin{tcolorbox}
+    \underline{Th.1} Отображение $ f: (X, \tau) \to (Y, \omega) \text{ непрерывно }
+    \iff $ Прообраз каждого открытого мн-ва открыт
+    
+    \underline{Th.2} Отображение $ f: (X, \tau) \to (Y, \omega)\text{ непрерывно }
+    \iff $ Прообраз
+    каждого замкнутого мн-ва замкнут
+\end{tcolorbox}
+
+\underline{Ex.} $ c: (X, \tau) \to (Y, \omega : c(x) = c \in T $ 
+
+\end{document}

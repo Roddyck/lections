@@ -1,0 +1,230 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\begin{document}
+\title{Топология. Лекция}
+\author{jdfalkj}
+\maketitle
+
+\underline{Ex.} $ (\mathbb{R}, \tau_{(a, + \infty)}) $ \\
+$ \Sigma = \{ (a, +\infty) \ |\ a \in \mathbb{R} \} $ \\
+$ \forall $ подмн-во связно\\
+М. от противного. Пусть $ \exists \ S \subset \mathbb{R} $ \\
+S несвязно $ \implies S = U \cup V, \ U,V \in \tau $ 
+\[
+    U \cap V \neq \varnothing, \ U,V \neq \varnothing \implies
+    U \text{ - открыто-замкнутое в } \tau_s \implies \exists \ \tilde{U} \in \tau
+    \ | \ U = \tilde{U} \cap S \text{ Пусть } U = (a, +\infty)
+\]
+\[
+    \exists \tilde{V} \in \tau \ | \ U = C\tilde{V} \cap S, \ \text{где}\ V =
+    (b, +\infty)
+\]
+\[
+    C \tilde{V} = (-\infty, b]
+\]
+\[
+    U = \tilde{U} \cap S = C \tilde{V} \cap S \implies \forall s \in S \implies
+    a < s \leq b \implies S \subset (a, b]
+\]
+\[
+    U = U \cap S = C \tilde{V} \cap S = S \implies U = S
+\]
+
+\underline{Def} Связной компонентой $ K_x $ точки x, называется наибольшее связное
+множество, содержащие точку x\\
+Наибольшее связное множество содержит любое связное множество, содержащие точку x
+
+\begin{tcolorbox}
+\underline{Th.8} Компонента связности - замкнутое множество
+
+\underline{Proof}
+\[
+    x \in X, \ K_x \text{ - компонента связности} \stackrel{?}{\implies}
+    K_x \text{ - замкнутое множество}
+\]
+\[
+    \stackrel{\text{Th.5}}{\implies} \overline{K_x} \text{ связно} \implies
+    \overline{K_x} \subset K_x \implies \overline{K_x} = K_x
+\]
+
+\underline{Note} Если пространство состоит из конечного числа компонент связности,
+то каждая компонента связности является открытым множеством
+\end{tcolorbox}
+
+\underline{Def} Непрерывное отображение $ f: ([0,1], \tau_0 \to (X,\tau) $ называется
+путем. $ f(0) $ - начало пути. $ f(1) $ - конец пути.
+
+\underline{Def} $ (X, \tau) $ линейно связно, если любые две точки можно соединить
+путем.
+
+\begin{tcolorbox}
+\underline{Th.9} Если пространство линейно связно, то оно связно
+
+\underline{Proof} Пусть $ (X, \tau) $ линейно связно\\
+М. от противного\\
+Пусть $ (X, \tau) $ несвязно
+\[
+    \implies \exists\ U,V \in \tau \ | \ U \cap V = \varnothing, \ U,V \neq \varnothing,
+    \ X = U \cap V
+\]
+\[
+    \text{Пусть } a \in U, \ b \in V
+\]
+\[
+    \exists \ f: ([0,1], \tau_0) \to (X, \tau), \ f(0) = a, \ f(1) = b
+\]
+\[
+    f([0,1],\tau_0) \cap U = \tilde{U}
+\]
+\[
+    f([0,1],\tau_0) \cap V = \tilde{V}
+\]
+\[
+    f^{-1}(\tilde{U} \cup \tilde{V}) = [0,1] = f^{-1}(\tilde{U}) \cup f^{-1}(\tilde{V})
+\]
+\[
+    \tilde{U} \text{ открыто в}\ f([0,1], \tau_0), \ \tilde{V} \text{ открыто в}\ 
+    f([0,1],\tau_0) \implies f^{-1}(\tilde{U}) \in \tau_{0[0,1]}, \ f^{-1}(\tilde{V})
+    \in \tau_{0[0,1]}
+\]
+\[
+    f^{-1}(\tilde{U}) \cap f^{-1}(\tilde{V}) = \varnothing, \ [0,1] = f^{-1}(\tilde{U})
+    \cup f^{-1}(\tilde{V})
+\]
+Противоречие со связностью $ [0,1] $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.10} Открытое связное подмн-во в $ (\mathbb{R}^{n}, \tau_0) $ - линейно
+связно
+
+\underline{Proof} Пусть $ A \subset \mathbb{R}^{n},\ A \in \tau_0 $, A связно \\
+М от противного
+\[
+    \text{Пусть А не является линейно связным.} \text{ Пусть a и b}, (a,b \in A)
+    \text{ нельзя соединить путём}
+\]
+\[
+    \text{Обозначим } B \text{ - множество точек, которые нельзя соединить путем
+    с точкой a}
+\]
+\[
+    \text{Докажем, что B открыто-замкнуто}
+\]
+\[
+    b \in B. \text{ Пусть } B_r(b) \subset A, \text{ такой шар } \exists \text{ т.к. }
+    A \in \tau_0
+\]
+\[
+    B_r(b) \text{ - линейно связное пространство, т.к. любые две точки шара можно
+    соединить отрезком}
+\]
+\[
+    \implies B_r(b) \subset B \implies B \in \tau_A
+\]
+\[
+    \text{Докажем замкнутость B. Для этого мы докажем, что } CB \in \tau_A
+\]
+\[
+    \text{Аналогично предыдущему проверяется, что } CB \in \tau_A
+\]
+\[
+    \exists B \text{ - открыто замкнутый. Т.е. противоречие со связностью А}
+\]
+\end{tcolorbox}
+
+\underline{Ex} Связное пр-во, которое не является лин. связным.\\
+Пусть $ S = \{ (x, sin \frac{1}{x} ) \ | \ 0 < x \leq 1 \} \subset (\mathbb{R}, \tau_0) $ \\
+S линейно связно
+\[
+    \forall \ (0,a), \ a \in [-1,1]
+\]
+\[
+    a_n = \left(\frac{1}{\arcsin a + 2 \pi n}, a\right) \in S
+\]
+\[
+    \lim_{n \to \infty} a_n = (0,a)
+\]
+\[
+    (0,a) \in \overline{S}
+\]
+\[
+    S \text{ лин связно} \stackrel{\text{Th.9}}{\implies} S \text{ связно} 
+    \stackrel{\text{Th.5}}{\implies} \overline{S} \text{ связно}
+\]
+\[
+\text{Докажем, что } \overline{S} \text{ не явз лин. связным }
+\]
+\[
+    \text{Метод от противного}
+\]
+\[
+    \text{Пусть } \exists \text{ путь из } (0,0) \text{ в т. } A \in S
+\]
+\[
+    \text{Пусть } f: \begin{cases}
+        x = x(t)\\
+        y = y(t)
+    \end{cases}, \  t \in [0,1], \ x(t), \ y(t) \text{ непр}
+\]
+\[
+    \text{Пусть } B = X^{-1}\{0\} \text{ - прообраз 0}
+\]
+\[
+    \{ 0 \} \text{ - замкнут} \implies B \text{ замкнутое подмножество в } [0,1]
+\]
+\[
+    \text{Пусть } b_0 = \sup X^{-1} \{0\} \implies b_0 \in B
+\]
+\[
+    \text{Все точки не принадлежащие }[0,b_0] \text{ отображаются в S}
+\]
+\[
+    (b_0, 1] \longrightarrow S
+\]
+\[
+    \text{Переобозначим } [b_0, 1] \longrightarrow [0,1]
+\]
+\[
+    f: \begin{cases}
+        x = x(t)\\
+        y = y(t)
+    \end{cases}
+    \quad x(0) = 0, \ x(t) > 0, \ \forall t > 0
+\]
+\[
+    x(t), y(t) \text{ непр}
+\]
+\[
+    \text{Построим последовательность } t_n \to 0 \ | \ \lim_{n \to \infty} y(t_n)
+    \nexists
+\]
+\[
+    \text{Фиксируем n}
+\]
+\[
+    \text{Выберем } u \ | \ 0 < u < x(\frac{1}{n}) \ | \ \sin \frac{1}{u} = 
+    (-1)^{n}
+\]
+
+\[
+    u = \frac{1}{\frac{\pi}{2} + \pi k} \text{ для достаточно большого k} 
+\]
+\[
+    \text{Определим } t_n \text{ из условия: } x(t_n) = u
+\]
+
+\end{document}

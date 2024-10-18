@@ -1,0 +1,177 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{tikz-cd}
+\usepackage{xfrac}
+
+\begin{document}
+\begin{center}
+    \underline{ОСА. Лекция(01.10.24)}
+\end{center}
+
+\begin{tcolorbox}
+    \underline{Th} В артиновом кольце любой простой идеал - max
+
+    \underline{Proof} $ P \lhd R $ - простой $ \iff \overline{R} = \sfrac{R}{P}  $ 
+    - обл. цел-ти. $ \overline{R} $ - поле?
+    \[
+        \overline{R} \text{ - артиново }
+    \]
+    \[
+        \forall \overline{0} \neq \overline{a} \in \overline{R}
+    \]
+    \[
+        (\overline{a}) \supset (\overline{a}^2) \supset \dots \implies
+        \exists n \; |\; (\overline{a}^{n} = (\overline{a}^{n+1}) \implies
+        \overline{a}^{n}\overline{R} = \overline{a}^{n+1}\overline{R} \implies
+        \overline{a}^{n} = \overline{a}^{n+1}\cdot \overline{r}
+        \text{ для нек-го } \overline{r} \in \overline{R} \implies
+    \]
+    \[
+        \overline{a}^{n} \cdot (1 - \overline{a}\overline{r}) = \overline{0}
+        \implies \overline{a}\overline{r} = \overline{1} \implies \overline{a}
+        \text{ - обратим} \implies \overline{R} \text{ - поле} \implies
+        P \text{ - max}
+    \]
+\end{tcolorbox}
+
+Пусть R - коммут кольцо, N - множество всех нильпотентных элементов,
+$ N = \{ a \in R \; | \; a^{n}= 0 \text{ для нек-го } n \in \mathbb{N} \}  $ 
+
+\begin{tcolorbox}
+    \underline{Lemma} $ N \lhd R $ и $ \sfrac{R}{N}  $ - не содержит ненулевых
+    нильпотентов
+
+    \underline{Proof} $ \forall a,b \in N, \; a^{n} = 0, \; b^{m} = 0 $ 
+    \[
+        (a+b)^{n+m} = \sum_{i=1}^{n+m} C_{n+m}^{i}a^{i}b^{n+m-i}
+    \]
+    \[
+        1)\quad i < n \implies n+m-i > m \implies b^{n+m-i} = 0
+    \]
+    \[
+        2) \quad i \geq n \implies a^{i}= 0
+    \]
+    \[
+        \forall a \in N, \forall r \in R
+    \]
+    \[
+        3) \quad a^{n} = 0 \quad (ar)^{n} = a^{n}r^{n}
+    \]
+    \[
+        1), \, 2), \, 3) \implies N \lhd R
+    \]
+    Пусть $ \overline{0} \neq \overline{a} \in \sfrac{R}{N} \land \overline{a}^{k}
+    = \overline{0} a^{k} + N = N \implies a^{k} \in N \implies \exists m \;
+    | \; (a^{k})^{n} = a^{km} = 0 \implies a \in N \implies \overline{a} = \overline{0}$ 
+
+    N - \underline{нильрадикал} кольца R
+
+
+    \underline{Th} $ N = \bigcap P \quad $ P - простой идеал 
+
+    \underline{Proof} Пусть $ a \in N \implies a^{n}= 0 \in P \; \forall $ простого
+    идеала P $ \implies a \in P \; \forall P \implies a \in \bigcap P \implies
+    N \subseteq \bigcap P$ \\
+
+    Пусть $ r \in \bigcap P $ и пусть $ r \notin N $ Рассмотрим $ X = \{ r^{0} = 
+    1, r^{1}, r^2, \dots \;  \;  \}  $ И пусть P - max идеал отн-но св-ва 
+    $ P \cap X = \varnothing $ ($ \exists $ по лемме Цорна) \\
+    P - простой? Пусть $ a \notin P \land b \notin P $ Тогда $ aR + P \cap X \neq
+    \varnothing, \; bR + P \cap X \neq \varnothing \implies \exists \, r^{n} \in
+    (aR + P) \cap X \land r^{m}\in (bR + P)\cap X \implies r^{m+n} = r^{n}\cdot
+    r^{m} \in (aR + P)(bR + P) = abR + aRP + bRP + P^2 \subseteq abR + Pb \implies
+    r^{m+n} \in abR + P \implies ab \notin P \implies P$ - простой идеал.
+    Противоречие с $ r \in \bigcap P \subset P \implies r \in N \land \bigcap P
+    \subseteq N$ 
+\end{tcolorbox}
+
+\subsection*{Коммутативные области целостности}
+
+\underline{Def} R- область целостности, если $ ab \neq 0 $, если $ a \neq 0 \land
+b \neq 0$ 
+
+
+\underline{Def} R - ОГИ, если из $ I \lhd R \implies I = (a) = aR $ для некоторого
+$ a \in R $ 
+
+\underline{Examples} $ \mathbb{Z}, \; F[x] $ - ОГИ
+
+\underline{Def} О.ц. R, не являющаяся полем, называется евклидовым кольцом, если
+определено отображение $ N: R \setminus \{0\} \to \mathbb{N} $ (наз-ое норма) со
+свой-ми: \\
+\begin{equation*}
+    \begin{aligned}
+        1) \quad N(ab) \geq N(a) \quad \forall a,b \in R\\
+        ( N(ab) = N(a) \iff b \in U(R) )
+    \end{aligned}
+\end{equation*}
+\[
+    2) \forall a,b \in R \; \exists \, q,r \in R \; | \; a = bq + r, \; q = 0
+    \text{ или } N(r) < N(b)
+\]
+
+\underline{Ex} $ \mathbb{Z}, F[x] $ - евклидовы \\
+$ Z[i] = \{ a+ib \; | \; a,b \in \mathbb{Z} \}  $ \\
+$ N(a + ib) = a^2 + b^2 $ 
+
+\[
+    1) \quad z = a + ib, \; w = c + id
+\]
+\[
+    N(zw)= N((ac - bd) + (ad + bc)i) = ( ac - db)^2 + (ad + bc)^2 = a^2 c^2 - 2a
+    bcd + b^2d^2 + a^2d^2 + 2abcd + b^2c^2
+\]
+\[
+    N(z)N(w) = (a^2 + b^2)(c^2 + d^2) = a^2c^2 + a^2d^2 + b^2c^2 + b^2d^2 = N(zw)
+    \implies N(zw) \geq N(z)
+\]
+
+$ U(\mathbb{Z}[i]) = ? $ 
+\[
+    z \in U(\mathbb{Z}[i]), \; z = a + bi \implies z z^{-1} = 1  \implies
+    N(z) \cdot N(z^{-1}) = N(1) = 1 \iff N(z) = 1 \iff a^2 + b^2 = 1 \iff
+\]
+\[
+    a = \pm 1; \; b = 0 \lor a = 0; \; b = \pm 1 \implies U(\mathbb{Z}[i]) = 
+    \{ \pm 1; \; \pm i \}
+\]
+
+\[
+    2) \quad \forall 0 \neq  z, w \in \mathbb{Z}[i], \; \text{Ищем ближайщие}
+    q \in \mathbb{Z}[i] \text{ для } \frac{z}{w} \in \mathbb{Q}[i]
+\]
+\[
+    \left| \frac{z}{w} - q \right| \leq \frac{1}{\sqrt{2}} 
+\]
+Положим $ r = z -qw \in \mathbb{Z}[i] $ 
+\[
+    N(r) = |z-qw|^2 = \left| \frac{z}{w} - q \right|^2 \cdot |w|^2 \leq 
+    \frac{1}{2} |w|^2 \leq \frac{N(w)}{2} < N(w)
+\]
+
+\begin{tcolorbox}
+    \underline{Theorem} Евклидово кольцо - ОГИ.
+
+    \underline{Proof} 1)
+    \[
+        I \lhd R \land I = \{0\} \implies I = (0) = 0R
+    \]
+    2) Если $ I \neq (0) $ , то выбираем $ 0 \neq a \in I $ с минимальной N(a). Тогда
+    $ I = (a): \; \forall b \in I: \; b = aq + r, \; aq \in I, \; b \in I, \;
+    r = 0 \lor N(r) < N(a) \implies r \in I \implies r = 0$ 
+\end{tcolorbox}
+
+\underline{Note} Обратное неверно: существуют ОГИ, которые не евклидовы\\
+Например, $ R = \{ a + \sqrt{19}bi  \; | \; a,b \in \mathbb{Z} \} $ - ОГИ, но
+не евклидово
+\end{document}

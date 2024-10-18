@@ -1,0 +1,136 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{xfrac}
+\usepackage{tikz-cd}
+
+\begin{document}
+\begin{center}
+    \underline{ОСА. Лекция(24.09.24)}
+\end{center}
+
+R - кольцо \\
+$ I \subseteq R $ - правый(левый) идеал в R, если
+1) $ (I, +) \leq (R, +) $ \\
+2) $ IR \subseteq I (RI \subseteq I) $ \\
+Если  $ IR \subseteq I $ and $ RI \subseteq I \implies I $ двусторонний идеал(идеал)\\
+
+Идеал I называется \underline{собственным}, если $ I \neq R $ 
+
+\section*{\centering Максимальные идеалы в кольцах}
+
+\underline{Def} Идеал M в кольце R называется максимальным, если M - собственный
+идеал и не содержится ни в каком собственном идеале, т.е. если $ M \subsetneq J \lhd R
+\implies J = R$ 
+
+Сведения из теории множеств:\\
+Множество X называется чум. если на X задано отношение порядка, т.е. 
+задано бинарное отношение со свойствами:\\
+1) $ x \leq x \; \forall x \in X $ \\
+2) $ x \leq y \; y \leq x \implies x=y $ \\
+3) $ x \leq y \; y \leq z \implies x \leq z $\\
+$ (X, \leq) $ - чум\\
+
+$ (X, \leq) $ - лум(цепь), если $ \forall x, x' \in X \implies x \leq x' \text{ или }
+x' \leq x$ 
+
+Пусть $ T \subseteq X $ элемент $ x^{\star} \in X $ - верхняя грань для T, если
+$ x^{\star} \geq T \; \forall t \in T $ \\
+
+$ \hat{x} $ - max, если $ x \geq \hat{x}\; x \in X \implies x = \hat{x} $ \\
+
+\begin{tcolorbox}
+    \underline{Lemma Цорна} Пусть $ \varnothing \neq X $ -чум, в к-ом любому подмн-ва
+    существует верхяя грань\\
+    Тогда в X существует макс элемент
+
+    \underline{Th} $ \forall $ собственный идеал кольца содержится в нек-м макс идеале
+
+    \underline{Proof} Пусть $ (X, \subseteq) $ - чум идеалов, $ I \lhd R, \; I \neq R $ \\
+    Рассмотрим $ Y = \{ J \subseteq R \; | \; I \subseteq J\} $ - чум.  J - собств.\\
+    $1. \; Y \neq \varnothing, \; I \in Y$\\
+    2. $ \dots \subset J_{i_{k-1}} \subset J_{i_k} \subset J_{i_{k+1}}\subset \dots $ - лум,
+    обозн Z. Тогда $ \bigcup_{k \in K} J_{i_k} = \tilde{J} \lhd R, \; \tilde{J} Y\; 
+    \tilde{J}$ - верхняя грань для Y $ \implies \text{ в } Y \;\exists \text{ max идеал} $ 
+\end{tcolorbox}
+
+\underline{Ex} 1) $ R = \mathbb{Z} $ 
+
+\begin{tcolorbox}
+    \underline{R - коммут. кольцо}
+
+    \underline{Th} $ I \lhd R \text{ - max } \iff \sfrac{R}{I} $ - поле
+
+    \underline{Proof} $ \implies:  \forall \overline{0} \neq \overline{r} \in \sfrac{R}{I} $\\
+    \[
+        r + I \neq I \implies r \notin I \implies rR + I \supsetneq I = R \implies
+        rx + i = 1 \text{ для нек-х } x\in R , \; i \in I
+    \]
+    \[
+        \overline{r} \overline{x} + \overline{i} = \overline{1} \implies \overline{r}
+        \overline{x} = \overline{1} \implies \overline{x} = \overline{r}^{-1}
+    \]
+    \[
+        rR + I = \{ rx + i \; |\; x \in R \; i \in I\}
+    \]
+    $ \impliedby: $\\
+    Против $ I \subsetneq J \lhd R \quad J \neq R $ \\
+    Let
+    \begin{equation*}
+        \begin{aligned}
+        x \in R \setminus I \implies \overline{x} \neq \overline{0} \implies
+        \exists y^{-1}\in \sfrac{R}{I} \; | \; \overline{x} \cdot \overline{x}^{-1}
+        = 1 \implies (x + I)(y+I) = 1 + I \implies xy + I = 1 + I \implies\\
+        1 \in xy + I \implies 1 \in J \implies J = R
+        \end{aligned}
+    \end{equation*}
+\end{tcolorbox}
+
+\section*{\centering Простые идеалы в коммутативных кольцах}
+\underline{Def} Собственный идеал P комм кольца R называется простым, если 
+из $ ab \in P \implies a \in P \text{ или } b \in P $ 
+
+\begin{tcolorbox}
+    \underline{Th} $ I \lhd R  $ - простой $ \iff \sfrac{R}{I} $ - кольцо без
+    делителей нуля(область целостности)
+
+    \underline{Proof}
+    $ \implies: $ 
+    \begin{equation*}
+        \begin{aligned}
+         \text{ Против } \exists \; \overline{0}
+        \neq \overline{a}, \; \overline{0} \neq \overline{b} \in \sfrac{R}{I} \; 
+        | \; \overline{a}\overline{b} = \overline{0} \implies (a+I)(b+I) = I\\
+        \implies ab + I = I \implies ab \in I \implies a \in I\; \lor\; b \in I \implies
+        \overline{a} = \overline{0} \; \lor \; \overline{b} = \overline{0}
+        \end{aligned}
+    \end{equation*}
+
+    $ \impliedby: $
+    \[
+        \text{Пусть } ab \in I, \; a \notin I \text{ и } b \notin I \implies
+        \overline{a} \cdot \overline{b} = \overline{0}
+    \]
+\end{tcolorbox}
+
+\underline{Def} Кольцо R называется артиновым, если $ \forall $ убывающая цепь
+идеалов обрывается, т.е. \\
+$ I_1 \supset I_2 \supset \dots \supset I_{n} \supset \dots $, то $ \exists n \in
+\mathbb{N} \; |\; I_{n} = I_{n+1} = \dots$  
+
+\begin{tcolorbox}
+    \underline{Утверждение} В артиновом кольце любой простой идеал является максимальным
+
+    \underline{Proof} R - арт. кольцо, P - простой идеал $ \sfrac{R}{P}  $ - о.ц.
+    $ \stackrel{?}{\implies} \sfrac{R}{P} $ - поле
+\end{tcolorbox}
+\end{document}

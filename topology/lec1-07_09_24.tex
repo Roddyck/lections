@@ -1,0 +1,153 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\begin{document}
+\section*{\S 1. Топологические пространства}
+\underline{\textbf{Опр.}.} Пусть на мн-ве X задано семейство $\tau$, удовлетворяющие
+условиям: \\
+\textbf{1.} X, $\varnothing \in \tau$ \\
+\textbf{2.} $\forall \text{ U}_\alpha \text{, } \alpha \in \text{A} \quad \text{U}_\alpha
+\in \tau \quad \forall \alpha \Rightarrow \cup_{\alpha\in\text{A}} 
+\text{U}_\alpha \in \tau$  \\
+\textbf{3.} $ \forall \text{U}_i \text{, } i=\overline{1,n} \quad \text{U}_i \in \tau \Rightarrow
+\cap_{i = 1}^n \text{U}_i \in \tau $\\
+Тогда (X, $\tau$) - топологическое простванство. $\tau$ - топология\\
+\underline{\textbf{Опр.}.} U $\in \tau \Rightarrow$ U - открытое. CU - замкнутое \\
+\underline{\textbf{Опр.}.} $\forall$ открытое мн-во, содеражащие точку x, называется
+его окресностью\\
+\underline{\textbf{Теорема}} Мн-во U $\in \tau \Leftrightarrow \forall \text{x} \in$ U
+входит в него с нек-рой окр-тью \\
+\underline{\textbf{Опр.}} Пусть на мн-ве X задано отображение\\
+d: X$\times$X $\to \mathbb{R}^+$, удовлетворяющие условиям: \\
+\textbf{1.} d(A,B) $\geq$ 0, $\forall$A,B \\
+d(A,B) $=$ 0 $\Leftrightarrow$ A$=$B\\
+\textbf{2.} d(A,B) $=$ d(B,A) $\forall \text{A,B}$ \\
+\textbf{3.} $ \text{d}(\text{A,B}) + \text{d}(\text{B,C}) \geq \text{d}(\text{A,C})
+\quad \forall \text{A,B,C} \in \text{X}$ \\
+Тогда (X, d) - метрическое пространство \\
+
+\underline{\textbf{Опр.}} Пусть (X, d) - метр. пр-во. \\
+Тогда объединение произвольных наборов открытых шаров является топологией\\
+$ \text{d(a,b)}= \sqrt{\sum_i^n(a_i - b_i)^2} $ \\
+$ (\mathbb{R}^n, \text{d})$ - метр. пр-во\\ 
+$\tau_0 = \tau_d $\\
+\underline{\textbf{Опр.}} Пусть (X, $\tau$) - топология. $ A \subset X $ \\
+
+Тогда $\tau_A = \{U \cap A | U \in \tau \}$ называется топологией индуцированной
+их X на A\\
+$ (A, \tau_A) - \text{подпространство пространсва } (X, \tau) $ \\
+
+\underline{\textbf{Теорема}} (Транзитовность инд. топологии)
+Let $(X, \tau)$, $ B \subset A \subset X $ \\
+Тогда $\tau_B = (\tau_A)_B $ 
+
+\underline{\textbf{Д-во.}}\\
+\textbf{\textbf{1.}} $ \tau_B \subset (\tau_A)_B $
+\begin{equation*}
+    \forall U \in \tau_B \Rightarrow \exists V \in \tau \quad | \quad
+    U = V \cap B \Rightarrow
+    \tilde{V} = V \cap A \in \tau \Rightarrow \tilde{V} \cap B = (V \cap A)
+    \cap B = V \cap B \Rightarrow U \in (\tau_A)_B
+\end{equation*}
+\textbf{2.} $ (\tau_A)_B \subset \tau_B $\\
+\begin{equation*}
+    \forall U \in (\tau_A)_B \Rightarrow \exists V \in \tau_A \quad | \quad
+    U = V \cap B \Rightarrow \exists \tilde{V} \in \tau | \\
+    V = \tilde{V} \cap A \Rightarrow U = \tilde{V} \cap B \in \tau_B
+\end{equation*}
+
+\underline{\textbf{Опр.}} $ (X, \tau) \Sigma \subset \tau $ наз-ся базой $\tau$, если
+каждое открытое множество является объединением подмножеств из $\Sigma$
+
+\underline{Пр} $(X, \tau_d)$ $\Sigma$ - база $ \tau_d $ состоит из открытых шаров\\ 
+
+\underline{\textbf{Теорема}} (Критерий базы в топологическом пространстве) \\ 
+Let $ (X, \tau) $ \\
+$\Sigma$ является базой $\Leftrightarrow$ \\
+$ 
+    \textbf{1. } \Sigma \subset \tau \\ 
+    \text{2. } \forall U \in \tau \text{, } \forall x \in U \, \exists V \in \Sigma
+    \, | \, x \in V \subset U
+$
+
+\underline{\textbf{Теорема}} (Критерий базы в на мн-ве) \\ 
+Пусть X множество без топологии \\
+$ \Sigma $ - база некоторой топологии $\Leftrightarrow$ \\
+$
+    \textbf{1. } X = \bigcup\limits_\alpha U_\alpha, \, U_\alpha \in \Sigma\\
+    \textbf{2.} \, \forall \, U, V \in \Sigma \quad \forall \, x \in U \cap V \:
+    \exists W \in \Sigma \; | \; x \in W \subset U \cap V
+$
+
+\underline{\textbf{Опр.}} Let $(X, \tau) $ - т.п. $\forall A \subset X$ \\ 
+т. a называется внутренней, если $\exists U_a \; | \; U_a \subset A$ \\
+мн-во внутренних точек $\text{Int}A = \mathring{A}$
+
+\underline{\textbf{Теорема}} $\forall A \Rightarrow \text{Int}A \in \tau$
+
+\underline{\textbf{Теорема}} $ A \in \tau \Leftrightarrow A = \text{Int}A $
+
+\underline{\textbf{Теорема}} $ \forall A, B \Rightarrow \\
+    \indent \textbf{\textbf{1.} } A \subset B \Rightarrow \text{Int}A \subset \text{Int}B \\
+    \indent \text{2. } \text{Int}(A \cap B) = \text{Int}A \cap \text{Int}B\\
+$
+\underline{\textbf{Д-во.}} \\
+\textbf{1.} 
+\begin{equation*}
+    \forall \, x \in \text{Int}A \Rightarrow \exists \, U_x \; | \; U_x \subset A
+    \xRightarrow{A \subset B} U_x \subset B \Rightarrow x \in \text{Int}B
+\end{equation*}
+\textbf{2.} a) $ \text{Int}(A \cap B) \stackrel{?}{\subset} \text{Int}A \cap \text{Int}B $\\
+\begin{equation*}
+    \forall x \in \text{Int}(A \cap B) \Rightarrow \exists U_x \subset A \cap B
+    \Rightarrow U_x \subset A \; \land \; U_x \subset B \Rightarrow
+    x \in \text{Int}A \; \land \; x \in intB \Rightarrow x \in \text{Int}A \cap \text{Int}B
+\end{equation*}
+b) $ \stackrel{?}{\supset} $
+\begin{equation*}
+    \forall x \in \text{Int}A \cap \text{Int}B \Rightarrow \begin{cases}
+        x &\in \text{Int}A \Rightarrow \exists U_x \; | \; U_x \subset A\\
+        x &\in \text{Int}B \Rightarrow \exists V_x \; | \; V_x \subset B\\
+    \end{cases}
+    \Rightarrow W_x = U_x \cap V_x \Rightarrow W_x \subset A \cap B
+\end{equation*}
+
+\underline{\textbf{Теорема}.} Внутренность множества A является объединением всех открытых
+подмножеств, содержащихся во множестве A \\
+\[ \text{Int}A = \bigcup_{i \in I}A_i \quad A_i \in \tau \; A_i \subset A \]
+
+\underline{\textbf{Д-во.}} \\
+\textbf{1. } $ \text{Int}A \stackrel{?}{\subset} \bigcup\limits_{i \in I}A_i 
+\quad A_i \in \tau, \; A_i \subset A$ \\
+\[ \text{Int}A \in \tau, \; \text{Int}A \subset A \Rightarrow \text{Int}A = A_{i_0} \]
+\textbf{2. } $ \text{Int}A \stackrel{?}{\supset} \bigcup\limits_{i\in I}A_i $\\
+
+\begin{center}
+    \begin{aligned}
+        & \forall x \in \bigcup_{i \in I} A_i \quad x \in A_{i_0}, \; A_{i_0} \in \tau
+        \quad A_{i_0} \subset A \\
+        & A_{i_0} \text{окрестность т.x, которая включена в A} \Rightarrow
+        x \in \text{Int}A
+    \end{aligned}
+\end{center}
+
+\underline{\textbf{Опр.}} точка a называется точкой прикосновения множества A, 
+если любая окресность точки a пересекается со множеством A.\\
+Множество точек прикосновения называется замыканием $\bar{A}$
+
+\underline{\textbf{Пр.}} $ (\mathbf{R}, \tau_0) $ $ A = [0, 1) \cup \{2\} $ \\
+\indent $ \bar{A} = [0,1] \cup \{2\} $
+
+
+
+
+\end{document}

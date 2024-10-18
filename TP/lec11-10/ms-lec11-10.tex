@@ -1,0 +1,214 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\begin{document}
+\begin{center}
+    \textbf{Лекция. Матстат(11.10.24)}
+\end{center}
+\[
+    F(x; \theta) \quad F - \text{ известна}, \; \theta\text{ неизвестна}
+\]
+\[
+    H_0: \, \theta = \theta_0
+\]
+\[
+    H_1: \, \theta \neq \theta_0
+\]
+\[
+    \lambda = \frac{L_{x}(\theta_0)}{\max_{\theta} L_x(\theta)} = \frac{L_x(\theta_0)}
+    {L_x(\hat{\theta)}} 
+\]
+Отвергается $ H_0 $ , если $ \lambda \leq \lambda_{\alpha} $ $ \alpha $ - 
+уровень значимости
+\[
+    P(\lambda \leq \lambda_{\alpha} \; | \; H_0 \text{ верна}) \leq \alpha
+\]
+\[
+    X \in N(a, \sigma^2), \; \sigma^2 \text{ - известна}
+\]
+\[
+    H_0: a = a_0
+\]
+\[
+    H_1: a \neq a_0
+\]
+\[
+    \frac{\sqrt{n} \, | \overline{x} - a_0 |}{\sigma} > z_{1 - \alpha/2}
+\]
+\[
+    F(x) \text{ - ф.р.}
+\]
+\[
+    H_0: F(x) = F_0(x)
+\]
+\[
+    H_1: F(x) \neq F_0(x)
+\]
+
+Гистограмма $ p_{0_{i}} = F_0(a_{i}) - F_0(a_{i-1}) $ 
+
+Выборка объёма n\\
+$ \pi_{i} $ - истенные вер.
+$ ( \pi_{1} \dots, \pi_{k}) $ \\
+$ (m_1, \dots, m_{k} $ - имеет полином p
+\[
+    p(x_1 = m_1, \dots, x_{k} = m_{k}) = \frac{n!}{m_1! \dots m_{k}!} 
+    \prod_{i=1}^{k} \pi_{i}^{m_{i}} = L_{x}(\pi_1, \dots , \pi_{k})
+\]
+
+При $ H_0: \pi_{i}= p_{i 0}, \; i = \overline{1,k} $ \\
+$ \max_{\pi_1, \dots, \pi_{k}} L_{x}(\pi, \dots, \pi_{k}) = \text{ При } \pi_{i} =
+\frac{m_{i}}{n} $ 
+\[
+    \lambda = \frac{L_x(p_{10} , \dots, p_{k 0})}{L_x(\frac{m_1}{n} , \dots,
+    \frac{m_{k}}{n}) } = \frac{\prod_{i=1}^{k} (p_{i_0}^{m_{i}})}
+    {\prod_{i=1}^{k} (\frac{m_{i}}{n})^{m_{i}}} = \prod_{i=1}^{k} (\frac{p_{i_0}}{m_{i}})
+    ^{m_{i}}
+\]
+\[
+    - 2 \ln \lambda = 2 \sum_{i=1}^{k} m_{i} \ln \frac{m_{i}}{np_{i_0}} =
+    2 \sum_{i=1}^{k} \left( ( m_{i}- np_{i_0})+ np_{i_0} \right) \ln(1 + \Delta_{i}) = 
+    \left( (m_{i} - np_{i_0} + p_{i_0} \right) (\Delta_{i} - \frac{\Delta_{i}^2}{2}) 
+\]
+\[
+    \vartriangle_{i} = \frac{m_{i}- np_{i_0}}{np_{i_0}} = \frac{m_{i}}{np_{i_0}} 
+    - 1
+\]
+\[
+    \ln(1+x) =  x - \frac{x^2}{2} + o(x^2)
+\]
+\[
+    \sum_{i=1}^{k} p_{i_0} \Delta_{i} = \sum_{i=1}^{k} \frac{m_{i} - np_{i_0}}{n} =
+    \frac{1}{n} \left( \sum_{i=1}^{k} m_{i} - n \sum_{i=1}^{k} p_{i_0} \right) = 0
+\]
+\[
+    = 2 (\chi^2 - \frac{1}{2} \chi^2) = 2 \frac{\chi}{2}  = \chi^2
+\]
+\[
+    n \to \infty \; - 2 \ln \lambda \sim \chi^2 (k -1)
+\]
+\[
+    f(x; \theta_1, \theta_2)
+\]
+\[
+    H_0: \theta_1 = \theta_{10}
+\]
+\[
+    H_1: \theta_1 \neq \theta_{10}
+\]
+$ \theta_2 $ -  неизвестен (мешающий)
+\[
+    \lambda = \frac{\max_{\theta_2} L_{x}(\theta_{10}, \theta_{2})}{\max_{\theta_1,
+    \theta_2} L_x(\theta_1, \theta_2)} 
+\]
+\[
+    \lambda \leq \lambda_2 \text{ - отв } H_0
+\]
+\begin{center}
+    \textbf{ПОМОГИТЕ}
+\end{center}
+\[
+    X \in N(a, \sigma^2), \; \sigma^2 \text{ - неизв}
+\]
+\[
+    H_0: a = a_0
+\]
+\[
+    H_1: a \neq a_0
+\]
+\[
+    \theta = (a, \sigma^2)
+\]
+\[
+    L_x(\theta) = (2 \pi \sigma^2)^{-\frac{n}{2} } \exp\left(-\frac{1}{2\sigma^2} 
+    \sum_{i=1}^{n} (x_i - a)^2 \right)
+\]
+При гипотезе
+\[
+    \max_{\sigma^2} L_x(a_0, \sigma^2) = L_x (a_0. \tilde{\sigma^2})
+\]
+\[
+    \tilde{\sigma^2} = \frac{1}{n} \sum_{i=1}^{n} (x_i - a_0)^2 = s^2 + (\overline{x}
+    - a_0)^2
+\]
+\[
+    s^2 = \frac{1}{n} \sum_{i=1}^{n} (x_i - \overline{x})^2
+\]
+\[
+    \max_{a, \sigma^2} L_x(a, \sigma^2) = L_x(\overline{x}, s^2) = (2 \pi s^2)^{
+    -\frac{n}{2} } \exp(-\frac{n}{2} )
+\]
+\[
+    \lambda = \left( \frac{s^2}{s^2 + (\overline{x} - a_0)^2} \right)^2 = 
+    \left( \frac{1}{1 + \frac{(\overline{x} - a_0)^2}{s^2} } \right)^{\frac{n}{2}}
+    = \left( \frac{1}{1 + \frac{t^2}{n}} \right)^{\frac{n}{2}} 
+\]
+\[
+    t = \frac{\sqrt{n} \;(\overline{x} - a_0)}{s} 
+\]
+\[
+    \frac{\sqrt{n} \,| \overline{x} - a_0 |}{s} \geq c_{\alpha} = c_{1 - \frac{\alpha}{2}}
+\]
+\[
+    \frac{\sqrt{n} \,| \overline{x} - a_0 |}{s} \in t(n-1)
+\]
+\[
+    \text{ по } \alpha \text{ и } \nu = n-1
+\]
+\[
+    t_{1 - \frac{\lambda}{2} }(\nu) \text{ - квантиль пор } 1 - \frac{\alpha}{2} 
+\]
+
+Диспресионный анализ $ H_0: \sigma_1 = \sigma_2 = \dots = \sigma_k $ (самим)
+
+\section*{\centering Доверительный интервал}
+\[
+    \hat{\theta_n} \text{ - оценка}
+\]
+Использовать неравенство Чебышева
+\[
+    E_{\theta}(\hat{\theta_n}) = \theta
+\]
+\[
+    D_{\theta}(\hat{\theta_n}) = \sigma^2
+\]
+\[
+    P(| \hat{\theta_n} - \theta_0 | > 36) \leq \frac{1}{9} 
+\]
+\[
+    | \hat{\theta_n} - \theta_0 | \leq 36
+\]
+\[
+    X \in N(a, \sigma^2), \; \sigma^2 \text{ - изв}
+\]
+\[
+    P_{a_0}( \frac{\sqrt{n} \; | \overline{x} - a_0 |}{\sigma} \geq z_{1- \alpha/2}
+    \leq \alpha
+\]
+\[
+    P_{a_0}(\frac{\sqrt{n} \; | \overline{x} - a_0 |}{\sigma} < z_{1 - \alpha/2})
+    \geq 1 - \alpha
+\]
+\[
+    P_{a_0}(\overline{x} - z_{1 - \alpha/2}\frac{\sigma}{\sqrt{n} } < a_0 < 
+    \overline{x} + z_{1 - \alpha /2} \frac{\sigma}{\sqrt{n} }) \geq 1 - \alpha 
+\]
+
+\underline{Def} Доверительным интервалом с границами $ (\hat{\theta_1}(x), \hat{\theta_2}(
+\theta))$ \\
+$ P( (\hat{\theta_1}(x), \hat{\theta_2}(x) ) \ni \theta) \geq \gamma $ 
+
+\section*{\centering Качество статистических критериев}
+\end{document}

@@ -1,0 +1,131 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{xfrac}
+\usepackage{tikz-cd}
+
+\begin{document}
+\begin{center}
+    \underline{Кольца и модули. Лекция(24.09.24)}
+\end{center}
+
+\underline{Def} M, N - R - модули. Отображение $ f: M \to N $ - гомоморфизм модулей \\
+1) $ f(m_1 + m_2) = f(m_1) + f(m_2) \quad \forall m_1, m_2 \in M $ \\
+2) $ f(r, m) = r \cdot f(m) \quad \forall r \in R \; \forall m \in M $ 
+
+\underline{Упр.} 1) $ \ker f \{ m \in M \; |\; f(m) = 0 \} $ - подмодуль в M \\
+2) $ Im f \{ n \in N \; | \; n = f(m) \text{ для нек-го } m \in M \} $ подмодуль в N\\ 
+3) Гомоморфизм $ f: M \to N$ иньективен $ \iff \ker f = \{ 0 \} $ 
+
+\begin{tcolorbox}
+    \underline{Lemma} Пусть $ f: \prescript{}{R}{M} \to \prescript{}{R}{N} $ -
+    R - гомоморфизм K - подмодуль в M, $ K \subseteq \ker f $ \\
+    Тогда $ \exists $   R - гомоморфизм $ \psi : \sfrac{M}{K} \to N \; | $ коммутативна диаграмма 
+    \[
+    \begin{tikzcd}
+        M \arrow{rr}{f} \arrow[swap]{dr}{\rho} & & N \\[10pt]
+                               &\sfrac{M}{K} \arrow[swap]{ur}{\psi}
+    \end{tikzcd}
+    \]
+    $ f = \rho \psi $ \\
+
+    \underline{Proof} Положим $ \psi(m+k) = f(m) $ \\
+
+    \underline{Корр-ть} $ m + K = m' + K \iff m' - m \in K \implies m' = m+k $\\
+    $ \psi(m' + K) = f(m') = f(m + K) = f(m) + f(K) = f(m) $ \\
+
+    $ \psi $ - R - гомоморфизм
+    \[
+        \psi\left( (m + K) + (\tilde{m} + K)\right) = \psi((m + \tilde{m}) + K) =
+        f(m + \tilde{m}) = f(m) + f(\tilde{m}) = \psi(m + K) + \psi(\tilde{m} + K)
+    \]
+    \[
+        \psi(r(m + K)) = \psi(rm + K) = f(rm) = r f(m) = r \psi(m + K)
+    \]
+    \[
+        \forall m \in M: \; \psi \rho(m) = \psi(m + K) = f(m) \implies \psi\rho = f
+    \]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \underline{1-я Th об изоморфизмах} Пусть $ f: \prescript{}{R}{M} \to \prescript{}
+    {R}{N} $ - эпиморфизм $ \implies \sfrac{M}{\ker f} \cong N $  
+
+    \underline{Proof} По лемме существует R - гомо-зм $ \psi: \sfrac{M}{\ker f} \to N $
+    - эпиморфизм $ : \psi(m + \ker f) = f(m) $ 
+    \[
+        \forall \, m + \ker f \in \ker\psi \implies \psi(m + \ker f) = 0 \implies
+        m \in \ker f \implies m + \ker f = \ker f \implies \psi \text{ - иньект}
+    \]
+
+    \underline{2-я Th об изоморфизмах} Пусть K, N - подмодули R - модуля M \\
+    Тогда $ \sfrac{N + K}{N} = \sfrac{K}{N \cap K} $ 
+
+    \underline{Proof} Рассмотрим $ f: K \to \sfrac{K+N}{N} : f(k) = k + 0 + N $ 
+    \[
+        \forall (k + n) + N \in \sfrac{K+N}{N} \implies (k+n) + N = k + (n + N) =
+        k + N = f(k) \implies k = f^{-1}((k+n) + N)
+    \]
+    \[
+        \forall k \in \ker f \implies f(k) = k + N = N \implies k \in N \cap K 
+        \implies \ker f \subseteq N \cap K
+    \]
+    \[
+        \forall x \in N \cap K \implies f(x) = x + N = N \implies x \in ker f \implies
+        N \cap K \subseteq \ker f
+    \]
+    \[
+        \ker f = N \cap K
+    \]
+    По первой теореме об изо $ \sfrac{K}{\ker f} = \sfrac{K}{K\cap N} \cong
+    \sfrac{K+N}{N} $ 
+
+    \underline{3-я Th об изоморфизмах} Пусть K, N - подмодули R - модуля M,
+    причём $ K \subseteq N $ \\
+    Тогда $ \sfrac{M}{N} = \sfrac{\sfrac{M}{K}}{\sfrac{N}{K}}$ 
+
+    \underline{Proof} рассмотрим $ f: \sfrac{M}{K} \to \sfrac{M}{N} : m+K \mapsto m + N$ 
+    - сюр гомо-зм 
+    \[
+        \forall m + K \in \ker f \implies f(m+k) = n + N = N \implies n + K \in
+        \ker f \implies \sfrac{N}{K}  \subseteq \ker f
+    \]
+    \[
+        \implies \ker f = \sfrac{N}{K} \stackrel{\text{По 1 th}}{\implies} 
+        \sfrac{\sfrac{M}{K}}{\ker f} = \sfrac{\sfrac{M}{K}}{\sfrac{N}{K}} \cong
+        \sfrac{M}{N} 
+    \]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \underline{Th} (Модулярный закон) \\
+    Пусть A,B,C - подмодули в M и $ B \subseteq A \implies $ 
+    \[
+        A \cap (B + C) = B + (A \cap C)
+    \]
+
+    \underline{Proof}
+    \begin{equation*}
+        \begin{aligned}
+        \forall x \in A \cap (B + C) \implies x \in A \land x = b+c \implies
+        c = x - b \implies c \in A \cap C \implies x \in B + (A + C) \implies\\
+        A \cap (B + C) \subseteq B + (A \cap C)
+        \end{aligned}
+    \end{equation*}
+    \begin{equation*}
+        \begin{aligned}
+            \forall y \in B + (A \cap C) \implies y = b + z \in A \cap (B + C) \implies
+            B + (A +C) \subseteq A \cap (B + C)
+        \end{aligned}
+    \end{equation*}
+\end{tcolorbox}
+\end{document}

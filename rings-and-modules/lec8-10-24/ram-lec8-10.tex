@@ -1,0 +1,151 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{xfrac}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\begin{document}
+\title{Кольца и модули. Лекция}
+\author{Does not matter}
+
+\section*{Прямые суммы модулей}
+1) Внешняя прямая сумма
+\[
+    M,N \text{ - R - модули}
+\]
+\[
+    M \oplus N = \{ (m,n) \; | \; m \in M, \, n \in N \} \text{ - R - модуль с 
+операциями:}
+\]
+\[
+    (m,n) + (m', n') = (m+m', n + n')
+\]
+\[
+    \forall r \in R: r \cdot (m,n) = (rm, rn)
+\]
+
+Пусть $ M_{i}, \; i \in I \implies \bigoplus_{i \in I} M_{i} = \{ (\dots, m_{i}
+, \dots) \; | \; m_{i} \in M_{i} \text{ и почти все } m_{i} = 0 \}$ 
+
+2) Внутренняя прямая сумма\\
+M - R - модуль, $ N_1, N_2 $ - подмодуль в M (обозн $ N_1, N_2 \leq M$) 
+\[
+    N_1 + N_2 = \{ n_1 + n_2 \; |\; n_1 \in N_1, \, n_2 \in N_2 \} \leq M
+\]
+\[
+    N_1 + N_2 = N_1 \oplus N_2, \text{ если } N_1 \cap N_2 = \{0\}
+\]
+
+\underline{Упр.} $ N_1 \oplus N_2 = M \iff \forall \, m \in M \; \exists ! \;
+n_1 \in N_1, \; n_2 \in N_2 \; | \; m = n_1 + n_2$ 
+
+Пусть $ N_{i}, \; i \in I $ - подмодуль в M
+\[
+    \oplus_{i \in I} N_{i} = \{ n_{i_1} +  \dots + n_{i_{k}} \; | \; n_{i_{j}}
+    \in N_{i_{j}}\} \text{ и } N_{j} \cap (\sum_{i\neq j} N_{i}) = \{0\}
+\]
+
+\underline{Упр} $ M = \bigoplus N_{i} \iff \forall m \in M \; \exists ! \;
+n_{i_1} \in N_{i_1}, \dots n_{i_{k}} \; | \; m = n_{i_1} + \dots + n_{i_{k}}$ 
+
+$ \implies : $ уже есть
+
+!: 
+\[
+    m = n_{i_1} + \dots n_{i_{k}} = n_{j_1} + \dots + n_{j_{s}}
+\]
+\[
+    \text{Если } n_{i_1} \notin N_{j_1}, \dots , N_{j_{s}} \implies 
+    n_{i_1} = n_{j_1} + \dots + n_{j_{s}} - n_{i_2} - \dots - n_{i_{k}} \implies
+    n_{i_1} \in N_{i_1} \cap \sum_{i \neq i_1} N_{i} 
+\]
+\[
+    \text{Тогда } m = n_{i_1} + \dots + n_{i_{k}} = n'_{i_1} + \dots + n'_{i_{k}}
+\]
+\[
+    (n_{i_1} - n'_{i_1}) + \dots + (n_{i_{k}} - n'_{i_{k}}) = 0 \implies
+    - \tilde{n} = (n_{i_2} - n'_{i_2}) + \dots + (n_{i_{k}} - n_{i_{k}}) \in
+    \sum_{i\neq i_1} N_{i} \implies \tilde{n} \in N_{i_1} \cap \left(\sum_{i \neq i_1}  
+    N_{i}\right) = 0
+\]
+\[
+    (n_{i_1} - n'_{i_1}) = \tilde{n}
+\]
+$ 1) \stackrel{\sim}{\iff} 2) $ 
+
+\section*{Циклические модули}
+
+\underline{Def} $ _R M $ - кон/пор, если $ _R M = < m_1, \dots m_{k}> = 
+Rm_1 + \dots + Rm_{k} = \{ r_1 m_1 + \dots + r_{k} m_{k} \; | \; r_{i} \in R, m_{i} \in M \}$
+
+$ _RM $ - циклический, если $ _R M = _R <m> = Rm $ 
+
+\begin{tcolorbox}
+\underline{Th} $ _RM $ - циклический $ \iff \sfrac{R}{I} $, где I - левый идеал в R 
+
+\underline{Proof} $ \implies: $ 
+\[
+    _RM = <m> = Rm
+\]
+\[
+    \phi: R \to M = <m>: r \mapsto rm \text{ - R - гомо-зм сюрьективный}
+\]
+\[
+    \forall r' \in R: \; \phi(r' r) = (r'r)m = r'(rm) = r'\phi(r)
+\]
+\[
+    \stackrel{\text{1 th iso}}{\implies} M \cong \sfrac{R}{\ker \phi}, 
+    \text{ где } \ker \phi \leq _RR \implies \ker \phi \text{ - левый идеал}
+\]
+$ \impliedby: $ 
+\[
+    \sfrac{_RR}{I} = \{ r + I \; | \; r \in R\} = <1+I> = R(1 + I) \text{ - циклич}
+    \implies M \text{ - циклический}
+\]
+\[
+    \forall r + I \in \sfrac{_RR}{I}: \; r + I = r(1 + I) \in R(1 + I) 
+\]
+\end{tcolorbox}
+
+\underline{Example} Найдём все циклические $ \mathbb{Z} $ - модули (абелевы группы)
+\[
+    R = \mathbb{Z}, \; n \mathbb{Z} \text{ - все идеалы в } \mathbb{Z}
+\]
+\[
+    A \text{ - цикл} \implies A \cong \sfrac{_{\mathbb{Z}}Z}{nZ} \implies
+    A \cong Z_{n} \lor A \cong Z
+\]
+
+\section*{\centering Свободные модули}
+
+\underline{Def} Пусть M - R - модуль; $ \{f \}_{i \in I} $ - мн-во элем-ов из М
+называется базисом, если:
+\[
+    \forall m \in M \; \exists ! \ r_{i_1}, \dots , r_{i_{k}} \in R \; | \;
+    m = r_{i_1} f_{i_1} + \dots + r_{i_{k}}f_{i_{k}}
+\]
+R - модуль F называется свободным, если он имеет базис
+
+\underline{Example} Векторное пространство
+
+\underline{Def} $ f_1, \dots f_{k} \in _RM $ - лнз над R, если из $ r_1 f_1 + 
+\dots r_{k} f_{k} = 0 \implies r_{i} = 0$\\
+$ \{f_{i}\}_{i \in I} $ - лнз, если лнз любая её конечная подсистема
+
+\underline{Упр} $ \{ f_{i} \}_{i \in I} $ - базис $ \iff 1) \; M = <f_{i}>_{i \in I} 
+\; 2) \{ f_{i} \}_{i \in I} $ - лнз 
+
+\begin{tcolorbox}
+\underline{Th} R - модуль F свободен $ \iff F = \bigoplus_{i \in I} _RR $ 
+\end{tcolorbox}
+\end{document}

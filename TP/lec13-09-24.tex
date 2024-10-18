@@ -1,0 +1,90 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+\begin{document}
+    \begin{center}
+        \textbf{ТВиМС. Лекция (13.09.24)}
+    \end{center}
+
+    $F \in \mathbf{F} \quad F(x; \theta)$ F - known $\theta$ - unknown \\
+
+    \underline{Опр.} Оценкой будем называть измеримую ф-ию наблюдений, значения которой
+    принимаются в качестве "истинного" значения неизвестного нам параметра \\
+    $ T_n(x_1, \dots, x_n) $
+
+    с.в. $ X = X(\omega) $ - измеримая ф-ия эл исх $\omega$\\
+    $ \{ \omega: X(\omega) \in A \} $ \\
+    1) Метод моментов (1894, Пирсон) \\
+    2) Метод макс. правдоподобия\\
+    $ \theta \in \mathbb{R}, \; \theta=(\theta_1, \dots, \theta_m) $\\
+    $ \mu_j \theta=(\theta_1, \dots, \theta_m) = \int\limits_{-\infty}^{+\infty} x^j 
+    \; dF(x; \theta_1, \dots, \theta_m) $ \\
+    Есть выборка $x_1, \dots, x_n$ \\
+    $ m_j = 1/n \sum\limits_{i=1}^{n} x_i^j $\\
+    $ m_j = \mu_j(\theta_1, \dots, \theta_m) \; j= \overline{1, m} $\\
+    \[
+    \begin{split}
+        f(x, \alpha, \lambda) = \frac{x^{a-1}}{\lambda^a r(a)}e^{x/\lambda}, x > 0 
+        E(x) = \int_{0}^{\infty} x f(x; \alpha, \lambda) = \lambda \frac{1}{\lambda}
+        \int_0^\infty \frac{x^a}{r(a) \lambda^a} e^{-\frac{x}{\lambda}} dx = \\
+        \frac{\lambda r(a+1)}{r(a)} = \frac{\lambda ar(a)}{r(a)} = \lambda a
+    \end{split}
+    \]
+
+    $ P(X_1=x_1, X_2=x_2, \dots, X_n=x_n; \theta) = \prod\limits_{i=1}^n
+    P(X_i=x_i; \theta) = L_x(\theta)$ \\
+    X- неизв $f(x; \theta)$ \\
+    $ L_x(\theta) = \prod\limits_{i=1}^n f(x_i; \theta) $\\
+    $ l_x(\theta) = \sum\limits_{i=1}^n \ln f(x_i; \theta) $ \\
+    $ \frac{dl_x(\theta)}{d\theta} = \sum\limits_{i=1}^n \frac{f'_\theta(x_i; \theta)}
+    {f(x_i; \theta} = 0 $\\
+
+    Распределение Бернулли: 
+    \[ P(X=x_i) = \Theta^x (1 - \Theta)^{1-x}, \; 0<\Theta<1, \; x = 0,1 \] \\
+    \[ L_x(\theta) = \prod\limits_{i=1}^{n} \theta^{x_i}(1-\theta)^{1-x_i} \]
+    $ l_x(\theta) = m \ln \theta + (m-n) \ln(1-\theta) $ \\
+    $ l'x(\theta)= \frac{m}{\theta} - \frac{n-m}{1-\theta} = 0 $\\
+
+    $ f(x;\theta) = \begin{cases}
+        e^{-(x-\theta}, & x> \theta \\
+        0, & x \leq \theta \\
+    \end{cases}
+    $\\
+    $ L_x(\theta) = \prod\limits_{i=1}^{n} e^{-(x-\theta}  $ \\
+    $ x_1, \dots, x_n \to \delta(x_1, \dots, x_n) $ \\
+
+    ТУТ ЧТО-ТО БЫЛО ПРОСПАНО \\
+
+    $ X \in N(\theta, \sigma^2) \quad (\theta, \sigma^2) - \text{неизв} $\\
+    $
+        \bar{\sigma}^2 = \delta^2 = \frac{1}{n} \sum\limits_{i=1}^n (x_i - \bar{x})^2\\
+        E(\delta^2) = \frac{1}{n} E(\sum\limits_{i=1}^n (x_i - \bar{x})^2) =
+        (x_i - a - (\bar{x} - a) )^2 = E \left( (x_1 - \bar{x})^2 \right) = 
+        E \left( (x_1 -a - (\bar{x} - a ) \right) ^2 = x_1 \\
+        = E( ( x_1 - a)^2 ) + E((\bar{x} - a)^2 ) - 2E((x_1 -a)(\bar{x} - a)) \\
+        = \sigma^2 - \frac{\sigma^2}{n} = \sigma^2 ( 1 - 1/n) = \sigma^2 \frac{n-1}
+        {n} = E(s^2) \; | \; \frac{n}{n-1} \\
+        s_1^2 = \frac{1}{n-1} \sum\limits_{i=1}^n (x_i - \bar{x}) ^2
+    $
+    
+    $
+        P(X=j) = 1/\theta \quad P(X\leq k) = k/\theta \\
+        j = 1, \dots, \theta \\
+        \max(X_1, \dots, X_n) = X_n^{(n)}\\
+        P(X_n^{(n)} \leq k) = P(\bigcap\limits_{j=1}^n (X_j \leq k)) =
+        P(X_n^{(n)} = k) =  P((X_n^{(n)} \leq k) - (X_n^{(n)} \leq k-1 )) \\
+        = P((X_n^{(n)} \leq k) - P((X_n^{(n)} \leq k-1 )) = 
+        \frac{k^n  - (k-1)^n}{\theta}\\
+    $
+\end{document}

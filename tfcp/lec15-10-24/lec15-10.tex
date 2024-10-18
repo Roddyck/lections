@@ -1,0 +1,293 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\begin{document}
+\title{ТФКП. Лекция}
+\author{Mr. Robot}
+\maketitle
+
+\[
+    z = x +iy, \ \overline{z} = x - iy, \ z \overline{z} = x^2 + y^2
+\]
+\[
+    x = \frac{z + \overline{z}}{2} , \ y = \frac{z - \overline{z}}{2i} 
+\]
+\[
+    y = -i \frac{z - \overline{z}}{2} 
+\]
+\[
+    A z \cdot \overline{z} + B \frac{z + \overline{z}}{2} -i C \frac{z - \overline{z}}{2} 
+    + D = 0
+\]
+\[
+    A \cdot z \cdot \overline{z} + \left(\frac{B}{2} -i \frac{C}{2}\right)z + 
+    \left(\frac{B}{2} + i \frac{C}{2} \right) \overline{z} + D = 0
+\]
+\[
+    A z \overline{z} + Mz + \overline{M} \overline{z} + D = 0
+\]
+\[
+    A,D \in \mathbb{R} \quad M,\overline{M} \in \mathbb{C}
+\]
+
+\begin{tcolorbox}
+\textbf{\underline{Th2}}(Круговое свойство дробно-линейного преобразования)\\
+Всякое дробно-линейное преобразование $ w = \frac{az + b}{cz + d}  $ отображает
+окружность в широком смысле на окружность в широком смысле(при этом обычная 
+окружность может перейти в прямую и наоборот)
+
+\textbf{\underline{Proof}} 
+\[
+    w = \frac{a}{c} + \frac{bc - ad}{c(cz+d)} 
+\]
+\[
+\begin{aligned}
+    &1) \  w_1 = cz + d\\
+    &2) \  w_2 = \frac{1}{w_1} \\
+    &3) \  w_3 = \frac{a}{c} + \frac{bc - ad}{c} \cdot w_2 \equiv w
+\end{aligned}
+\]
+\[
+    w = \frac{1}{z} \quad \overline{w} = \frac{1}{\overline{z}} 
+\]
+\[
+    A \cdot \frac{1}{w} \cdot \frac{1}{\overline{w}} + M \frac{1}{w} + \overline{M}
+    \frac{1}{\overline{w}} + D = 0
+\]
+\[
+    D w \overline{w} + \overline{M} w + M \overline{w} + A = 0
+\]
+\end{tcolorbox}
+
+\textbf{\underline{Note}} $ w = L(z) $ \\
+$ \Gamma $ - окружность или прямая на плоскости (z)\\
+$ C = L(\Gamma) $ 
+\[
+    |z - z_0| = R \not\ni z = \infty
+\]
+\[
+    Bx + Cy + D = 0 \ni z = \infty
+\]
+\[
+    z = \frac{d}{c} \rightarrow w = \infty
+\]
+\[
+    z = -\frac{d}{c} \in \Gamma \implies w = L(-\frac{d}{c} ) = \infty \in C \implies
+    C \text{ - прямая на (w)}
+\]
+\[
+    z = - \frac{d}{c} \notin \Gamma \implies w = \infty \notin C \implies
+    C \text{ - окружность на (w)}
+\]
+
+\textbf{\underline{Example}} 
+\[
+     w = \frac{z - 5}{z + 2i} \implies z = -2i 
+\]
+\[
+    \Gamma_1: \ |z + 5| = 2
+\]
+\[
+    \Gamma_2: \ |z - i| = 3
+\]
+\[
+    |-2i + 5| \stackrel{?}{=} 2
+\]
+\[
+    \sqrt{4 + 25} \neq 2
+\]
+\[
+    z = -2i \notin \Gamma_1 \implies L(\Gamma_1) \text{ - окружность}
+\]
+\[
+    |-2i - i| \stackrel{?}{=} 3
+\]
+\[
+    3 = 3
+\]
+\[
+    z = -2i \in \Gamma_2 \implies L(\Gamma_2) \text{ - прямая}
+\]
+\[
+    z_1 = 4i \quad w_1 = \frac{4i -5}{6i} = \frac{-i(4i - 5)}{6} =
+    \frac{2}{3} + \frac{5}{6} i
+\]
+\[
+    z_2 = 3 + i
+\]
+\[
+    w_2 = \frac{3 + i - 5}{3 + i + 2i} = \frac{-2 + i}{3 + 3i} 
+    = \frac{1}{3} \frac{(-2+i)(1-i)}{2} = \frac{-2+1+i+2i}{6} =
+    \frac{-1}{6} + \frac{i}{2} 
+\]
+\[
+\begin{aligned}
+    &z_1 = -3\\
+    &z_2 = -7\\
+    &z_3 = -5 + 2i
+\end{aligned}
+\]
+
+\textbf{\underline{Note.2}} (Отображение круговых областей)
+\[
+    w = L(z)
+\]
+\[
+    \Gamma - \text{ окр или прямая}
+\]
+\[
+    D_1, D_2 - \text{ круговые области}
+\]
+\[
+    C = L(\Gamma)
+\]
+\[
+    G_1, G_2
+\]
+\[
+    D_1 \to G_1 \lor G_2
+\]
+\[
+    1. \text{ По внутренней точке}
+\]
+\[
+    z_0 \in D_1
+\]
+\[
+    L(z_0) = w_0
+\]
+\[
+    w_0 \in G_1 \implies D_1 \to G_1
+\]
+\[
+    w_0 \in G_2 \implies D_1 \to G_2
+\]
+\[
+    w = \frac{z-5}{z+2i} = \frac{i -5}{3i} = \frac{-i(i-5)}{3} = \frac{1}{3} +
+    \frac{5}{3} i
+\]
+\[
+    2. \text{ По направлению обхода границы}
+\]
+\[
+    z_1, z_2, z_3 - \text{ точки на границе области} \in \Gamma = \partial D_1
+\]
+\[
+    w_1 = L(z_1) \subset \partial(L(D_1))
+\]
+\[
+    w_2 = L(z_2) \subset \partial(L(D_1))
+\]
+\[
+    w_3 = L(z_3) \subset \partial(L(D_1))
+\]
+Пусть для определённости $ D_1 $ остаётся справо\\
+$ D_1 $ перейдёт в ту из областей $ G_1 \lor G_2 $, которая будет лежать справа
+при движении по границе $ \partial(L(D_1)) $ 
+
+\begin{tcolorbox}
+\textbf{\underline{Th.3}}(Единственность дробно-линейного преобразования)\\
+$ w = L(z) $ однозначно определяется заданием 3-х различных точек
+\[
+    L(z_k) = w_k, \ k = 1,2,3
+\]
+
+\textbf{\underline{Proof}}\\
+1.
+\[
+    w_1 = \frac{\alpha z + \beta}{z + \gamma} 
+\]
+\[
+    L(z_k) = w_k, \ k= 1,2,3
+\]
+2.
+\[
+    z = z_0, \ w = w_0 \quad w_0 = L(z_0)
+\]
+\[
+    w_k = L(z_k), \ k= \overline{0,3}
+\]
+\[
+    w_k - w_l = \frac{(ad - bc)(z_k - z_l)}{(cz_k + d)(cz_l +d}  \quad k,l = \overline{0,3}
+\]
+Отбросив индекс 0 получим:
+\begin{equation}
+    \frac{w - w_1}{w - w_2} : \frac{w_3 - w_1}{w_3-w_2} = 
+    \frac{z - z_1}{z - z_2} : \frac{z_3 - z_1}{z_3-z_2} \implies w = \dots
+    \label{eq:1}
+\end{equation}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\textbf{\underline{Def}} Выражение стоящее справа (слева) в формуле $ (\ref{eq:1}) $,
+называется двойным или ангармоническим отношением четырёх точек
+
+Это отношение - инвариант любого др-линейного отображения
+\end{tcolorbox}
+
+\underline{Note} 
+\[
+    z_k, w_k - \text{конечны}, \ k = 1,2,3
+\]
+Если какая-либо из $ z_k = \infty $ или $ w_l = \infty $, то в формуле $ (\ref{eq:1}) $ 
+соответ. разницу надо заменить на 1
+
+\underline{Ex}
+\[
+    z_1 = i, z_2 = 1, z_3 = \infty
+\]
+\[
+    w_1 = \infty, w_2 = -1, w_3 = 2i
+\]
+\[
+    \frac{w - \infty}{w + 1} : \frac{2i - \infty}{zi + 1} = 
+    \frac{z - i}{z - 1} : \frac{\infty - i}{\infty - 1} 
+\]
+\[
+    \frac{2i + 1}{w + 1} = \frac{z - i}{z - 1} 
+\]
+
+\textbf{\underline{Def}} Неподвижными точками отображения $ w = \Phi(z) $ называются
+точки, переходящие сами в себя, т.е. $ z = \Phi(z) $ 
+
+\begin{tcolorbox}
+\underline{Th.4} $ w = L(z)\ (w \not\equiv z) $ имеет две неподвижные точки (в
+частности кратную неподвижную точку)
+
+\underline{Proof}
+\[
+    z = \frac{az + b}{cz + d} 
+\]
+\[
+    cz^2 + (d-a)\cdot z - b = 0
+\]
+\[
+    1) \text{ корней} > 2 \implies \exists \text{ бесконечно много решений}
+\]
+\[
+    c = 0, \ d-a = 0, \ b = 0
+\]
+\[
+    w = \frac{az}{a} = z
+\]
+\[
+    2) \ c \neq 0 \implies \text{2 корня или корень кратности 2}
+\]
+\[
+    3) \ c = 0, \ d - a \neq 0 \implies \text{1 корень}
+\]
+\end{tcolorbox}
+
+\end{document}

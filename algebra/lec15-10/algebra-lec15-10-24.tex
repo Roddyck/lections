@@ -1,0 +1,165 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{xfrac}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\begin{document}
+\title{ОСА. Лекция}
+\author{jdaslkda}
+\maketitle
+
+\underline{Def}! Ассоциативное коммутативное кольцо K с единицей называется полем
+, если $ \forall k \in K $ обратим
+
+\underline{Examples} 1) $ \mathbb{Q}, \mathbb{R}, \mathbb{C} $ - числовые\\
+2) $ \mathbb{Z}_p $ - поле вычетов по mod p - конечное\\
+3) $ \sfrac{\mathbb{Z}_2[x]}{(x^2+x+1)} $ - поле из 4-х элементов\\
+$ \sfrac{\mathbb{Z}_2[x]}{(x^3+x+1)} $ - поле из 8-и элементов\\
+$ \sfrac{\mathbb{Z}_3[x]}{(x^2+1)} $ - поле из 9-и элементов\\
+$ \sfrac{\mathbb{Z}_3[x]}{(x^3+x^2+2x+\overline{1})} $ - поле из 27-и элементов\\
+4) $ \mathbb{Q}(x) = \{ \frac{f(x)}{g(x)} \ | \ 0\neq g(x), f(x) \in \mathbb{Q}[x] \} $
+- поле рациональных дробей
+
+Доказывали:\\
+F - поле, $ \sfrac{F[x]}{(f(x))} - \text{поле} \iff f(x) $ непреводим над F
+
+\section*{Характеристика поля}
+В любом поле есть $ 1 \neq 0 $ \\
+min натуральное n | $ 1 + \dots + 1 = 0 $ называется характеристикой поля K\\
+обозн $ char K = n $ ( $ \equiv char K  $ порядок 1 в $ (K,+) $)\\
+Если $ \nexists $ такого n, то $ char K = 0 $ \\
+$ char \mathbb{Q} = 0 $ \\
+$ char \mathbb{Z}_p = p $ 
+
+\underline{Предложение 1} Если $char K = n$, то $ n = p $ - простое\\
+
+\underline{Proof} Пусть $ n = n_1 \cdot n_2 $ - не простое, $ 1 < n_1 < n, \ 
+1 < n_2 < n$ 
+\[
+    \implies (1 + \dots + 1) \cdot (1 + \dots + 1) \stackrel{\text{def}}{=}
+    (n_1 \cdot 1)(n_2 \cdot 1) = n \cdot 1 = 0 \ | \cdot (n_1 \cdot 1)^{-1} \implies
+    n_2 \cdot 1 = 0
+\]
+Противоречие $ char K = n, \ n_2 < n $
+
+? $ \exists \ \infty$ поле простой характеристики?
+
+\underline{Предложение 2} 1) $ char K = 0 \implies K $ содержит подполе, изоморфное
+$ \mathbb{Q} $ \\
+2) $ char K = p \implies K $ содержит подполе, изоморфное $ \mathbb{Z}_p $ 
+
+\underline{Proof} 1) $ char K = 0 $ \\
+Рассмотрим $ \phi: \mathbb{Z} \to K: n \mapsto n \cdot 1 $ - гомоморфизм колец 
+\[
+    n \in \ker \phi \implies \phi(n) = n \cdot 1 = 0 \implies n = 0, \text{ т.к.}
+    \ char K = 0 \implies \phi \text{ - иньективно} \implies \mathbb{Z}
+    \hookrightarrow K \implies
+\]
+\[
+    \text{ т.к. K поле, то } \forall 0 \neq a \in
+    \phi(\mathbb{Z}) \ \exists a^{-1} \in K \implies \text{ в K} \exists \text{ 
+    подполе } \cong \mathbb{Q}
+\]
+2) $ char K = p $ \\
+Рассмотрим $ \phi: \mathbb{Z} \to K: n \mapsto n \cdot 1 $ - гомоморфизм колец 
+\[
+    \forall n \in \ker \phi \implies \phi(n) = n \cdot 1 = 0 \implies 
+    p \mid n \implies \ker \phi = p \mathbb{Z}
+\]
+\[
+    \text{1 th iso} \implies \Im(\phi) \cong \sfrac{\mathbb{Z}}{p \mathbb{Z}} = 
+    \mathbb{Z}_p
+\]
+
+\underline{Предложение} Если $ |k| < \infty $ и $ char K = p \implies |k| = p^{n} $ 
+, где p - простое
+
+\underline{Proof} Предл 2 $ \implies K $ содержит $ \mathbb{Z}_p $ 
+\[
+    \implies K - \text{в.п. над } \mathbb{Z}_p
+\]
+\[
+    \text{Пусть } \{ e_1, \dots, e_n \} - \text{ базис К над } \mathbb{Z}_p \implies
+    \forall a \in K \ \exists! \ \alpha_1, \dots, \alpha_n \in \mathbb{Z}_p\ | \ 
+    a = \alpha_1 e_1 + \dots + \alpha_n e_n
+\]
+\[
+    \implies |k| = p^{n}
+\]
+
+\underline{Предложение 4} Пусть K - конечное поле, $ char K = p \implies
+\phi: K \to K: x \mapsto x^{p} $ - автоморфизм(auto Фробениуса) 
+
+\underline{Proof}
+\[
+    \phi(xy) = (xy)^{p} = x^{p} y^{p} = \phi(x) \phi(y)
+\]
+\[
+    \phi(x+y) = (x+y)^{p} \stackrel{?}{=} x^{p} + y^{p} = \phi(x) + \phi(y)
+\]
+\[
+    (x+y)^{p} = \sum_{i=0}^{p} C_p^{i} x^{i}y^{p-i} = x^{p} + y^{p}
+\]
+\[
+    C_p^{i} = \frac{p!}{i! (p-i)!} \text{, кроме } i = 0, \ i = p
+\]
+\[
+    \forall x \in \ker \phi:\ \phi(x) = x^{p} = 0 \implies x = 0 \implies
+    \phi - \text{иньективность} \stackrel{|K| < \infty}{\implies} \phi - 
+    \text{ сюрьективно}
+\]
+
+\section*{Расширение полей}
+
+\underline{Def} Поле К - расширение поля F, если $ F \subset K $ \\
+Тогда К - векторное пространство над F, $ \dim_F K \stackrel{df}{=} [K:F] $ -
+степень расширения
+
+\underline{Ex} 1) $ \mathbb{R} \subset \mathbb{C} \implies [\mathbb{C}:\mathbb{R}]
+= 2$ с базисом $ \{ 1,i \} $ \\
+2) $ \mathbb{Q} \subset \mathbb{R} \implies [\mathbb{R}:\mathbb{Q}] = \infty $ 
+
+\underline{Предл 5} $ F \subset K \subset L $ - расширения полей $ \implies
+[L:F] = [K:F] \cdot [L:K]$ (finite)\\
+Если $ [K:F] = \infty lor [L:K] = \infty \implies [L:F] = \infty $ 
+
+\underline{Proof} $ [L:K] = m, \ [K:F] = n; \ \{ e_1,\dots , e_m \} $ б L над K;
+$ \{ f_1, \dots, f_n \} $ - б К над F
+\[
+    1) \ L = _F<e_if_i> \quad i = \overline{1,m}, \ j = \overline{1,n}
+\]
+\[
+    \forall l \in L: \ l = k_1 e_1 + \dots + k_m e_m, \ k \in K, \ i = \overline{1,m}
+\]
+\[
+    \forall i: \ k_i = \sum_{j=1}^{n} \alpha_{ij}f_i, \ \alpha_{ij} \in F
+\]
+\[
+    l = \sum_{i=1}^{m} \left( \sum_{j=1}^{n} \alpha_{ij} e_i f_j \right), 
+    \alpha_{ij} \in F \implies L = <e_if_j>_F
+\]
+\[
+    2) \text{ лнз}
+\]
+\[
+    \sum_{i=\overline{1,m}, j=\overline{1,n}}  \implies \sum_{i=1}^{m} \left(
+    \sum_{j=1}^{n} \alpha_{ij}f_j \right) e_i = 0 \implies 
+    \sum_{i=1}^{n} \alpha_{ij} f_j = 0 \implies \alpha_{ij} = 0 \implies
+    \{ e_i f_j \} - \text{ лнз над К}
+\]
+\[
+    1) \text{ и } 2) \implies \{ e_i f_j \} \text{ - базис L над F} \implies
+    [L:F] = n \cdot m
+\]
+\end{document}

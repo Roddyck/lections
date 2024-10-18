@@ -1,0 +1,121 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{graphicx}
+\usepackage{tikz-cd}
+\graphicspath{ {./figures/} }
+
+\begin{document}
+
+\begin{center}
+    \textbf{\underline{ТВиМС. Лекция(20.09.24)}}
+\end{center}
+
+\section*{\centering Техника рандомизированного ответа}
+$ A \begin{cases}
+    1 \to \text{ справедливо} \\
+    0 \to \text{ наоборот }\\
+\end{cases} $  \\
+$ P(B) = \lambda $ - знаем \\
+$ \hat{q} = \frac{m}{n}$
+\[
+    q = P(A|B)P(B) + P(\overline{A} | \overline{B})
+P(\overline{B}) = p\lambda + (1-p)(1-\lambda) = p\lambda + 1 - p - \lambda + p\lambda 
+= p(2\lambda - 1) + 1 - \lambda
+\]
+
+\textbf{\underline{Эффективность}} \\
+Нужно вообще вставить картинку??? \\
+
+$ \rho(\lambda) $ 
+\[
+    \hat{\lambda} = \hat{x} = \frac{1}{n}(x_1 + \dots x_n)
+\]
+\[
+    \hat{\lambda} = s_1^2 = \frac{1}{n-1} \sum\limits_{i=1}^{\infty} 
+    (x_i - \overline{x})^2
+\]
+
+\[
+    D(th) < D(\overline{x} \quad \frac{\lambda}{n} = D(\overline{x}) < D(s_1)
+\]
+Регулярный случай:
+\[
+    D(\hat{\lambda} \geq \frac{1}{nI(\lambda)}  
+\]
+$ f=f(x, \theta) $ 
+\[
+    1) \; | \frac{\partial f}{\partial \theta}| \leq M_1
+\]
+\[
+2)\; \big | \frac{\partial ^2 f}{\partial \theta^2} \big | \leq M_2
+\]
+
+\[
+    \frac{\partial }{\partial \theta} \log f(x;\theta) = \frac{f'_\theta}{f}  
+\]
+
+\[
+    E(\frac{f'_\theta}{f})^2) = \int_{-\infty}^{+\infty}(\frac{f_\theta}{f})^2
+    f(x;\theta)dx = I(\theta)
+\]
+$ \hat{\Theta}_n $- оценка параметра
+Неравентсов Крамер-Рао:
+\[
+D(\tilde{\theta} \geq \frac{1}{nI(\theta)} ( \geq \frac{(g'(\theta))^2}{nI(\theta} ) 
+\]
+\[
+    E_\theta(\tilde{\Theta_n}) = g(\theta)
+\]
+
+$ X, Y $ - св $ E(x^2) < \infty, \; E(Y^2) $ 
+
+\underline{Proof} $ t \in \mathbb{R} $ \\
+\[
+    0 \leq E((tX+Y)^2) = t^2 E(X^2) + 2tE(XY) + E(Y^2) \iff E^2(XY) \leq E(X^2)E(Y^2)
+\]
+
+$ E_\theta(\tilde{\theta}(x_1, \dots, x_n)) = Q' $
+
+\[
+    \int\limits_{-\infty}^{\infty} \dots \int\limits_{-\infty}^{\infty} 
+    = \prod\limits_{i=1}^{n} f(x_i;\theta)dx_i = \Theta
+\]
+
+\[
+    \int\limits_{}^{} \tilde{\theta} \sum\limits_{i=1}^{n}  
+    \frac{f'_\theta(x_i;\theta)}{f(x_i;\theta)} \prod\limits_{j=1}^{n} 
+    f(x_j;\theta)dx_i = 1
+\]
+
+\[
+    \int\limits_{}^{} (\theta_n - \theta) \sum\limits_{i=1}^{n} 
+    \frac{f'_\theta}{f} \prod\limits_{j=1}^{n} fdx_j = 1 
+\] 
+
+
+$ E(\tilde{\theta}_n) = \theta $ - эффект. оц. 
+\[
+    D(\tilde{\theta_n}) = \frac{1}{nI(\theta)} 
+\]
+
+\underline{Пример} $ X \in R(0, \theta) \quad \theta > 0 $\\
+$ x_n^{(n)} < \Theta \quad x_n^{(n)} = \hat{\theta}_n $ \\
+$ F(x) = \begin{cases}
+    \frac{x}{\theta}, &\quad 0<x<\theta\\
+    1, &\quad x\geq \theta\\
+    0, &\quad x\leq 0
+\end{cases}    
+$ 
+
+
+\end{document}
