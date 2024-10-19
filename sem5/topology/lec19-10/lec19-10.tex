@@ -1,0 +1,276 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{Топология. Лекция}
+\maketitle
+
+\begin{tcolorbox}
+\underline{Def} $ (X, \tau) $ - тп. $ B_x \subset \tau $ база окрестностей в 
+точке x, если в каждой окр-ти точки x содержится некоторая окрестность из $ B_x $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Def} Тополог. прос-во удовлетворяет\\
+1) 1-ой аскиоме счётности, если в каждой точке существует счетная база окр-ей\\
+2) 2-ой аксиоме счетности, если в прос-ве существует счетная база
+\end{tcolorbox}
+
+\underline{Ex} $ (X, t_d) $ топология метрического пр-ва с метрикой d\\
+$ B_x = \{ B_r(x) \ | \ r \in \mathbb{Q} $ - счётная база окр-тей в т. x 
+
+\begin{tcolorbox}
+\underline{Def} мн-во $ (X, \tau) $ называется сепарабельным, если
+существует счетное множество A $ |\ \overline{A} = X $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Def} $ A \subset (X, \tau) $ - всюдо плотное, если $ \overline{A} = X $ 
+\end{tcolorbox}
+
+\underline{Ex} $ (\mathbb{R}, \tau_0) $ - сепарабельно, т.к. $ \overline{\mathbb{Q}}
+= \mathbb{R} $  
+
+\begin{tcolorbox}
+\underline{Th1} Просторанство удовлетворяющее 2-ой аксиоме счётности - сепарабельно
+
+\underline{Proof} $ \Sigma = \{ B_n \ | n \in \mathbb{N} \ \} $ - счётная база
+\[
+    \text{Пусть} A = \{ a_n \ | \ a_n \in B_n \ \forall n \}
+\]
+\[
+    \text{Проверим} \ \overline{A} = X
+\]
+\[
+    \forall x \in X \ \forall U_x \implies \exists B_n\ | \ x \in B_n \subset U_x
+\]
+\[
+    \implies \exists a_n \in A \ | \ a_n \in B_n \implies U_x \cap A \supset \{ 
+    a_n \} \implies U_x \cap \forall \neq \varnothing \implies \overline{A} = X
+\]
+\end{tcolorbox}
+
+\underline{Ex} $ (X, \tau_z) $ - несчетное мн-во\\
+Тогда любое счетное множество пересекается с каждым отрытым множеством\\
+Тогда $ (X, \tau_z) $ сепарабельно\\
+Докажем, что в $ (X, \tau_z) $ не выполнена 2-я акс. счетности\\
+М. от противного
+\[
+    \text{Пусть существует счётная база} \ V_n, \ n \in \mathbb{N}
+\]
+
+Пусть $ M_0 \in X $ 
+\[
+    \bigcap_{i \in I} U_i, \ U_i \text{ - окр т. } M_0
+\]
+Докажем, что
+\[
+    \bigcap_{i \in I} U_i = \{ M_0 \}
+\]
+Пусть $ M_1 \in \bigcap_{i \in I}U_i $. Пусть $ U_{i_0} = X \setminus \{ M_1 \}  $  
+\[
+    \implies \bigcap_{i \in I} U_i = \{ M_0 \}
+\]
+Пусть $ \tilde{U}_i $ - эл-ты счетной базы, содержащие точку $ M_0 $ 
+\[
+    \implies \bigcap_{j \in \mathbb{N}} \tilde{U}_j = \{ M_0 \}
+\]
+\[
+    C\left(\bigcap_{j \in \mathbb{N}} \tilde{U}_j\right) = C\{ M_0 \}
+\]
+\[
+    \bigcup_{j \in \mathbb{N}}(C \tilde{U}_j) = C \{ M_0 \}
+\]
+\[
+    | C(M_0) | \text{ - несчётное мн-во}
+\]
+\[
+    |C(\tilde{U}_j| < \infty
+\]
+\[
+    \bigcup_{j \in \mathbb{N}}(C \tilde{U}_j) = |\mathbb{N}|
+\]
+
+\begin{tcolorbox}
+\underline{Def} Мн-во А называется нигде не плотным, если $ Int \overline{A} =
+\varnothing$ 
+\end{tcolorbox}
+
+\underline{Ex} $ \mathbb{Z} \subset (\mathbb{R}, \tau_0) $ \\
+$ \overline{\mathbb{Z}} = \mathbb{Z} $\\
+$ Int \mathbb{Z} = \varnothing $ 
+
+\begin{tcolorbox}
+    \underline{Th.2} Мн-во А нигде не плотно $ \iff \overline{C \overline{A}} = X $ 
+
+\underline{Proof} 1. $ \implies $: Метод от противного\\
+Пусть $ \overline{C \overline{A}} \neq X $, т.е $ \exists x \notin \overline{C \overline{A}} $  
+\[
+    \implies \exists U_x \ | \ U_x \cap C \overline{A} = \varnothing \implies
+    U_x \subset \overline{A} \implies x \in Int A
+\]
+2. $ \impliedby $: М. от противного\\
+Пусть $ Int \overline{A} \neq \varnothing $ 
+\[
+    \implies x \in Int \overline{A} \implies \exists U_x \subset \overline{A}
+    \implies U_x \cap C\overline{A} = \varnothing \implies x \notin \overline{
+    C \overline{A}}
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.3} А нигде не плотно $ \iff \overline{Int(CA)} = X $ 
+
+\underline{Proof} Достаточно доказать $ Int(CA) = C \overline{A} $ \\
+1. $ Int(CA) \subset C \overline{A} $ 
+\[
+    \forall x \in Int(CA) \implies \exists U_x \subset CA \implies U_x \cap A = 
+    \varnothing \implies X \notin \overline{A} \implies x \in C \overline{A}
+\]
+2. то же в обратном порядке
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.4} A нигде не плотно $ \iff \forall U \in \tau \ \exists V \in \tau
+\ | \ V \subset U \ | \ V\cap A = \varnothing$  (1)
+
+\underline{Proof} 1. A нигде не плотно $ \stackrel{?}{\implies} (1) $ 
+\[
+    Int \overline{A} = \varnothing
+\]
+М от противного
+\[
+    \exists U \in \tau  \ | \ \forall V \in \tau, \  V \subset U \implies
+    V \cap A \neq \varnothing
+\]
+\[
+    \forall x \in U \implies x \in \overline{A} \implies U \subset \overline{A}
+    \implies x \in Int \overline{A}
+\]
+2. $ (1) \implies Int \overline{A} = \varnothing $ \\
+М. от противного\\
+Пусть $ \exists x \in Int \overline{A}  $ 
+\[
+    \implies U_x \subset \overline{A} \implies \text{ противоречие с условием (1)}
+\]
+\end{tcolorbox}
+
+\section*{\centering \S 6. Аксиомы отделимости}
+
+\begin{tcolorbox}
+\underline{Def} Окр-тью мн-ва А в $ (X, \tau) $ называется любое открытое мн-во,
+содержащие мн-во А
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Def} Говорят, что в т.п. выполняется аксиома отделимости:\\
+1) $ T_0 $ - если для любой пары различных точек, по крайней мере у одной из них существует
+окрестность не содержащая вторую\\
+2) $ T_1 $ - если для любой пары разл точек, у каждой из этих точек суещствует
+окр-ть не содержащая другую точку\\
+3) $ T_2 $ - если для любой пары разл точек, существуют непересекающиеся окр-ти\\
+$ T_2 $ - аксиома Хауздорфа\\
+4) $ T_3 $ - если для любой точки из замкнутого мн-ва не содержащего данную точку
+существуют непересекаюищеся окрестности\\
+5) $ T_4 $ - если для любых двух непересекающихся замкнутых мн-в существуют неперес.
+окр-ти
+
+Обозн $ (X, \tau) \in T_i $ - в $ (X, \tau) $ выполнена $ T_i $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Def} $ (X, \tau) \in T_1 \cap T_3 $ - регулярные пространства
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Def} $ (X, \tau) \in T_1 \cap T_4 $ - нормальное пр-во
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.1}(Урнсон) Топ. пр-во со 2-ой акс. сч. метризуемо $ \iff $ оно нормально
+\end{tcolorbox}
+
+\underline{Ex} $ (\mathbb{R}, \tau_{(a, +\infty)}) $ 
+
+\begin{tcolorbox}
+\underline{Th.1} $ (X, \tau_d) \in T_2 $ 
+
+\underline{Proof} Пусть $ a \neq b, \ d(a,b) = d $ 
+\[
+    U_a = B_{d/3}(a)
+\]
+\[
+    U_b = B_{d/3}(b)
+\]
+\[
+    B_{d/3}(a) \cap B_{d/3}(b) = \varnothing
+\]
+М от противного. Пусть $ \exists c \in B_{d/3}(a) \cap B_{d/3}(b) $ 
+\[
+    d = d(a,b) \leq d(a,b) + d(c,b) < \frac{d}{3} + \frac{d}{3} = \frac{2}{3} d 
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.2} В Хауздорфовом пр-ве сходящаяся пос-ть имеет единственный предел
+
+\underline{Proof} Пусть $ a_n $ - пос-ть $ \lim_{n \to \infty} a_n = a $\\
+$ \lim_{n \to \infty} a_n = b $ 
+\[
+    \text{Пусть } U_a \cap U_b = \varnothing
+\]
+\[
+    \exists N_1 \ | \ \forall n > N_1 \implies a_n \in U_a
+\]
+\[
+    \exists N_2 \ | \ \forall n > N_2 \implies a_n \in U_b
+\]
+\[
+    \implies \forall n > \max\{ N_1, N_2 \} \text{ противоречие}
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.3} Пусть $ (X,\tau) \in T_1 \iff \forall $ точка замкнута
+
+\underline{Proof} 1) $ \implies $: $ (X, \tau) \in T_1 $ 
+\[
+    a \in X \ \{ a \} \text{ - замкуто} \ C\{a\} \text{ открыто}
+\]
+\[
+    \forall b \in C\{a\} \stackrel{T_1}{\implies} \exists U_b \not\ni \{a\}
+    \implies U_b \subset C\{a\}
+\]
+2) $ \impliedby $:
+\[
+    \forall b \in C\{a\} \implies \exists U_b \subset C\{a\} \implies
+    \begin{cases}
+        U_b \not\ni a\\
+        C\{b\} \in \tau, C\{b\} = U_a
+    \end{cases}
+    \implies T_1
+\]
+\end{tcolorbox}
+
+\end{document}
