@@ -1,0 +1,268 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{Комплан. Лекция}
+\author{wtf}
+\maketitle
+
+\begin{tcolorbox}
+\underline{Th.5}(Св-ва симметрии)\\
+Точки $ z_1, z_2 $ симметричные относительно окружности в широком смысле при др.
+линейном преоб-и отображаются в точки $ w_1, w_2 $ симметричные относительно 
+образа $ C = L(\Gamma) $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Задача 1} (Полупл-ть на круг)\\
+найти все др-лин преобр, отображающие $ Im z > 0 $ на единичный круг так, чтобы
+некоторая точка $ z_1 = \beta \in \{ z: \ Im z > 0 \} $ перешла в $ w_1 = 0 $  
+\end{tcolorbox}
+
+\begin{figure}[!ht]
+    \centering
+    \incfig{task1}
+    \caption{task1}
+\end{figure}
+
+$ \beta,\  \bar{\beta} $ симм отн $ Im z = 0 $ \\
+$ L(\beta) = 0, \  L(\bar{\beta} = \infty $ \\
+$ L(\{ Im z = 0 \} ) = \{ |w| = 1 $ 
+\[
+    w= \frac{a(z-\beta}{c(z-\bar{\beta})}  \ A = \frac{a}{c} = ?
+\]
+\[
+    z = x \to |w|=1
+\]
+\[
+    |w|  = |A| \frac{|x-\beta|}{|x - \bar{\beta}|}  = 1
+\]
+\[
+    \beta = \delta + i\gamma
+\]
+\[
+    \bar{\beta} = \delta - i\gamma
+\]
+\[
+    |x-\beta| = \sqrt{(x - \delta)^2 + \gamma^2} 
+\]
+\[
+    |x-\bar{\beta}| = \sqrt{(x - \delta)^2 + \gamma^2} 
+\]
+\[
+    A = 1 \cdot e^{i\alpha} \quad \alpha = Arg A \in \mathbb{R}
+\]
+\[
+    w = e^{i\alpha} \cdot \frac{z -\beta}{z - \bar{\beta}} \quad Im \beta > 0 
+    , \ \forall \alpha \in \mathbb{R}
+\]
+
+\underline{Note.} Разрешая равенство относительно z, получим все дробно-линейные
+преобразования отображающие единичный круг на верхную полуплоскость
+
+\begin{tcolorbox}
+\underline{Task2} (Круг в себя)\\
+Найти все др-лин преоб, отображающие $ |z| < 1 $ в $ |w| < 1 $ так, чтобы
+$ z_1 = \beta $ перешла в $ w_1 = L(\beta) = 0 $ 
+\end{tcolorbox}
+
+\begin{figure}[!ht]
+    \centering
+    \incfig{task2}
+    \caption{task2}
+\end{figure}
+
+\[
+    z_1 = \beta \to w_1 = 0
+\]
+\[
+    z_2 = \frac{1}{\bar{\beta}} \to w_2 = \infty
+\]
+\[
+    w = A \cdot \frac{z-\beta}{z-\frac{1}{\bar{\beta}} } = A \cdot 
+    \frac{\bar{\beta}(z -\beta)}{z\bar{\beta} - 1} 
+\]
+\[
+    w = B \frac{z-b\eta}{1 - \bar{\beta}\cdot z} 
+\]
+\[
+    z = 1 \to |w| = 1
+\]
+\[
+    |w| = |B| \frac{|1 - \beta|}{|1 - \bar{\beta}|} = 1 \implies
+    |B| = 1
+\]
+\[
+    B = 1 \cdot e^{i\alpha} \quad \alpha = Arg B \in \mathbb{R}
+\]
+\[
+    w = e^{i\alpha}\frac{z - \beta}{1 - \bar{\beta} \cdot z} \quad \forall
+    \alpha \in \mathbb{R}, \ |\beta| < 1
+\]
+
+\begin{tcolorbox}
+\underline{Task3} (Полупл-ть в себя)\\
+Найти все др-лин преоб отображающие верхнюю полуплость в себя так, чтобы 3 граничные
+точки перешли в $ 0, 1, \infty $ 
+\end{tcolorbox}
+
+\begin{figure}[!ht]
+    \centering
+    \incfig{task3}
+    \caption{task3}
+    \label{fig:task3}
+\end{figure}
+
+\[
+    \frac{w - 0}{w - 1} : \frac{\infty - 0}{\infty - 1} = 
+    \frac{z - \alpha}{z - \beta} : \frac{\gamma - \alpha}{\gamma - \beta} 
+\]
+\[
+    \implies \frac{w}{w - 1} = \frac{z - \alpha}{z - \beta} \cdot 
+    \frac{\gamma - \beta}{\gamma - \alpha} 
+\]
+\[
+    w = \frac{z - \alpha}{z - \beta} \cdot \delta(w - 1)
+\]
+\[
+    w = \frac{az + b}{cz + d} , \ a,b,c,d \in \mathbb{R}
+\]
+
+\underline{Example} Отобразить единичный круг $ |z| < 1 $ на $ Im w > 0 $ 
+\begin{figure}[!ht]
+    \centering
+    \incfig{ex1}
+    \caption{Ex1}
+    \label{fig:ex1}
+\end{figure}
+
+\[
+    w_1 = \frac{z + 1}{z - 1} 
+\]
+\[
+    z = -1 \to w_1 = 0
+\]
+
+\[
+    w_2 \equiv w = w_1 + e^{-i \frac{\pi}{2}}
+\]
+\[
+    w = -i \cdot \frac{z + 1}{z - 1} 
+\]
+
+\section*{\centering Отображение с помощью степенной функции}
+
+\[
+    w = z^{\lambda}, \ \lambda > 0, \lambda \neq 1
+\]
+\[
+    z > 0 \implies z^{\lambda} > 0
+\]
+\[
+    \frac{dw}{dz} = \lambda \cdot z^{\lambda - 1} \neq 
+    \begin{cases}
+       0 \\
+       \infty
+    \end{cases}, \ \text{кроме } z =0,
+    \ z = \infty
+    \implies w = z^{\lambda} \text{ - конмформно всюду, кроме } z = 0, z = \infty
+\]
+\[
+    z = r e^{i \phi}, \ w = \rho \cdot e^{i\theta} \quad \rho e^{i\theta} = 
+    (r e^{i \phi})^{\lambda}
+\]
+\[
+    |w| = \rho = r^{\lambda}
+\]
+\[
+    \theta \equiv \arg w = \lambda \phi 
+\]
+\[
+    \begin{cases}
+        |w| &= |z|^{\lambda} \\
+        \arg w &= \lambda \arg z
+    \end{cases}
+    \implies \text{ луч }\phi \text{ отобразится вз/одн в луч } \theta
+\]
+
+\underline{Вывод 1} Ф-ия $ w = z^{\lambda}, \ \lambda > 0, \lambda \neq 1 $ угол
+$ \phi_1 \leq \phi < \phi_2 $ в (z) с вершиной в т $ z = 0 $ раствора $ \phi -
+\phi_1 \leq 2 \pi $ отобр в угол $ \lambda \phi_1 \leq \theta < \lambda \phi_2 $ 
+в (w) с вершиной в $ w = 0 $ раствора $ \lambda (\phi_2 - \phi_1) $ вз-одн, если
+$ \lambda(\phi_2 - \phi_1) \leq 2 \pi $, т.е. в т. $ z = 0 $ нарушается конф 
+степенной функции
+
+\[
+    w = \sqrt{z} \quad w = z^{n}, \ w = \sqrt[n]{z}, \ n \geq 2  
+\]
+
+\underline{Вывод 2} Ф-ия $ w = z^{n} $ угол $ 0 < \phi < \frac{\pi}{2} $ 
+конф отображает в угол $ 0 < \theta < \pi $, т.е. в $ Im w > 0 $ 
+
+\begin{figure}[!ht]
+    \centering
+    \incfig{pic4}
+    \caption{pic4}
+    \label{fig:pic4}
+\end{figure}
+
+\[
+    w = z^{n}
+\]
+\[
+    z = r e^{i\phi}, \ w = \rho e^{i\theta}
+\]
+\[
+    \rho e^{i\theta}= r^{n} e^{i n \phi}
+\]
+\[
+    \begin{cases}
+        \rho = r^{n}\\
+        \theta = n\phi
+    \end{cases}
+\]
+\[
+    \begin{cases}
+        0 \leq r < + \infty\\
+        \phi = 9
+    \end{cases}
+    \implies L_1 : 
+    \begin{cases}
+        0 \leq \rho < \infty\\
+        \theta = 0
+    \end{cases}
+\]
+\[
+    l_2: \begin{cases}
+        0 \leq r < \infty\\
+        \phi = \frac{\pi}{2} 
+    \end{cases}
+\]
+\[
+    L_2: \begin{cases}
+        0 \leq \rho < +\infty\\
+        \theta = \pi
+    \end{cases}
+\]
+\end{document}

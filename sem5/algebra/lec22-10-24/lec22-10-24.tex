@@ -1,0 +1,121 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{xfrac}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\section*{\centering Присоединение корня многочлена к полю}
+
+$ \mathbb{R}, \ f = x^2 + 1 $ - неприводим над $ \mathbb{R} $, корни $ \pm i $ \\
+$\mathbb{C} = (\mathbb{R}, i) $ - векторное пространство с базисом $ \{ 1, i \} $  
+
+\begin{tcolorbox}
+    \underline{Th.1} Пусть К - поле, $ f(x) \in K[x]  $ - неприводим, $ \deg f > 1 $\\
+    Тогда $ \exists L \supset K $, в котором $ f(x) $ имеет корень
+
+    \underline{Proof} p(x) - неприводим в $ K[x] $ - ОГИ \\
+    $ (p(x)) $ - простой идеал в $ K[x] $ 
+
+    Действительно, пусть $ fg \in (p(x)) \implies f \cdot g = p(x)h(x) $ для 
+    некоторого $ h(x) \in K[x] \implies p \mid f \lor p \mid g $ \\
+    В ОГИ любой ненулевой простой идеал является максимальным $ \iff 
+    \sfrac{K[x]}{(p(x))} $ - поле
+
+    Рассмотрим 
+    \[
+        \rho: K[x] \to \sfrac{K[x]}{(p(x))} : f(x) \mapsto \overline{f}(x)  
+        \text{ - канонический эпиморфизм}
+    \]
+
+    Рассмотрим
+    \[
+        \rho|_{K}: K \to \sfrac{K[x]}{(p(x))} = L \text{ - гомоморфизм полей} 
+    \]
+    \[
+        \implies \rho|_K = 0 \lor \rho|_K - \text{ вложение}
+    \]
+    \[
+        \rho|_K: K \to \rho|_K (x) \text{ - изоморфимз } \implies
+        K \cong \text{ подмножество в L, отождествляем: } K \subset L
+    \]
+
+    Проверим, что $ \overline{x} \in L $ - корень p(x)
+    \[
+        p(x) = a_n x^{n} + \dots + a_1x + a_0 \in K[x]
+    \]
+    \[
+        p(\overline{x}) = a_n \overline{x}^{n} + \dots + a_1 \overline{x} + a_0
+        = \overline{a_n} \overline{x}^{n} + \dots + \overline{a_1} \overline{x} + 
+        \overline{a_0} = \overline{a_nx^{n}+ \dots + a_1 x + a_0} = 
+        \overline{p(x)} = 0
+    \]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.2} В условиях теоремы 1, $ L = <1, \overline{x}, \dots, 
+\overline{x}^{n-1}>_K$, где $ n = \deg p(x) $, т.е. $ \{ 1, \overline{x},
+\dots , \overline{x}^{n-1} \}$ - базис L над K\\
+$ L = \{ a_{n-1} \overline{x}^{n-1} + \dots + a_1 \overline{x} + a_0 \ | \ a_i \in K \} $ \\
+В частности $ [L:K] = n $ 
+
+\underline{Proof}\\
+1) $ L = <1, \overline{x}, \dots, \overline{x}^{n-1}>_K \quad L = \sfrac{K[x]}{(p(x))} $\\  
+\[
+    \forall \underbrace{f(x) + (p(x))}_{\overline{f}(x)} \in L
+\]
+\[
+    f(x) = p(x)q(x) + r(x), \ r(x) = 0 \lor \deg r(x) < \deg p(x) = n
+\]
+\[
+    \implies \overline{f}(x) = \underbrace{\overline{p}(x)}_{=\overline{0}}
+    \overline{q}(x) + \overline{r}(x) = \overline{r}(x) = 
+    \overline{b_{n-1} x^{n-1} + \dots + b_1 x + b_0} = 
+    b_{n-1}\overline{x}^{n-1} + \dots + b_1 \overline{x} + b_0
+\]
+2) \underline{лнз}
+\[
+    \lambda_0 + \lambda_1 \overline{x} + \dots + \lambda_{n-1} \overline{x}^{n-1}
+    = \overline{0}, \ \lambda \in K
+\]
+\[
+    \overline{\lambda_0} + \overline{\lambda_1} \overline{x} + \dots + 
+    \overline{\lambda_{n-1}} \overline{x}^{n-1} = \overline{0} \implies
+    (\lambda_0 + \lambda_1 x \dots + \lambda_{n-1}x^{n-1}) + (p(x)) = (p(x)) \implies
+    \lambda_0 + \lambda_1 x \dots + \lambda_{n-1}x^{n-1} \in (p(x))
+\]
+\[
+    = p(x) \cdot K[x] \implies p(x) \mid \lambda_0 + \lambda_1 x \dots + 
+    \lambda_{n-1}x^{n-1} \implies \lambda_0 + \lambda_1 x \dots + 
+    \lambda_{n-1}x^{n-1} = 0 \iff \lambda_i = 0, \ i = \overline{1, n-1}
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Example} Постороение $ \mathbb{C} $\\
+$ \mathbb{R} $  - поле, $ f = x^2 + 1 \in \mathbb{R}[x] \implies \exists $ поле
+L $| \  \overline{x} \in L $ - корень $ f = x^2 + 1 $ \\
+Th.2 $ \implies [L:\mathbb{R}] = 2 $ с базисом $ \{ 1, \overline{x} \} \implies
+\forall z \in L : \ z = a \cdot 1 + b \cdot \overline{x}, \ a,b \in \mathbb{R} $
+\end{tcolorbox}
+
+\end{document}
