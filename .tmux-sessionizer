@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+selected=$(find ./sem* -maxdepth 1 -mindepth 1 | fzf)
+selected_name=$(basename $selected)
+
+if [[ -z $selected ]]; then 
+    exit 0
+fi
+
+cur_date=$(date +"%d-%m-%y")
+
+new_dir="$selected/lec-$cur_date"
+
+mkdir $new_dir
+mkdir "$new_dir/figures"
+touch "$new_dir/$selected_name-lec-$cur_date.tex"
+
+tmux-sessionizer $new_dir
