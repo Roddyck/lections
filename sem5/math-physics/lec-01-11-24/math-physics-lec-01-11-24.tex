@@ -1,0 +1,153 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{romannum}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+
+\title{УМФ. Лекция}
+\author{djkasadfhsaygfatfiask}
+\maketitle
+\section*{\centering Единственность решения}
+
+\begin{equation}
+    u_{tt}(x,t) - a^2 u_{xx}(x,t) = f(x,t) \quad x \in [0; l], \ t \geq 0
+\end{equation}
+\begin{equation}
+    u |_{t=0} = \phi(x)
+\end{equation}
+\begin{equation}
+    u_t |_{t=0} = \psi(x)
+\end{equation}
+\begin{equation}
+\begin{aligned}
+    x = 0 &\qquad x = l\\
+    u(0, t) = \mu_0(t) &\qquad u(l,t) = \mu_l(t)\\
+    u_x(0, t) = \nu_0(t) &\qquad u_x(l,t) = \nu_l(t)\\
+    u(x,t) - h u(x,t) |_{x=0} = q_0(t) &\qquad u_x(x,t) + h u(x,t) |_{x=l} = q_l(t)\\
+\end{aligned}
+\end{equation}
+
+\[
+    u^{1}, \ u^2, \ u = u^{1} - u^2
+\]
+\[
+    u_{t t}(x,t) - a^2u_{xx}(x,t) = 0
+\]
+\[
+    u|_{t=0} = 0
+\]
+\[
+    u_{t}|_{t=0} = 0
+\]
+\[
+    \begin{aligned}
+        u(0,t) = 0 \qquad u(l,t) = 0 \\
+        u_x(0,t) = 0 &\qquad u_x(l,t) = 0 \\
+        u_x - hu|_{x=0} = 0 &\qquad u_x + hu|_{x=l} = 0
+    \end{aligned}
+\]
+\[
+    u_t(u_{t t} - a^2 u_{xx}) = \frac{1}{2} \frac{\partial}{\partial t}[a^2 u^2
+_x + u_t^2] - a^2 \frac{\partial}{\partial x} (u_t u_x) - a^2 u_tx \cdot u_x 
+\]
+\[
+    \int_{0}^{l} dx
+\]
+\[
+    \frac{1}{2} \frac{\partial}{\partial t} \int_{0}^{l} [a^2 u_x^2 + u_t^2]dx =
+    a^2 u_t u_x |_{0}^{l}
+\]
+\[
+    a^2 u_t u_x |_{x=l} = 
+    \begin{cases}
+        0, \romannumeral 1, \ \romannumeral 2 \\
+        -ha^2 u_t(l,t) u(l,t), \ \romannumeral 3
+    \end{cases}
+\]
+\[
+    a^2 u_t u_x |_{x=0} = 
+    \begin{cases}
+        0, \romannumeral 1, \ \romannumeral 2 \\
+        a^2h u_t(0,t) u(0,t), \ \romannumeral 3
+    \end{cases}
+\]
+Если нет граничных условий третьего рода:
+\[
+    \frac{\partial}{\partial t} \int_{0}^{l} [a^2u^2_x + u_t^2]dx = 0
+\]
+\[
+    \int_{0}^{l} [a^2u^2_x + u_t^2]dx = \Phi(t)
+\]
+\[
+    \frac{d\Phi(t)}{dt} = 0
+\]
+\[
+    \Phi(t) = const
+\]
+\[
+    \Phi(t) \equiv 0
+\]
+\[
+    [a^2u^2_x + u_t^2] \equiv 0
+\]
+\[
+    u_x \equiv 0, \ u_t \equiv 0
+\]
+\[
+    u = const = 0
+\]
+\[
+    u(x,t) \equiv 0
+\]
+
+Если есть граничные условия третьего рода:
+\[
+    \frac{1}{2} \frac{\partial}{\partial t} \int_{0}^{l} [a^2u^2_x + u_t^2]dx =
+    -ha^2 [u_t(l,t)u(l,t) + u_t(0,t)u(0,t)] = \frac{-ha^2}{2} \left[ \frac{\partial 
+    u^2(l,t)}{\partial t} + \frac{\partial u^2(0,t)}{\partial t} \right]
+\]
+\[
+    \frac{1}{2} \frac{d}{dt} \left[ \frac{ha^2}{2} u^2(l,t) + u^2(0,t) + \int_{
+    0}^{l} [ a^2 u_x^2 + u_t^2] dx \right] = 0
+\]
+\[
+    \left[ \frac{ha^2}{2} (u^2(l,t) + u^2(0,t)) + \int_{
+    0}^{l} [ a^2 u_x^2 + u_t^2] dx \right] = const
+\]
+\[
+    \int_{ 0}^{l} [ a^2 u_x^2 + u_t^2] = 0
+\]
+А это уже рассматривалось выше
+
+При всех классических граничных условиях решение смешанной задачи 1-4 единственно
+
+\section*{\centering Резонанс}
+\[
+    \omega_n = \frac{a\pi n}{l}, \ n \in \mathbb{Z}
+\]
+\[
+    \sum_{n=1}^{\infty} (A_n \cos\omega_n t + B_n\sin \omega_n t) \sin \frac{\pi
+    n x}{l} 
+\]
+\end{document}

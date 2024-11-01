@@ -10,6 +10,11 @@ cur_date=$(date +"%d-%m-%y")
 
 new_dir="$selected/lec-$cur_date"
 
+if [ -d $new_dir ]; then
+    tmux-sessionizer $new_dir
+    exit 0
+fi
+
 mkdir $new_dir
 mkdir "$new_dir/figures"
 touch "$new_dir/$selected_name-lec-$cur_date.tex"
