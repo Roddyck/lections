@@ -1,0 +1,210 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{Комплан. Лекция}
+\author{Родион Иващенко - ХУЙ}
+\maketitle
+
+\[
+    \int_{C} f(z)dz = \lim_{\lambda \to 0} \sum_{k=1}^{n} f(\zeta_k) \Delta z_k
+    \quad \zeta_k = \xi_k + i \eta_k
+\]
+f(z) непр на C
+\[
+    f(\zeta_k) = u(\xi_k, \eta_k) + iv(\xi_k, \eta_k) = u_k + iv_k
+\]
+\[
+    \sigma = \sum_{k=1}^{n} (u_k + i v_k) \Delta z_k = \sum_{k=1}^{n} (u_k \Delta x_k - v_k 
+    \Delta y_k) + i \sum_{k=1}^{n} (u_k \Delta y_k + v_k \Delta x_k)
+\]
+\[
+    \int_{C}f(z)dz = \int_{C} u(x,y)dx - v(x,y)dy + i\left(\int_{C}u(x,y)dy + v(x,y)dx\right)
+\]
+\[
+    f(z) = u + iv \quad dz = dx + idy
+\]
+Св-ва:\\
+1. Ориентированность
+\[
+    \int_{C^{-}} f(z)dz = -\int_{C^{-}} f(z)dz
+\]
+2. Линейность
+\[
+    \int_{C} \left( \sum_{k=1}^{n} A_k f_k(z) \right) dz = \sum_{k=1}^{n} A_k
+    \int_{C} f_k(z) dz
+\]
+3. Аддитивность по контуру
+\[
+    \int_{C_1 \cup C_2} = \int_{C_1}f(z)dz + \int_{C_2}f(z)dz
+\]
+4. Оценка модуля 
+\[
+    \Delta s_k \text{ - длина дуги}
+\]
+\[
+    |\Delta z_k| \leq \Delta s_k
+\]
+\[
+    |\sum_{k=1}^{n} f(\zeta_k) \Delta z_k| \leq \sum_{k=1}^{n} |f(\zeta_k)| 
+    \Delta s_k
+\]
+\[
+    \left| \int_{C} f(z)dz \right| \leq\int_{C} |f(z)|ds
+\]
+\underline{След}
+\[
+    |f(z)| \leq M = const\  \forall z \in C \implies \left| \int_{C} f(z) dz \right| \leq
+    M \cdot \text{дл С}
+\]
+\[
+    C: z = z(t) = x(t) + iy(t), \quad t \in [\alpha, \beta]
+\]
+C - непрерывная дифф. (в част, гладкая) кривая. $ x(t), \ y(t) $ - непр диф
+\[
+    \int_C P(x,y)dx = \int_{\alpha}^{\beta} P(x(t), y(t)) x'(t)dt
+\]
+\[
+    \int_C f(z) dz = \int_{\alpha}^{\beta} ( u(x(t), y(t)) + iv(x(t), y(t)) )
+    \cdot (x'(t) + iy'(t)) dt = \int_{\alpha}^{\beta} f(z(t)) \cdot z'(t) dt
+\]
+\[
+    C: z = z(t) \quad t \in [\alpha, \beta]
+\]
+\[
+    \int_C f(z) dz = \int_{\alpha}^{\beta} f(z(t)) \cdot z'(t) dt
+\]
+
+\underline{\textbf{Example}}
+\[
+    C = [0, 2\pi] \quad \int_C = e^{iz}dz = \int_{0}^{2\pi} e^{ix}dx = 
+    \int_{0}^{2\pi} ( \cos x + i \sin x) dx = 0
+\]
+\[
+    z = x \quad x \in [0, 2\pi]
+\]
+\underline{Note} $ \int_{a}^{b} f(z) dz = f(c) \cdot (b-a) \quad e^{ic} \neq 0 $ 
+
+\section*{\centering Два важных примера}
+\underline{Задача 1}
+\[
+    \int_C 1 \cdot dz = \lim_{\lambda \to 0} \sum_{k=1}^{n} 1 \cdot (z_k - z_{k-1})
+    = \lim_{\lambda \to 0} (z_n - z_0) = b-a
+\]
+\[
+    \int_C 1 \cdot dz = b - a
+\]
+\[
+    \int_a^{b} 1 \cdot dz = b - a
+\]
+В частности $ a = b $
+\[
+    \oint_C 1 \cdot dz = 0
+\]
+\underline{Задача 2}
+\[
+    C: \ |z - z_0| = \rho
+\]
+\[
+    \int_C (z - z_0)^{n} dz = \int_{0}^{2\pi} \rho^{n} e^{i n \phi} \cdot \rho
+    i e^{i\phi}d\phi = i \rho^{n+1} \int_{0}^{2\pi} e^{i(n+1)\phi} d\phi
+\]
+\[
+    \begin{aligned}
+        &1) \ n + 1 = 0 \\
+        &\int_C \frac{1}{z - z_0} dz = i \int_{0}^{2\pi} d\phi = 2\pi i\\
+        &2) \ n + 1 \neq 0\\
+        &\int_{0}^{2\pi} e^{i(n+1)\phi} d\phi = \int_{0}^{2\pi} ( \cos(n+1)\phi +i
+        \sin(n+1)\phi) d\phi = 0
+    \end{aligned}
+\]
+\[
+    z - z_0 = \rho \cdot e^{i\phi}, \ 0 \leq \phi \leq 2\pi
+\]
+\[
+    dz = \rho i e^{i\phi}d\phi
+\]
+\[
+    \oint_{|z - z_0| = \rho} (z - z_0)^{n}dz = 
+    \begin{cases}
+        2\pi i, &\quad n = -1\\
+        0, &\quad n \neq -1
+    \end{cases}
+\]
+
+\section*{\centering Интегральная теорема Коши}
+
+1) Простую замкнутую гладкую (кусочно-гладкую) кривую L - замкнутый контур
+\[
+    Int L \equiv I(L)
+\]
+\[
+    Ext L \equiv E(L)
+\]
+\[
+    \overline{I(L)} = I(L) \cup L
+\]
+
+2) Односвязность области D $ \equiv $ односвязность отн $ \mathbb{C} $ 
+\[
+    \forall \ L \subset D \implies \overline{I(L)} \subset D
+\]
+\[
+    L \text{ - замкнутый контур}
+\]
+
+\begin{tcolorbox}
+\underline{\textbf{Th Коши}} Пусть D - односвязная область $ D \subset \mathbb{C} $ и 
+$ f(z) $ - однозначная аналит ф-ия\\
+Тогда интеграл от неё по любой замкнутой спрямляемой кривой $ L \subset D $ 
+равен 0: $ \oint_L f(z) dz = 0 $ ( Интеграл от регулярной в односвязной области D 
+функциии f(z) не зависит от пути интегрирования, а зависит только от начальной и 
+конечной точки)
+
+\underline{Proof} Допустим предположение $f(z)$ и $ f'(z) $ непр. в D
+\[
+    \oint_L f(z) dz = \oint_L (u + iv)(dx + idy) = \oint_L udx - vdy + i 
+    \oint vdx + udy =  
+\]
+\[
+    \iint_{\overline{I(L)}} \left(- \frac{\partial v}{\partial x} -
+    \frac{\partial u}{\partial y} \right) dxdy + i
+    \iint_{\overline{I(L)}} \left( \frac{\partial u}{\partial x} - \frac{\partial v}{\partial y} 
+        \right) dxdy = 0
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th Коши} (для многосвязной области)\\
+Пусть $ f(z) \in H(\overline{D}) $ $ \overline{D} $ ограничена n+1 замкнутым
+контуром: внешним контуром $ \Gamma_0 $ и внутр $ \Gamma_1, \dots, \Gamma_n $ \\
+Тогда $ \int_L f(z)dz = 0 $ 
+\end{tcolorbox}
+\begin{figure}[ht]
+    \centering
+    \incfig{pic2}
+    \caption{pic2}
+    \label{fig:pic2}
+\end{figure}
+\end{document}

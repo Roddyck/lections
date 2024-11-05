@@ -1,0 +1,150 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{xfrac}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{ОСА. Лекция}
+\author{Я}
+\maketitle
+
+\begin{tcolorbox}
+\underline{Th.6} $ F \subset K \subset L \implies F \subset L $ - алгебраическое
+
+\underline{Proof}
+\[
+    \forall \alpha \in L - \text{ алгебр над К} \implies \exists f(x) = k_0 + k_1x +
+    \dots + k_nx^{n} \in K[x]\ | \ f(\alpha) = 0
+\]
+\[
+    k_0, k_1, \dots , k_n \in K \supset F \implies k_0, k_1, \dots, k_n - \text{ алг над F}
+    \implies F \subset F(k_0) \subset f(k_0)(k_1) = f(k_0, k_1) \subset \dots
+\]
+\[
+    \subset F(k_0, k_1, \dots, k_n) \implies F \subset F(k_0, \dots k_n) \text{
+    - конечное} \implies F \subset F(k_0, \dots k_n) \text{ - алг} \implies
+\]
+\[
+    F \subset F(k_0, \dots, k_n) \subset K \text{ - алг}
+\]
+$ \alpha $ - алгебр над $ F(k_0, \dots , k_n) \implies F(k_0, k_1, \dots, k_n)
+\subset F(k_0, k_1, \dots, k_n, \alpha) \implies F \subset F(k_0, \dots, k_n)
+\subset F(k_0, k_1, \dots, k_n, \alpha) \implies F \subset F(k_0, k_1, \dots, k_n, \alpha)
+$ - алг $ \implies \alpha $ алг над F $ \implies F \subset L $ - алг
+\end{tcolorbox}
+
+\section*{\centering Поле разложения многочлена}
+\begin{tcolorbox}
+    \underline{Def} K - поле, $ f(x) \in K[x] $ \\
+    Поле $ L \supset K $ - поле разложения f(x), если f(x) раскладывается на линейные
+    множители в $ L[x] $ и L - min с этим св-вом, т.е. не существует $ F \ | \ K \subset
+    F \subsetneqq L$ и все корни f(x) лежат в F 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \underline{Th.1} $ \forall f(x) \in K[x]\  \exists $ поле разложения
+
+    \underline{Proof} $ K[x] $ - факториально $ \implies f(x) = p_1(x), \dots, p_k(x) $,
+    $ p_i(x) $ - непр
+    Индукция по $ \deg f = n $\\
+    $\underline{n = 1} \quad f(x) = ax + b \implies L = K$\\
+    $ \underline{< n \text{ верно}} $\\
+    \underline{n} $ p_1(x) $ - непр над К
+    \[
+        \implies \exists K \subset F \text{ - min} \land \alpha_1 \in F \text{ - корень } p_1(x)
+        \implies K \subset \implies K \subset K(\alpha_1)
+    \]
+    \[
+        \implies f(x) = (x - \alpha_1) g(x) \text{, где } \deg g(x) < n \implies
+        \exists \text{ поле разложения } \hat{L} \text{ для g(x)} \implies K \subset \hat{L}
+    \]
+    \[
+        \subset \hat{L}(\alpha_1) = L \text{ - поле разложения f(x)}
+    \]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \underline{Lemma} $ p(x) \in K[x] $ - неприводим, $ \alpha \in L \supset K $ - 
+    корень p(x)\\
+    $ \phi: K \to L $ - гомо полей. Тогда гомо $ \phi $ можно продолжить до гомо\\
+    $ \psi: K(\alpha) \to L $ ровно столькими способами сколько корней в L 
+    имеет многочлен $ \phi(p(x)) $, полученный из p(x) применением $ \phi $ к его
+    коэффициентам
+
+    \underline{Proof} $ \phi: K \to L $ - гомо. Нужно построить $ \psi: K(\alpha) \to L $,
+    $ \psi |_K = \phi $ 
+    \[
+        p(x) = k_0 + k_1x + \dots + k_n x^{n} ; k(\alpha) = \{ a_0 + a_1 \alpha +
+        \dots + a_{n-1}\alpha^{n-1} \ | \ a_i \in K \}
+    \]
+    Если $ \psi \ \exists $, то
+    \[
+        \psi(a_0 + a_1\alpha + \dots a_n \alpha^{n-1}) = \psi(a_0) + \psi(a_1)
+        \psi(alpha) + \dots + \psi(a_{n-1})\psi(\alpha)^{n-1} 
+    \]
+    \[
+        = \phi(a_0) + \phi(a_1) \beta + \dots + \phi(a_{n-1})\beta^{n-1}
+        \text{, где } \beta = \psi(\alpha) \text{ дост опр-ть}\ \psi(\alpha)
+    \]
+    \[
+        0 = p(\alpha) = \psi(p(\alpha)) = \phi(k_0) + \phi(k_1) \beta + \dots +
+        \phi(k_n)\beta^{n} \implies \beta \text{ - корень}\ \phi(p(x))
+    \]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.2} Поле разложения определенно однозначно с точность до изоморфизма над К
+
+\underline{Proof} $ f(x) = p_1 \dots p_n $ 
+\[
+    K \subset K(\alpha_1) \subset \dots \subset K(\alpha_1, \dots, \alpha_n) = L
+\]
+\[
+    \alpha_1, \dots, \alpha_n \text{ - корни непр-х многочленов}\ p_1, \dots p_n
+\]
+Пусть М - другое поле разложения f(x)
+\[
+    1) \ id = \phi_0: K \to M \text{ - гомо}
+\]
+\[
+    2) \phi_1: K(\alpha_1) \to M \text{ - сущ-ет по лемме}
+\]
+\[
+    3) \phi_2: K(\alpha_1)(\alpha_2) \to M
+\]
+\[
+    \ldots\ldots\ldots\ldots\ldots
+\]
+\[
+    n) \phi_n: K(\alpha_1, \dots, \alpha_{n-1})(\alpha_n) \to M
+\]
+\[
+    \phi_n: L \to M \text{ - гомо}
+\]
+\[
+    Im \phi_n \text{ содержит } \alpha_1, \dots \alpha_n \text{ и поле К и }
+    Im \phi_n \subset M \implies Im \phi_n = M \implies \phi_n \text{ - изом-зм}
+\]
+\end{tcolorbox}
+
+\end{document}

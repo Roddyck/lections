@@ -1,0 +1,179 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{xfrac}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{КиМ. Лекция}
+\author{daf}
+\maketitle
+
+\begin{tcolorbox}
+\underline{Th} Эквив-но для модуля M\\
+1) $ M = \sum_{i \in I} M_i $, $ M_i  $ - простые\\
+2) $ M = \bigoplus_{j \in J} M_j $\\
+3) M - вп. приводим
+
+\underline{Proof} $ 1) \implies 2) $ Из леммы при $ N = 0 $\\
+$ 2) \implies 3) $ Из леммы\\
+$ 3) \implies 1) $ Let S - сумма всех простых подмодулей в М\\
+$ S \stackrel{?}{=} M \ \forall x \in M \setminus S $ 
+
+Рассмотрим чум 
+\[
+    (X, \subset) = \{ N \leq M \ | \ S \subset N \land x \notin N \} \neq \varnothing
+    \text{ т.к. } S \in X
+\]
+\[
+    N_0 \subset N_1 \subset N_2 \subset \dots \implies \text{верхняя грань}
+    \bigcup_{k \in K} N_k \in X \implies \text{по лемме Цорна } \exists
+    \max N^{\star} \ |\ S \subset N^{\star} \land x \notin N^{\star}
+\]
+\[
+    Y = \{ N_k\}_{k \in K}
+\]
+\[
+    M \text{ - вп. приводим} \implies M = N^{\star}\oplus C \implies
+    \text{ т.к. } S \subset N^{\star}, \text{ то С - непростой} \implies
+    \exists A \leq C \ | \ A \neq 0 \land A \neq C
+\]
+\[
+    \implies C - \text{ вп. приводим} \implies C = A \oplus B \implies M = 
+    N^{\star} \oplus A \oplus B
+\]
+\[
+    x \in N^{\star} \oplus A
+\]
+\[
+    x \in N^{\star} \oplus B
+\]
+Тогда
+\[
+    x \in \left( N^{\star} \oplus A\right) \cap \left( N^{\star} \oplus B\right)
+    \implies x \in N^{\star} + ((N^{\star} \oplus A) \cap B) = N^{\star}
+\]
+\[
+    (N^{\star} \oplus A) \cap B = 0
+\]
+\end{tcolorbox}
+
+\section*{\centering Артиновы модули}
+\begin{tcolorbox}
+\underline{Def} Модуль М - артинов, если любая убывающая цепь подмодулей
+$ M_1 \supset M_2 \supset \dots $ стабилизируется, т.е. $ \exists k \in \mathbb{N}
+\ | \ M_k = M_{k+1} = \dots$ 
+\end{tcolorbox}
+
+\underline{Examples} 1) Все конечные модули\\
+2) Векторные пр-ва (конечномерные)
+
+\begin{tcolorbox}
+\underline{Def} Кольцо R наз-ся артиновым справа, если $ R_R $ - артинов R - модуль
+($ \equiv $ любая убывающая цепь правых идеалов обрывается)
+\end{tcolorbox}
+
+\underline{Task} M - артинов $ \iff $ любое семейство подмодулей в М имеет min 
+подмодуль
+
+\begin{tcolorbox}
+\underline{Th} 1) Пусть М артинов и $ N \leq M \implies $ M - артинов $ \iff $ 
+N и $ \sfrac{M}{K} $ - артинов\\
+2) $ M = \bigoplus_{i \in I} M_i $ , $ M_i $ - простые. Тогда М - артинов $ \iff
+|I| = n < \infty$ 
+
+\underline{Proof}\\
+1) $ \implies: $ M - артинов $ \implies $ N - артинов\\
+Let $ \overline{M_1} \supset \overline{M_2} \supset \dots $ - убыв цепь в $ 
+\sfrac{M}{N}. \ \exists $ вз/одн соотв-е между подмодулями в $ \sfrac{M}{N} $ и
+подмодулем в М, содержащим N $ M_1 \supset M_2 \dots $ - убыв цепь в M, которая стаб.
+Тогда$ \overline{M_1} \supset \overline{M_2} \supset \dots $ стабилизируется
+
+$ \impliedby: $ 
+\[
+    M_1 \supset M_2 \supset \dots \implies M_1 \cap N \supset M_2 \cap N \implies
+    M_p \cap N = M_{p+1} \cap N = \dots
+\]
+\[
+    \sfrac{M_1 + N}{M}\supset \sfrac{M_2 + N}{N} \supset \dots
+\]
+\[
+    \implies \sfrac{M_q + N}{N} = \sfrac{M_{q + 1}}{N} = \dots \implies
+    M_q + N = M_{q+1} + N = \dots
+\]
+Пусть $ t = \max(p,q) $ 
+\[
+    M_{t+1} = M_{t+1} + (M_{t+1} \cap N) = M_{t+1} + (M_t \cap N) = M_t \cap 
+    (M_{t+1} + N) = M_t \cap (M_t + N) = M_t
+\]
+
+2) $ \implies: $ Против $ |I| = \infty \implies M \supset \bigoplus_{i \neq i_1} M_i
+\supset \bigoplus_{i \neq i_1, i_2} M_i$ \\
+$ \impliedby: $ 
+\[
+    |I| = n \implies M = M_1 \oplus \dots \oplus M_n \implies \text{ in M }  
+    2^{n} \text{ подмодулей}
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th}(Брауэр)\\
+R - кольцо, I - правый идеал в R\\
+1) $ R_R = I \oplus J \iff I = eR $, где $ e^2 = e $ - идемпотент\\
+2) Если I - min, то $ I^2 = 0 \lor I = eR $ 
+
+\underline{Proof} $ \implies: R_R = I \oplus J \implies 1 = e + f, \ e \in I, \
+ f \in J $ 
+
+ Берем $ \forall i \in I $ 
+ \[
+     1 = e + f \ | \cdot i \text{ справа} \implies i = ei + fi \implies
+     fi \in J, \ fi = i - ei \in I \implies fi \in I \cap J = \{0\} \implies fi = 0
+ \]
+ \[
+     \implies i = ei \stackrel{i=e}{\implies} e = e^2 \text{ - идемп-т}; \ 
+     I = eI ; \ eR \subset I, \text{ с др стороны:}\ I = eI \subset eR \implies
+     I = eR
+ \]
+ $ \impliedby: $ $ R = eR \oplus (1-e)R $ \\
+ a) $ \forall r \in R: \ r = er + (1-e)r \implies R = eR + (1-e)R $\\
+ b) $ \forall x \in er \cap (1-e)R $\\
+ $ x = e r_1 = (1 -e)r_2 $\\
+ $ e r_1 = (1-e)r_2 \ | \ \cdot e $ \\
+ $ e r_1 = e(1-e)r_2 = (e - e^2)r_2 = 0 $ \\
+ Тогда $ R = eR \oplus (1-e)R $ 
+
+ 2) $ I^2 \neq 0 $ 
+ \[
+     \implies \exists \ a \in I \ | \ aI \neq 0 ; aI \subset I \implies aI = I
+     \implies ae = a \text{ some } e \in I. \text{ Умножим справа на e}
+ \]
+ \[
+     ae^2 = ae \implies a(e^2 - e) = 0
+ \]
+ Рассмотрим $ K = \{ i \in I \ | \ ai = 0 \} $ - правый идеал $ K \subset I $;
+ $ K \neq I \implies K = 0 \implies e^2 - e = 0 \implies e = e^2 $ 
+ \[
+     eR \subset I, \text{ cause } e \in I \implies eR = I
+ \]
+\end{tcolorbox}
+\end{document}

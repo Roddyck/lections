@@ -1,0 +1,52 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{Комплан. Лекция}
+\maketitle
+
+\[
+    0 < \phi < \frac{2\pi}{n} 
+\]
+
+\begin{figure}[ht]
+    \centering
+    \incfig{pic1}
+    \caption{pic1}
+    \label{fig:pic1}
+\end{figure}
+
+\[
+    \forall \gamma_k: \quad k \cdot \frac{2\pi}{n} < \phi < (k+1)\frac{2\pi}{n} 
+    , \ k = \overline{1, n-1}
+\]
+Плоскость (w), в которой каждому $ \theta = Arg w $ об-ся\\
+$ T_k $ (лист, копия комплекской плоскости)\\
+\[
+    T = T_0 \cup T_1 \cup \dots \cup T_{n-1} - \text{ поверхность Римана}
+\]
+
+Для $ w = z^{n} $ - n - листная в (z) каждой из $ \gamma_k $ - область однолистонсти
+$ z = \sqrt[n]{n}  $ 
+\end{document}
