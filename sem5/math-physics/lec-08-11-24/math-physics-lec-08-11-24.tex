@@ -1,0 +1,270 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{УМФ. Лекция}
+\author{who tf is this?}
+\maketitle
+
+\[
+    u_{tt}(x,t) - a^2 u_{xx}(x,t) = A \sin\omega t
+\]
+\[
+    u(0,t) = u(l,t) = 0
+\]
+\[
+    u|_{t=0} = 0
+\]
+\[
+    u_t|_{t=0} = 0
+\]
+\[
+    \lambda_n = \left(\frac{\pi n}{l} \right)^2, \ n \in \mathbb{N}
+\]
+\[
+    X_n(x) = \sin \frac{\pi n x}{l} 
+\]
+\[
+    u(x,t) = \sum_{n=1}^{\infty} T_n(t) X_n(x)
+\]
+\[
+    \omega_{n} = \frac{a \pi n}{l}, \ n \in \mathbb{N}
+\]
+\[
+    \sum_{n=1}^{\infty} (T''_n(t) + \omega_n^2 T_n(t)) X_n(t) = A\sin\omega t\ 
+    | \cdot \sin \frac{\pi m x}{l},\ \int_{0}^{l} dx 
+\]
+\[
+    \int_{0}^{l} \sin \frac{\pi n x}{l} \cdot \sin \frac{\pi m x}{l} dx = 
+    \begin{cases}
+        0, &\quad n \neq m\\
+        \frac{l}{2}, &\quad n = m
+    \end{cases}
+\]
+\[
+    T''_m + \omega_m T_m(t) = \frac{2}{l} \int_{0}^{l} \sin \frac{\pi m x}{l} dx
+    \cdot \sin \omega t
+\]
+\[
+    \frac{2}{l} \int_{0}^{l} \sin \frac{\pi m x}{l} dx = \alpha_m
+\]
+\[
+    \begin{cases}
+        T''_m(t) + \omega^2 T_m(t) = \alpha_m \sin \omega t\\
+        T_m(0) = 0\\
+        T'_m(0) = 0
+    \end{cases}
+\]
+
+Пусть:
+\[
+    \omega \neq \omega_m, \ m \in \mathbb{N}
+\]
+
+Общее решение однородного уравнения:
+\[
+    T_m^{O} = A_m \cos \omega_m t + B_m \sin \omega_m t 
+\]
+\[
+    T_m^{\text{Н}} = C_m \sin \omega t
+\]
+\[
+    \underbrace{(\omega_m^2 - \omega^2)}_{\neq 0} C_m \sin \omega t = \alpha_m 
+    \sin \omega t
+\]
+\[
+    C_m = \frac{\alpha_m}{\omega_m^2 - \omega^2} 
+\]
+\[
+    T_m(t) = A_m \cos \omega_m t + B_m \sin \omega_m t + \frac{\alpha_m}
+    {\omega_m^2 - \omega^2} \sin \omega t
+\]
+\[
+    T_m(0) = A_m = 0
+\]
+\[
+    T'_m(0) = \omega_m B_m \cos \omega_m t + \frac{\alpha_m \omega \cos \omega t}
+    {\omega_m^2 - \omega^2} 
+\]
+\[
+    \omega_m B_m + \frac{\alpha_m \omega} {\omega_m^2 - \omega^2} 
+    = 0
+\]
+\[
+    B_m = - \frac{\alpha_m \omega}{(\omega_m^2 - \omega^2)\omega_m} 
+\]
+\[
+    T_m(t) = - \frac{\alpha_m \omega \sin \omega_m t}{(\omega_m^2 - \omega^2)\omega_m}
+    + \frac{\alpha_m \sin \omega t}{(\omega_m^2 - \omega^2)} 
+\]
+\[
+    T_m(t) = \frac{\alpha_m (\omega_m \sin \omega t - \omega \sin \omega_m t}
+    {(\omega_m^2 - \omega^2)\omega_m}
+\]
+
+Пусть:
+\[
+    \omega \to \omega_{m_0}
+\]
+\[
+    \lim_{\omega \to \omega_{m_0}} T_{m_0}(t) = \lim_{\omega \to \omega_{m_0}} 
+    \frac{\alpha_m (\omega_m \sin \omega t - \omega \sin \omega_m t}
+    {(\omega_m^2 - \omega^2)\omega_m} = \lim_{\omega \to \omega_{m_0}}
+    \frac{\alpha_{m_0}(\omega_{m_0} t \cos\omega t - \sin \omega_{m_0} t)}
+    {\omega_{m_0}(-2 \omega)} 
+\]
+\[
+    \lim_{\omega \to \omega_{m_0}} T_m(t) = 
+    \frac{\alpha_{m_0}(t \omega_{m_0}\cos\omega_{m_0} t - \sin \omega_{m_0} t)}
+    {-2 \omega_{m_0}^2} 
+\]
+\section*{Задача Штурма-Лиувилля}
+
+\[
+    x \in [0;l]
+\]
+\begin{equation}
+    (p(x)X'(x))' + (\lambda\rho(x) - q(x)) X(x) = 0
+\end{equation}
+\begin{equation}
+    \alpha X'(0) - \beta X(0) = 0
+\end{equation}
+\begin{equation}
+    \gamma X'(l) - \delta X(l) = 0
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        &p \in C^{1}([0;l])\\
+        &\rho \in C([0;l])\\
+        &q \in C([0;l])\\
+        &\alpha \geq 0, \ \beta \geq 0, \ \gamma \geq 0, \ \delta \geq 0\\
+        &\alpha^2 + \beta^2 > 0\\
+        &\gamma^2 + \delta^2 > 0\\
+        &p(x) > 0, \ x \in [0;l], \ \rho(x) > 0, \ x \in [0;l]
+    \end{aligned}
+    \label{eq:4}
+\end{equation}
+Задача Штурма-Луивилля (1) - (3) заключается в нахождении собственных значений
+и собственных функций. Собственными значениями называеются те значения параметра
+$ \lambda $ при которых уравение имеет хотя бы одно не тривиальное решение $ X(x) \neq 0 $ 
+. Сами эти нетривиальные решения называются собст. ф-ями задачи Ш-Л
+\[
+    \begin{aligned}
+        &p \equiv 1\\
+        &q \equiv 0\\
+        &\rho \equiv 1\\
+        &\alpha = 0 \ (\beta \neq 0)\\
+        &\gamma = 0 \ (\delta \neq 0)
+    \end{aligned}
+\]
+\[
+    X''(x) + \lambda X(x) = 0
+\]
+\[
+    X(0) = X(l) = 0
+\]
+\[
+    X_1(x), \ X_2(x), \dots , X_m(x) \text{ - с. ф-ии} \implies c_1 X_1(x) +
+    \dots + c_m X_m(x) \text{ - с. ф-я}
+\]
+
+\underline{\textbf{Вопрос из билета: Вещественность собственных значения задачи Ш-Л}}
+
+При условиях ($ \ref{eq:4} $) все собст. значения задачи Ш-Л вещественны и неограничивая общ-ти
+можно считать вещ-ми собственные функции
+\[
+    \lambda = Re\lambda + i Im \lambda
+\]
+\[
+    X(x) = Re X(x) + i Im X(x)
+\]
+\begin{equation}
+    (p(x) \cdot \overline{X}'(x))' + (\overline{\lambda} - \rho(x) - q(x)) 
+    \overline{X}(x) = 0
+\end{equation}
+\begin{equation}
+    \alpha \overline{X}'(0) - \beta \overline{X}(0) = 0
+\end{equation}
+\begin{equation}
+    \gamma \overline{X}'(l) - \delta \overline{X}(l) = 0
+\end{equation}
+\[
+    -
+    \begin{cases}
+        (1) \cdot \overline{X}\\
+        (5) \cdot X
+    \end{cases}
+    , \ \int_{0}^{l} 
+\]
+\[
+    \int_{0}^{l} (p(x) X'(x))' \cdot \overline{X} dx - \int_{0}^{l} (p \overline{X}'
+    Xdx + \lambda \int_{0}^{l} \rho X \overline{X} dx - \overline{\lambda}
+    \int_{0}^{l} \rho \overline{X} X dx - \int_{0}^{l} q X \overline{X} dx +
+    \int_{0}^{l} q \overline{X} X dx = 0
+\]
+\[
+    \int_{0}^{l} (p(x) X'(x))' \cdot \overline{X} dx - \int_{0}^{l} 
+    (p \overline{X}') X dx = (\overline{\lambda}- \lambda) \int_{0}^{l} \rho |X|^2 dx
+\]
+\[
+    p(x)X'(x) \overline{X}(x) \big|_{0}^{l} - \int_{0}^{l} p X' \overline{X}'dx
+    - p \overline{X}' X \big|_{0}^{l} + \int_{0}^{l} p \overline{X}' X' dx
+\]
+\[
+    p(l) (\underbrace{X'(l) \overline{X}(l) - \overline{X}'(l) X(l)}_{\det \begin{cases}
+            (3)\\
+            (7)
+    \end{cases}})
+\]
+\[
+    p(0) (X'(0) \overline{X}(0) - \overline{X}'(0) X(0))
+\]
+Рассмотрим
+\[
+    \begin{cases}
+        (2)\\
+        (6)
+    \end{cases}
+    \quad
+    \begin{cases}
+        (3)\\
+        (7)
+    \end{cases}
+\]
+\[
+    0 = (\overline{\lambda} - \lambda) \int_{0}^{l} \rho |X|^2 dx 
+\]
+\[
+    \implies \overline{\lambda} - \lambda = 0
+\]
+\[
+    X(x) = Re X(x) + i Im X(x)
+\]
+
+Любую комплексную собственную функцию можно представить как лин комб вещественных
+собственных функций
+
+\underline{Вопрос билета: Линейная зависимость собс ф-ий соотв. одному собств значению}\\
+Любые две собст ф-ии соотв. одному собств зн-ю линейно зависимы
+\end{document}

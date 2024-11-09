@@ -1,0 +1,185 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{УМФ. Семинар}
+\author{Rodion}
+\maketitle
+
+\section*{Тема. Формула Даламбера для неоднородного одномерного волнового уравнения}
+\[
+    u_{t t} - a^2 u_{xx} = f(x,t) \quad |x| < \infty \ t > 0
+\]
+\[
+    u |_{t=0} = \phi(x)
+\]
+\[
+    u_t |_{t=0} = \psi(x)
+\]
+
+Формула Даламбера решения
+\[
+    u(x,t) = \frac{1}{2} \left(\phi(x-at) + \phi(x+at)\right) + \frac{1}{2a} 
+    \int_{x-at}^{x+at} \psi(\xi)d\xi + \frac{1}{2a} \int_{0}^{t} dt'
+    \int_{x-a(t-t')}^{x+a(t-t')} f(\xi, t')d\xi
+\]
+
+\underline{Note}
+\begin{figure}[ht]
+    \centering
+    \incfig{pic1}
+    \caption{pic1}
+    \label{fig:pic1}
+\end{figure}
+
+\underline{Examples}\\
+a) \[
+    u_{t t} - a^2 u_{xx} = \sin\omega t
+\]
+\[
+    u |_{t=0} = 0
+\]
+\[
+    u_t |_{t=0} = 0
+\]
+\[
+    u(x,t) = \frac{1}{2a} \int_{0}^{t'} dt' \int_{x-a(t-t'}^{x+a(t-t'} 
+    \sin\omega t' d\xi = \frac{1}{2a} \int_{0}^{t} \sin\omega t' dt' (\xi)
+    \big|_{x-a(t-t')}^{x + a(t-t')} = \int_{0}^{t}(t-t')\sin\omega t' dt' 
+\]
+\[
+    = -\frac{t-t'}{\omega} \cos\omega t' \big|_{0}^{t} - \frac{1}{\omega} 
+    \int_{0}^{t} \cos\omega t' dt' = \frac{t}{\omega} - \frac{1}{\omega^2} 
+    \sin\omega t' \big|_0^{t} = \frac{t}{\omega} - \frac{\sin\omega t}{\omega^2} 
+\]
+
+Проверка:
+\[
+    \sin\omega t = \sin\omega t
+\]
+\[
+    u |_{t=0} = 0
+\]
+\[
+    u'_t = \frac{1}{\omega}  - \frac{1}{\omega} \cos\omega t |_{t=0} = 0
+\]
+
+б)
+\[
+    u_{t t} - a^2 u_{xx} = \sin\omega x \quad |x| < \infty \ t > 0
+\]
+\[
+    u |_{t=0} = 0
+\]
+\[
+    u_t |_{t=0} = 0
+\]
+\[
+    u(x,t) = \frac{1}{2a} \int_{0}^{t} d\tau \int_{x-a(t-\tau)}^{x+a(t-\tau)} 
+    \sin\omega \xi d\xi = \frac{1}{2a} \int_{0}^{t} d\tau \left( \frac{-\cos\omega\xi}
+    {\omega}\right) \big|_{x-a(t-\tau)}^{x+a(t-\tau)} = \frac{1}{2a\omega} 
+\]
+\[
+    \int_{0}^{t} [\cos(\omega(x-a(t-\tau))) - \cos(\omega(x + a(t-\tau)))] d\tau
+    = \frac{1}{2a^2\omega^2} (\sin(\omega(x-a(t-\tau))) - \sin(\omega(x + a(t-\tau)))
+    |_{0}^{t}
+\]
+\[
+    = \frac{1}{2a^2\omega^2}( 2 \sin\omega x - \sin(\omega(x-at)) - \sin(\omega(x+at)))
+    = \frac{1}{2a^2\omega^2} (2\sin\omega x - 2\sin\omega x \cos\omega at)
+\]
+в)
+\[
+    u_{t t} - u_{xx} = e^{x}
+\]
+\[
+    u |_{t=0} = \sin x
+\]
+\[
+    u_t |_{t=0} = x + \cos x
+\]
+\[
+    u(x,t) = \frac{1}{2}(\phi(x+at) + \phi(x-at)) + \frac{1}{2a} 
+    \int_{x-at}^{x+at} \psi(\xi)d\xi + \frac{1}{2a} \int_{0}^{\tau} d\tau  
+    \int_{x-a(t-\tau}^{x+a(t-\tau)} f(\xi, \tau)d\xi 
+\]
+\[
+    1) \ \phi(x-at) + \phi(x+at) = \sin(x-t) + \sin(x+t)
+\]
+\[
+    2) \ \frac{1}{2} \int_{x-at}^{x+at} (x + \cos x)dx = \frac{1}{2} \left(
+        \frac{x^2}{2} \big|_{x-t}^{x+t} + \sin x\right) \big|_{x-t}^{x+t} = 
+        \frac{1}{2} \left( \frac{(x+at)^2 - (x-t)^2}{2} + \sin(x+at) - \sin(x-t)
+            \right)
+\]
+\[
+    3) \ \int_{0}^{t} d\tau \int_{x-(t-\tau)}^{x+(t-\tau} e^{\xi}d\xi =
+    \frac{1}{2} e^{\xi} \big|_{x-(t-\tau}^{x+(t-\tau)} d\tau = 
+\]
+\[
+    = \frac{1}{2} e^{x+t}\int_{0}^{t} e^{-\tau}d\tau - e^{x-t}
+    \int_{0}^{t} e^{\tau}d\tau = \frac{1}{2} ( e^{x+t}(-e^{-t} + 1) - x^{x-t}
+    (e^{t} - 1)) = \frac{1}{2} (e^{x}+ e^{x+t} - e^{x} + e^{x-t} = 
+    \frac{e^{x+t}+ e^{x-t}}{2} = e^{x}\ch t
+\]
+г) Функция Хевисайда
+\[
+    \theta(t) = 
+    \begin{cases}
+        1 &\quad t > 0\\
+        0 &\quad t < 0
+    \end{cases}
+\]
+\[
+    u_{t t} - a^2 u_{xx} = \sin\omega t \theta(T - t)
+\]
+\[
+    u |_{t=0} = 0
+\]
+\[
+    u_t |_{t=0} = 0
+\]
+\[
+    u(x,t) = \frac{1}{2a} \int_{0}^{t} d\tau \int_{x-a(t-\tau}^{x+a(t-\tau)} 
+    \sin\omega\tau \theta(T - t)d\xi = \frac{1}{2a} \int_{0}^{t} \sin\omega\tau
+    \theta(T - t) \cdot 2a(t - \tau)d\tau
+\]
+1) $ t \leq T $ 
+\[
+u(x,t) = \int_{0}^{t} \sin\omega \tau \cdot (t - \tau) d\tau 
+\stackrel{\text{см. выше}}{=} \frac{t}{\omega} - \frac{\sin\omega t}{\omega^2} 
+\]
+2) $ t > T $ 
+\[
+    u(x,t) = \int_{0}^{T} \sin\omega\tau ( t - T) d\tau = \frac{T}{\omega} -
+    \sin \frac{\omega T}{\omega^2} 
+\]
+\[
+    u(x,t) = \begin{cases}
+        \frac{t}{\omega}  - \sin \frac{\omega t}{\omega^2} &\quad t \leq T\\
+        \frac{T}{\omega}  - \frac{\sin\omega T}{\omega^2} &\quad t > T
+    \end{cases}
+\]
+
+\end{document}

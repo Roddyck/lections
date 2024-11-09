@@ -1,0 +1,255 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{ТВиМС. Лекция}
+\author{who?}
+\maketitle
+
+\begin{equation}
+    E((Y - (g(x))^2) = E((Y - M(x))^2) + E((M(x) - g(x))^2)
+\end{equation}
+\[
+    M(x) = E(Y|X)
+\]
+\[
+    E(Y|X=x) = \frac{\int_{-\infty}^{\infty} yf(y,x)dy}{\int_{-\infty}^{\infty} 
+    f(y,x)dy} 
+\]
+\[
+    E(Y|X=x) = \frac{\sum_{k} y_k P(Y=y_k, X = x)}{\sum_{k} P(Y = y_k,
+    X = x} 
+\]
+На пр лекции(???)\\
+1) $ g(X) = E(Y) $\\
+2) $ g(X) = b_0 + b_1X $ 
+
+\begin{equation}
+    E((Y - b_0 - b_1X)^2) = E(( Y - E(Y|X))^2 + E((E(Y|X) - b_0 - b_1X)^2)
+\end{equation}
+\begin{equation}
+    E((Y - a_2)^2) = E((Y- E(Y|X))^2 +E((E(Y|X) - a_2)^2) \ | \sigma_2^2
+\end{equation}
+\[
+    E((Y - a_2)^2) = \sigma_2^2
+\]
+\[
+    1 = \frac{E((Y - E(Y|X))^2)}{\sigma_2^2} + \frac{E((E(Y|X) - a_2)^2)}{\sigma_2^2} 
+\]
+\[
+    \eta_{Y,X}^2 = \frac{E((E(Y|X) - a_2))^2)}{\sigma_2^2} = \frac{D(E(Y|X))}{\sigma_2^2} 
+\]
+\[
+    \eta^2 = \eta^2_{Y,X} \text{ - корр. отношение Пирсона}
+\]
+1) $ \eta^2 \geq 0 $ \\
+2) $ 1 - \eta^2 = \frac{E((Y - E(Y|X))^2)}{\sigma_2^2} \geq 0 \implies \eta^2 \leq 1  $ 
+\[
+    1 - \rho^2 = 1 - \eta^2 + \frac{E((E(Y|X) - \hat{b_0} - \hat{b_1}X)^2}{\sigma_2^2} 
+\]
+\[
+    \eta^2 = \rho^2 + \frac{E((E(Y|X) - \hat{b_0} - \hat{b_1}X)^2}{\sigma_2^2} 
+\]
+\[
+    \eta^2 = 1 \implies \rho^2 = 1 \ (\rho = \pm 1)
+\]
+\[
+    E((Y|X)) = \hat{b}_0 + \hat{b}_1 X
+\]
+\[
+    \eta^2 = \rho^2 \implies E(Y|X) = \hat{b}_0 + \hat{b}_1 X
+\]
+
+\section*{Оценка регрессии по МНК}
+\[
+    E((Y - M(X))^2)  = \min_g E((Y - g(X))^2)
+\]
+1) g(x) - измеримая функция = непр. ф. + их пределы\\
+2) $ g(x), \ a \leq x \leq b $ можно приблизить полиномом 
+\[
+    b_0 + b_1X + \dots + b_m x^{m} \approx g(x)
+\]
+\[
+    P(a \leq X \leq b) = 1
+\]
+
+Сост. выборочный аналог 
+\begin{equation}
+    \frac{1}{n} \sum_{i=1}^{n} (y_i - b_0 - b_1 x_i - \dots - b_m x_i^{m})^2
+    \to \min_{b_0, b_1, \dots , b_m}
+\end{equation}
+\begin{equation}
+    \begin{cases}
+        \sum_{i} y_i = \sum_{i=1}^{n} (y_i + b_0 + b_1 x_i + \dots + b_m x_i^{m})\\
+        \sum_{i} y_ix_i = \sum_{i=1}^{n} (y_i + b_0 + b_1 x_i + \dots + b_m x_i^{m})x_i\\
+        \dots\dots\dots\\
+        \sum_{i} y_ix_i^{m} = \sum_{i=1}^{n} (y_i + b_0 + b_1 x_i + \dots + b_m x_i^{m})x_i^{m}\\
+    \end{cases}
+\end{equation}
+\[
+    C_x:\  GM: X \text{ - с.в.}
+\]
+\underline{\textbf{Прочитать}}: 1) проверка гипотезы на степень полинома\\
+2) Оценка корр-ого отношения и проверка гипотезы о лин регрессии
+
+\section*{Частная и множественная корреляция. Фильтр Калмана}
+\[
+    R = \begin{pmatrix}
+    1 & 0.8 & -0.4\\
+    0.8 & 1 & -0.56\\
+    -0.4 & -0.56 & 1\\
+    \end{pmatrix}
+\]
+$ x_1 $ - урожайность\\
+$ x_2 $ - весеннее кол-во осадков\\
+$ x_3 $ - сумма температур
+\[
+    X = (X_1, X_2, \dots , X_p)^{T}
+\]
+\[
+    X \in N(\mu, \Sigma) \quad \Sigma \text{ - м. ковариации}
+\]
+\[
+    (X_1, X_2, \dots , X_m)^{T}, (X_{m+1}, \dots , X_p)^{T}
+\]
+\[
+    \mu = 0
+\]
+\[
+    \Sigma = \begin{pmatrix}
+    \Sigma_{11} & \Sigma_{12}\\
+    \Sigma_{21} &\Sigma_{22} \\
+    
+    \end{pmatrix}
+\]
+\[
+    X = (X_1, X_2)^{T}
+\]
+\[
+    \Sigma_{11} = E(X_1 \cdot X_1^{T})
+\]
+\[
+    \Sigma_{22} = E(X_2 \cdot X_2^{T})
+\]
+\[
+    \Sigma_{12} = \Sigma_{21}^{T} = E(X_1 \cdot X_2^{T})
+\]
+
+Лин. пребразование
+\[
+    Y_1 = X_1 + A X_2, \quad Y_2 = X_2
+\]
+Подберём A:
+\begin{equation}
+    E(Y_1 \cdot Y_2^{T}) = 0
+\end{equation}
+$ \implies \text{ некор.} \implies \text{независимость } Y_1 \land Y_2 $ 
+\[
+    E(Y_1 \cdot Y_2^{T}) = E((X_1 + A X_2) X_2^{T}) = E(X_1 X_2^{T}) + A
+    E((X_2 \cdot X_2^{T}) = \Sigma_{12} + A \Sigma_{22} = 0 \ (?) \ | \cdot \Sigma_{22}^{-1}
+\]
+\[
+    A = -\Sigma_{12}\Sigma_{22}^{-1}
+\]
+$ Y_1 \land Y_2 $ независимы
+\[
+    E(Y_1 | Y_2) = E(X_1 - \Sigma_{12}\Sigma_{22}^{-1}X_2 | X_2) = 
+    E(X_1 | X_2) - \Sigma_{12}\Sigma_{22}^{-1}X_2 = E(Y_1) = 0
+\]
+\[
+    E(X_1 | X_2) = \Sigma_{12}\Sigma_{22}^{-1}X_2
+\]
+\[
+    X = \begin{pmatrix}
+    X_1\\
+    \\
+    X_2
+    
+    \end{pmatrix}
+    \quad \Sigma = \begin{pmatrix}
+    \sigma_1^2 & \rho \sigma_1\sigma_2\\
+    \rho\sigma_1\sigma_2 & \sigma_2^2\\
+    
+    \end{pmatrix}
+\]
+\[
+    E(X_1|X_2) = \rho\sigma_1\sigma_2 \cdot \frac{1}{\sigma_2^2} x_2 = \rho
+    \frac{\sigma_1}{\sigma_2} x_2
+\]
+Если $ E(\hat{x}_1) = \mu_1 \ E(\hat{x}_2) = \mu_2 $ 
+\[
+    E(\hat{X}_1, \hat{X}_2) = \rho \frac{\sigma_1}{\sigma_2} (x_2 - \mu_2) + 
+    \mu_1
+\]
+\[
+    \begin{pmatrix}
+    x_1\\
+    x_2\\
+    x_3\\
+    
+    \end{pmatrix}
+    \quad \Sigma = \begin{pmatrix}
+        1 & \rho_{12} & \rho_{13}\\
+    \rho_{12} & 1 & \rho_{23}\\
+    \rho_{13} & \rho_{23} & 1\\
+    
+    \end{pmatrix}
+\]
+\[
+    \Sigma_{12} = (\rho_{12}, \rho_{13})
+\]
+\[
+    \Sigma_{22}^{-1} = \frac{1}{1 - \rho_{23}^2} \begin{pmatrix}
+    1 & -\rho_{23}\\
+    -\rho_{23} & 1\\
+    
+    \end{pmatrix}
+\]
+\[
+    \Sigma_{12}\Sigma_{22}^{-1} = \left( \frac{\rho_{12}- \rho_{13} - \rho_{23}}{
+        1 - \rho_{23}^2} , \frac{\rho_{13} - \rho_{12}\rho_{23}}{1 - \rho_{23}^2} 
+        \right)
+\]
+\begin{equation}
+    E(X_1 | X_2) = \frac{\rho_{12}- \rho_{13} - \rho_{23}}{
+        1 - \rho_{23}^2} x_2 + \frac{\rho_{13} - \rho_{12}\rho_{23}}{1 - \rho_{23}^2}
+        x_3
+\end{equation}
+$ \mathbb{R}_{ij} $ - алг дополнение
+\[
+    \Sigma = \mathbb{R}
+\]
+\[
+    E(X_1 | X_2) = - \frac{\mathbb{R}_{12}}{\mathbb{R}_{11}} x_2 - 
+        \frac{\mathbb{R}_{13}}{\mathbb{R}_{11}} x_3
+\]
+\[
+    \mathbb{R} = \begin{pmatrix}
+        1 & \rho_{12} & \rho_{13}\\
+    \rho_{12} & 1 & \rho_{23}\\
+    \rho_{13} & \rho_{23} & 1\\
+    
+\end{pmatrix}
+\]
+\end{document}

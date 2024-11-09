@@ -1,0 +1,279 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{xfrac}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{Топология. Лекция}
+\author{whoo}
+\maketitle
+
+\begin{tcolorbox}
+    \underline{Th.5} $ ([a,b], \tau_0) $ компактен 
+
+    \underline{Proof} Let $ [a,b] = \bigcup_{\alpha \in A} U_{\alpha}, \ 
+    U_{\alpha} \in \tau_{0[a,b]}$\\
+    Let $ X = \{ x \in (a, b] \ | \ [a,x] \text{ покрыв конечным числом } U_\alpha \} $ \\
+    1. $ X \neq \varnothing $. Let $ a \in U_{\alpha_1} $  
+    \[
+        \implies \exists [a,a+\epsilon) \subset U_{\alpha_1} \implies 
+        [a, a + \frac{\epsilon}{2}] \subset U_{\alpha_1}, \ a + \frac{\epsilon}{2} \in X 
+    \]
+    2. Let $ v = \sup X $. Докажем, что $ v \in X $\\
+    Let $ V \subset U_{\beta} $
+    \[
+        \implies \exists \ \epsilon \ | \ (v - \epsilon, v + \epsilon) \subset
+        U_\beta
+    \]
+    \[
+        c \in (v - \epsilon, v + \epsilon) \cap X
+    \]
+    \[
+        [a,c] \subset U_{\alpha_1} cup \dots \cup U_{\alpha_n}
+    \]
+    \[
+        [a,v] \subset U_{\alpha_1} cup \dots \cup U_{\alpha_n} cup U_\beta
+    \]
+
+    Докажем, что $ v = b $ 
+    \[
+        \text{Let } v < b
+    \]
+    \[
+        v \in U_\beta \implies v \in (v - \epsilon, v + \epsilon) \implies
+        [a, v + \frac{\epsilon}{2}] = U_{\alpha_1} \cup \dots \cap U_{\alpha_n} cup U_\beta
+    \]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th6} Компактное подмн-во в Хауздорфовом пр-ве замкнуто
+
+\underline{Proof} $ (X, \tau) \in T_2 $\\
+А - комп подмн-во.\\
+Докажем, что $ CA \in \tau $ 
+\[
+    \forall p \in CA, \ \forall \, x \in A \implies \exists \, U_p, U_x \ | \ 
+    U_p \cap U_x = \varnothing
+\]
+\end{tcolorbox}
+
+\begin{figure}[!ht]
+    \centering
+    \incfig{pic1}
+    \caption{pic1}
+    \label{fig:pic1}
+\end{figure}
+\begin{tcolorbox}
+    См. pic1
+\[
+    \forall x \in A \ U_p^{x} \ | \ U_{p}^{x} \cap U_x = \varnothing
+\]
+\[
+    \exists \text{ Конечное подпокр А окр-тями }U_{x_1}, \dots U_{x_n}
+\]
+\[
+    U_p = U_p^{x_1} \cap \dots \cap U_{p}^{x_n}
+\]
+
+Проверим, что $ U_p \subset CA $ 
+\[
+    U_p \cap (\underbrace{U_{x_1}\cup \dots \cup U_{x_n}}) = 
+    (U_p \cap U_{x_1}) \cup (U_p \cap U_{x_n}) = \varnothing
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th7} непрерывный образ комп пр-ва компактен
+
+\underline{Proof} $ f: (X,\tau) \to (Y, \omega) $ - непр отображение, f - сюрьекция 
+
+Let $ V_{\alpha, \alpha \in A} $ - открытое покрытие Y
+\[
+    f^{-1}(V_\alpha) \in \tau
+\]
+\[
+    f^{-1}(V_\alpha) \text{ - покрытие X}
+\]
+\[
+    \exists \text{ конечное подпокрытие X мн-вами} \ f^{-1}(V_{\alpha_1}), \dots
+    , f^{-1}(V_{\alpha_k})
+\]
+\[
+    \implies V_{\alpha_1}, \dots, V_{\alpha_k} \text{ - конечное подпокр Y}
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.8} Произведение двух компактных пр-в компактно
+
+\underline{Proof} Let $ (X, \tau), \ (Y, \omega) $ 
+\[
+    \forall Z \in \tau \times \omega
+\]
+\[
+    \forall(x,y) \in Z \implies \exists U_\alpha \in \tau, \ V_i \in \omega \ | \ 
+    (x,y) \in U_\alpha \times V_i \subset Z, \ U_\alpha \text{ - элемент базы }\tau
+    \ \alpha \in A
+\]
+\[
+    V_i \text{ - эл-т базы }\omega, \ i \in I
+\]
+
+Достаточно проверить, что из любого покрытия $ X \times Y $ множествами вида 
+$ U_\alpha \times V_i $ можно выбрать конечное подпокрытие\\
+Фиксируем $ x_0 \in X $. $ \{ x_0 \} \times Y $ \\
+Let $ f: (Y, \omega) \to \{x_0 \} \times Y: Y \to (x_0, Y) $ \\
+Тогда f непрерывна
+
+Тогда по Th 7:
+\[
+    \{ x_0 \} \times Y \text{ - компактно}
+\]
+
+Выберем конечное подпокрытие множества $ \{ x_0 \} \times Y $ множествами
+$ U_{\alpha_1} \times V_{i_1}, \dots, U_{\alpha_n}\times V_{i_n} $ 
+\[
+    U_{x_0} = U_{\alpha_1} \cap \dots \cap U_{\alpha_n} \text{ - окр-ть т. } x_0
+    \implies  U_{\alpha_1} \times V_{i_1}, \dots, U_{\alpha_n}\times V_{i_n} 
+    \text{ образуют конечное покрытие } U_{x_0} \times Y
+\]
+\[
+    \forall \, x \in X \text{ построим аналогично } U_x \text{ и конечное подпокрытие }
+    U_x \times Y
+\]
+\[
+    X \times Y = \bigcup_{x \in X} U_x \times Y \implies \text{из компактности X}
+    \implies \exists \text{ конечное подпокрытие } X \times Y
+\]
+
+\underline{Сл1} $ I^{n} = [a,b] \times \dots \times [a_n, b_n] \subset (R^{n}, \tau_0) $ 
+- компактен
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Def} Подмножество в $ \mathbb{R}^{n} $ называется ограниченным, если
+$ \exists \ I^{n} $, содержащий это мн-во
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.9} (Критерий компактности в $ (\mathbb{R}^{n}, \tau_0) $)\\
+Множество в $ \mathbb{R}^{n} $ компактно $ \iff $ оно замкнуто и ограничено
+
+\underline{Proof} 1. $ \impliedby: $ А замкнуто и ограничено
+\[
+    \implies \exists \, I^{n} \supset A
+\]
+\[
+    \text{В пр-ве } (I^{n}, \tau_{I^{n}}) \text{ А замкнуто, т.к. } A = A \cap I^{n}
+    \stackrel{\text{Th.2}}{\implies} \text{ A компактно}
+\]
+
+2. $ \implies: $ А компактно
+\[
+    U_n = \underbrace{(-m, m) \times \dots \times (-m, m)}_{n} \quad m \in \mathbb{N}
+\]
+$ U_m $ - покрытие A. Тогда:
+\[
+    \exists \text{ конечное подпокрытие }
+\]
+\[
+    \text{Let } m_0 = \max_{i = \overline{1,k}} \{ m_i \}
+\]
+\[
+    U_{m_i}, \ i = \overline{1, k} \text{ - образует конечное подпокрытие}
+\]
+\[
+    A \subset [-m_0, m_0] \times \dots \times [-m_0, m_0] \implies \text{A огр}
+\]
+\[
+    A \subset I^{n}, \ \text{A компактно}
+\]
+\[
+    (I^{n}, \ \tau_{0, I^{n}}) \in T_2 \implies \text{A замкнуто}
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Def} Отображение одного т.п. в другое называется открытым(замкнутым),
+если образ каждого отрытого(замкнутого) множества открыт(замкнут)
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.10} Непрерывное отображение компактного простванства в Хауздорфово
+пр-во замкнуто
+
+\underline{Proof} $ f: (X,\tau) \to (Y, \omega) $\\ 
+Let F замкнуто в $ (X, \tau) $  
+\[
+    \stackrel{\text{Th.2}}{\implies} \text{F компактно}
+\]
+\[
+    f(F) \text{ компактно} \stackrel{Th.6}{\implies} f(F) \text{ замкнуто}
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.11} Непрерыное биективное отображение $ f: (X,\tau) \to (Y, \omega) $ 
+компактного пр-ва в Хауздорфово пр-во гомеоморфизм
+
+\underline{Proof} Достаточно доказать, что $ f^{-1} $ непрерывно\\
+Let $ f^{-1} = g $. $ g: (Y, \omega) \to (X,\tau) $  
+\[
+    \forall \, F \text{ замкнутое в } \tau
+\]
+\[
+    g^{-1}(F) = (f^{-1})^{-1}(F) = f(F) \implies f(F) \text{ замкнуто}
+\]
+\end{tcolorbox}
+
+\section*{\centering \S 8. Фактор-топология}
+
+\begin{tcolorbox}
+\underline{Def} Let X мн-во на котором задано отношение эквив. S\\
+Обозначим $ \sfrac{X}{S} $  - мн-во классов эквивалентности\\
+Отображение $ \pi: X \to \sfrac{X}{S}: x \mapsto [x] $ - каноническая проекция
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Def} Let $ (X,\tau) $ - т.п. и S - отношение экв. на X.\\
+Фактор-топологией $ \sfrac{X}{S} $ называется семейство $ \tau_S $ опред. условием:\\
+$ A \in \tau_S \iff \pi^{-1}(A) \in \tau $ 
+\end{tcolorbox}
+
+\underline{Example} Пусть на $ (\mathbb{R}, \tau_0) $ задано отношение экв-ти:
+    $ x \sim y \iff $ \begin{align*}
+    \left[
+    \begin{array}{ll}
+        x > 0, y > 0 \\
+        x < 0, y < 0
+    \end{array}
+    \right .
+    \end{align*}
+
+\[
+    \sfrac{\mathbb{R}}{S} = \{ +1, -1, 0 \}  
+\]
+\[
+    \tau_S = \{ \varnothing, \sfrac{\mathbb{R}}{S}
+\]
+\end{document}
