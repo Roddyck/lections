@@ -1,0 +1,166 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{Алгебра. Лекция}
+\author{AAAAAAAA}
+\maketitle
+
+$ \mathcal{A} $ - алгебра над полем К
+
+\underline{Example} 1) $ \mathbb{R}_{\mathbb{Q}} $ - алгебра с делением\\
+2) $ \mathbb{C}_{\mathbb{R}} $ - двумерная алгебра с делением над $ \mathbb{R} $ \\
+3) $ K \subset L \implies L $ - алгебра с делением над К
+
+\section*{\centering Алгебра кватернионов}
+\[
+    \mathbb{H} = <i, j \ | \ i^2 = j^2 = -1, \ ij = -ji >
+\]
+Как векторное пр-во над $ \mathbb{R} $ с базисом $ \{ 1, i, j, k \}, \ k = ij \implies
+\forall \, q \in \mathbb{H}: q = a + bi + cj + dk, \ a,b,c,d \in \mathbb{R}$ 
+
+\begin{equation*}
+    \begin{aligned}
+        1 &\quad i &\quad j &\quad k\\
+        1 &\quad i &\quad j &\quad k \\
+        i &\quad -1 &\quad k &\quad -j \\
+        j &\quad -k &\quad -1 &\quad i \\
+        k &\quad j &\quad -i &\quad -1
+    \end{aligned}
+\end{equation*}
+\[
+    \overline{q} = a - bi - cj - dk \text{ - сопряженный}
+\]
+\[
+    \overline{q_1 + q_2} = \overline{q_1} + \overline{q_2}
+\]
+\[
+    \overline{q_1q_2} = \overline{q_2} \overline{q_1} \text{ - проверим на базисе}
+\]
+\[
+    \overline{ij} = \overline{k} = -k
+\]
+\[
+    \overline{j}\cdot \overline{i} = (-j)(-i) = ji = -k
+\]
+\[
+    \overline{ik} = \overline{-j} = j
+\]
+\[
+    \overline{k}\cdot\overline{i} = (-k)(-i) = ki = j
+\]
+\[
+    \overline{jk} = \overline{i} = -i
+\]
+\[
+    \overline{k} \cdot \overline{j} = kj = -i
+\]
+\[
+    q = a + bi + cj+ dk \neq 0 \iff (a,b,c,d) \neq (0,0,0,0)
+\]
+\[
+    q \overline{q} = (a + bi + cj + dk)(a - bi - cj - dk) = a^2 - abi - acj -
+    adk + abi + b^2 - bck + bdj + acj + bck + c^2 - cdi + adk - dbj + cdi + d^2
+\]
+\[
+    = a^2 + b^2 + c^2 + d^2 = N(q) -\text{ норма}
+\]
+\[
+    q \overline{q} = N(q) \ | \ : N(q) \implies q \left(\frac{\overline{q}}{N(q)} 
+    \right) = 1 \implies q^{-1} = \frac{\overline{q}}{N(q)} \implies
+    \mathbb{H} \text{ - алгебра с делением }
+\]
+\[
+    N(q_1 q_2) = N(q_1) N(q_2)
+\]
+\[
+    N(q_1 q_2) = q_1 q_2 \overline{q_1q_2} = q_1 q_2 \overline{q_2} \cdot \overline{q_1}
+    = q_1 N
+\]
+
+\begin{tcolorbox}
+    \underline{Th} $ \mathcal{A} $ - к/мер алгебра над К\\
+    1) $ \forall a \in \mathcal{A} $ алгебраичен над К. В частности, существует
+    $ \mu_a(x) in K[x] $ - min мн-н\\
+    2) $ a \in \mathcal{A} \text{ обратим } \iff \mu_a(0) \neq 0 $ \\
+    3) если А - без делителей нуля $ \implies A $ - алгебра с делением
+
+    \underline{Proof} 1) $ \dim_k A = n < \infty \implies 1, a, a^2, \dots a^{n} $ 
+    - лз над К $ \implies \exists $ не все равные нулю $ k_0, \dots k_n \in K | \
+    \ k_0 + \dots k_n a^{n} = 0 \implies a $ - корень $ f(x) = k_0 + \dots + k_n x^{n}
+    \in K[x] \implies a $ алгеб-н над К
+
+    2) $ \implies: $ 
+    \[
+        \mu_a(x) = k_1 + k_2 x + \dots + k_m x^{m} \in K[x].
+    \]
+    Допустим противное: $ \mu_a(0) = 0 \iff k_1 = 0 $ 
+    \[
+        \mu_a(a) = k_2 a + \dots + k_m a^{m} = 0 \implies a(k_2 + \dots + 
+        k_m a^{m-1}) = 0 \ | \ \cdot a^{-1}
+    \]
+    \[
+        \implies k_2 + \dots + k_m a^{m-1} = 0 \implies g(a) = 0, \text{ где }
+        g(x) = k_2 + \dots k_m x^{m-1} \in K[x], \ \deg g(x) < \deg \mu_a (x)
+    \]
+
+    $ \impliedby \ \mu_a \neq 0 \iff k_1 \neq 0$ 
+    \[
+        k_1 + k_2a + \dots + k_m a^{m} = 0 \implies
+        k_2 a + \dots k_m a^{m} = - k_1 \ | \ \cdot(-k_1)^{-1}
+    \]
+    \[
+        a \cdot [(k_2 + \dots k_m a^{m-1}) \cdot (-k_1)^{-1}] = 1
+    \]
+
+    3) доказано 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th} (Фробениус, 1877)\\
+Существует точно 3 ассоциативные конечномерные алгебры с делением над $ \mathbb{R}:
+\mathbb{R}, \ \mathbb{C} $ и $ \mathbb{H} $ 
+
+\underline{Proof} Let A - конечномерная ассоциативная алгебра с делением над 
+$ \mathbb{R} $. Определим вид её элементов
+\[
+    \forall a \in A \text{ - алгебраичен над } \mathbb{R}, \text{ let }
+    \mu_a(x) \in \mathbb{R}[x] \text{ - мин мн-н - неприводим над } \mathbb{R}
+\]
+\[
+    \implies \mu_a(x) = x - a \lor \mu_a(x) = x^2 - 2 \alpha x + \beta, \ 
+    D = 4 \alpha^2 - 4 \beta = 4(\alpha^2 - \beta) < 0
+\]
+\[
+    b \stackrel{\text{df}}{=} a - \alpha
+\]
+\[
+    \mu_a(a) = a^2 - 2 \alpha a + \alpha^2 - \alpha^2 + \beta = (a - \alpha)^2
+    + (\beta - \alpha^2) = 0 \implies b^2 = \alpha^2 - \beta < 0
+\]
+Две возможности для $ a \in A $\\
+1) $ a \in \mathbb{R} $ \\
+2) $ a = \alpha + b $, где $ \alpha \in \mathbb{R}, \ b^2 < 0 $ 
+\end{tcolorbox}
+\end{document}

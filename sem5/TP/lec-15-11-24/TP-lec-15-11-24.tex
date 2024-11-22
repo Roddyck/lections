@@ -1,0 +1,59 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{ТВиМС. Лекция}
+\author{Похмелье}
+\maketitle
+\[
+    X = \begin{pmatrix}
+    X_1 \\
+    X_2
+    
+   \end{pmatrix}
+\]
+Матрица корреляции
+\[
+    \Sigma = \begin{pmatrix}
+    \Sigma_{11} & \Sigma_{12} \\
+    \Sigma_{21} & \Sigma_{22}\\
+    
+    \end{pmatrix}
+\]
+\[
+    E(X_1) = 0 \quad E(X_2)
+\]
+\[
+    E(X_1|X_2) = \Sigma_{12}\Sigma_{22}^{-1}X_2
+\]
+
+\[
+    X_{ij} \in N(\mu_{ij}, \sigma^2)
+\]
+Плотность распределения
+\[
+    f(x) = \frac{1}{\sqrt{2\pi \sigma^2}} e^{\frac{-(x-\mu_{i})^2}{2 \sigma^2}}
+\]
+
+\end{document}

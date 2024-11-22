@@ -1,0 +1,111 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{КиМ. Лекция}
+\author{Dead guy}
+\maketitle
+
+\begin{tcolorbox}
+\underline{def} Кольцо R наз-ся полупервичным, если оно не содержит ненулевых
+нильпотентных идеалов ($ \nexists \ 0 \neq I \lhd R \ | \ I^{n} = 0) $ 
+\end{tcolorbox}
+
+\underline{Note} В полупервичном кольцо нет ненулевых нильпотентных правых идеалов\\
+если $ J^{n} = 0 $ для нек-го $ 0 \neq J $ - правый идеал, то $ 0 \neq RJR \lhd R $ \\
+$ RJR = I, \ I^{n+1} = RJR \cdot RJR \dots \cdot RJR \subset J^{n} = 0 $ 
+
+\begin{tcolorbox}
+\underline{Def} Кольцо R называется классически полупростым справа, если оно полупервично
+и артиново справа
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th} Для кольца R эквивалентно:\\
+1) $ \forall \ R  $ - модуль вполне приводим\\
+2) $ R_R $ - вп. пирводим\\
+3) R - классически п/пр
+
+\underline{Proof} $ 1) \implies 2) $ Ясно
+
+$ 2) \implies 1)  \ R_R $ - вп. приводим $ \iff R_R = $ прямая сумма простых модулей \\
+любой свободный R - модуль $ F \cong \bigoplus R_R \implies F =  $ прямая сумма
+простых R - модулей $ \implies F $ - вп. приводим. Если М - R - модуль, то М - 
+эпиморфный образ некоторого свободного R - модуля F (доказывали)
+
+Ранее доказывали, что гомо образ вполне пирводимого модуля вполне приводим
+$ \implies M $ - вп. приводим
+
+$ 2) \implies 3) \ R_R  $ - вполне приводим $ \implies R_R = \bigoplus_{i \in I}
+M_i, $ где $ M_i $ - простые $ \implies 1 \in M_1 \oplus \dots \oplus M_n \implies
+1 \cdot R \subset (M_1 \oplus \dots \oplus M_n) R \subset M_1 \oplus \dots \oplus
+M_n \implies R = M_1 \oplus \dots \oplus M_n \implies R_R $ - артинов $\implies
+ R $ - артиново справа
+
+Пусть $ J \neq 0, \ J \lhd R \land J^{n} = 0. $ Т.к. $ R_R $ - вп. приводим,
+то $ R = J \oplus J' \iff J = eR \ e^2 = e \implies (eR)^{n} = 0 \implies e^{n}
+= e = 0$ 
+
+$ 3) \implies 2) $ Покажем, что любой правый идеал кольца R вполне приводим
+$ \iff \forall  $ правый идеал $ =  $ прямая сумма $
+\underbrace{\text{минимальных правых идеалов}}_{\text{простые подмодули в} R_R} $\\
+Против: существует правые идеалы $ \neq \bigoplus $ min правых идеалов \\
+$ \implies \exists \ \min \text{ правый идеал J с этим св-вом}$ R - артиново справа
+$ \implies J  $ содержит мин идеал I $ \implies I^2 = 0 \lor I = eR \implies R =
+I \oplus I'$\\
+$ J = J \cap R \implies J \cap (I \oplus I') \stackrel{I \subset J}{=}
+I \oplus (J \cap I')$ \\
+$ J \cap I' \subsetneqq J \stackrel{\text{J - min}}{\implies} J \cap I' = 
+\oplus \min \text{ правых идеалов} \implies J = \oplus \min \text{ правых идеалов}$.
+Противоречие $ \implies \forall $ правый идеал - вп. приводим
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th} M, N - R - модули\\
+1) если $ M = \bigoplus_{i = 1}^{n} M_i $, то $ \hom_R (\bigoplus M_i, N) \cong
+\bigoplus \hom_R(M_i, N)$ \\
+2) если $ N = \bigoplus_{j = 1}^{m} N_j \implies \hom_R(M, \bigoplus N_j) \cong
+\bigoplus \hom_R(M, N_j)$ 
+
+\underline{Proof} 1) $ \forall \alpha \in \hom_R(\bigoplus M_i, N) $ определяет
+послед-ть $ (\alpha_1, \dots, \alpha_n) $, где $ \alpha_i = \alpha|_{M_i} $ \\
+Обратно, $ \forall $ посл-ть определяет $ \alpha $ 
+\[
+    \forall m = m_1 + \dots + m_n \in M
+\]
+\[
+    \alpha(m) = \alpha(m_1 + \dots + m_n) = \alpha(m_1) + \dots + \alpha(m_n) = 
+    \alpha_1(m_1) + \dots + \alpha_n(m_n)
+\]
+
+Значит, $ f: \hom_R(\bigoplus M_i, N) \to \bigoplus\hom_R(M_i, N): \alpha
+\mapsto (\alpha_1, \dots , \alpha_n)$ - биекция 
+\[
+    f(\alpha + \beta) = (\alpha_1 + \beta_1, \dots \alpha_n + \beta_n) = 
+    (\alpha_1, \dots, \alpha_n) + (\beta_1, \dots, \beta_n) = f(\alpha) + f(\beta)
+\]
+Т.о. f - изо-зм абелевых групп
+\end{tcolorbox}
+
+\end{document}

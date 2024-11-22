@@ -1,0 +1,193 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{Комплан. Лекция}
+\author{aaahhh}
+\maketitle
+
+\section*{\centering Интеграл типа Коши}
+
+C - спрямляем. кривая
+$ f(t) $ - непрерывна $ \forall t \in C $ 
+\begin{equation}
+    F(z) = \frac{1}{2 \pi i} \int_C \frac{f(t)}{t-z} dt \quad \forall z \in \mathbb{C}
+\end{equation}
+
+\begin{tcolorbox}
+\textbf{\underline{Th5}} $ F(z) $ - регулярна во всякой области G несодержащей точек кривой С
+и $ \forall z \in G $ имеет производные любого порядка причем эти производные находятся
+\begin{equation}
+    F^{(n)}(z) = \frac{n!}{2 \pi i} \int_C \frac{f(t)}{(t-z)^{n+1}} dt, \quad
+    n = 0, 1, 2 \dots
+\end{equation}
+
+\textbf{\underline{Proof}}
+\[
+    z \in G, \ h \neq 0
+\]
+\begin{equation}
+    \frac{F(z+h) - F(z)}{h} = \frac{1}{2 \pi i h} 
+    \int_C \left( \frac{1}{t - (z+h)} - \frac{1}{t-z} \right) f(t)dt =
+    \frac{1}{2 \pi i h} \int_C \frac{h f(t) dt}{(t - (z +h))(t-z)} 
+\end{equation}
+2d - наименьшее расстояние от z до точек С
+\end{tcolorbox}
+\begin{figure}[ht]
+    \centering
+    \incfig{picproof}
+    \caption{picproof}
+    \label{fig:picproof}
+\end{figure}
+\begin{tcolorbox}
+\[
+    |t-z| > 2d > d, \ |h| < d
+\]
+$ f(z) $ непр на С $ \implies |f(z)| \leq M = const $ 
+\[
+    \left| \frac{F(z+h) - F(z)}{h} - \frac{1}{2 \pi i} \int_C \frac{f(t)dt}{(t-z)^2} 
+    \right | = \frac{1}{2 \pi} \left| \int_C \frac{1}{t - (z+h)(t-z)} - \frac{1}{(t-z)^2} 
+    f(t)dt \right| = 
+\]
+\[
+    \frac{1}{2\pi} \left| \int_C \frac{f(t) \cdot h}{(t-z)^2(t - (z+h))} dt
+    \right| \leq \frac{1}{2\pi}  \frac{M \cdot |h|}{d^2 \cdot d} \cdot\mu
+    C \to 0
+\]
+\[
+    \implies \exists \lim_{h \to 0} \frac{F(z+h) - F(z)}{h} = F'(z)
+\]
+\begin{equation}
+    F'(z) = \frac{1!}{2 \pi i} \int_C \frac{f(t)dt}{(t-z)^2} 
+\end{equation}
+$ \forall z \in G \implies F(z) $ регулярна в G\\
+Аналогично
+\[
+    \exists F''(z) = (F'(z))' = \lim_{h \to 0} \frac{F'(z+h) - F'(z)}{h}
+    = \dots = \lim_{h \to 0} \frac{1!}{2 \pi i h} \int_C \frac{h(2(t-z) -)}{
+    (t-z)^2(t - (z+h))^2} f(t)dt = \frac{2!}{2\pi i} \int_C \frac{f(t)dt}{(t-z)^2} 
+\]
+
+Метод полной мат индукции $ \exists F^{(n)}(z) \ \forall n  $ и (2)
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\textbf{\underline{Th5*}} Пусть $ f(z) $ регулярна в области D. Тогда\\
+1) $ f(z) $ имеет в D производные любого порядка\\
+2) $ \forall z \in Int(L), \ L $ - произвольный замкнутый контур, такой что 
+$ \overline{Int(L)} \subset D $ справедливы интегральные представления:
+\[
+    f^{(n)}(z) = \frac{n!}{2\pi i} \oint_L \frac{f(t)}{(t-z)^{n+1}} dt
+\]
+
+\textbf{\underline{Proof}}
+\[
+    \forall z \in D \implies \exists \ L, \ \overline{I(L)} \subset D
+\]
+\[
+    f(z) = \frac{1}{2 \pi i} \oint_L \frac{f(t)dt}{t-z} \text{ - инт-л типа Коши}
+    \implies \text{Th.5}
+\]
+
+\textbf{\underline{След}} Любая производная аналитической в области D функции $ f(z) $ является
+функцией непрерывной
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\textbf{\underline{Th.6}} Действительная и мнимая части функции $ f(z) = u(x,y) + iv(x,y) $ 
+аналитической в области D имеют в этой области непрерывные частные производные
+любого порядка
+
+\textbf{\underline{Proof}}
+\[
+    f'(z) = u'_x + iv'_x = v'_y - iu'_y \text{ - непр в D}
+    \implies u,v \text{ имеют непрерывные частные производные 1-го порядка}
+\]
+\[
+    f''(z) \text{ непр, то } u, v \text{ имеют непр част произв 2-го порядка}
+\]
+
+\textbf{\underline{След}} Ф-ия $ u(x,y) $ - гармоническая в D имеет в этой области
+непрерывные частные производные любого порядка
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\textbf{\underline{Th Морера}} (обратная т-ме Коши)\\
+Let 1) $ f(z) $ непр в D\\
+2) $ \forall $ замкнутого контура L $ \oint_L f(z) dz = 0, \ \overline{I(L)} \subset D $ 
+
+Тогда $ f(z) \in H(D) $ 
+
+\textbf{\underline{Note}} Односвязность D не требуется
+\end{tcolorbox}
+
+\section*{\centering Неравенства Коши для производный аналитический функций}
+\[
+    f(z) \in H(D), \quad z_0 \in D
+\]
+\[
+    \gamma_r: \ |z - z_0| = r \quad \overline{I(\gamma_r)} \subset D
+\]
+\[
+    f^{(n)}(z_0) = \frac{n!}{2 \pi i} \oint_{\gamma_r} \frac{f(z)dz}{(z-z_0)^{n+1}} 
+\]
+\[
+    M(r) = \max_{z \in \gamma_r} |f(t)|
+\]
+\[
+    \forall z \in \gamma_r \quad |f(z)| \leq M(r)
+\]
+Оценим интеграл по модулю:
+\[
+    |f^{n}(z_0)| \leq \frac{n!}{2\pi} \oint_{\gamma_r} \frac{M(r)}{|z-z_0|^{n+1}} dz
+    = \frac{n! M(r)}{2 \pi r^{n+1}} \text{ дл } \gamma_r
+\]
+Неравенство Коши для производных аналит. ф-ий
+\[
+    |f^{(n)}(z_0)| \leq \frac{n!M(r)}{r^{n}}, \ n = 0, 1, 2, \dots
+\]
+
+\begin{tcolorbox}
+\textbf{\underline{Th}}(Луивилля) Если функция $ f(z) $ - целая и ограниченная,
+то $ f(z) \equiv const $ 
+
+\textbf{\underline{След.1}} Если $ f(z) $ - целая и не является постоянной, то она
+неограниченная
+
+\textbf{\underline{След.2}} Если $ f(z) $ - целая и $ |f(z)| \leq M \cdot |z|^{\mu}
+\quad \mu \geq 0 \quad \forall |z| > r_0 \implies f(z) $ - многочлен степени
+$ m \leq [\mu] $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\textbf{\underline{Основая теорема высшей алгебры}}
+\[
+    P(z) = a_0 \cdot z ^{n} + a_1 \cdot z^{n-1} + \dots + a_{n}, \ a_0 \neq 0, \
+    n \geq 1 \text{ - имеет по крайней мере 1 комплексный корень}
+\]
+
+\textbf{\underline{След}} Всякий многочлен P(z) степени $ n \geq 1 $ имеет
+ровно n корней с учётом кратности
+\end{tcolorbox}
+\end{document}

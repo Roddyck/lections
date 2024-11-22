@@ -1,0 +1,223 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{Комплан. Лекция}
+\author{what am i?}
+\maketitle
+
+\begin{tcolorbox}
+\textbf{\underline{Th}} (Коши) 
+\[
+    \int_{L} f(z) dz = 0
+\]
+\[
+    \int_{\Gamma_0} f(z) dz + \int_{\Gamma_1^{-}} f(z) dz  + \dots + 
+    \int_{\Gamma_n^{-}} f(z) dz 
+\]
+\[
+    \int_{\Gamma_0} f(z) dz = \int_{\Gamma_1} f(z) dz  + \dots + 
+    \int_{\Gamma_n} f(z) dz 
+\]
+
+\textbf{\underline{Proof}}\\
+Из многосвязной области сделаем односвязную. Проведём разрезы $ l_k = l_k[a_k, b_k] $ 
+$ a_k \in \Gamma_k, \ b_k \in \Gamma_0 $ 
+\[
+    \Gamma = \Gamma_0 \cup \Gamma_1^{-} \cup \dots \cup \Gamma_n^{-} \cup
+    \sum_{k=1}^{n} l_k \cup \sum_{k=1}^{n} l_k^{-}
+\]
+
+Попали в условия теоремы Коши для односвязной области
+\[
+    \int_{\Gamma_0} + \int_{\Gamma_1^{-}} + \dots + \int_{\Gamma_n^{-}} + 
+    \sum_{k=1}^{n} \int_{l_k} + \sum_{k=1}^{n} \int_{l_k^{-}} = 0 
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\textbf{\underline{Частный случай}}\\ 
+\textbf{\underline{Th}} (О деформации контура) Пусть функция $ f(z) $ регулярна в области 
+D ограниченной контурами $ \Gamma_0, \ \Gamma_1 $ 
+\[
+    \int_{\Gamma_0}f(z) dz = \int_{\Gamma_1} f(z) dz
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\textbf{\underline{Th.4}} (Интегральная формула Коши для односвязной области)\\
+Если функция f(z) регулярна в односвязной области D, какой бы не был замкнутый контур
+$ L \subset D $, $ \forall z \in Int L $,
+\begin{equation}
+    f(z) = \frac{1}{2\pi i} \oint \frac{f(t)dt}
+    {t - z} \quad t \in L, \ z \in Int L
+    \label{eq:1}
+\end{equation}
+
+\textbf{\underline{Proof}}\\
+Фиксируем $ z \in Int L $ 
+\[
+    \gamma_\rho: \ |t-z| = \rho
+\]
+Построим ф-ию:
+\[
+    \phi(t) = \frac{f(t)}{t-z}
+\]
+Она регулярна в области D за исключением точки $ t=z $\\
+По частному случаю:
+\begin{equation}
+    \frac{1}{2\pi i} \oint_L \frac{f(t)dt}{t-z} = \frac{1}{2\pi i} \oint_{\gamma_\rho}
+    \frac{f(t)dt}{t-z} 
+\end{equation}
+Покажем, что
+\begin{equation}
+    \lim_{\rho \to 0} \oint_{\gamma_\rho} \frac{f(t)dt}{t-z} = f(z)
+\end{equation}
+\[
+    \int_{\gamma_\rho} \frac{1}{t-z} dt = 2\pi i \ | \cdot \frac{f(z)}{2\pi i} 
+\]
+\[
+    \frac{1}{2\pi i} \int_{\gamma_\rho} \frac{f(z)}{t-z} dt = f(z)
+\]
+\[
+    \left|\frac{1}{2\pi i} \int_{\gamma_\rho} \frac{f(z)}{t-z} - f(z) \right| <
+    \left| \frac{1}{2\pi i} \oint_{\gamma_\rho} \frac{f(t) - f(z)}{t-z} dt
+    \right|
+    \leq \frac{1}{2\pi} \int \frac{|f(t) - f(z)|}{|t-z|} dt
+    < \frac{\epsilon}{2\pi} \int_{\gamma_\rho}\frac{dt}{|t-z|} = \frac{\epsilon}
+    {2\pi} |2\pi| = \epsilon
+\]
+f(t) непрерывна в $ t = z \implies \forall \epsilon \ \exists \delta \ 
+\rho = |t-z| < \delta \implies |f(t) - f(z)| < \epsilon$  \\ 
+Интеграл F(z) в формуле $ (\ref{eq:1}) $ называют интеграл Коши \\
+$\frac{1}{t-z} \text{ - ядро интеграла Коши}$ 
+\[
+    F(z) = \frac{1}{2\pi i} \oint \frac{f(t)dt}{t-z} = 
+    \begin{cases}
+        f(z), &\quad z \in Int(L)\\
+        0, &\quad z \in Ext(L)
+    \end{cases}
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\textbf{\underline{Th.5}} (Интегральная формула Коши для многосвязной области)\\
+Пусть $ f(z) \in H(D) $ D - ограниченая n+1 замкнутым контурами $ \Gamma_0,
+\Gamma_1, \dots, \Gamma_n$ \\
+Тогда $ \forall z \in Int(D) $ 
+\[
+    f(z) = \frac{1}{2\pi i} \int_L \frac{f(t)dt}{t-z} 
+\]
+\[
+    L \equiv \partial \overline{D} = \Gamma_0 \cup \Gamma_1^{-} \cup \dots \cup
+    \Gamma_n^{-}
+\]
+
+\textbf{\underline{Proof}}
+\[
+    \gamma_{\rho}: \ |t-z| = \rho
+\]
+\[
+    \overline{Int(\gamma_{\rho})} \subset D
+\]
+Получим n+2 связную область. Граница $ L \cup \gamma_\rho^{-} $ 
+\[
+    \phi(t) = \frac{f(t)}{t-z} \text{ регулярная в (n+2) связной области}
+\]
+\[
+    \int_{L \cup \gamma_\rho^{-}} \phi(t) = 0
+\]
+\[
+    \int_L \frac{f(t)}{t-z} dt = \int_{\gamma_\rho} \frac{f(t)}{t-z} dt
+\]
+\[
+    \frac{1}{2\pi i} \int_L \frac{f(t)}{t-z} dt = \frac{1}{2\pi i}
+    \int_{\gamma_\rho} \frac{f(t)}{t-z} dt = f(z)
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\textbf{\underline{Note}} Интегральную формулу Коши можно переписать в виде
+\[
+    \oint_L \frac{f(z)}{z-z_0} = 2\pi i \cdot f(z_0)
+\]
+\[
+    z \in L \quad z_0 \in Int(L) 
+\]
+\[
+    f(z) \in H(\overline{Int(L)})
+\]
+\end{tcolorbox}
+
+\textbf{\underline{Example}}
+\[
+    \oint_L \frac{e^{z}}{z(z-2i)} dz
+\]
+1) $ L \equiv \Gamma_1 $ 
+\[
+    \oint\frac{e^{z}}{z(z-2i)} dz = 0
+\]
+\[
+    z = 0 \notin Int \Gamma_1
+\]
+\[
+    z = 2\pi \notin Int \Gamma_1
+\]
+2) $ L \equiv \Gamma_2  $ Охватывает $ z = 0 $ 
+\[
+    z = 2i \notin Int \Gamma_1
+\]
+\[
+    z = 0 \in Int \Gamma_1
+\]
+\[
+    \oint \frac{e^{t}}{z(z-2i)} dz = \oint \frac{\frac{e^{z}}{z - 2i} }{z} =
+    2\pi i \cdot f(z)|_{z = z_0} = 2\pi i \frac{e^{z}}{z-2i} |_{z=0} = -\pi
+\]
+\[
+    \frac{e^{z}}{z - 2i} \text{ - аналит в } Int \Gamma_1
+\]
+\[
+    f(z) = \frac{e^{z}}{z - 2i} 
+\]
+\[
+    z_0 = 0
+\]
+3) Охватывает $ z = 2i $\\
+4) Охватывает обе\\
+Первый способ:
+\[
+    \frac{1}{z(z-2i)} = \frac{1}{2i} \left(\frac{}{z-2i} - \frac{1}{z} \right)
+\]
+\[
+    \oint_L \frac{e^{z}}{z(z-2i)} = \frac{1}{2i} \left( \oint_l \frac{e^{z}}{z - 2i} 
+        dz - \oint_L \frac{e^{z}}{z} dz \right)
+\]
+Второй способ:\\
+Делим область дважды проходимой кривой l
+\[
+    \int_{L_1=C_1 \cup l} + \int_{L_2 = C_2 \cup l^{-}}
+\]
+
+\end{document}

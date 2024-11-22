@@ -1,0 +1,144 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{УМФ. Лекция}
+\author{who de fq}
+\maketitle
+
+\section*{\centering Св-ва собственных зн-й и ф-й}
+\[
+    \frac{d}{dx} \left(p(x) \frac{d}{dx} X(x)\right) + (\lambda \rho(x) - q(x)) X(x) = 0
+\]
+\[
+    p(x) \geq p_0 > 0 \quad 0 \leq x \leq l
+\]
+\[
+    \rho(x) \geq \rho_0 > 0
+\]
+\[
+    q(x) \geq 0
+\]
+\[
+    \alpha X'(x)(0) - \beta X(0) = 0
+\]
+\[
+    \gamma X'(x)(l) - \delta X(l) = 0
+\]
+
+Каждому собсвенному значению соответствует только одна линейно независимая
+собственная ф-я
+
+\[
+    ||X_n(x)|| = \{ \int_{0}^{l} \rho X_n^2 dx = 1 \}
+\]
+\[
+    \int_{0}^{l} \rho X_n X_m dx = 0 \quad n \neq m
+\]
+\[
+    \frac{d}{dx} \left(p(x) \frac{d}{dx} X_n(x)\right) + (\lambda_n \rho(x) - q(x)) X_n(x) = 0
+\]
+\[
+    \frac{d}{dx} \left(\rho \frac{d}{dx} X_m\right) + (\lambda_m \rho - q) X_m = 0
+\]
+\[
+    X_n \frac{d}{dx} (pX'_n) - X_n \frac{d}{dx} (pX'_m) + X_n X_m \rho
+    (\lambda_n - \lambda_m) = 0
+\]
+\[
+    (\lambda_n - \lambda_m) \int_{0}^{l} \rho X_n X_m dx =
+    \int_{0}^{l} \left( X_n(pX'_m)' - X_m(pX_n')' \right) dx
+    = X_n p X_m' \big|_{0}^{l} - \int_{0}^{l} p X_m' X_n' dx 
+\]
+\[
+    - X_m p X_n' |_{0}^{l} + \int_{0}^{l} p X_m' X_n' dx
+\]
+\[
+    p(x) (X_n(x) X'_m(x) - X_m(x) X'_n(x)) \big|_{0}^{l}
+\]
+\[
+    p(l) \left(-\frac{\delta}{\gamma} X_n(l) X_m(l) + \frac{\delta}{\gamma} 
+    X_m(l) X_n(l) \right)
+\]
+\[
+    (\lambda_n - \lambda_m) \int_{0}^{l} \rho X_n X_m dx = 0
+\]
+\[
+    \sum \alpha_{k} X_k = 0 \ | \cdot X_n \rho, \ \int_{0}^{l}
+\]
+\[
+    \frac{d}{dx} \left(p(x) \frac{d}{dx} X_n(x)\right) + (\lambda \rho(x) - q(x)) X_n(x) = 0
+\]
+\[
+    \alpha X_n'(x)(0) - \beta X_n(0) = 0
+\]
+\[
+    \gamma X_n'(x)(l) - \delta X_n(l) = 0
+\]
+
+Умножим равенство на $ X_n $ и проинтегрируем от 0 до l
+\[
+    \int_{0}^{l} X_n \frac{d}{dx} (pX'_n) dx + \lambda_n \int_{0}^{l} \rho
+    X^2_n dx - \int_{0}^{l} q X^2_n dx = 0
+\]
+\[
+    \lambda_n = \int_{0}^{l} q X_n^2 dx - \int_{0}^{l} X_n \frac{d}{dx} (pX'_n) dx
+\]
+\[
+    = \int_{0}^{l} q X_n^2 dx - p X_n X_n' \big|_{0}^{l} + \int_{0}^{l} p
+    (X'_n)^2 dx
+\]
+\[
+    p(l) X_n(l) X'_n(l) - p(0) X_n(0)X_n'(0)
+\]
+\[
+    X_n'(l) = \frac{-\delta}{\gamma} X_n(l)
+\]
+\[
+    -p(l) \frac{\delta}{\gamma} (X_n(l))^2
+\]
+\[
+    f(x) \sim \sum_{n=1}^{\infty} f_n X_n(x)
+\]
+\[
+    f(x) = \sum_{n=1}^{\infty} f_n X_n(x) \ | \cdot X_k(x)
+\]
+\[
+    \int_{0}^{l} \rho f(x) X_k(x) dx = \sum_{n=1}^{\infty} f_n \int_{0}^{l} 
+    \rho X_n(x) X_k(x) dx \quad n = k
+\]
+
+Если собственные ф-ии нормированны:
+\[
+    f_n = \int_{0}^{l} \rho f X_n dx
+\]
+
+Если нет, то делим интеграл на $ ||X_n||^2 $ 
+\[
+    || \phi || = \max_{x \in [0, l]} | \phi(x) |
+\]
+\[
+    || \phi ||_{2} = \left( \int_{0}^{l} \rho \phi^2 dx \right)^{\frac{1}{2}}
+\]
+\end{document}
