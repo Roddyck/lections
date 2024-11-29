@@ -1,0 +1,99 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{ТВиМС. Лекция}
+\author{aaaaa fuck}
+\maketitle
+
+\section*{\centering Применение ТВ}
+Гуденко БВ, КТВ, 2005 с. 152-153
+
+\underline{Задача 1}
+
+n - станков\\
+$ L = (n-1)a $ \\
+Средняя длина пути?
+\[
+    \lambda_{i}^{(k)}  =
+    \begin{cases}
+        (k-i)a, \quad k \geq i\\
+        (i-k)a, \quad k < i
+    \end{cases}
+\]
+\[
+    E(\lambda | B_k) = \frac{a}{n} \left( \sum_{k=1}^{k} (k-i) + 
+    \sum_{j = k + 1}^{n} (j-k) \right) = \frac{a}{n} \left( \frac{(k-1)k}{2} 
+    + \frac{(n-k)(n-k+1)}{2} \right)
+\]
+\[
+    E(\lambda) = \sum_{k=1}^{n} E(\lambda | B_k) \cdot P(B_k) = 
+    \frac{a}{n^2} \left(\frac{1}{2} \sum_{k=1}^{n} (k^2 - k) + \frac{1}{2} \sum_{k=1}^{n}
+        (n - k)^2 + \frac{1}{2} \sum_{k=1}^{n} (n-k) \right)
+\]
+\[
+    \frac{1}{2} \sum_{k=1}^{n} k^2 = \frac{n(n+1)(2n+1)}{6} 
+\]
+\[
+    E(\lambda) - \frac{a (n^2 - 1)}{3n} = \frac{L(n+1)}{3n} = \frac{2}{3} 
+    \left(1 + \frac{1}{n}\right) \approx \frac{2}{3} 
+\]
+
+\underline{Задача 2}
+
+\[
+    d_2 > d_1
+\]
+\[
+    X \in N\left(\frac{d_1 + d_2}{2}, \alpha^2(d_2 - d_1)^2\right)
+\]
+Каким надо выбрать $ \alpha $, чтобы вероятность события $ P(d_1 < X < d_2) = 0.99 $ 
+
+\[
+     P(d_1 < X < d_2) = P\left(d_1  - \frac{d_1 + d_2}{2} < X - \frac{d_1 + d_2}{2}
+    d_2  - \frac{d_1 + d_2}{2}\right)
+\]
+\[
+     = P\left( -\frac{d_2 - d_1}{2} < X - \frac{d_1+d_2}{2}  
+    < \frac{d_2 - d_1}{2}\right) = P \left( \frac{-1}{2 \alpha} < 
+    \frac{X - \frac{d_1+d_2}{2} }{\alpha(d_2 - d_1} < \frac{1}{2 \alpha} \right)
+\]
+\[
+    \Phi(\frac{1}{2 \alpha} ) - 1 + \Phi(\frac{1}{2 \alpha} ) = 
+    2 \Phi(\frac{1}{2 \alpha} ) - 1 = p
+\]
+Вер. Брако (Драко втф)?????
+\[
+    1 - p = q = 2 - 2 \Phi\left(\frac{1}{2 \alpha} \right)
+\]
+
+б) Вер брака $ q = 0,02 $ 
+\[
+    2 - 2 \Phi \left( \frac{1}{2 \alpha} \right) = 0.02
+\]
+\[
+    \text{ И тут он стёр (ХУЙ, кто хуй? Ты?)}
+\]
+
+\end{document}

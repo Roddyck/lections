@@ -1,0 +1,228 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{Комплан. Лекция}
+\author{djakadfaldfa}
+\maketitle
+
+\section*{\centering Последовательности и ряды}
+\[
+    \{ z_n \}_{n=1}^{\infty}
+\]
+\[
+    z_n = \alpha_n + i \beta_n
+\]
+\[
+    z_1 + z_2 + \dots + z_n + \dots = \sum_{n=1}^{\infty} z_n 
+\]
+\[
+    \lim_{n \to \infty} z_n = 0
+\]
+\[
+    \sum_{n=1}^{\infty} z_n \text{ сходится}
+\]
+\[
+    S_n = z_1 + \dots + z_n
+\]
+\[
+    \exists \lim_{n \to \infty} S_N = S, \quad S = \sum_{n=1}^{\infty} z_n = 
+    S_n + r_n
+\]
+\[
+    r_n = \sum_{k = n + 1}^{\infty} z_k
+\]
+\[
+    \exists \lim_{n \to \infty} S_n = S \iff \exists \lim_{n \to \infty} \overline{\alpha}
+    = a \quad
+    \exists \lim_{n \to \infty} \overline{\beta} = b
+\]
+
+\[
+    \sum_{i=1}^{\infty} z_n \text{ сход} \iff \sum_{n=1}^{\infty} \alpha_n 
+    \text{ сход}, \ \sum_{n=1}^{\infty} \beta_n \text{ сход}
+\]
+
+\[
+    \sum_{i=1}^{\infty} z_n \text{ сход абс} \iff \sum_{n=1}^{\infty} |z_n| 
+    \text{ сход}
+\]
+
+\begin{tcolorbox}
+\underline{Пр Даламбера}
+\[
+    \exists \epsilon > 0 \ \exists N = N(\epsilon) > 0 \ \forall n > N \implies
+    |s_n - s| < \epsilon
+\]
+\end{tcolorbox}
+
+\[
+    \{ f_n(z) \}_{n = 1}^{\infty}, \ z \in E
+\]
+\begin{equation}
+    S(z) = \underbrace{f_1(z) + \dots + f_n(z)}_{S_n(z)} + f_{n+1}(z) + \dots
+    \label{eq:1}
+\end{equation}
+
+\begin{tcolorbox}
+    Область сходимости - множество $ E_1 \subset E $ всех точек z, при которых числ
+    ряд сходится
+\end{tcolorbox}
+\[
+    \forall z \in E_1 \ \exists \lim_{n \to \infty} S_n(z) = S(z)
+\]
+
+\begin{tcolorbox}
+    \underline{Def} Ряд $ \ref{eq:1} $ сходится равномерно на $ M \subset E_1 $, если:\\
+    1) $ \ref{eq:1} $ сходится $ \forall z \in M, \ S(z)$ - сумма ряда (1)\\
+    2)
+    \[
+        \forall \epsilon > 0 \ \exists N = N(\epsilon) \ \forall n > N(\epsilon)
+        \implies | S_n(z) - S(z) | = |r_n(z)| = | f_{n+1}(z) + \dots | < \epsilon
+    \]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Критерий Коши}
+\[
+    \forall z \in M \ \forall n > N(\epsilon) \ | f_{n+1}(z) + \dots + f_{n+p}(z)|
+    < \epsilon \ \forall p = 1, 2, \dots
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.1'} (Признак Вейерштрасса)\\
+Пусть члены ряда (1) $ \forall z \in M \ |f_n(z)| \leq u_n \ \forall n \geq n_0 $ 
+\[
+    \sum_{i=1}^{\infty} u_n \text{ сход. Тогда, ряд (1) на М сходится абс. и равномерно}
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.2'} (о непр)\\
+Если $ f_n(z) $ непрерывны на М, и ряд (1) на М сходится равномерно, то сумма
+$ S(z) $ ряда (1) непрерывна на М
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.3'} (о почленном интегрировании)\\
+Если $ f_n(z) $ непрерывны на спрямляемой кривой L, и ряд (1) на L сходится равномерно,
+то $ \int_{L} \left(\sum_{n=1}^{\infty} f_n(z)\right) dz = \sum_{n=1}^{\infty} 
+\int_L f_n(z)dz$ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.4'} Если над (1) сходится равномерно на М, то при умножении его на 
+ограниченную на М функцию $ \phi(z) $, полученный ряд также равномерно сходится на 
+М
+\end{tcolorbox}
+
+\section*{\centering Степенные ряды}
+\begin{tcolorbox}
+\begin{equation}
+    c_0 + c_1(z - z_0) + c_2 (z - z_0)^2 + \dots + c_n(z-z_0)^{n} + \dots = 
+    \sum_{n=0}^{\infty} c_n(z-z_0)^{n}
+\end{equation}
+Это степенной ряд, или ряд по степеням $ (z - z_0) $, или ряд по системе степеней
+
+$ z_0 $ - центр ряда
+
+В точке $ z = z_0 $ ряд (2) сходится
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th.5} Пусть для ряда (2) существует конечный или бесконечный предел
+\begin{equation}
+    \lim_{n \to \infty} \sqrt[n]{|c_n|} = A
+\end{equation}
+Или
+\begin{equation}
+    \lim_{n \to \infty} \left| \frac{c_{n+1}}{c_n} \right| = A
+\end{equation}
+И
+\[
+    R = \frac{1}{A} \text{ - радиус сходимости}
+\]
+Тогда, ряд (2) сходится в круге $ |z - z_0| < R $ и расходится в $ |z- z_0| > R $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Note} Если оба предела (3) и (4) существуют, то они равны
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th} (Коши-Адамара)\\
+Радиус сходимости ряда (2) определяется формулой
+\begin{equation}
+    R = \frac{1}{A}, \quad A = \overline{\lim_{n \to \infty} } \sqrt[n]{|c_n|} 
+\end{equation}
+
+\underline{Proof} 1) $ 0 < A < \infty $ 
+\[
+    \forall z = z_1 \quad |z_1 - z_0 | < \frac{1}{A} \text{ ряд (2) сходится, }
+    \forall z = z_2, \ |z_2 - z_0| > \frac{1}{A} \text{ расх } 
+\]
+
+2) $ A = 0 $\\
+$ R = \infty $, т.е. ряд (2) сходится в любой z
+
+3) $ A = \infty $ \\
+$ R = 0 $, т.е. ряд (2) расходится в $ \forall z \neq z_0 $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{equation}
+    c_0 + c_1 \cdot z + \dots + c_n \cdot z^{n} = \sum_{n=0}^{\infty} c_n z^{n}
+    \label{eq:2}
+\end{equation}
+
+\underline{1-ая Лемма Абеля} Если ряд $ (\ref{eq:2}) $ сход в т $ z_1 = 0 $, то
+он абсолютно сходится $ \forall z: \ |z| < | z_1 | $ 
+
+\underline{Proof}
+\[
+    \sum_{n=0}^{\infty} c_n \cdot z_1^{n}, \text{ сход } \implies c_n \cdot z_1^{n}
+    \xrightarrow[n \to \infty]{} 0 \implies | c_n \cdot z_1^{n} | \leq M
+\]
+\[
+    \left| c_n \cdot z^{n} \cdot \frac{z_1^{n}}{z_1^{n}} \right| = 
+    |c_n \cdot z_1^n | \cdot \left| \frac{z}{z_1} \right|^{n} \leq M \cdot q^{n}
+\]
+\[
+    \sum_{n=0}^{\infty} M q^{n} \text{ - геом ряд, сходится}
+\]
+
+$ (\ref{eq:2}) $ сходится абсолютно
+
+\underline{След} Если $ (\ref{eq:2}) $ расх в $ z_2 \implies $ он расх $ \forall |z|
+> |z_2|$ 
+
+Let $ \exists \ z_1 \neq 0 $, where $ (\ref{eq:2}) $ сход, $ z_2 $  , where $ (\ref{eq:2}) $ расх
+
+Тогда $ R = \sup \{ z_1 \} = \inf \{ z_2 \} $\\
+При $ |z| < R $ ряд расх, при $ |z| > R $ ряд расходится
+\end{tcolorbox}
+
+
+\end{document}

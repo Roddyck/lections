@@ -1,0 +1,152 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{xfrac}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{ОСА. Лекция}
+\author{he's an idiot}
+\maketitle
+
+\begin{tcolorbox}
+\underline{Proof} (continuation)
+
+Рассмотрим $ \mathcal{A}' = \{ u \in \mathcal{A} \ | \ u^2 \leq 0 \} $ - подпространство
+в $ \mathcal{A} $ 
+\[
+    W \leq V_k:
+\]
+\[
+    1)\  w_1 + w_2 \in W \quad \forall w_1, \ w_2 \in W
+\]
+\[
+    2) \ \forall \lambda \in K \ \forall w \in W: \ \lambda w \in W
+\]
+\[
+    2) \ \forall \lambda \mathbb{R}, \ \forall u \in \mathcal{A}' : \quad
+    (\lambda u)^2 = \lambda^2 \cdot u^2 \leq 0 \implies \lambda u \in \mathcal{A}
+\]
+\[
+    1) \ \forall \ u,v \in \mathcal{A}' \implies u + v \in \mathcal{A}' \, ?
+\]
+
+a) Пусть $ u = \lambda v $ for some $ \lambda \in \mathbb{R} $ 
+\[
+    (u + v)^2 = (\lambda v + v)^2 = (1 + \lambda)^2 v^2 \leq 0 \implies u + v \in
+    \mathcal{A}'
+\]
+
+б) $ u,v $ - лз $ \implies u = \alpha v + \beta $ 
+\[
+    u^2 = (\alpha v + \beta)^2 = \alpha v^2 + 2 \alpha \beta v + \beta^2 \in \mathbb{R}
+    \implies \alpha = 0 \lor \beta = 0
+\]
+
+в) $ u, v $ - лнз $ \rightarrow \{ 1, u, v \} $ - лнз; $ u + v \notin \mathbb{R},
+u - v \notin \mathbb{R}$\\
+$ \mathbb{R} \subset \mathcal{A} $ - конечное расширение $ \implies \mathbb{R} \subset 
+\mathcal{A} $ - алгебраическое $ \implies u + v, \ u - v $ - алгебраичны над $ \mathbb{R} $ 
+$ \implies \deg \mu_{u+v} = \deg \mu_{u-v} = 2 \implies (u+v)^2 = p(u+v) + q, \ 
+(u-v)^2 = r(u-v)+s$ 
+\[
+    (u + v)^2 = u^2 + uv + vu + v^2 = p(u+v) + q
+\]
+\[
+    (u - v)^2 = u^2 - uv - vu + v^2 = r(u-v) + s
+\]
+\[
+    (p+r)u + (p-r)v + 2u^2 + 2v^2 - q - s) = 0 \text{ - лин комбинация } \{ 1, u, v \}
+\]
+\[
+    \begin{cases}
+        p + r = 0\\
+        p - r = 0
+    \end{cases}
+    \implies p = r = 0 \implies (u+v)^2 = q \in \mathbb{R} \implies q \leq 0 \implies
+    u + v \in \mathcal{A}
+\]
+\[
+    \forall u \in \mathcal{A}': \ u^2 = -q(u) \leq 0, \text{ where } q(u) \geq 0
+\]
+
+Рассмотрим $ \forall u,v \in \mathcal{A}': f(u,v) = q(u+v) - q(u) - q(v) = 
+-(u+v)^2 + u^2 + v^2 = -u^2 - uv -vu - v^2 + u^2 + v^2 $ 
+\[
+    f(u,v) = -(uv + vu)
+\]
+
+$ f(u,v) $ - скалярное произведение на $ \mathcal{A}': $ \\
+1) $ f(\lambda u, v) = - (\lambda uv + v \lambda u) = \lambda \cdot (-(vu+uv)) =
+\lambda f(u,v)$\\
+2) $ f(u+w, v) = -((u+w)v + v(u+w)) = -(uv + wv + vu +vw) = -(uv+vu) -(wv + vw) =
+f(u,v) + f(w,v)$ \\
+3) $ f(u,v) = f(v,u) $ \\
+4) $ f(u,u) = -(u^2 + u^2) = -2 u^2 \geq 0 $ 
+
+Первый случай $ [\mathbb{R}_{\mathbb{R}}: \mathbb{R}_{\mathbb{R}}] = 1 \implies
+ \mathcal{A} = \mathbb{R} $ 
+
+Второй случай $ \mathcal{A}' \neq \{ 0 \} \implies \exists u \in \mathcal{A}': 
+\ u^2 = -r < 0, \text{ где } r > 0 \implies \frac{u^2}{r} = -1 \implies 
+\left( \frac{u}{\sqrt{r} } \right)^2 = -1 \implies i^2 = -1$ 
+
+Если $ \mathcal{A}' = \mathbb{R} \cdot i \implies \mathcal{A} = \mathbb{C} $ 
+
+Третий случай $ \mathbb{R} \cdot i \subsetneqq \mathcal{A}' \implies \mathcal{A}' = \mathbb{R} i
+\oplus \mathbb{R}_{i}^{\perp}$, пусть $ j \in \mathbb{R}_{i}^{\perp} \land j^2 = -1$  
+\[
+    0 = f(i,j) = -(ij + ji) \implies ij = -ij
+\]
+Обозначим $ ij = k $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\[
+    f(k,i) = -(ki + ik) = -(iji + iij) = -(-i^2 j + i^2 j) = 0 \implies
+    k \perp i
+\]
+\[
+    f(k,j) = -(kj + jk) = - (ijj + jij) = -(ij^2 - ij^2) = 0 \implies k \perp j
+\]
+\[
+    \implies \{ 1, i, j, k \} \text{ - базис } \mathcal{A} \text{ над }\mathbb{R}
+\]
+\[
+    k^2 = ijij = -i^2j^2 = -1 \implies \mathcal{A} = \mathbb{H}
+\]
+
+Четвертый случай $ \mathbb{H} \subsetneqq \mathcal{A} $ 
+\[
+    \implies \mathcal{A}' = (\mathbb{R}i + \mathbb{R}j  + \mathbb{R}k) \oplus
+    (\mathbb{R}i + \mathbb{R}j  + \mathbb{R}k)^{\perp}
+\]
+\[
+    \implies \exists l \in (\mathbb{R}i + \mathbb{R}j  + \mathbb{R}k)^{\perp}
+    \ | \ l^2 = -1 \land l \perp i, \ l \perp j, \ l \perp k \implies 
+    li = -il, \ lj = -jl, \ lj = -jl, \ lk = -kl
+\]
+\[
+    lk = l(ij) = (li)j = (-il)j = -i(lj) = -i(-jl)  = (ij)l = kl
+\]
+\end{tcolorbox}
+\end{document}
