@@ -1,0 +1,289 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{ТВиМС. Лекция}
+\maketitle
+
+\textbf{\underline{Problem1}}
+С целью исследования влияния погоды на урожайность сена
+\[
+    x_1 \text{ - урожайность }
+\]
+\[
+    x_2 \text{ - весеннее кол-во осадков }
+\]
+\[
+    x \text{ - сумма тем } > 5.5^{\circ} C
+\]
+
+\[
+    \overline{x}_1 = 35.146
+\]
+\[
+    \overline{x}_2 = 2.5\, cm
+\]
+\[
+    \overline{x}_3 = 312^{\circ}\, C
+\]
+\[
+    \begin{aligned}
+        &s_1^{2} = 30.74 &\quad &r_{12} = 0.8\\
+        &s_2^2 = 7.8 &\quad &r_{13} = -0.4\\
+        &s_3^2 = 2230 &\quad &r_{23} = -0.56
+    \end{aligned}
+\]
+\[
+    R = \begin{pmatrix}
+    1 & 0.8 & -0.4\\
+    0.8 & 1 & -0.56\\
+    -0.4 & -0.56 & 1\\
+    
+    \end{pmatrix}
+\]
+\[
+    \mathbb{X} = (X_1, X_2, \dots , X_p, X_{p+1}, \dots , X_{p+m})^{T}
+\]
+\[
+    X \in N(0, \Sigma)
+\]
+\[
+    \mathbb{X}_1 = (X_1, \dots, X_p)^{T}, \ \mathbb{X}_2 = (X_{p+1}, \dots, X_{p+m})^{T}
+\]
+\[
+    E(\mathbb{X}_1) = 0, \ E(\mathbb{X}_2) = 0
+\]
+\[
+    \Sigma_{11} = E(\mathbb{X}_1, \mathbb{X}_1^{T}) 
+\]
+
+\[
+    \Sigma_{22} = E(\mathbb{X}_2, \mathbb{X}_2^{T}) 
+\]
+\[
+    \Sigma_{12} = E(\mathbb{X}_1, \mathbb{X}_2^{T}) = \Sigma_{21}^{T}
+\]
+\[
+    \Sigma = 
+    \begin{pmatrix}
+    \Sigma_{11} & \Sigma_{12}\\
+    \Sigma_{21} & \Sigma_{22}\\
+    
+    \end{pmatrix}
+\]
+\[
+    \mathbb{Y}_2 = \mathbb{X}_2 \quad \mathbb{Y}_1 = \mathbb{X}_1 + A \mathbb{X}_2
+\]
+
+\[
+    \Sigma, \ \Sigma_{ij} \text{ - пол опред}
+\]
+\[
+    E((\mathbb{X}_1 + A \mathbb{X}_2) \mathbb{X}_2^{T}) = 
+    E(\mathbb{X}_1 \cdot \mathbb{X}_2^{T}) + A \cdot E(\mathbb{X}_2,\mathbb{X}_2^{T})
+    = \Sigma_{12} + A \Sigma_{22} = 0
+\]
+\[
+    \Sigma_{12} \Sigma_{22}^{-1} + A = 0
+\]
+\[
+    A = -\Sigma_{12} \Sigma_{22}^{-1}
+\]
+\[
+    \mathbb{Y}_1 \land \mathbb{Y}_2 \text{ - нез}
+\]
+\[
+    E(\mathbb{Y}_1 \ | \ \mathbb{Y}_2) = E(\mathbb{X}_1 - \Sigma_{12}\Sigma_{22}^{-1}
+    E(\mathbb{X}_2 | \mathbb{X}_2) = E(\mathbb{X} ... 
+\]
+\[
+    E(\mathbb{X}_1 | \mathbb{X}_2 = x_2) = -\Sigma_{12} \Sigma_{22}^{-1} x_2
+\]
+\[
+    E(\mathbb{Y}_1 \mathbb{Y}_2^{T}) = 0 \implies \mathbb{Y}_1, \ \mathbb{Y}_2 
+    \text{ - независимы}
+\]
+
+\textbf{\underline{Example}}
+\[
+    \mathbb{X} = (X_1, X_2)^{T}
+\]
+\[
+    \begin{aligned}
+        &E(X_1) = 0, \ E(X_2) = 0\\
+        &D(X_1) = 0, \ D(X_2) = \sigma_2^2\\
+        &\rho(X_1, X_2) = \rho
+    \end{aligned}
+\]
+\[
+    \Sigma =
+    \begin{pmatrix}
+    \sigma_1^2 & \rho \sigma_1 \sigma_2\\
+    \rho \sigma_1 \sigma_2 & \sigma_2^2\\
+    
+    \end{pmatrix}
+\]
+\[
+    \Sigma_{11} = \sigma_1^2 \quad \Sigma_{22} = \sigma_2^2 \quad \Sigma_{12} = \rho
+    \sigma_1 \sigma_2
+\]
+\[
+    E(X_1) = \mu_1 \quad E(X_2) = \mu_2
+\]
+
+ДА ОН ЗАЕБАЛ
+
+(ХУЙ)
+
+\textbf{\underline{Example}}
+
+\[
+    \Sigma = 
+    \begin{pmatrix}
+    1 & \rho_{12} & \rho_{13}\\
+    \rho_{12} & 1 & \rho_{23}\\
+    \rho_{13} & \rho_{23} & 1\\
+    
+    \end{pmatrix}
+\]
+\[
+    \Sigma_{11} = \begin{pmatrix}
+    1 & \rho_{12}\\
+    \rho_{12} & 1\\
+    
+    \end{pmatrix},
+    \quad \Sigma_{12} = 
+    \begin{pmatrix}
+    \rho_{13}\\
+    \rho_{23}\\
+    
+    \end{pmatrix}, \quad
+    \Sigma_{22}= 1
+\]
+\[
+    \mathbb{X}_1 = \begin{pmatrix}
+    X_1\\
+    X_2\\
+    
+    \end{pmatrix} \quad
+    \mathbb{X}_2 = X_2
+\]
+
+\[
+    \mathbb{Y}_1 = \mathbb{X}_1 - \Sigma_{12} \Sigma_{22}^{-1} \mathbb{X}_2
+\]
+\[
+    E(\mathbb{Y}_1 \cdot \mathbb{Y}_1^{T}) = E((\mathbb{X}_1 - \Sigma_{12} 
+    \Sigma_{22}^{-1} \mathbb{X}_2)(\mathbb{X}_1^{T} - (\Sigma_{12} 
+    \Sigma_{22}^{-1} \mathbb{X}_2)^{T})) = \dots =
+    \Sigma_{11} - \Sigma_{12} \Sigma_{22}^{-1} \Sigma_{21} - \Sigma_{12}\Sigma_{22}^{-1}
+    \Sigma_{21} + \Sigma_{12}\Sigma_{22}^{-1}\Sigma_{22}\Sigma_{22}^{-1}\Sigma_{21}=
+\]
+\[
+    = \Sigma_{11} - \Sigma_{12}\Sigma_{22}^{-1}\Sigma_{22} =
+    \begin{pmatrix}
+    1 & \rho_{12}\\
+    \rho_{12} & 1\\
+    
+    \end{pmatrix}
+    -
+    \begin{pmatrix}
+        \rho_{13}^2 & \rho_{13} \rho_{23}\\
+    \rho_{13} \rho_{23} & \rho_{23}^2\\
+    
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    1 - \rho_{13}^2 & \rho_{12} - \rho_{13}\rho_{23}\\
+    \rho_{12} - \rho_{13}\rho_{23} & 1 - \rho_{23}^2\\
+    
+    \end{pmatrix}
+\]
+\[
+    \begin{pmatrix}
+    1 & \frac{\rho_{12} - \rho_{13}\rho_{23}}{\sqrt{1-\rho_{13}^2} \sqrt{1 - \rho_{23}^2} } \\
+    \dots & 1 \\
+    
+    \end{pmatrix}
+\]
+
+\[
+    \rho_{12 \cdot 3} = \frac{\rho_{12} - \rho_{13}\rho_{23}}{\sqrt{1-\rho_{13}^2} \sqrt{1 - \rho_{23}^2} }
+    \text{ - частный коэф. кор.}
+\]
+\[
+    \rho_{12 \cdot 34} = \frac{\rho_{12 \cdot 3} - \rho_{13 \cdot 4} \cdot \rho_{23 \cdot 4}}
+    {\sqrt{1 - \rho_{12 \cdot 4}^2} \sqrt{1 - \rho_{23 \cdot 4}^2} } 
+\]
+\[
+    \rho_{1j \cdot q_j} = - \frac{\mathbb{R}_{1j}}{\sqrt{\mathbb{R}_{11} \mathbb{R}_{jj}} } 
+    \quad \mathbb{R}_{ij} \text{ - алгебраическое дополнение до } \rho_{ij}
+\]
+\[
+    q_j = \{ 1, 2 \dots, m \} \setminus \{1, j\}
+\]
+\[
+    (X_1, X_2, \dots, X_m)^{T} \quad D(X_i) = \sigma_i^2
+\]
+\[
+    E(X_1 | X_2, \dots, X_m) = -\sum_{j=2}^{m} \frac{\mathbb{R}_{1j}}{\mathbb{R}_{11}} 
+    \frac{\sigma_1}{\sigma_j} X_j
+\]
+\[
+    E(X_1 - E(X_1 | X_2 \dots X_m)^2) =
+    E\left((X_1 + \sum_{j=2}^{m} \frac{\mathbb{R}_{1j}}{\mathbb{R}_{11}} 
+    \frac{\sigma_1}{\sigma_j} X_j)(X_1 + \sum_{j=2}^{m} \frac{\mathbb{R}_{1j}}{\mathbb{R}_{11}} 
+    \frac{\sigma_1}{\sigma_j} X_j)\right) = \dots =
+    \sigma_1^2 + \sum_{j=2}^{m} \frac{\mathbb{R}_{1j}}{\mathbb{R}_{11}} 
+    \frac{\sigma_1}{\sigma_2}  \rho_{1j} = \frac{|R|}{\mathbb{R}_{11}} 
+\]
+\[
+    \frac{|\mathbb{R}|}{\mathbb{R}_{11}} = 1 - \mathbb{R}_{1(2 \dots m)}^2
+\]
+\[
+    \mathbb{R}_{1(2 \dots m)}^2 \text{ - множественный коэф. корреляции}
+\]
+\[
+    \widehat{\mathbb{R}}_{1(2 \dots m)}^2 = r_{1(2 \dots m)}^2
+\]
+\[
+    H_0: \  \mathbb{R}_{1(2 \dots m)}^2 = 0 \quad n \text{ - объём выборки }
+\]
+\[
+    F = \frac{n - m}{n - 1}  \frac{r_{1(2 \dots m)}^2}{1 - r_{1(2 \dots m)}^2} 
+    \in F(m - 1, n - m) \text{ - распределение Фишера}
+\]
+\[
+    F > F_{1 - \alpha}(m - 1, n-m) \text{ - отвергаем } H_0
+\]
+\[
+    m = 2 \quad r_{1(2 \dots m)}^2 = r_{12}^2
+\]
+\[
+    \frac{(n-2) r_{12}^2}{\sqrt{1 - r_{12}^2} } > F(1, n-2)
+\]
+\[
+    \frac{\sqrt{n-2} |r_{12}|}{\sqrt{1 - r_{12}^2} } > \sqrt{F(1, n-2} = t(n-2)
+\]
+\end{document}

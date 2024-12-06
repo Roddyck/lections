@@ -1,0 +1,223 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{КиМ. Лекция}
+\maketitle
+
+\begin{tcolorbox}
+    2)
+    \[
+        \forall \ \alpha \in \hom_{R}\left(M_i \bigoplus_{j=1}^{m} N_j\right)
+    \]
+    $ \alpha $ определяет последовательность $ \alpha_1, \dots , \alpha_m $,
+    где $ \alpha_j = \pi_j \alpha: \ M \to \bigoplus_{j=1}^{m}N_j \to N_j $ 
+
+    Обратно $ \forall ( \alpha_1, \dots , \alpha_m) $ определяет $ \alpha $:
+    \[
+        \forall m \in M: \ \alpha(m) = n = (n_1, \dots, n_m) = (\pi_1(n), \dots,
+        \pi_m(n)) = (\pi_1 \alpha(m), \dots, \pi_m \alpha(m)) = (\alpha_1, \dots
+        \alpha_m)(m)
+    \]
+    \[
+        \phi: \hom_R\left(M_i \bigoplus N_j\right) \to \bigoplus_{j=1}^{m} \hom_R(M, N_j): 
+        \alpha \mapsto (\alpha_1, \dots, \alpha_m)
+    \]
+    \[
+        \phi(\alpha + \beta) = \phi(\alpha) + \phi(\beta)
+    \]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Lemma.1}
+
+$ End_R R_R \cong R $ 
+
+\underline{Proof} \underline{упр} $ \phi: R \to End_R R_R: r \mapsto \phi_r $,
+где $ \forall x \in R_R: \ \phi_r(x) = rx $ - изом-зм колец 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Lemma 2}
+\[
+    M_R = M_1 \oplus \dots \oplus M_n
+\]
+Тогда
+\[
+    End_R M \cong 
+    \begin{bmatrix}
+        End_R M_1 & \hom_R(M_2, M_1) & \hdots & \hom_R(M_n, M_1)\\
+        \hom_R(M_1, M_2) & End_R M_2 & \hdots & \hom_R(M_n, M_2)\\
+        \dots\\
+        \hom_R(M_1, M_n) & \hom_R(M_2, M_n) & \dots & End_R M_n
+    \end{bmatrix}
+    = S
+\]
+В частности, если $ M_i \cong M_j \cong N \quad \forall i, j $ 
+\[
+    End_R M \cong M_n(End_R N)
+\]
+
+\underline{Proof} $ \pi_i: M \to M_i $ - проекция\\
+$ \eta_j: M_j \hookrightarrow M $ - вложение
+\[
+    \pi_i \eta_j = 0, \ i \neq j
+\]
+\[
+    \pi_i \eta_i = 1_{M_i}
+\]
+\[
+    \sum_{i=1}^{n} \eta_i \pi_i = 1_M = 1
+\]
+\[
+    \forall \, \alpha \in End_R M \implies \alpha = 1 \cdot \alpha \cdot 1 =
+    \sum_{i=1}^{n} \eta_i \pi_i \alpha \sum_{i=1}^{n} \eta_j \pi_j =
+    \sum_{i,j} \eta_i(\pi_i \alpha \eta_j) \pi_j = \sum_{i,j} \eta_i \alpha_{ij}
+    \pi_j
+\]
+\[
+    \alpha_{ij} = \pi_i \alpha \eta_j \in \hom_R(M_j, M_i)
+\]
+\[
+    \phi: End_R M \to S: \ \alpha \mapsto (\alpha_{ij}) \text{ - изом-зм колец}
+\]
+\[
+    1) \ \phi(\alpha + \beta) \stackrel{?}{=} \phi(\alpha) + \phi(\beta) 
+    \iff (\alpha + \beta)_{ij} \stackrel{?}{=} \alpha_{ij} + \beta_{ij}
+\]
+\[
+    (\alpha + \beta)_{ij} = \pi_i (\alpha + \beta) \eta_j = \pi_i \cdot \alpha
+    \cdot \eta_j + \pi_i \beta \eta_j = \alpha_{ij} + \beta_{ij}
+\]
+\[
+    2) \phi(\alpha \beta) \stackrel{?}{=} \phi(\alpha) \phi(\beta)
+\]
+\[
+    (\alpha \beta)_{ij} = \pi_i \cdot \alpha \beta \cdot \eta_j = \pi_i \cdot
+    \alpha \cdot 1 \cdot \beta \cdot \eta_j = \pi_i \cdot \alpha \sum_{k} \eta_k
+    \pi_k \cdot \beta \eta_j = \sum_{k} (\pi_i \alpha \eta_k)(\pi_k \beta \eta_j)
+    = \sum_{k} \alpha_{ik} \beta_{ki}
+\]
+\[
+    c_{ij} = \sum_{k} \alpha_{ik} \beta_{ki} = (\alpha \beta)_{ij}
+\]
+
+3) иньективность
+\[
+    \forall \alpha \in \ker \phi: \ \phi(\alpha) = 0 = (\alpha_{ij}) \implies 
+    \alpha_{ij} = 0 \ \forall i,j
+\]
+\[
+    \alpha = \sum_{i,j} \eta_i \cdot 0 \cdot \pi_j = 0
+\]
+
+4) сюрьективность
+\[
+    \forall (c_{ij}) = C \in S
+\]
+\[
+    \sum_{a,b} \eta_a \cdot c_{ab} \pi_b = \alpha
+\]
+\[
+    \alpha_{ij} = \pi_i \left(\sum_{a,b} \eta_a c_{ab}\pi_b \right) \eta_j
+    = \pi_i \eta_i c_{ij} \pi_j \eta_j = c_{ij}
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Lemma 3} (Лемма Шура)
+
+Пусть M, N - простые R - модули. Тогда
+\[
+    \forall 0 \neq \phi \in \hom_R(M,N) \text{ - изоморфизм}
+\]
+
+В частности, $ End_R M $ - тело
+
+\underline{Proof} 
+\[
+    \forall 0 \neq \phi \in \hom_R(M,N) \implies im \phi \leq N \implies
+    im \phi = 0 \lor im \phi = N \implies \phi \text{ - сюрьективно}
+\]
+\[
+    \ker \phi \leq M \implies \ker \phi = 0 \lor \ker \phi = M \implies
+    \phi \text{ - иньективно}
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Lemma 4}\\
+1) $ M_n(D) $ - простое кольцо, где D - тело\\
+2) \[
+    S = \begin{bmatrix}
+         \begin{pmatrix}
+            0 & \dots & 0\\
+            a_{i 1} & \dots & a_{in}\\
+            0 & \dots & 0
+        \end{pmatrix}
+    \end{bmatrix} 
+    \text{ - простое R - модуль}
+\]
+\[
+    E_{ij} =
+    \begin{pmatrix}
+        0 &\vdots &0\\
+        \dots & 1 & \dots\\
+        0 &\vdots & 0
+    \end{pmatrix}
+\]
+\[
+    E_{ij}E_{sk} = 
+    \begin{cases}
+        0, &\quad j \neq s\\
+        E_{ik}, &\quad j = s
+    \end{cases}
+\]
+
+1) Пусть $ 0 \neq I \lhd R, \ 0 \neq A (a_{ij}) \in I $, пусть $ a_{ij} \neq 0 $  
+\[
+    a_{ij}^{-1} E_{ii} A E_{jj} = E_{ij} \in I
+\]
+\[
+    \forall \, E_{kl}: \ E_{kl} = E_{ki}E_{ij}E_{jl} \in I
+\]
+\[
+    R = < E_{ij} >_R \implies I = R
+\]
+
+2) \underline{Упр} R -  модуль М - простой $ \iff \forall 0 \neq m_1 \in M, \ 
+\forall m_2 \in M \ \exists r \in R \ | \ m_2 = m_1 \cdot r$ 
+
+$ \impliedby $: 
+\[
+    0 \neq N \leq M, \text{ пусть } 0 \neq n \in N
+\]
+Берём $ \forall m \in M $ 
+\[
+    \implies m = \underbrace{n \cdot r}_{\in N} \text{ for some } r \in R
+    \implies M \subset N \implies M = N
+\]
+\end{tcolorbox}
+
+\end{document}

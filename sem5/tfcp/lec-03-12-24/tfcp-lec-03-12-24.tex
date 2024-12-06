@@ -1,0 +1,247 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{Комплан. Лекция}
+\author{dfaskjdaso}
+\maketitle
+
+\begin{tcolorbox}
+    \underline{Proof} 1) $0 < A < \infty$
+    \[
+        \forall \ z = z_1 \quad |z_1 - z_0 | < \frac{1}{A} \text{ ряд сход}
+    \]
+    \[
+        \forall z = z_2 \quad |z_2 - z_0| > \frac{1}{A} \text{ ряд расх}
+    \]
+    \[
+        \forall \epsilon \ \exists N = N(\epsilon) \ \forall n > N \ 
+        \sqrt[n]{|c_n|} < A + \epsilon
+    \]
+
+    Найдется беск много эк-тов $ \{ \sqrt[n]{|c_n|}_{n=0}^{\infty}\} $ больших $ A - \epsilon $ 
+    \[
+        z = z_1, \ \epsilon = \frac{1 - A \cdot |z_1 - z_0|}{2 |z_1 - z_0|} > 0
+    \]
+    \[
+        |z_1 - z_0| < \frac{1}{A} \quad \sqrt[n]{|c_n|} < (A + \epsilon)
+        |z_1 - z_0| = \left(A +\frac{1 - A \cdot |z_1 - z_0|}{2 |z_1 - z_0|}\right)
+        |z_1 - z_0| = \frac{A |z_1 - z_0| + 1}{2} < q < 1
+    \]
+    \[
+        c_n \cdot |z_1 - z_0|^{n} < q^{n}
+    \]
+    \[
+        \sum_{n=0}^{\infty} c_n |z_1 - z_0|^{n} \text{ - сход}
+    \]
+    \[
+        z = z_2 \quad \epsilon = \frac{A |z_2 - z_0| - 1}{|z_2 - z_0|} > 0
+    \]
+    \[
+        |z_2 - z_0| > \frac{1}{A} 
+    \]
+    \[
+        \sqrt[n]{|c_n|} \cdot |z_2 - z_0| > (A - \epsilon) \cdot |z_2 - z_0| =
+        \left( A - \frac{A|z_2 - z_0| - 1}{|z_2 - z_0|} \right) \cdot |z_2 - z_0|
+        = 1
+    \]
+
+$ 2) \ A = 0 \implies R = \infty \ \forall \, z $ 
+\[
+    \forall \epsilon > 0 \ \exists N = N(\epsilon) \ \forall n > N \ 
+    \sqrt[n]{|c_n|} < \epsilon
+\]
+\[
+    \epsilon = \frac{q}{|z-z_0|}, \ \forall z, \ 0 < q < 1
+\]
+\[
+    |c_n \cdot (z - z_0)^{n} | < q^{n} \implies \sum_{n=0}^{\infty} 
+    c_n \cdot (z - z_0)^{n} \text{ сх}
+\]
+
+$ 3) \ A = \infty \implies R = 0 $. Расх $ \forall z \neq z_0 $  
+\[
+    \forall M\  \sqrt[n]{|c_n|} > M
+\]
+\[
+    \forall z \neq z_0 \ M |z - z_0| = q > 1
+\]
+\[
+    |c_n \cdot (z - z_0)^{n} | > 1 \implies \text{ ряд расходится } \forall z \neq z_0
+\]
+\end{tcolorbox}
+
+\section*{\centering Ряды аналитических функций}
+\begin{equation}
+    f(z) = f_1(z) + f_2(z) + \dots + f_n(z) + \dots
+\end{equation}
+\[
+    f_n(z) \in H(D) \quad n = 1, 2, \dots
+\]
+
+\begin{tcolorbox}
+    \underline{1-ая теорема Вейерштрасса}\\
+    Пусть 1) $ f_n(z) \in H(D), \forall n \in \mathbb{N} $\\
+    2) $ (1) $ сх равномерно внутри D, т.е. он сходится равномерно на любом
+    ограниченном замкнутом множестве $ \overline{G} \subset D $ 
+
+    Тогда 1) $ f(z) \in H(D) $ \\
+    2) ряд (1) можно почленно дифференцировать любое число раз
+    \begin{equation}
+        f^{(k)}(z) = \sum_{n=0}^{\infty} f_n^{(k)}(z)
+    \end{equation}
+    3) (2) сходится равномерно внутри D
+\end{tcolorbox}
+
+\[
+    f(z) = \sum_{n=0}^{\infty} c_n (z - z_0)^{n}, \ |z - z_0| < R
+\]
+\[
+    f_n(z) = c_n (z - z_0)^{n} \text{ - аналит}
+\]
+\[
+    f(z) \text{ - регулярна}
+\]
+Можно почленно дифференцировать
+
+\section*{\centering Ряды Тейлора}
+
+1)
+\[
+    f(z) = \sum_{n=0}^{\infty} c_n (z - z_0)^{n}, \ f(z) \text{ регулярна}
+\]
+\[
+    |z - z_0| < R = \frac{1}{\overline{\lim}_{n \to \infty} \sqrt[n]{|c_n|} } 
+\]
+$ f_n(z) $ - целые. 2-ая Лемма Абеля
+
+Ряд можно почленно дифф-ть любое количество раз
+\[
+    f^{(n)}(z) = c_n \cdot n! + c_{n+1}(n + 1) \cdot n \cdot \dots \cdot 2 \cdot 1
+    \cdot (z - z_0) + \dots
+\]
+\[
+    f^{(n)}(z_0) = c_n \cdot n! \implies c_n = \frac{f^{(n)}(z_0)}{n!} 
+\]
+\[
+    f(z) = \sum_{n=0}^{\infty} \frac{f^{(n)}(z_0)}{n!} \cdot ( z- z_0)^{n}
+\]
+
+2) $ f(z) \in H(z_0) \implies \{ c_n = \frac{f^{(n)}(z_0)}{n!}  \}_{n=0}^{\infty} $ 
+- коэф-ты Тейлора
+\[
+    f(z) \sim \sum_{n=0}^{\infty} c_n \cdot (z - z_0)^{n} \text{ - ряд Тейлора ф-и} f(z)
+\]
+
+Степенной ряд $ \sum_{n=0}^{\infty} c_n \cdot (z - z_0)^{n} $ с $ R > 0 $ является
+рядом Тейлора свой суммы
+
+3) $ f(z) $ регулярна в $ |z - z_0| < R $ 
+\[
+    \gamma_{\rho}: \ |z-z_0| = \rho < R
+\]
+\[
+    c_n = \frac{f^{(n)}(z_0)}{n!} = \frac{1}{2 \pi i} \oint_{\gamma_{\rho}}
+    \frac{f(t)}{(t - z_0)^{n + 1}} dt \text{ - интегральные выражения для 
+    коэф Тейлора ф-ии f(z) в т }z_0
+\]
+
+\begin{tcolorbox}
+    \underline{Th} (Тейлора)
+    \[
+        f(z) \in H(D) \text{ разлогается в сходящийся степенной ряд }
+        \sum_{n=0}^{\infty} c_n ( z - z_0)^{n} \text{ в } |z - z_0| < R_0
+    \]
+    \[
+        z_0 \in D, \ R_0 \text{ - наименьшее расстояние от } z_0 \text{ до } \partial D
+    \]
+
+    \underline{Proof} $ |z - z_0| < R_0 $ 
+    Зафиксируем точку z
+    \[
+        \gamma_\rho: \ |t - z_0| = \rho < R_0
+    \]
+    \[
+        \frac{|z - z_0|}{\rho} \equiv q  < 1
+    \]
+    \[
+        f(z) = \frac{1}{2 \pi i} \oint_{\gamma_\rho} \frac{f(t) dt}{t - z} 
+    \]
+    Разложим $ \frac{1}{t- z}  $ в ряд по степеням $ (z - z_0) $ 
+    \[
+        \frac{1}{t-z} = \frac{1}{t - z + z_0 - z_0} = \frac{1}{(t - z_0) - (z - z_0)} 
+        = \frac{1}{t - z_0} \cdot \frac{1}{1 - \frac{z - z_0}{t - z_0}} 
+    \]
+    \[
+        = \frac{1}{t - z_0} \cdot \sum_{n=0}^{\infty} \left( \frac{z - z_0}{t-z_0} \right)^{n}
+    \]
+    \[
+         \frac{|z - z_0|^{n}}{|t-z_0|^{n+1}} = \frac{1}{\rho} \cdot q^{n}
+    \]
+    \[
+        \sum_{n=0}^{\infty} q^{n} \text{ сход} \implies \text{ по признаку Вейерштрасса 
+        данный ряд сходится равномерно отн } t \in \gamma_\rho
+    \]
+    \[
+        \frac{1}{2 \pi i} f(t) \text{ на } \gamma_\rho \text{ непр и огр}
+    \]
+    \[
+        \frac{1}{2 \pi i} \int_{\gamma_\rho} \frac{f(t) dt }{t - z} =
+        \sum_{n=0}^{\infty} \frac{1}{2 \pi i} \int_{\gamma_\rho} 
+        \frac{f(t)dt}{(t-z_0)^{n+1}} \cdot (z - z_0)^{n} = 
+        \sum_{n=0}^{\infty} c_n \cdot (z - z_0)^{n} \quad \forall z: \ |z - z_0| < R_0
+    \]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \underline{Th} (О радиусе сходимости ряда Тейлора)
+
+    Радиус сх-ти R ряда Тейлора для f(z) $ f(z) \in H(z_0) $, равен расстоянию
+    $ R_0 = |z' - z_0| $ от центра $ z_0 $ до ближайщей к ней особой точки
+    $ z' $ суммы f(z) ряда
+
+    \underline{Proof}\\
+    1) По теореме Вейерштрасса $ |z - z_0| < R $ f(z) - регулярна, $ R_0 \geq R $\\
+    2) По теорема Тейлора $ |z - z_0| < R_0 \quad f(z) = \sum_{n=0}^{\infty} 
+    c_n(z- z_0)^{n}\  R \geq R_0$ \\
+    Тогда $ R = R_0 $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \underline{Note}
+
+    1) В степенный ряды разлогаются только $ f(z) \in H(z_0) $ 
+
+    2) $ f(z) $ - целая, то $ R_0 = \infty \implies |z-z_0| < \infty $ 
+
+    3) Существуют степенные ряды, у которых все точки окружности круга сходимости
+    особые
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th} (О единственности разложения функции в степенной ряд)
+
+$ \forall \, f(z) \in H(z_0) \ \exists! f(z) = \sum_{n=0}^{\infty} c_n(z- z_0)^{n}  $ 
+\end{tcolorbox}
+\end{document}

@@ -1,0 +1,179 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{УМФ. Лекция}
+\maketitle
+
+\textbf{\underline{Вопросы из экзамена:}}
+
+\textbf{1. Вещ-ть с.з. и с.ф.}
+
+\textbf{2. Линейная зависимость собственных функций соответсвующих одному собственному значению}
+
+\[
+    (p(x) X'(x))' + (\lambda \rho(x) - q(x)) X(x) = 0
+\]
+\[
+    \alpha X'(0) - \beta X(0) = 0
+\]
+\[
+    \gamma X'(l) - \delta X(l) = 0
+\]
+
+Пусть нек-му $ \lambda \rightarrow X_1(x), \ X_2(x) $ - лнз
+\[
+    X(x) = c_1 X_1(x) + c_2 X_2(x) \text{ - общее решение}
+\]
+\[
+    (p(x) X_i'(x))' + (\lambda \rho(x) - q(x)) X_i(x) = 0
+\]
+\[
+    \alpha X_i'(0) - \beta X_i(0) = 0
+\]
+\[
+    \gamma X_i'(l) - \delta X_i(l) = 0 \quad i = 1,2
+\]
+
+Оно должно удовлетворять:
+\[
+    \alpha X'(0) - \beta X(0) = 0
+\]
+\[
+    c_1 (\alpha X_1'(0) - \beta X_1(0)) + c_2 (\alpha X_2'(0) - \beta X_2(0)) = 0
+\]
+
+Но есть решения, которые не попадают в класс решений
+\[
+    X(0) = a
+\]
+\[
+    X'(0) = b
+\]
+
+\textbf{3. Ортогональность}
+\[
+    X_1(x) \leftarrow \lambda_1 \neq \lambda_2 \rightarrow X_2(x) \text{ - с.з.}
+\]
+\[
+    \int_{0}^{l} \rho X_1 X_2 dx = 0
+\]
+
+\textbf{4. Неотрицательность собственных значений}
+
+\section*{\centering Теорема Стеклова}
+
+\begin{tcolorbox}
+    \underline{Th} Пусть коэфф-ты удовлетворяют условиям (в предыдущих лекциях)\\
+    Рассмотрим $ K = \{ U \in C^2(0, l) \cap C^{1}([0; l]) \ | \ \alpha u'(0) - \beta
+    u(0) = 0, \ \gamma u'(l) + \delta u(l) = 0\} $ 
+
+    Существует счетное множество собственных значений $ \{ \lambda_k \}_{k=1}^{\infty}\ 
+    \lambda_1 < \lambda_2 < \dots < \lambda_k < \dots , \ \lambda_k \to \infty$ \\
+    Любая функция $ u \in K $ может быть предствленна в виде равномерно сходящегося 
+    ряда $ u = \sum_{k=1}^{\infty} c_k X_k(x) $, где 
+    \[
+        c_k = \frac{\int_{0}^{l} \rho(x) u(x) X_k(x) dx }
+        {\int_{0}^{l} \rho(x) X_k^2(x) dx}
+    \]
+
+    \[
+        u = \sum_{k=1}^{\infty} c_k X_k(x) \ | \ \rho X_n(x) \ \int_{0}^{l}  
+    \]
+    \[
+        \int_{0}^{l} \rho u(x) X_n(x) dx = \sum_{k=1}^{\infty} c_k 
+        \int_{0}^{l} \rho X_k(x) X_n(x) dx
+    \]
+    \[
+        \int_{0}^{l} \rho u X_n dx = c_n \int_{0}^{l} \rho X^2(x) dx
+    \]
+\end{tcolorbox}
+
+\section*{\centering Метод разделения Фурье}
+\begin{equation}
+    \rho(x) u_{t t}(x,t) - \frac{\partial}{\partial x} ( p(x) u_x(x,t)) + 
+    q(x) u(x,t) = 0
+\end{equation}
+\begin{equation}
+    \alpha u_x(0,t) - \beta u(0,t) = 0
+\end{equation}
+\begin{equation}
+    \gamma u_x(0,t) + \delta u(0,t) = 0
+\end{equation}
+\begin{equation}
+    u(x,t) |_{t=0} = \phi(x)
+\end{equation}
+\begin{equation}
+    u_t(x,t) |_{t = 0} = \psi(x)
+\end{equation}
+
+\textbf{Первый этап}
+\begin{equation}
+    u(x,t) = T(t)X(x)
+\end{equation}
+\[
+    \rho X(x) T''(t) - T(t) (p X'(x))' + q T(t) X(x) = 0 \ | \ : \rho T(t) X(x)
+\]
+\[
+    \frac{T''(t)}{T(t)} - \frac{(pX'(x))'}{\rho X(x)} + \frac{q}{\rho} = 0
+\]
+\[
+    \frac{T''(t)}{T(t)} = \frac{(p(x) X'(x))' - q X(x)}{\rho(x) X(x)} = -\lambda  
+\]
+\[
+    T''(t) + \lambda T(t) = 0
+\]
+\[
+    (p(x) X'(x))' + (\lambda \rho(x) - q(x)) X(x) = 0
+\]
+\[
+    T(t) (\alpha X'(0) - \beta X(0)) = 0
+\]
+\[
+    T(t) (\gamma X'(0) + \delta X(0)) = 0
+\]
+\[
+    (\alpha X'(0) - \beta X(0)) = 0
+\]
+\[
+    (\gamma X'(0) + \delta X(0)) = 0
+\]
+\[
+    \{ \lambda_k \}_{k=1}^{\infty} \to \{ X_k \}_{k = 1}^{\infty}
+\]
+\[
+    u(x,t) = \sum_{k=1}^{\infty} u_k(x,t)  =\sum_{k=1}^{\infty} (A_k \cos \sqrt{\lambda_k} t + B_k
+    \sin \sqrt{\lambda_k} t) X_k(x)
+\]
+\[
+    u(x,t)|_{t=0} = \sum_{k=1}^{\infty} A_k X_k(x) = \phi(x), \quad
+    A_k = \frac{\int_{0}^{l} \rho \phi X_n(x) dx}{\int_{0}^{l} \rho X_k^2 dx} 
+\]
+\[
+    u_t(x,t)|_{t=0} = \sum_{k=1}^{\infty} \sqrt{\lambda_k} B_k X_k(x) = \psi(x), \quad
+    B_k = \frac{1}{\sqrt{\lambda_k} } \frac{\int_{0}^{l} \rho \psi X_n(x) dx}{\int_{0}^{l} \rho X_k^2 dx} 
+\]
+
+\section*{\centering Волновые уравнения в пространстве}
+\end{document}
