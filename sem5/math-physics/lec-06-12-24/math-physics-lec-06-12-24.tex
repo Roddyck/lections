@@ -1,0 +1,196 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{УМФ. Лекция}
+\author{haha}
+\maketitle
+
+\begin{equation}
+    \frac{\partial^2 u(x,y,z,t)}{\partial t^2} - a^2 \Delta u(x,y,z,t) = f(x,y,z,t)
+\end{equation}
+\[
+    \Delta u = \frac{\partial^2 u}{\partial x^2} 
+    + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2}
+\]
+
+\underline{Задача Коши}
+\[
+    (x,y,z) \in \mathbb{R}^3, \ t \geq 0   
+\]
+\begin{equation}
+    u(x,y,z) |_{t=0} = \phi(x,y,z)
+\end{equation}
+\begin{equation}
+    u_t(x,y,z) |_{t=0} = \psi(x,y,z)
+\end{equation}
+
+\underline{Смешанные задачи}
+\[
+    \Omega \subset \mathbb{R}^3 \quad \Gamma = \partial \Omega
+\]
+\[
+    (x,y,z) \in \Omega, \ t \geq 0
+\]
+\[
+    \phi(x,y,z), \ \psi(x,y,z) \text{ заданы в } \Omega
+\]
+\[
+    \Gamma = \Gamma_1 \cup \Gamma_2 \cup \Gamma_3, \quad \Gamma_i \cap \Gamma_j
+    = \varnothing, \ i \neq j
+\]
+
+Граничные условия:
+\begin{subequations}
+    \begin{align}
+        &u(x,y,z,t) |_{\Gamma_1} = u_{\Gamma}(x,y,z,t), \ (x,y,z) \in \Gamma_1, \ t \geq 0\\
+        &\frac{\partial u(x,y,z,t)}{\partial n} |_{\Gamma_2} = q_{\Gamma}(x,y,z,t),
+        \ (x,y,z) \in \Gamma_2, \ t > 0 \\
+        &\frac{\partial u(x,y,z,t)}{\partial n} + hu(x,y,z,t)|_{(x,y,z) \in \Gamma_3}
+        = p_{\Gamma}(x,y,z,t) , \ (x,y,z) \in \Gamma_3, \ t \geq 0
+    \end{align}
+\end{subequations}
+
+\begin{equation}
+    \frac{\partial^2 u(x,y,z,t)}{\partial t^2} - a^2 \Delta u(x,y,z,t) = 0
+\end{equation}
+
+Формула Пуассона
+\[
+    u(x,y,z,t) = \frac{1}{4 \pi a} \cdot \frac{\partial }{\partial t} 
+    \iint_{S_{at}} \frac{\phi(\xi, \eta, \zeta}{at} dS + \frac{1}{4 \pi a} 
+    \iint_{S_{at}} \frac{\psi(\xi, \eta, \zeta}{at} dS
+\]
+
+\begin{figure}[!ht]
+    \centering
+    \incfig{puasson-formula}
+    \caption{Puasson formula}
+    \label{fig:puasson-formula}
+\end{figure}
+
+\section*{Принцип Гюйкенса}
+
+Локализованные в пространстве начальные возмущения порождают возмущения локализованные
+во времени
+
+\[
+    D \subset \mathbb{R}^3
+\]
+\[
+    \phi(x,y,z) = 0 \text{ in } \mathbb{R}^3 \setminus D
+\]
+\[
+    \psi(x,y,z) = 0 \text{ in } \mathbb{R}^3 \setminus D
+\]
+\[
+    d_{\star} = dist(M;D)
+\]
+
+\begin{figure}[!ht]
+    \centering
+    \incfig{gukens-principal}
+    \caption{Gukens principal}
+    \label{fig:gukens-principal}
+\end{figure}
+
+\[
+    d^{\star} = \sup_{N \in D} |M \ N|
+\]
+\[
+    t > d^{\star}
+\]
+\[
+    u(x,y,z,t) \equiv 0
+\]
+\[
+    t \in \left( \frac{d_{\star}}{a}, \ \frac{d^{\star}}{a} \right)
+\]
+\[
+    at < d_{\star}, \ t < \frac{d_{\star}}{a} \quad t = \frac{d_{\star}}{a} 
+\]
+\[
+    u(x,y,z,t) \equiv 0
+\]
+
+\section*{\centering Цилиндрические волны}
+
+\[
+    u = u(x,y,t) \quad \frac{\partial}{\partial z} \equiv 0 
+\]
+
+\[
+    \Delta u = u_{xx} + u_{y y}
+\]
+\[
+    \phi = \phi(x,y), \ \psi = \psi(x,y)
+\]
+\[
+    u(x,y,t) = \frac{1}{2 \pi a} \frac{\partial}{\partial t} \iint_{C_{at}}
+    \frac{\phi(\xi, \eta) d\xi d\eta}{\sqrt{(at)^2 (x - \xi)^2 (y - \eta)^2} } 
+    +
+    \frac{1}{2 \pi a} \frac{\partial}{\partial t} \iint_{C_{at}}
+    \frac{\psi(\xi, \eta) d\xi d\eta}{\sqrt{(at)^2 (x - \xi)^2 (y - \eta)^2} }
+\]
+\[
+    at < d_{\star}
+\]
+\[
+    u(x,y,t) \equiv 0
+\]
+\[
+    at > d_{\star}
+\]
+\[
+    t > \frac{d_{\star}}{\xi} 
+\]
+
+При $ t \to \infty $ знаменатель стремится к 0
+
+Для цилиндрических волн принцип Гюйгенса не выполняется
+
+\begin{figure}[!ht]
+    \centering
+    \incfig{cylinder-waves}
+    \caption{Cylinder waves}
+    \label{fig:cylinder-waves}
+\end{figure}
+
+\[
+    \frac{\partial^2 u(x,y,z,t)}{\partial t^2} - a^2 \Delta u(x,y,z,t) = f(x,y,z,t)
+\]
+
+Формула Кирхгофа:
+\[
+    u(x,y,z,t) = \frac{1}{4 \pi a} \cdot \frac{\partial }{\partial t} 
+    \iint_{S_{at}} \frac{\phi(\xi, \eta, \zeta)}{at} dS + \frac{1}{4 \pi a} 
+    \iint_{S_{at}} \frac{\psi(\xi, \eta, \zeta)}{at} dS
+    + \frac{1}{4 \pi a^2} \iiint_{D_{at}} \frac{f(\xi, \eta, \zeta, t - \frac{r}{a}) }
+    {r} d\xi d\eta d\zeta 
+\]
+\[
+    \frac{1}{4 \pi a^2} \iiint_{D_{at}} \frac{f(\xi, \eta, \zeta, t - \frac{r}{a}) }
+    {r} d\xi d\eta d\zeta \text{ - запаздывающий потенциал}
+\]
+\end{document}
