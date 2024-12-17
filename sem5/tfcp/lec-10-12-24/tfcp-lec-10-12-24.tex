@@ -1,0 +1,279 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{Комплан. Лекция}
+\author{dajflsadf}
+\maketitle
+
+\section*{\centering Ряды Лорана}
+
+\begin{tcolorbox}
+\underline{Th} (о !)\\
+Ф-ия $ f(z) \in H(z_0) $ ! образом разлагается в ряд Тейлора по $ (z - z_0) $  
+
+\underline{Proof}
+\[
+    f(z) = \sum_{n=0}^{\infty} c_n (z - z_0)^{n}, \ c_n = \frac{f^{(n)(z_0)}}{n!} 
+\]
+\[
+    f(z) = \sum_{n=0}^{\infty} d_n (z - z_0)^{n}, \ d_n = \frac{f^{(n)}(z_0)}{n!} 
+\]
+\[
+    \implies d_n = c_n \implies !
+\]
+\end{tcolorbox}
+\[
+    e^{z} = \sum_{n=0}^{\infty} \frac{z^{n}}{n!} 
+\]
+\[
+    \sin z = 
+\]
+\[
+    \cos z = 
+\]
+\[
+    \ln (1 + z) = \sum_{n=0}^{\infty} (-1)^{n-1} \frac{z^{n}}{n} 
+\]
+\[
+    (1 + z)^{\mu} = 
+\]
+
+\begin{tcolorbox}
+\underline{Def} Рядом Лорана по степеням $ (z - z_0) $ называется ряд вида
+\begin{equation}
+    f(z) = \sum_{n=-\infty}^{+\infty} c_n \cdot (z - z_0)^{n}
+    = \sum_{n=-\infty}^{-1} c_n \cdot (z - z_0)^{n} + \sum_{n=0}^{\infty} 
+    c_n \cdot (z - z_0)^{n}
+    = \sum_{k=1}^{+\infty} c_{-k} \cdot \frac{1}{(z - z_0)^{k}} + \sum_{n=0}^{\infty} 
+    c_n \cdot (z - z_0)^{n}
+    \label{eq:1}
+\end{equation}
+\[
+    f(z) = f_1(z) + f_2(z)
+\]
+\[
+    f_1(z) \text{ - главная часть ряда Лорана (сингулярная)}
+\]
+\[
+    f_2(z) \text{ - правильная часть ряда Лорана (регулярная)}
+\]
+\end{tcolorbox}
+
+Выясним область сходимости ряда Лорана \\
+$1) \ f_2(z)$ - регуляр
+\[
+    |z - z_0| < R = \frac{1}{\overline{\lim}_{n \to \infty} \sqrt[n]{|c_n|}  } 
+\]
+2) $ f_1(z) $ - регулярна
+\[
+    \frac{1}{z - z_0}  = \xi
+\]
+\[
+    |\xi| = \left| \frac{1}{z - z_0} \right| < r_1 = \frac{1}{\overline{\lim}
+    _{k \to \infty} \sqrt[k]{|c_{-k}|}  } 
+\]
+\[
+    |z - z_0| > r = \overline{\lim}_{k \to \infty} \sqrt[k]{|c_{-k}|}   
+\]
+\[
+    r \geq R \implies (\ref{eq:1}) \text{ не сходится ни в какой области}
+\]
+
+Будем считать, что $ r < R $ 
+
+\begin{tcolorbox}
+1) Области сходимости $ (\ref{eq:1}) $ есть круговое кольцо $ 0 \leq r < |z - z_0| < R
+\leq \infty$  
+\[
+    R = \frac{1}{\overline{\lim}_{n \to \infty} \sqrt[n]{|c_n|}  }
+\]
+\[
+    r = \overline{\lim}_{k \to \infty} \sqrt[k]{|c_{-k}|}
+\]
+
+2) В этом кольце ряд $ (\ref{eq:1}) $ сходится абсолютно, а внутри этого кольца
+равномерно
+
+3) В этом кольце ряд Лорана $ (\ref{eq:1}) $ определяет однозначную аналитическую
+функцию
+\end{tcolorbox}
+
+\subsection*{\centering Частные случаи}
+
+\begin{tcolorbox}
+1) $ c_{-k} = 0, \ k = 1, 2, \dots $. $ f(z) = f_2(z) $\\
+Ряд Тейлора частный случай ряда Лорана
+
+2) $ r = 0 \quad \exists c_{-k} \neq 0 $\\
+Ряд Лорана сходится в кольце $ 0 < |z-z_0| < R $ \\
+$ (\ref{eq:1}) $ - ряд Лорана в окр-ти т $ z_0 $ 
+
+3) $ z_0 = 0, \ R = \infty $. $ r < |z| < \infty $  
+\[
+    \sum_{n=-\infty}^{\infty} c_n \cdot z^{n}
+\]
+Ряд $ (\ref{eq:1}) $ - ряд Лорана в окрестности бесконечности
+
+Если $ r = 0 $. $ 0 < |z| < \infty $\\
+Ряд Лорана сходится в окрестности нуля и бесконечности
+\end{tcolorbox}
+
+\subsection*{\centering Вычесление коэф-тов}
+
+\[
+    \gamma_{\rho}: \ |z - z_0| = \rho, \ r < \rho < R
+\]
+\[
+    (\ref{eq:1}) \cdot \frac{1}{2 \pi i} \frac{1}{(z - z_0)^{k+1}}, \ k \in \mathbb{Z}
+\]
+
+На $ \gamma_\rho $ ряд $ (\ref{eq:1}) $ сходится равномерно
+\[
+    \frac{1}{2 \pi i} \int_{\gamma_\rho} \frac{f(z)}{(z - z_0)^{k+1}} dz =
+    \sum_{n=-\infty}^{\infty} \frac{c_n}{2 \pi i} \int_{\gamma_\rho}
+    (z - z_0)^{n-(k+1)} dz = \begin{cases}
+        0, \ n \neq k\\
+        2 \pi i, \ n - k - 1 = -1
+    \end{cases}
+\]
+\[
+    c_k = \frac{1}{2 \pi i} \int_{\gamma_\rho} \frac{f(z)}{(z - z_0)^{k+1}} dz
+\]
+\[
+    c_n = \frac{1}{2 \pi i} \int_{\gamma_\rho} \frac{f(t)}{(t - z_0)^{n+1}} dt, \
+    n = 0, \pm 1, \pm 2, \dots
+\]
+
+\begin{tcolorbox}
+\underline{Th} (Лорана)
+
+1) Ф-ия $ f(z) $ регулярная в кольце $ r < |z - z_0| < R $ представима в этом кольце
+сходящимся рядом Лорана $ (\ref{eq:1}) $ по степеням $ (z - z_0) $ 
+
+2) В данном кольце ряд $ (\ref{eq:1}) $ единственный
+
+\underline{Proof}
+
+1) В данном кольце фиксируем точку z
+\[
+    c_1: \ |t - z_0| = \rho_1
+\]
+\[
+    c_2: \ |t - z_0| = \rho_2
+\]
+\[
+    r < \rho_1 < |z - z_0| < \rho_2 < R
+\]
+
+По фор-ле Коши для многосвязной области:
+\[
+    f(z) = \frac{1}{2 \pi i} \int_{c_2 \cup c_1^{-}} \frac{f(t)dt}{t - z} = 
+    \underbrace{\frac{1}{2 \pi i} \int_{c_2}\frac{f(t)dt}{t - z}}_{\phi_2(z)}
+    \underbrace{- \frac{1}{2 \pi i} \int_{c_1}\frac{f(t)dt}{t - z}}_{\phi_1(z)}
+    = \phi_2(z) + \phi_1(z)
+\]
+
+a) $ \phi_2(z) $ 
+\[
+    \frac{1}{t - z} \text{ - разложим по пол степеням }(z - z_0)
+\]
+\[
+    \frac{1}{t - z} = \frac{1}{t - z + z_0 - z_0} = 
+    \frac{1}{(t - z_0) - (z - z_0)} = \frac{1}{(t - z_0)} \cdot 
+    \frac{1}{1 - \frac{z - z_0}{t - z_0}} 
+\]
+\[
+    \frac{1}{1 - z} = \sum_{n=0}^{\infty} z^{n}
+\]
+\[
+    \phi_2(z) = \frac{1}{2 \pi i} \int_{c_2} \frac{f(z)dt}{t - z} =
+    \sum_{n=0}^{\infty} \frac{1}{2 \pi i} \int_{c_2}\frac{f(t)\cdot(z -z_0)^{n}}
+    {(t-z_0)^{n+1}} dt
+\]
+\[
+    \phi_2(z) = \sum_{n=0}^{\infty} \frac{1}{2 \pi i} \int_{c_2} \frac{f(t)dt}{(t - z_0)^{n+1}} 
+    \cdot (z - z_0)^{n}
+\]
+
+b) $ \phi_1(z) $ разложим по отрицательным степеням $ (z - z_0) $ 
+\[
+    -\frac{1}{t-z} = \frac{1}{z-t} = \frac{1}{(z - z_0)-(t-z_0)} =
+    \frac{1}{z - z_0} \cdot \frac{1}{1 - \frac{t-z_0}{z-z_0}} =
+    \sum_{n=0}^{\infty} \frac{(t-z_0)^{n}}{(z-z_0)^{n+1}} = 
+    \sum_{k=1}^{\infty} \frac{(t-z_0)^{k-1}}{(z-z_0)^{k}} 
+\]
+
+По признаку Вейерштрасса полученный ряд сходится равномерно
+\[
+    \left| \frac{(t-z_0)^{n}}{(z-z_0)^{n+1}} \right|  =\frac{1}{|z-z_0|} \cdot
+    \left| \frac{t - z_0}{z - z_0} \right| = \frac{1}{|z - z_0|} \cdot
+    \frac{\rho_1^{n}}{|z-z_0|^{n}} = \frac{1}{|z-z_0|} \cdot q^{n} \quad q < 1
+\]
+\[
+    \times \frac{1}{2 \pi i} \cdot f(t) \land \int_{c_1}
+\]
+\[
+    \phi_1(z) = -\frac{1}{2 \pi i} \int_{c_1}f(t)dt = \sum_{k=1}^{\infty} 
+    \frac{1}{2 \pi i} \int_{c_1} \frac{f(t)dt}{(t-z_0)^{-k+1}} \cdot \frac{1}
+    {(z - z_0)^{k}}  
+\]
+\[
+    f(z) = \sum_{k=1}^{\infty} \frac{c_{-k}}{(z-z_0)^{k}} + \sum_{n=0}^{\infty} 
+    c_n \cdot (z - z_0)^{n} = \sum_{n=-\infty}^{\infty} c_n (z - z_0)^{n}
+\]
+\[
+    \forall z: \ r < |z-z_0| < R
+\]
+
+На $ |z-z_0| = r, \ |z-z_0| = R $ имеется хотя бы по одной особой точки функции
+$ f(z) $ 
+
+2) Т.к. коэф-ты ряда Лорана однозначно определяются по соотв-им формулам, то
+разложение в ряд Лорана единственно
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Note} $ f(z) $ регулярна в кольце $ r < |z - z_0| < R $ 
+\[
+    f(z) = f_1(z) + f_2(z)
+\]
+\[
+    f(z) = f_1(z) \cdot f_2(z)
+\]
+
+Где $ f_1(z) $ регулярна в $ |z-z_0| > r $, $ f_2(z) $ регулярна в $ |z-z_0| < R $ \\
+$ f_1(z)$ разлагают по отрицательным степеням, а $ f_2(z) $ по положительным
+\end{tcolorbox}
+
+\section*{\centering Классификация изолированных особых точек однозначных аналитических
+функций}
+
+\begin{tcolorbox}
+\underline{Def} Точка $ z = z_0 $ называется изолированной особой точкой
+однозначного характера для функции $ f(z) $, если $ f(z) $ является однозначной
+аналитической в некоторой окрестности точки $ z_0 $ т.е. в $ 0 < |z - z_0| < R $ 
+\end{tcolorbox}
+
+\end{document}

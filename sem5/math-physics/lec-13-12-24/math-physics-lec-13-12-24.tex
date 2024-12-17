@@ -1,0 +1,242 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{УМФ. Лекция}
+\author{Roddyk}
+\maketitle
+
+\section*{\centering Задача Дирихле}
+\[
+    \Omega \subset \mathbb{R}^3 \quad \Gamma = \partial \Omega
+\]
+\begin{tcolorbox}
+    \begin{equation}
+        \frac{\partial^{2} u(x,y,z,t)}{\partial t^2} - a^2 \Delta u(x,y,z,t) = 0 
+    \end{equation}
+
+    \begin{equation}
+        u(x,y,z,t) |_{\Gamma} = 0
+    \end{equation}
+    \begin{equation}
+        u(x,y,z,t) |_{t=0} = \phi(x,y,z)
+    \end{equation}
+    \begin{equation}
+        u_t(x,y,z,t) |_{t=0} = \psi(x,y,z)
+    \end{equation}
+    \begin{equation}
+        u(x,y,z,t) = T(t) v(x,y,z)
+    \end{equation}
+\end{tcolorbox}
+\[
+    T''(t) v(x,y,z) - a^2 T(t) \Delta v(x,y,z) = 0 \ | \ : a^2T(t) v(x,y,z)
+\]
+\[
+    \frac{T''(t)}{a^2T(t)} = \frac{\Delta v(x,y,z)}{v(x,y,z)} = -\lambda
+\]
+\begin{equation}
+    T''(t) + a^2 \lambda T(t) = 0
+\end{equation}
+\begin{equation}
+    \Delta v(x,y,z) + \lambda v(x,y,z) = 0
+    \label{eq:7}
+\end{equation}
+\begin{equation}
+    v(x,y,z) |_{\Gamma} = 0
+\end{equation}
+
+Если $ A = -\Delta $, $ Av = \lambda v $  
+
+\subsection*{Свойства решения:}
+1) Все собственные значения вещественные
+\[
+    \lambda = Re \lambda + i Im \lambda
+\]
+\[
+    v = Re v + i Im v
+\]
+\[
+    (\ref{eq:7}) \cdot \overline{v}
+\]
+\begin{equation}
+    \Delta \overline{v} + \lambda \overline{v} = 0
+    \label{eq:9}
+\end{equation}
+\begin{equation}
+    \overline{v} |_{\Gamma} = 0
+    \label{eq:10}
+\end{equation}
+\[
+    (\ref{eq:9}) \cdot v
+\]
+\[
+    \begin{cases}
+        \Delta v \cdot \overline{v} + \lambda v \overline{v} = 0\\
+        \Delta \overline{v} \cdot v + \overline{\lambda} \overline{v} v = 0
+    \end{cases}
+\]
+\[
+    \Delta v \cdot \overline{v} - \Delta \overline{v} \cdot v + (\lambda
+    - \overline{\lambda}) |v|^2
+\]
+\[
+    \int_{\Omega} (\Delta v \cdot \overline{v} - \Delta \overline{v} \cdot v) dxdydz
+    + (\lambda - \overline{\lambda}) \int_{\Omega}|v|^2 dxdydz = 0
+\]
+\[
+    \Delta v \cdot \overline{v} = \frac{\partial}{\partial x} \left(\frac{\partial v}{\partial x} 
+    \overline{v}\right) + \frac{\partial}{\partial y} \left( \frac{\partial v}{\partial y} 
+    \overline{v} \right) + \frac{\partial}{\partial z} \left(\frac{\partial v}{\partial z} 
+    \overline{v} \right) - \left( \frac{\partial v}{\partial x} \frac{\partial \overline{v}}{\partial x} 
+    + \frac{\partial v}{\partial y} \frac{\partial \overline{v}}{\partial y} 
+    + \frac{\partial v}{\partial z} \frac{\partial \overline{v}}{\partial z} 
+    \right)
+\]
+\[
+    \int \left(\frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} 
+    + \frac{\partial R}{\partial z} \right) dxdydz = 
+    \int_{\Gamma} (P\cos nx + Q \cos ny + R \cos nz) d\Gamma
+\]
+\[
+    \int_{\Omega} \Delta v \cdot \overline{v} dxdydz = 
+    \underbrace{\int_{\Gamma} \overline{v} \frac{\partial v}{\partial n} d \Gamma}_{=0}
+    - \int_{\Omega} (v_x \overline{v}_x + v_y \overline{v}_y + v_z \overline{v}_z)
+    dxdydz
+\]
+\[
+    \int_{\Omega} \Delta \overline{v} \cdot v dxdydz = 
+    - \int_{\Omega} (v_x \overline{v}_x + v_y \overline{v}_y + v_z \overline{v}_z)
+    dxdydz
+\]
+\[
+    (\lambda - \overline{\lambda}) \int_{\Omega} |v|^2 dxdydz = 0  
+\]
+\[
+    \lambda - \overline{\lambda} = 0
+\]
+\[
+    \lambda = \overline{\lambda} \implies \lambda \in \mathbb{R}
+\]
+
+В задаче (7)-(8) все собственные значения собственные
+\[
+    (\ref{eq:7}) \cdot v, \ \int_{\Omega}
+\]
+\[
+    \int_{\Omega} \Delta v \cdot v dx dy dz + \lambda \int_{\Omega} v^2 dxdydz
+    = 0
+\]
+\[
+    \int_{\Gamma} v \frac{\partial v}{\partial n} d\Gamma - 
+    \int_{\Omega}(v_x^2 + v_y^2 + v_z^2) dxdydz = 0
+\]
+\[
+    \underbrace{\int_{\Omega}(v_x^2 + v_y^2 + v_z^2) dxdydz}_{\geq 0} =
+    \underbrace{\lambda \int_{\Omega}v^2 dxdydz}_{> 0}
+\]
+\[
+    \lambda \geq 0
+\]
+\[
+    \lambda = 0 \implies \begin{cases}
+        v_x \equiv 0\\
+        v_y \equiv 0\\
+        v_z \equiv 0
+    \end{cases}
+\]
+
+Тогда $ \lambda > 0 $ 
+
+В то время как в задаче Неймана $ \lambda = 0 $ собственное значение, а собственная ф-я $ = const $ 
+\[
+    0 < \lambda_1 < \dots < \lambda_n < \dots, \quad \lambda_n \xrightarrow[n \to \infty]{}
+    +\infty
+\]
+
+\begin{tcolorbox}
+    Можно док-ть, что каждому собст. зн-ю соответствует конечный набор собственных ф-ий
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \underline{Th} Собственные ф-ии соответсвующие различным собственным значениям
+    ортогональны
+
+    \underline{План действий}
+    \[
+        \lambda_1 \to v_1^{1}, \dots, v_{k_1}^{1}
+    \]
+    \[
+        \dots\dots\dots\dots
+    \]
+    \[
+        \lambda_n \to v_1^{n}, \dots, v_{k_n}^{n}
+    \]
+    \[
+        \Delta v_i^{n}(x,y,z) + \lambda v_i^{n}(x,y,z) = 0
+    \]
+    \[
+        v_i^{n}(x,y,z) |_{\Gamma} = 0
+    \]
+    \[
+        T_n(t) v_i^n(x,y,z) = 0
+    \]
+    \[
+        u(x,y,z,t) = \sum_{n=1}^{\infty} T_n(t)
+        \sum_{i=1}^{k_n} C_i^n v_i^n(x,y,z)
+    \]
+    \[
+        C_i^n,\quad n = 1, \dots , \infty, \quad i = 1, \dots, k_n
+    \]
+    \[
+        T_n(t) = A_n \cos \omega_n t + B_n \sin \omega_n t
+    \]
+    \[
+        \omega_n = a \sqrt{\lambda_n} 
+    \]
+    \[
+        u(x,y,z,t) = \sum_{n=1}^{\infty} \sum_{i=1}^{k_n} \left( 
+        A_n^i \cos \omega_n t + B_n^{i} \sin \omega_n t \right) v_i^n(x,y,z)
+    \]
+    \[
+        u |_{t=0} = \sum_{n=1}^{\infty} \sum_{i=1}^{k_n} A_n^i v_n^i(x,y,z) 
+        = \phi(x,y,z) \ | \ v_j^m, \ \int_{\Omega}
+    \]
+    \[
+        u_t |_{t=0} = \sum_{n=1}^{\infty}\omega_n \sum_{i=1}^{k_n} B_n^i v_n^i(x,y,z) 
+        = \psi(x,y,z)\ | \ v_j^m, \ \int_{\Omega}
+    \]
+    \[
+        \int_{\Omega} v_i^n \cdot v_j^m dxdydz = 0 \quad \text{ если } n \neq m
+        \text{, а если } n = m \text{ то } i \neq j
+    \]
+    \[
+        A_m^j \int_{\Omega} (v_j^m)^2 dxdydz = \int_{\Omega}\phi(x,y,z)
+        v_{j}^{m}(x,y,z) dxdydz
+    \]
+    \[
+        \omega_m B_m^j \int_{\Omega} (v_j^m)^2 dxdydz = \int_{\Omega}\psi(x,y,z)
+        v_{j}^{m}(x,y,z) dxdydz
+    \]
+\end{tcolorbox}
+\end{document}

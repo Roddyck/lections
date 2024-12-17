@@ -1,0 +1,139 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{ТВиМС. Лекция}
+\maketitle
+
+Монета $ A = \{ 1 \} $
+
+$ (\Omega, \mathcal{F}, P) $ $ A \subset \mathcal{F} $  
+\[
+    \Omega \to (R^1, \mathcal{B}, P^x)
+\]
+\[
+    \Omega \in \mathcal{A} \quad A \in \mathcal{A} \to \overline{A} \in \mathcal{A}
+\]
+\[
+    A_1, A_2, \dots A_n \in \mathcal{A}
+\]
+\[
+    \bigcup_{i=1}^{\infty} A_i \in \mathcal{A}
+\]
+
+\textbf{Вероятность по Колмагорову}
+\[
+    P: A \in \mathcal{F} \to P(A)  
+\]
+\[
+    1) \ P(A) \geq 0
+\]
+\[
+    2) \ P(\Omega) = 1
+\]
+\[
+    3) \ A, B \quad A \cdot B = \varnothing
+\]
+\[
+    P(A \cup B) = P(A) + P(B)
+\]
+
+Случайная величина
+\[
+    X: \ \omega \to X(\omega)
+\]
+\[
+    \{ \omega: \ X(\omega) \in B \} \subset \mathcal{F} \quad B \in \mathcal{B}
+\]
+\[
+    \{ \omega: \ X(\omega) < x \} \in \mathcal{F}
+\]
+\[
+    P^x(B) = P\{ \omega: \ X(\omega) \in B)
+\]
+\[
+    P^x( (-\infty, x)) = F(x)
+\]
+\[
+    \forall x \in R^1
+\]
+\[
+    P(X < x) = F(x)
+\]
+
+Дискретная случайная величина
+\[
+    x_1, x_2, \dots x_n
+\]
+\[
+    p_i = P(X = x_i)
+\]
+\[
+    1) \ p_i \geq 0
+\]
+\[
+    2) \ \sum_{i=1}^{n} p_i = 1
+\]
+
+Условная вероятность:
+\[
+    P(A|B) = \frac{P(A \cdot B}{P(B)}, \ P(B) > 0 
+\]
+
+$ X $ - непр. с.в.
+\[
+    E(X) = \int_{-\infty}^{\infty} xf(x) dx
+\]
+\[
+    E(X^2) = \int_{-\infty}^{\infty} x^2 f(x) dx
+\]
+
+\textbf{Закон больших чисел:}\\
+Частота ...
+
+В теории вероятности: \\
+Функия распределения известна $ F(x) $ 
+\[
+    P(a \leq X < b)
+\]
+
+В мат стате $ (x_1, x_2, \dots, x_n) \to F(x)? $ 
+\[
+    P(X < x) = F(x) \text{ ТВ}
+\]
+\[
+    h_N(X<x) = F_N(x) \text{ - эмперическая функция распределения}
+\]
+\[
+    \frac{F_n(x + \delta) - F_N(x)}{\delta} = f_N(x)
+\]
+
+\textbf{Оценка:}
+\[
+    x_1, x_2, \dots, x_n
+\]
+
+Оценка - измеримая ф-ия, которая каждой выборке ставит в соот-е число
+
+\end{document}

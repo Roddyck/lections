@@ -1,0 +1,192 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\section*{\centering Элементы теории абелевых групп}
+
+A - аб. группа; $ R = \mathbb{Z} \implies A - \mathbb{Z} $ - модуль
+
+$ O(a) $ - порядок эл-та $ a \in A - \min n \in \mathbb{N} \ | \ na = 0 $ \\
+$ \nexists n \implies O(a) = \infty $ 
+
+\begin{tcolorbox}
+\underline{Def} p - высота элемента $ a \in A \to \max k \in \mathbb{N} \ | \
+p^{k}x = a$ разрешимо в гр A\\
+Если нет то p - высота $ = 0 $ \\
+Если для любого k разрешимо, то p - высота $ = \infty $ 
+
+\underline{Example} 1) $ A = Z, \ a = 4 \in A $ \\
+p - высота 4 $ \to 2^{k}x = 4 $ \\
+$ k = 1 \to x = 2 $ \\
+$ k = 2 \to x = 1 $ \\
+$ k = 3 \to x = 1/2 \notin \mathbb{Z} $ 
+
+\underline{Обозначение} $ h_p(a) $ - p - высота
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Def} Характеристика $ a \in A $ - последовательность p - высот
+\[
+    \chi(a) = (k_1, k_2, \dots , k_n, \dots)
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Example} 1) $ A = Z $\\
+$ 4 \in Z \implies \chi(4) = (2, 0, \dots , 0) $ 
+$ 6 \in Z \implies \chi(6) = (1, 1, 0, \dots , 0) $ 
+
+2) $ A = Q^{(p)} = \{ \frac{m}{p^{s}}  \ | \ m \in \mathbb{Z}, \ s \in \mathbb{Z} \} $ \\
+\underline{$p=3$} $ \to 2 \in Q^{(p)} \to \chi(2) = (1, \infty, 0, \dots ) $ 
+
+3) $ A = Q_{p} = \{ \frac{m}{n}  \ | \ (n,p) = 1 \} $ \\
+\underline{$p=3$} $ \to 15 \in Q_{p} \to \chi(15) = (\infty, 1, \infty, \dots ) $ 
+
+4) $ A = Q $\\
+$ \forall a \in A \to \chi(a) = (\infty, \dots, \infty, \dots) $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Св-ва $ \chi $}
+
+1) $ \chi(a) = \chi(-a) $ 
+
+2) $ \chi(a) = (k_1, k_2, \dots k_n, \dots), \ m = p_1^{l_1}\dots p_s^{l_s} \in \mathbb{Z} $ \\
+$ m \mid a \iff l_i \leq k_i \ \forall i = \overline{1,s} $ 
+
+\underline{Proof} $ \implies: $ Против $ l_1 > k_1 $, т.е. ур-е $ p_1^{l_1}x = a $ 
+неразрешимо
+\[
+    mx = a \implies p_1^{l_1} \cdot (p_2^{l_2} \cdot \dots \cdot p_s^{l_s}) x
+    = a \text{ - разрешимо с реш }x_0 \implies p_1^{l_1}y_0 = a, \ y_0 = p_2^{l_2}
+    \dots p_s^{l_s} \cdot x_0 \in A
+\]
+\[
+    p_1^{l_1}x = a \text{ разрешимо}
+\]
+
+$ \impliedby: $ Индукция по s\\
+$s = 1$ $ p_1^{l_1}x = a $ - разрешимо\\
+$ < s $ верно
+\[
+    \underbrace{p_1^{l_1}}_{n}\underbrace{p_2^{l_2} \dots p_s^{l_s}}_{t} x = a
+    \text{ - разрешимо?}
+\]
+\[
+    (n,t) = 1 \iff un + vt = 1 \text{ for some } u,v \in \mathbb{Z}
+\]
+\[
+    nx = a \text{ - разр, решение }a'
+\]
+\[
+    tx = a \text{ - разр, решение }a''
+\]
+\[
+    nt(ua'' + v a') = nu \cdot (ta'') + tv(na') = (un + vt)a = a \implies
+    y_0 \text{ решение ур-я } (nt)x = a
+\]
+
+3) $ \chi(a) = (k_1, k_2, \dots, k_n, \dots \implies \chi(p_n a) = (k_1, \dots,
+k_n + 1, \dots)$ 
+
+\end{tcolorbox}
+
+\[
+    \chi_1 = (k_1, \dots, k_n, \dots)
+\]
+\[
+    \chi_2 = (l_1, \dots, l_n, \dots)
+\]
+\[
+    \chi_1 \geq \chi_2 \iff k_i \geq l_i \ \forall i
+\]
+наименьший $ \chi = (0, \dots, 0, \dots) $ \\
+наибольший $ \chi = (\infty, \dots, \infty, \dots) $ 
+
+\begin{tcolorbox}
+\underline{Note} любую последовательность $ \chi = (k_1, \dots, k_n, \dots) $ 
+неотр-х чисел и символом $ \infty $ будет хар-кой некоторого элемента t.f. группы,
+а именно числа 1 в подгруппе группы Q, порожденной эл-ми $ p_i^{-k_i}, \ i = 1,
+2, \dots$ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Def} 2 хар-ки $ \chi_1 \sim \chi_2 $ - эквивалентны, если
+\[
+    \sum_{i} |k_i - l_i| < \infty \ (\infty - \infty = 0)
+\]
+
+$ \sim $ - отношение эквив-ти на мн-ве характеристик
+
+Класс эквтв-ти называется типом $ t(a) $ 
+\[
+    t(a) = \{ \chi(b) \sim \chi(a) \ | \ b \in A \}, \ \chi(a) \text{ - представитель }
+    t(a)
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Def} A - t.f.; $ a_1, \dots, a_n $ - лнз (над $ \mathbb{Z} $), 
+если из $ n_1 a_1 + \dots + n_k a_k = 0 \implies n_i = 0,\ i = \overline{1,k} $ 
+
+Если M $ - \infty $ сист. эл-тов из А, то M - лнз, если лнз любая её конечная подсистема
+
+Мощность max лнз системы эл-тов в А, наз-ся её рангом, об $ r(A) $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\[
+    r(A) = 1 => \forall a_1, a_2 \in A: \ n_1 a_1 = n_2 a_2 \stackrel{3)}{\implies}
+    \chi(a_1) \sim \chi(n_1 a_1) \ \chi(a_2) \sim \chi(n_2 a_2) \implies
+\]
+\[
+    \chi(a_1) \sim \chi(a_2) \implies t(a_1) = t(a_2)
+\]
+\[
+    t(A) \text{ - тип группы ранга 1}
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Example} 1) $ t(Z) = (0, 0, \dots, 0, \dots) $\\
+2) $ t(Q^{(p)}) = (0, 0, \dots, 0, \infty, 0, \dots) $ \\
+3) $ t(Q_{p}) = (\infty, \infty, \dots, \infty, 0, \infty, \dots) $ \\
+4) $ t(Q) = (\infty, \dots, \infty, \dots) $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Def} $ B \leq A $ - называется существенная, если $ B \cap C \neq 0
+\ \forall 0 \neq C \leq A$  
+
+Обозначение $ B \leq_e A $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Example} $ Z \leq_e Q $ 
+\[
+    \forall 0 \neq B \leq Q, \ \forall b = \frac{m}{n}  \in B \implies
+    nb = m \in Z \implies nb \in Z \cap B
+\]
+\end{tcolorbox}
+\end{document}
