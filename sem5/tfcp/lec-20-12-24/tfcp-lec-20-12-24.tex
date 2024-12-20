@@ -1,0 +1,265 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{Комплан. Лекция}
+\author{AAAAAAA, kill me}
+\maketitle
+\[
+    res_{z=z_0} f(z) = c_{-1}^{(z_0)}
+\]
+
+\begin{tcolorbox}
+\underline{Note} Вычет в конечной устранимой особой точке $ z_0 $ равен нулю
+\end{tcolorbox}
+
+$ z_0 $ - полюс порядка m
+\[
+    f(z) = \frac{c_{-m}}{(z-z_0)} + \frac{c_{-(m-1)}}{(z-z_0)^{m-1}}
+   + \dots + \frac{c_{-1}}{z- z_0} + c_0 + 
+    c_1(z - z_0) + \dots + c_n(z-z_0)^{n}+ \dots
+\]
+\[
+    (z - z_0)^{m} \cdot f(z) = c_{-m} + \dots + c_{-1} (z-z_0)^{m-1}+ c_0(z- z_0)^{m}
+    + \dots
+\]
+\[
+    ((z-z_0)^{m} \cdot f(z))' = c_{-m + 1} (z -z_0) + \dots  + c_{-1}\cdot(m-1)
+    (z-z_0)^{m-2} + \dots
+\]
+\[
+    \frac{d^{m-1}}{dz^{m-1}} ((z-z_0)^{m} \cdot f(z)) = c_{-1} (m-1)! + c_0
+    m! (z-z_0) + \dots
+\]
+\begin{tcolorbox}
+\[
+    c_{-1} = \frac{1}{(m-1)!} \lim_{z \to z_0} \frac{d^{m-1}}{dz^{m-1}} ((z-z_0)^{m} \cdot f(z))
+\]
+\end{tcolorbox}
+
+$ m = 1 $, $ z_0 $ - простой полюс
+
+\[
+    f(z) = \frac{\phi(z)}{\psi(z)}  \quad \psi(z_0) = 0, \ \phi(z_0) \neq 0, \ 
+    \psi'(z_0) \neq 0
+\]
+\[
+    res f(z_0) = \lim_{z \to z_0} ((z-z_0) \cdot \frac{\phi(z)}{\psi(z)} 
+    = \lim_{z \to z_0} \frac{\phi(z)}{\frac{\psi(z)}{z-z_0} } =
+    \lim_{z \to z_0} \frac{\phi(z)}{\frac{\psi(z) - \psi(z_0)}{z-z_0} } 
+\]
+\begin{tcolorbox}
+\[
+    res f(z_0) = \frac{\phi(z_0)}{\psi'(z_0)} 
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Note}
+Нахождение вычета в существенно особой точке обычно находят через Лорановское 
+разложение
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th (Основная теорема Коши о вычетах)}
+
+Если $ f(z) $ регулярна на замкнутом контуре $ \Gamma $ и регулярна внутри
+этого контура, кроме конечного числа особых точек $ z_1, z_2, \dots, z_n $, то
+\[
+    \oint_\Gamma f(z) dz = 2 \pi i \cdot \sum_{k=1}^{n} res_{z=z_k} f(z)
+\]
+
+\underline{Proof}
+Рассмотрим окружности $ \Gamma_k: \ |z-z_k| = \rho_k, \ I(\Gamma_k) \subset int \Gamma $.\\
+Тогда по теореме Коши для многосвязной области:
+\[
+    L = \Gamma \cup \Gamma_1^{-} \cup \Gamma_2^{-} \cup \dots \cup \Gamma_n^{-}
+\]
+\[
+    \int_L f(z) dz = 0
+\]
+\[
+    \oint_{\Gamma} f(z) dz + \sum_{k=1}^{n} \oint_{\Gamma_k^{-}} f(z) dz = 0 
+\]
+\[
+    \oint_{\Gamma}f(z) dz = \sum_{k=1}^{n} \oint_{|z-z_k|=\rho_k} f(z) dz
+    = \sum_{k=1}^{n} 2 \pi i \cdot res_{z=z_k} f(z)
+\]
+\end{tcolorbox}
+
+\subsection*{Вычет f(z) в $ \infty $}
+Пусть $ f(z) $ регулярна в $ R < |z| < \infty $ 
+
+\begin{tcolorbox}
+\underline{Def} $ res_{z=\infty} f(z) = \frac{1}{2\pi i} \oint_{C^{-}}f(z) dz $, где
+$ C^{-}: \ |z| = \rho > R $, проходимая по часовой стрелки
+\end{tcolorbox}
+\[
+    f(z) = \sum_{n=-\infty}^{\infty} \frac{C_{-n}}{z^{n}}, \ R < |z| < \infty 
+\]
+Проинтегрируем почленно данный ряд:
+\[
+    \oint_{C^{-}} f(z) dz = C_{-1} \cdot (-2 \pi i)
+\]
+\begin{tcolorbox}
+\[
+    res f(\infty) = - C_{-1}^{(\infty)}
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Note} Если $ z = \infty $ - устранимая особая точка
+\[
+    res f(\infty) \text{ может быть отличен от нуля}
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \underline{Th (О сумме всех вычетов)} Если $ f(z) $ регулярна в $ \overline{\mathbb{C}} $ 
+    кроме конечного числа особых точек, то сумма её вычетов относительно всех 
+    особых точек, включая $ z = \infty $, равна 0 
+
+    \underline{Proof} $ z_0 = \infty, \ z_1, z_2, \dots, z_n $. окружность
+    C содержит внутри себя эти особые точки
+    \[
+        0 =\frac{1}{2 \pi i} \oint_C f(z)  dz + \frac{1}{2 \pi i} \oint_{C^{-}} f(z) dz
+        = \sum_{k=1}^{n} res_{z=z_k} f(z) + res f(\infty) \implies
+    \]
+    \[
+        \sum_{k=0}^{n} res_{z=z_k} f(z) = 0
+    \]
+    \[
+        \sum_{k=1}^{n} res_{z = z_k} f(z) = - res f(\infty) = c_{-1}^{\infty}
+    \]
+\end{tcolorbox}
+
+\subsection*{Применение вычетов к вычеслению некоторых определенных интегралов}
+
+\[
+    1) \ \int_{0}^{2 \pi} R(\sin x, \cos x) dx
+\]
+
+$ R(u, v) $ - рациональная непрерывная на $ [0, 2 \pi] $, $ u = \sin x, \ v = \cos x $ 
+\[
+    z = e^{ix} \quad |z| = 1, \ 0 \leq x \leq 2 \pi, \ 0 \leq \arg z = x \leq 2 \pi
+\]
+\[
+    z \text{ пробегает окружность $ |z| = 1 $  против часовой стрелки}
+\]
+\[
+    \sin x = \frac{e^{ix} - e^{-ix}}{2i} = \frac{z - \frac{1}{z} }{2i}  
+\]
+\[
+    \cos x = \frac{e^{ix}+ e^{-ix}}{2} = \frac{z + \frac{1}{z} }{2} 
+\]
+\[
+    dz = i \cdot e^{ix} dx \implies dx = \frac{dz}{iz} 
+\]
+\[
+    \int_{0}^{2 \pi}  R(\sin x, \cos x) dx = \oint_{|z|=1} R\left(\frac{z^2 - 1}{2iz},
+    \frac{z^2 + 1}{2z} \right) \frac{dz}{iz} = 2\pi i \sum_{|z_k| < 1}
+    res_{z = z_k}f(z)
+\]
+
+\[
+    2) \ \int_{-\infty}^{\infty} R(x) dx \quad R(x) = \frac{Q(x)}{P(x)} 
+\]
+1. $ P(x) \neq 0 \quad \forall \, x: -\infty < x < \infty $ \\
+2. $ \deg P(x) \geq \deg Q(x) + 2 $ \\
+
+Пусть $ z_k $ все особые точки $ R(z) $\\
+
+Рассмотрим замкнутый контур $ C_R = L_R \cup [-R, R], \ R > R_0 = \max_k |z_k| $,
+состоящий из верхней полуокружности и отрезка действительной оси
+\[
+    \oint_{C_R} R(z) dz = \int_{L_R} R(z) dz + \int_{-R}^{R} R(x) dx
+\]
+\[
+    R \longrightarrow \infty
+\]
+\[
+    \oint_{C_R} R(z) dz = 2 \pi i \sum res R(z)
+\]
+\[
+    \int_{L_R} R(z) dz \longrightarrow 0
+\]
+\[
+    \int_{-R}^{R} R(x) = 2 \pi i \sum_{Im z_k > 0} res_{z=z_k} R(z)
+\]
+
+\begin{tcolorbox}
+\underline{Лемма Жордана} Пусть на пос-ти ($ n = 1, 2, \dots $) дуг окружностей
+$ C_{R_n} = \{ |z| = R_n, \ Im z \geq - a\} $ при $ R_n \to \infty $ выполняется  
+\[
+    \lim_{z \to \infty} g(z) = 0 \text{ равномерно отнистельно } \arg z = \phi
+\]
+Тогда
+\[
+    \forall \lambda > 0 \quad \lim_{R_n \to \infty} \int_{C_{R_n}} g(z) \cdot 
+    e^{i\lambda z} dz = 0
+\]
+\end{tcolorbox}
+
+\[
+    3) A = \int_{-\infty}^{\infty} f(x) \cdot \cos \beta x dx
+\]
+\[
+    B = \int_{-\infty}^{\infty} f(x) \cdot \sin \beta x dx
+\]
+\[
+    \beta > 0
+\]
+1. $ f(x) $ непрерывна на действительной оси.\\
+$ f(z) $ регулярна в $ Im z > 0 $, кроме $z_k, \ k = \overline{1,n} $\\
+2. $ \lim_{z \to \infty} = 0 $ равномерно относительно $ \arg z \in [0, \pi] $ 
+\begin{equation}
+    I = A + iB = \int_{-\infty}^{\infty} f(x) \cdot e^{i \beta x} dx
+\end{equation}
+
+\begin{tcolorbox}
+\underline{Th} При условиях 1 и 2 (1) сходится
+\[
+    \int_{-\infty}^{\infty} f(x) e^{i \beta x} dx = 
+    \sum_{Im z_k > 0} res_{z = z_k} ( f(z) \cdot e^{i \beta x})
+\]
+
+\underline{Proof}
+\[
+    C_R = L_R \cup [-R, R]
+\]
+\[
+    \int_{C_R} f(z) e^{i \beta z} dz = \int_{L_R} f(z) \cdot e^{i \beta z}dz + 
+    \int_{-R}^{R} f(x) e^{i \beta x} dx
+\]
+\[
+    R \to \infty
+\]
+\end{tcolorbox}
+\[
+    A = Re\left(2\pi i \sum_{Im z_k > 0} res_{z=z_k} (f(z) \cdot e^{i \beta z})\right)
+\]
+\[
+    B = Im\left(2\pi i \sum_{Im z_k > 0} res_{z=z_k} (f(z) \cdot e^{i \beta z})\right)
+\]
+\end{document}

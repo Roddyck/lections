@@ -1,0 +1,166 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{КиМ. Лекция}
+\maketitle
+
+\begin{tcolorbox}
+\underline{Lemma 4}\\
+\underline{Упр} M - простой R - модуль $ \iff \forall \, 0 \neq m_1, m_2 \in M, 
+\ \exists \, r \in R \ | \ m_2 = r m_1$ 
+\[
+    0 \neq A = (a_{ij}) \in I, \ B \in I
+\]
+\[
+    \begin{pmatrix}
+    0 & 0 & 0\\
+    a_{i 1} \dots & a_{ij}\dots & a_{in}\\
+    0 & 0 & 0\\
+    
+    \end{pmatrix}
+    \begin{pmatrix}
+    0 \dots & 0\dots & 0\\
+    a_{ij}^{-1}b_{i 1}\dots & \dots & a_{ij}^{-1}b_{in}\\
+    0 \dots &  0 & \dots 0\\
+    
+    \end{pmatrix}
+    = 
+    \begin{pmatrix}
+    0 & \dots & 0\\
+    b_{i 1} & \dots & b_{in}\\
+    0 & \dots & 0\\
+    
+    \end{pmatrix}
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th (Веддерберн-Артин, 1950)}
+
+1) R - артиново справа, если $ R_R $ - артинов модуль, т.е. $ I_1 \supset I_2 
+\supset \dots \supset I_n = I_{n+1} = \dots$ 
+
+2) R- полупервичное $ \nexists \, 0 \neq I \lhd R \ | \ I^{n} = 0 $ 
+
+3) R - кл/пр справа, если R - полупервичное и артиново справа
+
+R - кл/пр справа $ \iff R \cong \bigoplus_{k=1}^{n} M_{n_K}(D_k) $, $ D_k $ - тело\\
+При этом кольцо R имеет ровно m простых модулей (с точностью до изом-ма)
+
+\underline{Следствие} R - простое артиново справа кольцо $ \iff R \cong M_n(D) $ 
+
+\underline{Proof} $ \implies: $ R - кл/пр $ \iff R_R $ - вполне приводим
+$ \iff R_R $ - прямая сумма простых модулей (т.к. $ R_R $ - артинов справа - сумма
+конечна). Пусть $ U_1, \dots, U_m $ - классы изоморфных модулей в этой сумме.
+$ \implies R_R = U_1 \oplus \dots \oplus U_m, \ U_k = N_{k_1} \oplus \dots \oplus
+N_{k_t}; \ N_{k_i} \cong N_{k_j} \cong N \ \forall i, j$ 
+\[
+    End_R(R_R) \cong R = \hom_R (R_R, R_R) = \hom_R(U_1 \oplus \dots \oplus U_m,U_1 \oplus \dots \oplus U_m)
+\]
+\[
+    \cong \bigoplus_{i,j} \hom(U_i, U_j)
+\]
+
+\underline{$i \neq j$}
+\[
+    \hom_R(U_i, U_j) = \hom_R\left(\bigoplus_{p=1}^{n_i} N_{i_{p}}, \bigoplus_{q=1}^{n_j}
+N_{j_q}\right) \cong \bigoplus_{p,q} \hom_R(N_{i_p}, N_{j_q}) = 0 \text{ по лемме Шура}
+\]
+
+\underline{$i = j$}
+\[
+    \hom_R (U_i, U_i) = End_R(U_i) \cong End_R(N \oplus \dots \oplus N) = M_n(End_R N)
+\]
+\[
+    End_R N = D \text{ - тело по лемма Шура }
+\]
+\[
+    R \cong \bigoplus_{k=1}^{m}\hom_R(U_k, U_k) \cong\bigoplus_{k=1}^{m} M_{n_K}(D_k)
+\]
+
+$ \impliedby: $ 
+\[
+    R \cong
+    \begin{pmatrix}
+    M_{n_1}(D_1) & 0\dots & 0\\
+     & \ddots & 0 \\
+     0&  & M_{n_k}(D_k) \\
+    
+    \end{pmatrix}
+\]
+
+\end{tcolorbox}
+\begin{tcolorbox}
+$ e_{ij}^{k} $ - матричная еденица в $ M_{n_k}(D_k) $, дополним нулями до большой
+матрицы
+\[
+    e_{ii}^{k} \cdot R = N_i^k \text{ - i - ая строка в R}
+\]
+\[
+    \implies R = \bigoplus_{k=1}^{m}\bigoplus_{i=1}^{n_k} N_i^k \text{ - прямая сумма простых
+    подмодулей} \implies R_R \text{ вп. приводим } \iff R \text{ - кл/пр}
+\]
+\[
+    N_i^k \text{ - простой R - модуль}
+\]
+
+Пусть М - простой R - модуль
+\[
+    \hom_R(R_R, M) \cong M \stackrel{\star}{=} \ \forall R \text{ - модуля М}
+\]
+\underline{Упр} Указание: $ \phi: M \to \hom_R(R_R, M): m \mapsto \phi_m $,
+где $ \phi_m(r) = mr \ \forall r \in R $ 
+\[
+    \stackrel{\star}{=} \hom_R\left(\bigoplus_{k,i} N_i^k, M\right)
+    = \bigoplus_{k,i}\hom_R(N_i^k, M) \neq 0 \implies \exists \, N_s^k \ | \ 
+    N_s^k \cong M
+\]
+
+\underline{Proof} (Следствия) $ \implies: $ R - кл/пр $ \implies R \cong
+\bigoplus_{k=1}^{m} M_{n_k}(D_k) \stackrel{\text{R - простое}}{\implies} R \cong
+M_n(D)$ 
+\[
+    R \cong \begin{pmatrix}
+    M_{n_1}(D_1) & 0 & 0 \\
+     & \ddots  & \\
+     0&  & 0 \\
+    
+    \end{pmatrix}
+    \begin{pmatrix}
+    M_{n_1}(D_k) & 0 & 0 \\
+     & \ddots  & \\
+     0&  & M_{n_k}(D_k) \\
+    
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    M_{n_1}(D_k) & 0 & 0 \\
+     & \ddots  & \\
+     0&  & 0 \\
+    
+    \end{pmatrix}
+\]
+\end{tcolorbox}
+\end{document}

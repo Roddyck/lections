@@ -1,0 +1,159 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{xfrac}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{ОСА. Лекция}
+\maketitle
+
+\begin{tcolorbox}
+    \underline{Утв 1} M - max лнз система в А $ \iff <M> \leq_e A $\\
+    Если $ B \leq_e A $, то $ \forall \, \max $ система в В - max лнх в А
+
+    \underline{Proof} $ \implies: $ Против: $ <M> \not\leq_e A \implies
+    \exists \, a \in A \ | \ <M> \cap <a> = 0 \implies M \cup \{ a \} \text{ - лнз}$\\
+    $ (n_1 m_{i_1} + \dots + n_k m_{i_k} + ta = 0 $ если $ 
+    \{ m_{i_1}, \dots m_{i_k}, a\} $ - лз, то $ ta = -n_1 m_{i_1} - \dots - n_k
+    m_{i_k} \in M $)  
+
+    $ \impliedby: $ против: M - не max лнз, т.е. $ \exists a \in A \ | \ M \cup \{ a\} $ 
+    - лнз $ \implies <M> \cap <a> = 0 $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \underline{Def} D - делимая группа, если $ nD = D \ \forall \, n \in \mathbb{Z} $.
+    те $ \forall \, a \in D \ \forall n \in \mathbb{Z} \ nx = a $ - разрешима
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \underline{Факт} 1) Делимые группы tf - это $ \bigoplus Q $ \\
+    2) Если D - делимая и $ D \leq A \implies A = D \oplus B $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \underline{Утв 2} $ \forall $ абелеву группу можно вложить в делимую группу в 
+    качестве подгруппы
+
+    \underline{Proof} $ Z \hookrightarrow Q \implies F = \bigoplus Z \hookrightarrow
+    \bigoplus Q$. F - свободная\\
+    $ \forall $ группы A $ \exists $ эпи $ F \stackrel{\phi}{\to} A \implies
+    A \cong \sfrac{F}{\ker \phi = N}  $  - подгруппа в $ \sfrac{D}{N}  $ \\
+    $  \sfrac{D}{N} $ - делимая\\
+    $ p: D \to D: d \mapsto d + N $ - эпи\\
+    $ nx = d $ - разрешима в D
+    \[
+        \forall \overline{d} \in \sfrac{D}{N} \implies \overline{d} = p(d)
+    \]
+    \[
+        p(nx) = p(d) \quad np(x) = \overline{d}
+    \]
+
+    min делимая группа, содержащая гр. А называется делимая оболочка Е ($ \exists \, ! $ 
+    с точностью до изм)
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \underline{Утв 3} E - делимая оболочка для А $ \iff A \leq_e E $ 
+
+    \underline{Proof} $ \implies: $ Против $ \exists \, \langle a \rangle \leq E \ | \ 
+    A \cap \langle a \rangle = 0, \ \langle a \rangle \hookrightarrow Q \leq E \implies
+    E = Q \oplus D$ 
+
+    $ \impliedby: $ Е - не делимая оболочка, то $ \exists \, D \leq E \ | \ 
+    A \leq D  \implies E = D \oplus X \quad A \cap X = 0 \implies X = 0$ 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \underline{Утв 4} $ \forall $ группа ранга 1 - подгруппа в Q
+
+    \underline{Proof} 
+    \[
+        r(A) = 1 \implies A \hookrightarrow E \text{ - делимая оболочка}
+        \iff A \leq_e E \implies \forall \text{ max лнз сист в А - max лнз в Е по
+        утв 1}
+    \]
+    \[
+        r(E) = 1, \text{ но } r(Q) = 1 \implies E = Q
+    \]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\underline{Th Бэра (1904-1979)}
+
+Группы А и В ранга 1 изоморфмы $ \iff t(A) = t(B)$ 
+
+\underline{Proof} $ \implies: $ ясно\\
+$ \impliedby: $ 
+\[
+    \forall a \in A , \ B \in B \implies \chi(a) = (k_1, \dots , k_n, \dots)
+    \sim (l_1, \dots, l_n, \dots)
+\]
+\[
+    \iff \sum_{i} |k_i - l_i| < \infty.
+\]
+
+Пусть отличаются на местах $ k_{i_1}, \dots, k_{i_s} $. Тогда поделим а на $ p_{i_1}^{k_{i_1}},
+, \dots, p_{is}^{k_{is}} \to c \in A, \ b \text{ на }p_{i_1}^{l_{i_1}}, , \dots,
+p_{is}^{l_{is}} \to d \in B $. и $ \chi(c) = \chi(d) \iff nx = c $ разр в А
+$ \iff nx = d $ разрешима в B
+\[
+    \forall a \in A \ \exists \, m \in \mathbb{Z} \ | \ na = mc
+\]
+\[
+    \forall b \in B \ \exists \, m \in \mathbb{Z} \ | \ nb = md
+\]
+\[
+    \phi: A \to B: a \mapsto b \quad a \to na = mb, \ b \to nb = md
+\]
+
+$ \phi $ - гомо
+\[
+    \phi(a_1 + a_2) = \phi(a_1) + \phi(a_2) \quad \forall a_1, a_2 \in A
+\]
+\[
+    n a_1 = m_1 c \quad n a_2 = m_2 c
+\]
+\[
+    \implies n \phi(a_1 + a_2) = (m_1 + m_2) d
+\]
+
+Нужно доказать, что $ n[\phi(a_1) + \phi(a_2)] = (m_1 + m_2) d $ 
+\[
+    n \phi(a_1) = m_1 d + n \phi(a_2) = m_2 d
+\]
+
+\underline{Моно}
+\[
+    a \in \ker \phi \implies \phi(a) = 0
+\]
+\[
+    na = mc \to n \phi(a) = md \implies d = 0
+\]
+
+\underline{Эпи}
+\[
+    \forall b \in B \implies nb = md \implies \phi(a) = b \text{, где } na = mc
+\]
+\end{tcolorbox}
+\end{document}

@@ -1,0 +1,222 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{ТФКП. Лекция}
+\author{i dont need this}
+\maketitle
+
+В основу классификации изолированных точек однозначного характера
+ложится разложения ф-ии в ряд Лорана
+\[
+    f(z) = \sum_{n=-\infty}^{\infty} c_n(z-z_0)^{n}
+\]
+
+1. Ряд Лорана не содержит членов с отрицательными степенями.\\
+$ z_0 $ - устранимая особая точка (правильная)
+
+2. Ряд Лорана содержит конечное число членов с отрицательными степенями\\
+$ z_0 $ - полюс
+
+3. Ряд Лорана содержит бесконечно много членов с отрицательными степенями\\
+$ z_0 $ - существенно особая точка
+
+\[
+    1. \ f(z) = c_0 + c_1 (z - z_0) + \dots + c_n (z - z_0)^{n} + \dots
+\]
+\[
+    |z-z_0| < R
+\]
+\[
+    f(z_0) = \lim_{z \to z_0} f(z) = c_0
+\]
+
+\underline{Вывод.} Если $ z_0 $ - устранимая, то $ \lim_{z \to z_0} f(z) = const $ 
+
+\[
+    2. \ f(z) = \frac{c_{-m}}{(z-z_0)^{n}} + \dots + \frac{c_{-1}}{(z-z_0)} 
+    + c_0 + c_1(z-z_0) + \dots + c_n(z-z_0)^{n} \ | \ \cdot (z-z_0)^{n}
+\]
+\[
+    z_0 \text{ - полюс порядка m. При } m = 1 \ z_0 \text{ - простой полюс}
+\]
+\[
+    \psi(z) \equiv (z-z_0)^{n} \cdot f(z) = c_{-m} + c_{-m + 1}(z-z_0) + \dots
+    + c_{-1}(z-z_0)^{n-1} + c_0(z-z_0)^{n} + \dots
+\]
+\[
+    \psi(z_0) = \lim_{z \to z_0a} \psi(z) = c_{-m} \neq 0 \implies
+    |f(z)| = \frac{|\psi(z)|}{|z-z_0|^{m}} > \frac{q}{|z-z_0|^{m}} \xrightarrow[z \to z_0]{}
+    \infty
+\]
+
+\underline{Вывод.} Если $ z_0 $ - полюс, то $ \lim_{z \to z_0} f(z) = \infty $ 
+
+Если $ z_0 $ - полюс порядка m
+\[
+    f(z) = \frac{\psi(z)}{(z-z_0)^{m}}, \ \psi(z) \in H(z_0), \ \psi(z_0) \neq 0
+    \text{ - критерий полюса}
+\]
+\[
+    f(z) = \frac{(z-1)(z^2 - 5)}{z-3} \quad z_0 = 3, \ \psi(z) = (z-1)(z^2 - 5) 
+\]
+\[
+    \psi(z) \in H(z_0 =3), \ \psi(3) \neq 0
+\]
+\[
+    \lim_{z \to 3} f(z) = \infty \implies z_0 = 3 \text{ - полюс 1-го порядка}
+\]
+
+3. $ z_0 $ - существенно особая точка
+\begin{tcolorbox}
+\underline{Th Сохоцкого} Если $ z_0 $ - существенно особая точка функции $ f(z) $,
+то для любога числа А, включая $ A = \infty $ $ \exists \, z_n=z_n(A), \ 
+z_n \xrightarrow[n \to \infty]{} z_0$, по которой $ \lim_{z_n \to z_0} f(z_n) = A $ 
+\end{tcolorbox}
+
+\underline{Вывод} $ z_0 $ - существенно особая точка функии $ f(z) $ 
+\[
+    \lim_{z \to z_0} f(z) \, \nexists
+\]
+
+$ z = z_0 $ - нуль $ f(z) $ 
+\[
+    f(z) = 0 \quad f(z_0) \equiv 0
+\]
+\[
+    f(z) = c_m \cdot (z-z_0)^{m} + c_{m+1}(z-z_0)^{m+1} + \dots \quad c_m \neq 0
+\]
+m - кратность корня $ z = z_0 $ 
+\[
+    f(z) = (z - z_0) \cdot \underbrace{(c_m + c_{m+1}(z - z_0) + \dots )}_{\psi(z)}
+\]
+\[
+    \psi(z) \in H(z_0), \ \psi(z_0) \neq 0 \quad f(z) = (z - z_0)^{m}\cdot \psi(z)
+\]
+\[
+    c_m = \frac{f^{(m)}(z_0)}{m!} \quad f^{(m)}(z_0) \neq 0
+\]
+
+\begin{tcolorbox}
+    \underline{Признак кратности нуля}\\
+    $ z_0 $ - корень кратности m
+    \[
+        f(z_0) = f'(z_0) = \dots = f^{(m-1)}(z_0) = 0
+    \]
+    \[
+        f^{(m)}(z_0) \neq 0
+    \]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \underline{Th.1 (О связи полюса и нуля)}
+    
+    Если $ z_0 $ - нуль ф-ции $ f(z) $ кратности m (полюсом пор m), то для
+    $ \frac{1}{f(z)}  $ точка $ z_0 $ является полюсом порядка m (нулем кратности m,
+    если положить $ \frac{1}{f(z)} = 0 $)
+
+    \underline{Proof}
+    \[
+        1) \  z_0 \text{ - ноль кратности m для f(z)}
+    \]
+    \[
+        f(z) = (z - z_0)^{m} \cdot \psi(z), \ \psi(z) \in H(z_0), \ \psi(z_0) \neq 0
+    \]
+    \[
+        \frac{1}{f(z)}  = \frac{1}{(z - z_0)^{m}} \cdot \frac{1}{\psi(z)} 
+        = \frac{\phi(z)}{(z-z_0)^{m}}, \ \phi(z_0) \neq 0, \ \phi(z) \in H(z_0)
+    \]
+    \[
+        2) \  z_0 \text{ - полюс порядка m для f(z)}
+    \]
+    \[
+        f(z) = \frac{\phi(z)}{(z - z_0)^{m}}, \ \phi(z) \in H(z_0), \ \phi(z_0) \neq 0
+    \]
+    \[
+        \frac{1}{f(z)}  = \frac{1}{\phi(z)} \cdot (z-  z_0)^{m} = 
+        (z- z_0)^{m} \cdot \psi(z), \ \psi(z_0) \neq 0, \ \psi(z) \in H(z_0)
+    \]
+\end{tcolorbox}
+
+\section*{\centering Ряд Лорана в окрестности $ z = \infty $}
+\begin{tcolorbox}
+\underline{Def}
+Точка $ z = \infty $ - изолированная особая точка однозначного характера для $ f(z) $,
+если эта функция является однозначной аналитической функцией в некоторой окрестности
+этой точки $ R < |z| < \infty $ 
+\end{tcolorbox}
+
+$ z = \frac{1}{t} \implies $ характер $ z = \infty $ для $ f(z) $ определяется
+по характеру $ t = 0 $ для $ \phi(t) \equiv f\left(\frac{1}{t}\right) = f(z) $ 
+\[
+    f(z) = \underbrace{\dots + \frac{c_{-n}}{z^{n}} + \dots + \frac{c_{-1}}{z} + c_0}_{\text{правильная часть}} + 
+    \underbrace{c_1 \cdot z + \dots + c_n \cdot z^{n} + \dots}_{\text{главная часть}}
+\]
+1. $ z = \infty $ - устранимая особая точка $ f(z) $, ряд Лорана не содержит положительных
+степеней
+\[
+    \lim_{z \to z_0} f(z) = const \neq \infty
+\]
+
+2. $ z = \infty $ - полюс порядка m для $ f(z) $, если ряд Лорана имеет вид:
+\[
+    f(z) = \dots + \frac{c_{-n}}{z} + \dots + \frac{c_{-1}}{z} + c_0 + c_1
+    z + \dots + c_m \cdot z^{m}
+\]
+\[
+    \lim_{z \to \infty} f(z) = \infty, \ f(\infty) = \infty
+\]
+
+3. $ z = \infty $ - существенно особая точка, если ряд Лорана содержит
+бесконечно много положительных степеней
+\[
+    \nexists \ \lim_{z \to \infty} f(z)
+\]
+
+\section*{\centering Теория вычетов}
+\begin{tcolorbox}
+\underline{Def} Вычет (residu) ф-ии $ f(z) $ в изолированной особой точке
+$ z_0 $ однозначного характера - число:
+\[
+    \text{res}_{z = z_0}f(z) = \frac{1}{2 \pi i} \oint_{C} f(z)dz,
+\]
+\[
+    \text{ где } C: \ |z-z_0| = \rho, \text{ окружность достаточно малого радиуса,}
+\]
+\[
+    \text{т.е. на самой окр-ти и внутри неё нет других особых точек}
+\]
+\end{tcolorbox}
+\[
+    f(z) = \sum_{n=-\infty}^{\infty} c_n \cdot (z- z_0)^{n}, \ 0 < |z-z_0| < R, \
+    \rho < R
+\]
+\[
+    \oint_{C} f(z) dz = c_{-1} \cdot 2 \pi i
+\]
+
+\underline{Вывод} Вычет ф-и равен $ c_{-1} $ при $ (z-z_0)^{-1} $ в Лорановском
+разложении $ f(z) $ в окр-ти $ z_0 $ 
+
+\end{document}
