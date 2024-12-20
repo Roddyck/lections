@@ -1,0 +1,180 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{УМФ. Лекция}
+\maketitle
+
+\begin{equation}
+    u_{tt}(x,y,t) - a^2 (u_{xx}(x,y,t) + u_{y y}(x,y,t)) = 0
+    \label{eq:1}
+\end{equation}
+\begin{equation}
+    u(x,y,t) |_{t = 0} = \phi(x,y)
+    \label{eq:2}
+\end{equation}
+\begin{equation}
+    u_t(x,y,t) |_{t = 0} = \psi(x,y)
+    \label{eq:3}
+\end{equation}
+\begin{equation}
+    u|_{x=0} = u|_{x=p} = u|_{y=0} = u|_{y=q} = 0
+    \label{eq:4}
+\end{equation}
+\[
+    \Pi = [0, p] \times [0, q]
+\]
+\[
+    (x,y) \in \Pi, \ t \geq 0
+\]
+\begin{equation}
+    u(x,,y,t) = T(t) v(x,y)
+    \label{eq:5}
+\end{equation}
+
+\[
+    T''(t) v(x,y) - a^2 T(t) \Delta v(x,y) = 0 \ | \ : \ a^2 Tv
+\]
+\[
+    \frac{T''(t)}{a^2 T(t)} = \frac{\Delta v(x,y)}{v(x,y)} = -k 
+\]
+\begin{equation}
+    T''(t) + a^2 k T(t) = 0
+    \label{eq:6}
+\end{equation}
+\begin{equation}
+    \Delta v(x,y) + k v(x,y) = 0
+    \label{eq:7}
+\end{equation}
+\begin{equation}
+    v(0,y) = v(p,y) = v(x,0) = v(x,p) = 0
+    \label{eq:8}
+\end{equation}
+
+Мы доказали, что все собственные значения вещественные и положительные
+
+\[
+    k = \lambda^2, \ \lambda > 0
+\]
+
+\[
+    T''(t) + a^2 \lambda^2 T(t) = 0
+\]
+\[
+    \Delta v(x,y) + \lambda^2 v(x,y) = 0
+\]
+\[
+    v(0,y) = v(p,y) = v(x,0) = v(x,p) = 0
+\]
+\begin{equation}
+    v(x,y) = X(x) Y(y)
+    \label{eq:9}
+\end{equation}
+\[
+    X''(x) \cdot Y(y) + X(x) \cdot Y''(y) + \lambda^2 X(x) Y(y) = 0 \ | \ X(x) Y(y)
+\]
+\[
+    \frac{X''(x)}{X(x)} + \frac{Y(y)}{Y(y)} + \lambda^2 = 0
+\]
+\[
+    \frac{X''(x)}{X(x)} = -\lambda^2 - \frac{Y''(y)}{Y(y)} = \widetilde{k}
+\]
+\[
+    X''(x) - \widetilde{k} X(x) = 0
+\]
+\[
+    X(0) = X(p) = 0
+\]
+\[
+    Y''(y) + (\widetilde{k} + \lambda^2) Y(y) = 0
+\]
+\[
+    Y(0) = Y(q) = 0
+\]
+\[
+    \begin{cases}
+        \widetilde{-k} = \left( \frac{\pi n}{p} \right)^2, \ n \in \mathbb{N}\\
+        X_n(x) = \sin \frac{\pi nx}{p} 
+    \end{cases}
+\]
+\[
+    \begin{cases}
+        \widetilde{-\lambda^2} + \lambda^2 = \left( \frac{\pi m}{q} \right)^2, m \in \mathbb{N}\\
+        Y_m(x) = \sin \frac{\pi ny}{q} 
+    \end{cases}
+\]
+\begin{equation}
+    v_{m,n}(x,y) = X_n(x) Y_m(y) = \sin \frac{\pi nx}{p} \cdot \sin \frac{\pi my}{q}  
+\end{equation}
+\begin{equation}
+    \lambda_{n,m}^2 = \left(\frac{\pi n}{p}\right)^2 + \left( \frac{\pi m}{q} \right)^2 
+\end{equation}
+
+\[
+    T''_{m,n}(t) + (a\lambda_{m,n})^2 T_{m,n}(t) = 0
+\]
+\begin{equation}
+    T_{m,n}(t) = A_{m,n} \cos(a \lambda_{m,n} t) + B_{m,n} \sin(a \lambda_{m,n} t)
+\end{equation}
+
+\[
+    u_{m,n}(x,y,t) = T_{m,n}(t) v_{m,n}(x,y) = 
+    (A_{m,n} \cos(a \lambda_{m,n} t) + B_{m,n} \sin(a \lambda_{m,n} t))
+    \sin \frac{\pi nx}{p} \sin \frac{\pi my}{q} 
+\]
+
+\begin{multline}
+    u(x,y,t) = \sum_{m=1}^{\infty} \sum_{n=1}^{\infty} u_{m,n}(x,y,t) = 
+    \sum_{m,n=1}^{\infty} T_{m,n}(t)v_{m,n}(x,y) =\\
+    \sum_{m,n=1}^{\infty}
+    (A_{m,n} \cos(a \lambda_{m,n} t) + B_{m,n} \sin(a \lambda_{m,n} t)) 
+    \sin \frac{\pi nx}{p} \sin \frac{\pi my}{q} 
+\end{multline}
+\[
+    u(x,y,t)|_{t=0} = \sum_{m=1}^{\infty} \sum_{n=1}^{\infty} A_{m,n}
+    \sin \frac{\pi nx}{p} \sin \frac{\pi my}{q} = \phi(x,y) 
+\]
+\[
+    \sum_{m=1}^{\infty} A_{m,n} \sin \frac{\pi my}{q} = \frac{2}{p} 
+    \int_{0}^{p} \phi(x,y) \sin \frac{\pi nx}{p} dx
+\]
+\begin{equation}
+    A_{m,n} = \frac{4}{pq} \int_{0}^{p} \int_{0}^{q} \phi(x,y) \sin \frac{\pi nx}{p} 
+    \sin \frac{\pi my}{q} dx dy
+\end{equation}
+\[
+    u(x,y,t)|_{t=0} = \sum_{m=1}^{\infty} \sum_{n=1}^{\infty} a\lambda_{m,n} B_{m,n}
+    \sin \frac{\pi nx}{p} \sin \frac{\pi my}{q} = \psi(x,y) 
+\]
+\begin{equation}
+    B_{m,n} = \frac{4}{pqa \lambda_{m,n}} \int_{0}^{p} \int_{0}^{q} 
+    \psi(x,y) \sin \frac{\pi nx}{p} \sin \frac{\pi my}{q} dxdy
+\end{equation}
+
+Отметим, что выражение вида:
+\[
+    a \lambda_{m,n} = a \sqrt{\left((\frac{\pi n}{p}\right)^2 + 
+    \left(\frac{\pi m}{q}\right)} = \omega_{m,n}
+\]
+\end{document}
