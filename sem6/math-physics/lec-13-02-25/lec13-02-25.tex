@@ -1,0 +1,223 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\section*{\centering Колебания грубой мембраны. Функция Бесселя}
+
+\begin{equation}
+    u_{tt}(x,y,t) - \Delta u(x,y,t) = 0
+\end{equation}
+\[
+    \Delta = \frac{\partial^{2}}{\partial x^2} + \frac{\partial^{2}}{\partial y^2}
+\]
+\begin{equation}
+    u(x,y,t) |_{x^2 + y^2 = l^2} = 0
+\end{equation}
+\begin{equation}
+    u |_{t=0} = u_0(x,y)
+\end{equation}
+\begin{equation}
+    u_t |_{t=0} = u_1(x,y)
+\end{equation}
+\begin{equation}
+    \begin{cases}
+        x = r \cos \phi\\
+        y = r\sin \phi
+    \end{cases}
+\end{equation}
+\[
+    0 < r \leq L \quad \phi \in [0; 2\pi]
+\]
+\[
+    \Delta u(x,y,t) = \frac{1}{r} \frac{\partial}{\partial r} \left( r 
+        \frac{\partial \widetilde{u}}{\partial r}\right) + \frac{1}{r^2} 
+         \frac{\partial^2 \widetilde{u}}{\partial \phi^2}
+\]
+
+\subsection*{Задача о радиальных колебаниях}
+\[
+    u_0(x,y,t) \to \widetilde{u}_0(\rho, \phi, t)
+\]
+\[
+    u_1(x,y,t) \to \widetilde{u}_1(\rho, \phi, t)
+\]
+\[
+    \widetilde{u} |_{r=L} = 0
+\]
+
+Рассмотрим радиальные колебания.\\
+Предположим, что начальные данные $ \widetilde{u_0}, \widetilde{u_1} $
+не зависят от $ \phi $ 
+\[
+    \widetilde{u} \text{ не зависит от } \phi
+\]
+
+Обозначим:
+\[
+    \widetilde{u}(r, \phi, t) = v(r,t)
+\]
+
+\begin{equation}
+    v_{t t}(r,t) - a^2 \frac{1}{r}\frac{\partial}{\partial r} ( r v_r(r,t)) = 0
+\end{equation}
+\begin{equation}
+    v |_{t=0} = \phi(r)
+\end{equation}
+\begin{equation}
+    v_t |_{t=0} = \psi(r)
+\end{equation}
+\begin{equation}
+    v |_{r = L} = 0
+\end{equation}
+
+\begin{equation}
+    |v|_{r=0} < \infty
+\end{equation}
+
+\begin{equation}
+    v(r,t) = R(r) \cdot T(t)
+\end{equation}
+
+На первом этапе ищются все нетривиальные решения вида (11), удовлетворяющее
+уравнению (6) и граничным условиям
+
+\[
+    T''(t)R(r) - a^2 T(t) \cdot \frac{1}{r} (r R'(r))' = 0 \ | \ : a^2 T(t) R(t)
+\]
+\[
+    \frac{T''(t)}{a^2T(t)}  = \frac{\frac{1}{r} (r \cdot R'(r))'}{R(r)} 
+    = - \lambda^2
+\]
+
+\begin{equation}
+    T''(t) + a^2 \lambda^2 T(t) = 0
+\end{equation}
+\begin{equation}
+    \frac{1}{r} (r R'(r))' + \lambda^2 R(r) = 0
+\end{equation}
+
+Подставим (9) и (10) в (11):
+\[
+    T(t)R(L) = 0
+\]
+\begin{equation}
+    R(L) = 0
+\end{equation}
+\begin{equation}
+    |R(L)| < \infty
+\end{equation}
+
+(13) - (15) - Задача Штурма-Луивилля
+
+\[
+    R''(r) + \frac{1}{r} R'(r) + \lambda^2 R(r) = 0
+\]
+
+Замена:
+\[
+    x = \lambda r
+\]
+\[
+    R(r) = R \left(\frac{x}{\lambda} \right) = y(x) = y(\lambda r)
+\]
+\[
+    R'(r) = y'(x) \cdot \lambda
+\]
+\[
+    R''(r) = y''(x) \cdot \lambda^2
+\]
+\[
+    y''(x) \lambda^2 + \frac{\lambda}{x} \lambda y'(x) + \lambda^2 y(x) = 0
+\]
+\begin{equation}
+    y''(x) + \frac{1}{x} y'(x) + \left(1 - \frac{n^2}{x^2}\right)y(x) = 0
+\end{equation}
+
+Уравнение вида (16) называется уравнения Бесселя порядка n
+
+Общее решение:
+\[
+    y(x) = C J_n(x) + D Y_n(x)
+\]
+
+$ J_n, Y_n $ - лнз решения уравнения (16)
+
+$ J_n $ - функция Бесселя первого рода порядка n. $ Y_n $ - функция Бесселя второго рода порядка n
+
+$ J_n, Y_n $ - образуют ФСР
+
+\[
+    |Y_n(0)| = \infty
+\]
+Функция Бесселя первого рода имеет счётное количество корней
+\[
+    J_n(\mu) = 0 \quad 0 < \mu_1^{(n)} < \mu_2^{(n)} < \dots
+\]
+\[
+    \mu_k \xrightarrow[k \to \infty]{} + \infty
+\]
+\begin{equation}
+    \int_{0}^{L} x J_n \left(\frac{\mu_i^{(n)} x}{4} \right) \cdot J_n
+    \left(\frac{\mu_j^{(n)} x}{L} \right) dx = 
+    \begin{cases}
+        0, &\quad i \neq j\\
+        \frac{L^2}{2} (J'_n(\mu_i^{(n)}))^2, &\quad i = j
+    \end{cases}
+\end{equation}
+\[
+    R(r) = y(\lambda r) = C J_0(\lambda r) + D Y_0(\lambda r)
+\]
+
+Из (15) следует $ D Y_0(\lambda r) = 0 $ 
+
+Из (14):
+\[
+    C J_0(\lambda L) = 0
+\]
+\[
+    J_0(\mu) = 0
+\]
+\[
+    0 < \mu_1 < \mu_2 < \dots
+\]
+\begin{equation}
+    \lambda_k = \frac{\mu_k}{L}, \quad k \in \mathbb{N}
+\end{equation}
+
+\begin{equation}
+    R_k(r) = C_k J_0\left(\frac{\mu_k}{L} \right)
+\end{equation}
+
+\[
+    T''_k(t) + \left( \frac{a\mu_k}{L} \right) T_k(t) = 0
+\]
+\[
+    T_k(t) = A_k \cos \frac{a\mu_k}{L} t + B_k \sin \frac{a\mu_k}{L} t
+\]
+\[
+    v_k(r,t) = T_k(t)R_k(r) = \left(A_k \cos \frac{a\mu_k}{L} t + B_k \sin \frac{a\mu_k}{L} t\right)
+    J_0\left( \frac{\mu_k r}{L} \right)
+\]
+
+\end{document}

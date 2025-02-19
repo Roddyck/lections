@@ -1,0 +1,250 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\title{ТВиМС. Лекция}
+\maketitle
+
+\[
+    X(t) = X(\omega, t), t - \text{ фикс}, \ X_t(\omega) - \text{ с.в.}
+\]
+\[
+    \{ X(t_1), \dots, X(t_n) \}, \ t_1 < t_2 \dots < t_n, \ \forall n
+\]
+
+Числовые характеристики  \\
+1) Матем. ожидание $ m(t) = E(X(t)) $ \\
+2) Дисперсия $ \sigma^2(t) = D(X(t)) $ 
+
+Корреляционная функция
+\[
+    K(t_1, t_2) = E((X(t_1) - m(t_1))(X(t_2) - m(t_2))) = E(X(t_1)X(t_2))
+    - m(t_1) m(t_2)
+\]
+\[
+    E(X(\omega,t_1)X(\omega,t_2))
+\]
+
+Стационарный процесс:
+\[
+    \{ X(t_1), \dots, X(t_n) \} \land \{ X(t_1 + h), \dots, X(t_n+h) \}
+    \text{ - одинаково распределены } \forall h \land \forall t_1 < \dots < t_n
+\]
+
+Если процесс стационарный, то $ m(t) = const, \ \sigma^2 = const, \ K(t_1, t_2) =
+K(t_2 - t_1) = K(|t_2 - t_1|)$ 
+\[
+    K(t_1, t_2) = K(t_1 - t_1, t_2 - t_1) = K_1(t_2 - t_1)
+\]
+
+\[
+    X(t) = \xi_1 \sin t + \xi_2 \cos t
+\]
+$ \xi_1, \xi_2 $ - независимые случайные величины\\
+$ P(\xi_i = \pm 1) = \frac{1}{2} $ 
+\[
+    E(X(t)) = m(t) = E(\xi_1(\omega) \sin t + \xi_2(\omega) \cos t) = 
+    E(\xi_1(\omega) \sin t) + E(\xi_2(\omega) \cos t) =
+    \sin t E(\xi_1) + \cos t E(\xi_2)
+\]
+\[
+    E(\xi_1) = 1 \cdot \frac{1}{2} + (-1) \cdot \frac{1}{2} = 0
+\]
+\[
+    m(t) = 0
+\]
+\[
+    D(\xi_1) = E(\xi_1^2) = 1^2 \cdot \frac{1}{2} + (-1)^2 \cdot \frac{1}{2} = 1
+\]
+\[
+    \sigma^2(t) = D(X(t)) = D(\xi_1 \sin t) + D(\xi_2 \cos t) + 2 cov(\xi_1 \sin t,
+    \xi_2 \cos t)
+\]
+\[
+    \sigma^2(t) = \sin^2 t D(\xi_1) + \cos^2 t D(\xi_2) = \sin^2 t + \cos^2 t = 1
+\]
+\[
+    K(t_1, t_2) = E(X(t_1) \cdot X(t_2)) = E((\xi_1 \sin t_1 + \xi_2 \cos t_1)
+    \cdot (\xi_1 \sin t_2 + \xi_2 \cos t_2)) = E(\xi_1^2 \sin t_1 \sin t_2 +
+\]
+\[
+    + \xi_1 \xi_2 (\sin t_1 \cos t_2 + \cos t_1 \sin t_2) + \xi_2^2 \cos t_1
+    \cos t_2)
+\]
+\[
+    = \sin t_1 \sin t_2 + \cos t_1 \cos t_2 = \cos(t_2 - t_1)
+\]
+
+\begin{tcolorbox}[title=Определение]
+    X(t) называется стационарным в широком смысле, если
+    \[
+        E(X(t)) = const \quad K(t_1, t_2) = K(t_2 - t_1)
+    \]
+\end{tcolorbox}
+\[
+    X(t) = \xi_1 \sin t + \xi_2 \cos t
+\]
+\[
+    m(t) = 0, \quad K(t_1, t_2) = \cos(t_2 - t_1)
+\]
+1) $ t = 0 $\\
+$ X(0) = \xi_2 $\\
+$ t = \frac{\pi}{4} $ \\
+$ X(\frac{\pi}{4}) = \xi_1 \frac{\sqrt{2} }{2} + \xi_2\frac{\sqrt{2} }{2} $ 
+
+\[
+    \xi_1 = 1, \ \xi_2 = 1 \implies
+\]
+
+\emph{Пример}
+\[
+    E(X(t)) = m_x(t) = 0
+\]
+\[
+    K_x(t_1, t_2) = 2 \sin(t_1) \sin(t_2)
+\]
+\[
+    z(t) = \int_{0}^{t} X(\tau) d \tau = \int_{0}^{t} X(\omega, \tau) d \tau
+\]
+\[
+    E(z(t)) = ? \quad D(z(t)) = ? \quad K(t_1, t_2) = ?
+\]
+\[
+    m_z(t) = E \left( \int_{0}^{t} X(\omega, \tau) d \tau \right) =
+    \int_{0}^{t} E(X(\omega, \tau)) d \tau = \int_{0}^{t} 0 \cdot d \tau = 0
+\]
+\[
+    K(t_1, t_2) = E(z(t_1) z(t_2)) = E \left( \int_{0}^{t_1} X(\omega, \tau_1)
+    d \tau_1 \cdot \int_{0}^{t_2} X(\omega, \tau_2) d \tau_2 \right) =
+    E\left( \int_{0}^{t_1} \int_{0}^{t_2} X(\omega, \tau_1) X(\omega, \tau_2) d
+    \tau_1 d \tau_2 \right)
+\]
+\[
+    = \int_{0}^{t_1} \int_{0}^{t_2} E(X(\omega, \tau_1) X(\omega, \tau_2))
+    d \tau_1 d \tau_2 = \int_{0}^{t_1} \int_{0}^{t_2} 2 \sin(\tau_1)\sin(\tau_2)
+    d \tau_1 d \tau_2 = 2(-\cos(\tau_1) |_{0}^{t_1})(-\cos(\tau_2) |_{0}^{t_2})
+\]
+\[
+    = 2(1 - \cos(t_1))(1 - \cos(t_2))
+\]
+\[
+    \sigma^2(t) = 2(1 - \cos(t))^2
+\]
+
+\section*{Марковские цепи}
+\[
+    X_1, X_2, \dots, X_n, \dots
+\]
+\[
+    P(X_1 = k_1, X_2 = k_2, X_3 = k_3) = P(X_3 = k_3 | X_1 = k_1, X_2 = k_2)
+    \cdot P(X_2 = k_2, X_1 = k_1) \stackrel{*}{=}
+\]
+
+Если процесс Марковский
+\[
+    P(X_3 = k_3 | X_1 = k_1, X_2 = k_2) = P(X_3 = k_3 | X_2 = k_2)
+\]
+\[
+    \stackrel{*}{=} \underbrace{P(X_3 = k_3 | X_2 = k_2)}_{= P_{k_2, k_3}}
+    \underbrace{P(X_2 = k_2 | X_1 = k_1)}_{= P_{k_1, k_2}} = 
+    a_{k_1}p_{k_1, k_2}p_{k_2, k_3}
+\]
+
+\[
+    \mathbb{P} = \begin{pmatrix}
+    p_{11} & p_{12} & \dots & p_{1n}\\
+    p_{21} & p_{22} & \dots & p_{2n}\\
+    \dots & \dots & \dots & \dots\\
+    p_{n1} & p_{n 2} & \dots & p_{nn}\\
+    
+    \end{pmatrix}
+\]
+
+По формуле полной вероятности:
+\[
+    p_{k_1, k_2} = \sum_{j=1}^{n} p_{k_1 j} p_{j k_2}
+\]
+\[
+    \mathbb{P}^2 = \mathbb{P} \cdot \mathbb{P}
+\]
+\[
+    \mathbb{P}^{m+n} = \mathbb{P}^{m} \cdot \mathbb{P}^{n}
+\]
+\[
+    \mathbb{P}^{n+1} = \mathbb{P}^{n} \mathbb{P}
+\]
+\begin{equation}
+    p_{ij}^{(n+1)} = \sum_{k=1}^{n} p_{ik}^{(n)} \cdot p_{kj}
+\end{equation}
+\[
+    p_{kj} > 0, \ \forall k, j \implies p_{ij}^{n} \to \pi_j
+\]
+\begin{equation}
+    \pi_j = \sum_{k=1}^{n} \pi_k p_{kj}
+\end{equation}
+
+\emph{Задача}
+
+Матрица перехода цепи Маркова имеет вид
+\[
+    \mathbb{P} = \begin{pmatrix}
+    0.2 & 0.5 & 0.3\\
+    0.4 & 0.1 & 0.5\\
+    0.2 & 0.7 & 0.1\\
+    
+    \end{pmatrix}
+\]
+\[
+    a^{T} = (0.7, 0.2, 0.1)
+\]
+
+a) Найти распределения ... при $ t = 2 $\\
+b) $ t = 0, 1, 2, 3 $ цепь находилась в состоянии $ 3 \ 2 \ 1 \ 2 $ \\
+Найти стационарное распределение
+\[
+    a) \ p_{ij}^{2}
+\]
+\[
+    \mathbb{P}^2 = \mathbb{P}\mathbb{P} = \begin{pmatrix}
+    0.3 & 0.36 & 0.24\\
+    0.22 & 0.56 & 0.22\\
+    0.34 & 0.24 & 0.42\\
+    
+    \end{pmatrix}
+\]
+\[
+    P(X = 3, X_1 = 2, X_2 = 1, X_3 = 2) = a_3 p_{32} p_{21} p_{12} = 
+    0.7 \cdot 0.4 \cdot 0.5 \cdot 0.4 = 0.056
+\]
+\[
+    \begin{cases}
+        \pi_2 = 0.5 \pi 1 + 0.1 \pi_2 + 0.7 \pi_3\\
+        \pi_3 = 0.3 \pi 1 + 0.5 \pi_2 + 0.1 \pi_2\\
+        \pi_1 = 0.2 \pi_1 + 0.4 \pi_2 + 0.2 \pi_3\\
+    \end{cases}
+\]
+\[
+    \pi_3 = 1 \quad \pi_1 = \frac{23}{26} \quad \pi_2 = \frac{33}{26} 
+\]
+\end{document}

@@ -1,0 +1,95 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+
+\begin{document}
+\title{Группы и алгебры Ли}
+\author{}
+\date{15 Февраля 2025 г.}
+\maketitle
+
+\begin{tcolorbox}[title=Группы Ли]
+    \begin{definition}[Группа Ли]
+    Пусть $ G $ - группа и гладкое многообразие над $ \mathbb{R} $ 
+
+    Если 
+    \[
+        \mu: G \times G \to G
+    \]
+    и
+    \[
+        i: G \to G, \ i(x) = x^{-1}
+    \]
+    гладкие отображения, то $ G $ называется группой Ли
+\end{definition}
+\end{tcolorbox}
+
+\[
+    (U, \phi) \text{ - карта}
+\]
+\[
+    \phi: U \to \widetilde{U} \subset \mathbb{R}^{n} \text{ - гомеоморфизм}
+\]
+\[
+    (V, \psi) \text{ - карта}
+\]
+\[
+    \phi: V \to \widetilde{V} \subset \mathbb{R}^{n} \text{ - гомеоморфизм}
+\]
+\[
+    x \in U \cap V
+\]
+\[
+    \phi: U \cap V \to \phi(U \cap V) \subset \widetilde{U} \subset \mathbb{R}^{n}
+\]
+\[
+    \psi: U \cap V \to \psi(U \cap V) \subset \widetilde{V} \subset \mathbb{R}^{n}
+\]
+$ (x_1, \dots, x_n) $ - координаты $ \phi $ \\
+$ (y_1, \dots, y_n) $ - координаты $ \psi $
+\[
+    f_{\phi, \psi}: \psi(U \cap V) \to \phi(U \cap V)
+\]
+\[
+    z \in \psi(U \cap V)
+\]
+\[
+    x_i(f_{\phi, \psi}(z)) = f_i(y_1(z), \dots, y_n(z))
+\]
+\[
+    x_i = f_i(y_1, \dots, y_n), \quad i = \overline{1,n}
+\]
+\[
+    u \in U \quad x_i(\phi(u))
+\]
+\[
+    y_i \circ \psi = y_i
+\]
+\end{document}
