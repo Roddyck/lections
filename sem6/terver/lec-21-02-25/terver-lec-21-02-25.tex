@@ -1,0 +1,298 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{lemma}{Лемма}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand
+\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\section*{\centering Типы случайных процессов}
+
+1) $ t = 0, 1, 2, \dots \ (t = -\infty, \dots, -1, 0, 1, \dots) $ - временные
+ряды
+
+Процессы с независ. значениями
+\[
+    X_0, X_1, X_2, \dots \text{ - послед-ть с.в.}
+\]
+\[
+    X_t \land X_s, \ t \neq s \text{ - независимы}
+\]
+
+2) Процессы с независимыми приращениями
+\[
+     t \in [0, T] \ ([0, +\infty]
+\]
+
+$ X_t, \ t \in T $ процесс с независ. приращениями, если $ \forall t_1 < t_2 <
+\dots < t_n, \ n \in \mathbb{N}$ 
+\[
+    X_{t_1}, X_{t_2}, \dots , X_n, \dots \text{ - нез с.в.}
+\]
+
+\[
+    S_n = X_1 + X_2 + \dots + X_n \implies \{ S_n \}_{n \geq 1}
+    \text{ - процесс с незав приращ}
+\]
+
+$ t_1 < t_2 $ $ X_t, \ t \in T $ процесс с независимыми приращениями
+\[
+    X(t_2 + t_1) - X(t_2) \text{ - не зависит от } t_2
+\]
+\[
+    m_X(t_2 + t_1) = E(X(t_2 + t_1)) = E(X(t_2 + t_1) - X(t_2)) + E(X(t_2)) =
+    m(t_1) + m(t_2)
+\]
+\[
+    t > s \quad E(X(t)) = 0
+\]
+\[
+    K(s,t) = E(X(t)X(s))
+\]
+\[
+    X(t) \cdot X(s) = (X(t) - X(s) + X(s))X(s) = (X(t) - X(s))X(s) + 
+    X^2(s)
+\]
+\[
+    K(s,t) = E((X(t) - X(s))X(s)) + E(X^2(s))
+\]
+\[
+    K(s,t) = \min (\sigma^2(s), \sigma^2(t))
+\]
+\[
+    E((X(t) - X(s))^2) = \sigma^2(t) + \sigma^2(s) - 2 \sigma^2(s) = 
+    \sigma^2(t) - \sigma^2(s)
+\]
+\[
+    \sigma^2(t) = \sigma^2(s) + \sigma^2(t-s)
+\]
+\[
+    \sigma^2(t_1 + t_2) = \sigma^2(t_1) + \sigma^2(t_2)
+\]
+
+Рассмотрим функциональное уравнение
+\[
+    y(t_1 + t_2) = y(t_1) + y(t_2)
+\]
+\[
+    t_1 = t_2 = 1
+\]
+\[
+    y(2) = y(1) + y(1) = 2y(1)
+\]
+\[
+    y(m+1) = y(m) + y(1) = (m+1)y(1)
+\]
+\[
+    y(n) = ny(1) = Bnm(t)
+\]
+\[
+    y\left(\frac{m}{n}\right) = m 
+\]
+
+Марковские процессы
+\begin{tcolorbox}
+    \begin{definition}
+        Процесс называется Марковским, если
+        \[
+            P(X_{t_{n+1}} \in B | X_{t_n}= x_n, \dots, X_{t_1}= x_1) =
+            P(X_{t_{n+1}} \in B | X_t = x_n) \text{ - переходная функция}
+        \]
+    \end{definition}
+\end{tcolorbox}
+
+Показать:
+1) Для процесса с незав. приращ определить конечномерные распределения\\
+2) Процесс с нез. приращениями $ \equiv $ марковский процесс
+
+\section*{Стационарные процессы}
+
+\begin{tcolorbox}
+\begin{definition}
+$ X_t, t \in T $ - стационарный, если
+\[
+    \forall t_1 < t_2 < \dots < t_n \ \forall n, \ \forall h > 0
+\]
+\[
+    (X_{t_1}, \dots, X_{t_n}) \land (X_{t_1 + h}, \dots, X_{t_n + h})
+    \text{ одинаково распределены}
+\]
+\end{definition}
+\end{tcolorbox}
+
+\[
+    E(X(t_1)) = m(t_1)
+\]
+\[
+    E(X(t_2)) = m(t_2)
+\]
+\[
+    X(t_1) \land X(t_2) = X(t_1 + h) \text{ - одинаково расп} \implies
+\]
+\[
+    1) \ m(t_1) = m(t_1 + h) = const
+\]
+\[
+    2) \ \sigma^2(t) = const
+\]
+\[
+    E(X(t)) = 0
+\]
+\[
+    K(s,t) = E(X(t) \cdot X(s)) = E(X(s+h)X(s)) \quad h = t-s
+    \text{ возьмем } s = 0 \implies
+\]
+\[
+    K(s+h,s) = K(h) = K(t-s) = K(|t-s|)
+\]
+\begin{tcolorbox}
+    \begin{remark}
+        1-ое определение стационарного процесса называется стационарным процессом в узком
+        смысле
+    \end{remark}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \begin{definition}
+        Пусть $ X_t, t \in T $ - процесс:\\
+        $ \{ m(t) = const, K(t,s) = K(|t-s|)$ 
+
+            Тогда $ X_t, \ t \in T $ называется стационарным процессом в широком смысле
+    \end{definition}
+\end{tcolorbox}
+
+\[
+    X(t) = A \sin(\omega t + \phi) \quad A, \omega \text{ - постоянные (неслучайные)}
+\]
+\[
+    \phi \in \mathcal{R} [0, 2\pi]
+\]
+
+\section*{\centering Гауссовские процессы}
+\begin{tcolorbox}
+\begin{theorem}
+    $ X_t $ - стационарен в узком смысле $ \iff $ он стационарен в широком смысле
+
+    \begin{proof}
+        
+    \end{proof}
+\end{theorem}
+\end{tcolorbox}
+
+\[
+    X_t = f(\xi + t)
+\]
+\[
+    \xi \in \mathcal{R}[0,T), \ f \text{ - периодическая ф-ия с периодом T.}
+\]
+Показать, что $ X_t $ - стационарный в узком смысле
+
+\underline{Д-во}
+\[
+    t_1 < t_2 < \dots < t_n
+\]
+\[
+    E\left(\exp\left(in \sum_{j=1}^{n} \lambda_j X_{n_j} + h\right)\right) = \phi_{n_1 + h, \dots ,
+    n_n + h}
+\]
+\[
+    = \frac{1}{T} \int_{0}^{T} \exp\left(i \sum_{j=1}^{n} f(u_j + y)\right)dy = 
+    \frac{1}{T} \int_{0}^{T} \exp\left(i\sum_{j=1}^{n} f(u_1 + h, y)\right) dy
+\]
+\[
+    \frac{1}{T} \int_{h}^{T+h} \exp\left(i\sum_{j=1}^{n} f(u_1, y)\right) dy
+\]
+\[
+    \Phi_k \text{ - компл. число}
+\]
+\[
+    X_t = \sum_{k=-n}^{n} e^{i \lambda_k + \Phi_k}
+\]
+\[
+    E(\Phi_k) = 0 \implies m(t) = 0
+\]
+\[
+    E(\Phi_k \overline{\Phi}_k) = F_k
+\]
+\[
+    K(t,s) = \sum_{k=-n}^{n} e^{i \lambda_k(t-s) + \Phi_k} = K(t-s)
+\]
+
+\section*{\centering Броуновское движение}
+1) $ X_t $ - имеет непрерывные траектории
+
+2) $ P(X_0 = 0) = 1 $ 
+
+3) Процесс с независимыми приращениями
+
+4) Приращение $ X_t - X_s \in \mathcal{N}(0, \sigma^2(t-s)), \ t > s $ 
+\[
+    m(t) = E(X_t) = 0
+\]
+\[
+    K(t,s) = E(X_t X_s) = E((X_t - X_s)X_s) + E(X^2_s) = E(X_s) \cdot
+    E(X_t - X_s) = 0
+\]
+
+Д/з. Найти конечномерные распределения Броуновского движения
+
+\[
+    w(t) \text{ - Броуновское движение}
+\]
+\[
+    \tau_x = \inf \{ t : \ w(t) = x \}
+\]
+\[
+    \widehat{w}(t) = \max_{u \in [0,t]} \{w(u) \leq x\}
+\]
+\[
+    P(\widehat{w}(t) \leq x) = 2 P(w(t) \geq x)
+\]
+\[
+    P(w(t) \geq x) = \int_{0}^{t} P(w(t) \geq x | \tau(x) = y) f(y) dy = 
+    \int_{0}^{t} P(w(t) - w(y) \geq 0 | \tau(x) = y) f(y) dy
+\]
+\[
+    = \int_{0}^{t} P(w(t) - w(y) \geq 0) f(y) dy = \frac{1}{2} \int_{0}^{t} 
+    f(y) dy
+\]
+\[
+    P(\tau(x) \leq t) = 2P(w(t) \geq x) = 2 \int_{x}^{\infty} \frac{1}{\sqrt{2\pi t}} 
+    e^{\frac{-u^2}{2t}} du = 2 \int_{x}^{\infty} \frac{1}{\sqrt{2\pi}}
+    e^{\frac{-v^2}{2t}} dv
+\]
+\[
+    P(\tau(t)
+\]
+
+\end{document}

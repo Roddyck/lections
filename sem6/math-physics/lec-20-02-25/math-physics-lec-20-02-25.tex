@@ -1,0 +1,191 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\begin{document}
+\title{УМФ. Лекция}
+\author{}
+\date{20 Февраля 2025 г}
+\maketitle
+
+\begin{equation}
+    v(r,t) = \sum_{i=1}^{\infty} v_i(r,t) = \sum_{i=1}^{\infty} J_0\left(\frac{\mu_i^{(0)}}{L} 
+    \right) \left( A_i \cos \frac{a\mu_i^{(0)} t}{L} + B_i 
+    \sin\frac{a\mu_i^{(0)} t}{L}\right)
+\end{equation}
+
+\begin{tcolorbox}
+    \emph{Условие ортогональности функции Бесселя}
+    \begin{equation}
+        \int_{0}^{L} x J_0 \left( \frac{\mu_i^{(0)}x}{L} \right)\cdot
+        J_0\left(\frac{\mu_j^{(0)}x}{L}\right) dx =
+        \begin{cases}
+            0, &\quad i \neq j \\
+            \frac{L^2}{2} (J'_0 (\mu_i^{(0)}))^2, &\quad i = j
+        \end{cases}
+    \end{equation}
+\end{tcolorbox}
+
+\[
+    v(r,t) |_{r=0} = \phi(r) \implies \sum_{i=1}^{\infty} J_0 \left(\frac{\mu_i^{(0)}x}{L}\right)
+    \cdot A_i = \phi(r) \ | \ \cdot r J_0 \left(\frac{\mu_0 r}{L} \right), \
+    \int_{0}^{L} 
+\]
+\[
+    v_t(r,t) |_{r=0} = \psi(r) \implies \sum_{i=1}^{\infty} J_0 \left(\frac{\mu_i^{(0)}x}{L}\right)
+    \frac{a \mu_i^{(0)}}{L} B_i = \psi(r)
+\]
+
+\[
+    \frac{L^2}{2}(J'_0(\mu_j))^2 A_j = \phi(r) r J_0 \left(\frac{\mu_j r}{L} \right)
+\]
+\begin{equation}
+    A_j = \frac{1}{\frac{L^2}{2}(J_0'(\mu_j))^2 } \cdot \int_{0}^{L} 
+    \phi(r) \cdot r \cdot J_0 \left(\frac{\mu_j r}{L} \right)
+\end{equation}
+\begin{equation}
+    B_j = \frac{1}{\frac{a \mu_j^{(0)}}{L}\frac{L^2}{2}(J_0'(\mu_j))^2  } 
+    \cdot \int_{0}^{L} \psi(r) \cdot r \cdot J_0 \left(\frac{\mu_j r}{L} \right)
+\end{equation}
+
+\section*{\centering Параболические уравнения. Уравнения теплопроводности}
+
+\textbf{Вопрос из билета: Вывод уравнения теплопроводности}
+
+\[
+    u(x,y,z,t) \text{ - температура в точке наблюдения в момент времени } t
+\]
+\[
+    V \subset \mathbb{R}^3, \ t \in [t_1; t_2]
+\]
+
+\[
+    dV = dxdydz
+\]
+\[
+    \iiint_V C \rho u(x,y,z,t) dV
+\]
+\[
+    C \text{ - удельная теплоёмкость} \quad \rho \text{ - объёмная плотность 
+    вещества}
+\]
+\[
+    \iiint_V \rho(x,y,z,t) dV = m_V
+\]
+\[
+    \iiint_V C \rho u(x,y,z,t_2) dV - \iiint_V C \rho u(x,y,z,t_1) dV
+\]
+
+Пусть существует функция, называемая объёмная ... 
+\[
+    \iiint_V F(x,y,z,t) dx dy dz \text{ - количество тепла, выделенное внутренними
+    источниками в еденицу времени}
+\]
+\[
+    \int_{t_1}^{t_2} \iiint_V F(x,y,z,t) dx dy dz dt 
+    \text{ + приход тепла через границу}
+\]
+\[
+    \vec{J}(x,y,z,t) \text{ - плотность потока тепла}
+\]
+\[
+    (\vec{J} \cdot \vec{n}) dS \text{ - количество тепла, проходящего через
+    площадку } dS \text{ в направлении n за еденицу времени}
+\]
+
+Пусть $ S $ - поверхность, ограничивающия объём $ V $ 
+\[
+    \int_{t_1}^{t_2} \iint_S (\vec{J} \cdot \vec{n}) dS dt
+\]
+
+
+\[
+    \iiint_V C \rho u(x,y,z,t_2) dV - \iiint_V C \rho u(x,y,z,t_1) dV =
+    \int_{t_1}^{t_2} \iiint_V F(x,y,z,t) dx dy dz dt +
+    \int_{t_1}^{t_2} \iint_S (\vec{J} \cdot \vec{n}) dS dt
+\]
+
+\begin{tcolorbox}[title=Закон Фурье]
+\[
+    \vec{J}(x,y,z,t) = -\lambda \, \text{grad} \, u(x,y,z,t)
+\]
+\end{tcolorbox}
+
+\[
+    (\vec{J}, \vec{n}) = -\lambda \frac{\partial u}{\partial n} 
+\]
+
+\[
+    \iiint_V C \rho u(x,y,z,t_2) dV - \iiint_V C \rho u(x,y,z,t_1) dV =
+    \int_{t_1}^{t_2} \iiint_V F(x,y,z,t) dx dy dz dt -
+    \int_{t_1}^{t_2} \iint_S \left(-\lambda \frac{\partial u}{\partial n} \right) dS dt
+\]
+\[
+    \iiint_V \left( \frac{\partial}{\partial x} 
+        \left(\lambda \frac{\partial u}{\partial x}\right) +
+    \frac{\partial}{\partial y} 
+            \left(\lambda \frac{\partial u}{\partial y}\right) +
+    \frac{\partial}{\partial z} 
+            \left(\lambda \frac{\partial u}{\partial z}\right) 
+    \right)
+    = \iint_S \lambda \frac{\partial u}{\partial n} 
+    = \iint_D (P \cos \hat{nx} + Q \cos \hat{ny} + R \cos \hat{nz})
+\]
+\[
+    = \iint_s \lambda (\text{grad}(u \cdot \vec{n})) ds
+\]
+\[
+    \iiint_V C \rho u(x,y,z,t_2) dV - \iiint_V C \rho u(x,y,z,t_1) dV =
+    \int_{t_1}^{t_2} \iiint_V F(x,y,z,t) dx dy dz dt -
+\]
+    \[
+    \int_{t_1}^{t_2} 
+    \iiint_V \left( \frac{\partial}{\partial x} 
+        \left(\lambda \frac{\partial u}{\partial x}\right) +
+    \frac{\partial}{\partial y} 
+            \left(\lambda \frac{\partial u}{\partial y}\right) +
+    \frac{\partial}{\partial z} 
+            \left(\lambda \frac{\partial u}{\partial z}\right) 
+    \right)
+\]
+\[
+    \int_{t_1}^{t_2} \iiint_V C \rho \frac{\partial u}{\partial t} dV dt
+\]
+\[
+    C \rho \frac{\partial u}{\partial t} = 
+    \frac{\partial}{\partial x} 
+            \left(\lambda \frac{\partial u}{\partial x}\right) +
+        \frac{\partial}{\partial y} 
+                \left(\lambda \frac{\partial u}{\partial y}\right) +
+        \frac{\partial}{\partial z} 
+                \left(\lambda \frac{\partial u}{\partial z}\right) 
+    + F(x,y,z,t)
+\]
+
+\end{document}
