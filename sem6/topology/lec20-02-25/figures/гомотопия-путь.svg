@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="240mm"
+   height="120mm"
+   viewBox="0 0 240 120"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
+   sodipodi:docname="гомотопия-путь.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs2">
+    <rect
+       x="519.81962"
+       y="191.28793"
+       width="194.84347"
+       height="63.99968"
+       id="rect7" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect7"
+       is_visible="true"
+       lpeversion="1" />
+    <rect
+       x="473.6649"
+       y="316.78225"
+       width="107.6054"
+       height="42.237634"
+       id="rect6" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect6"
+       is_visible="true"
+       lpeversion="1" />
+    <marker
+       style="overflow:visible"
+       id="ArrowWide"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Wide arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         sodipodi:nodetypes="ccc"
+         id="path5" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect4"
+       is_visible="true"
+       lpeversion="1" />
+    <rect
+       x="321.81054"
+       y="237.33528"
+       width="140.79211"
+       height="77.435662"
+       id="rect1" />
+    <rect
+       x="473.66489"
+       y="316.78226"
+       width="107.6054"
+       height="42.237633"
+       id="rect6-3" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.406257"
+     inkscape:cx="371.19815"
+     inkscape:cy="194.48792"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showborder="true"
+     width="200mm"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1904"
+     inkscape:window-height="1040"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid815"
+       units="mm"
+       spacingx="10"
+       spacingy="10"
+       empspacing="4"
+       dotted="false"
+       originx="0"
+       originy="0" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-177)">
+    <circle
+       id="path1"
+       style="fill:#000000;stroke:none;stroke-width:0.264583"
+       cx="89.402985"
+       cy="236.60199"
+       r="0.54750001" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,1.596482,174.60528)"
+       id="text1"
+       style="font-size:24px;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect1);display:inline;fill:#000000;stroke:#000000;stroke-width:1.37953"><tspan
+         x="321.81055"
+         y="259.17294"
+         id="tspan2">p</tspan></text>
+    <circle
+       id="path2"
+       style="fill:#000000;stroke:none;stroke-width:0.264583"
+       cx="129.58112"
+       cy="206.80099"
+       r="0.54750001" />
+    <circle
+       id="path3"
+       style="fill:#000000;stroke:none;stroke-width:0.264583"
+       cx="129.58112"
+       cy="257.09018"
+       r="0.54750001" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.365001;marker-end:url(#ArrowWide)"
+       d="m 89.40299,236.33591 c 10.88053,-0.98065 22.10238,2.66153 30.33316,9.84498 3.38664,2.9557 6.27713,6.4785 8.51457,10.37713"
+       id="path4"
+       inkscape:path-effect="#path-effect4"
+       inkscape:original-d="m 89.40299,236.33591 c 5.445707,-2.49784 23.87678,1.23647 30.33316,9.84498 2.39982,3.19976 5.21461,9.55214 8.51457,10.37713" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.365001;marker-end:url(#ArrowWide)"
+       d="m 89.669071,235.80375 c 13.302469,-3.07008 25.543649,-10.56662 34.324359,-21.02034 1.8384,-2.18868 3.52871,-4.50172 5.05553,-6.91809"
+       id="path6"
+       inkscape:path-effect="#path-effect6"
+       inkscape:original-d="m 89.669071,235.80375 c 0.271561,-22.58141 19.754129,-9.36416 34.324359,-21.02034 2.42626,-1.94101 5.05553,-3.83093 5.05553,-6.91809" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-3.192964,173.80704)"
+       id="text6"
+       style="font-size:24px;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect6);display:inline;fill:#000000;stroke:#000000;stroke-width:1.37953"><tspan
+         x="473.66406"
+         y="338.62021"
+         id="tspan3">$h_0(p)$</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-4.104537,114.07813)"
+       id="text6-6"
+       style="font-size:24px;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect6-3);display:inline;fill:#000000;stroke:#000000;stroke-width:1.37953"><tspan
+         x="473.66406"
+         y="338.62021"
+         id="tspan4">$h_1(p)$</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.365001"
+       d="m 129.58112,256.8241 c 0.60575,-0.65159 0.98659,-1.50847 1.06432,-2.39473 0.067,-0.7635 -0.0853,-1.53286 -0.33334,-2.25806 -0.248,-0.7252 -0.59033,-1.41375 -0.91734,-2.10692 -0.32701,-0.69317 -0.6412,-1.39766 -0.82814,-2.14095 -0.18693,-0.74329 -0.24222,-1.53283 -0.0498,-2.27472 0.18225,-0.70277 0.57845,-1.33412 1.04493,-1.89044 0.46649,-0.55632 1.00521,-1.04669 1.52238,-1.55623 0.51717,-0.50954 1.0183,-1.04514 1.39086,-1.66827 0.37257,-0.62314 0.61171,-1.3447 0.5652,-2.06922 -0.0313,-0.4879 -0.19137,-0.96319 -0.43285,-1.38829 -0.24149,-0.4251 -0.56291,-0.80148 -0.92269,-1.13252 -0.71955,-0.66207 -1.58409,-1.14085 -2.41799,-1.65145 -0.83389,-0.51061 -1.66095,-1.07364 -2.2506,-1.85365 -0.29482,-0.39001 -0.52599,-0.83203 -0.64555,-1.30608 -0.11957,-0.47406 -0.1246,-0.98093 0.0177,-1.44867 0.14217,-0.46741 0.42736,-0.88436 0.78254,-1.21982 0.35518,-0.33546 0.77878,-0.59253 1.22351,-0.79477 0.88947,-0.40447 1.85977,-0.59342 2.78339,-0.91229 2.13072,-0.73561 4.007,-2.18777 5.25341,-4.06594 1.24642,-1.87817 1.85561,-4.17122 1.70566,-6.42035 -0.14994,-2.24914 -1.05812,-4.44103 -2.54282,-6.13713 -1.4847,-1.69609 -3.53714,-2.88634 -5.74665,-3.3326"
+       id="path7"
+       inkscape:path-effect="#path-effect7"
+       inkscape:original-d="m 129.58112,256.8241 c 0.0685,-0.90284 0.43266,-1.76306 1.06432,-2.39473 6.78672,-6.78671 -3.2756,-4.19282 -2.12864,-8.78065 0.53474,-2.13894 5.84156,-4.54777 4.52337,-7.18416 -1.54575,-3.0915 -7.50909,-4.49527 -6.65201,-8.78066 0.42638,-2.13192 3.9763,-1.30059 4.78944,-2.92688 3.76324,-7.52647 0.36382,-13.17913 -1.3304,-19.95602" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,0,177)"
+       id="text7"
+       style="font-size:24px;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect7);fill:#000000;stroke:#000000;stroke-width:1.37953"><tspan
+         x="519.82031"
+         y="213.12411"
+         id="tspan5">$\{ h_t(p) \}$</tspan></text>
+  </g>
+</svg>

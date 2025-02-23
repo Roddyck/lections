@@ -1,0 +1,266 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage[most]{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{corollary}{Следствие}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\begin{tcolorbox}[title=Гомотопный класс отображения]
+    \begin{definition}[Гомотопный класс отображения]
+        Пусть $ f: X \to Y $ - непрерывное 
+
+        Гомотопным классом отображения $ f $ называется
+        \[
+            [f] \coloneqq \{ g: \ X \to Y \text{ непр-на}. \ f \simeq g\}
+        \]
+    \end{definition}
+\end{tcolorbox}
+
+\textbf{\underline{Пример}} $ X $ - любое топологическое пространство
+
+$ f: X \to \mathbb{R}^{n} $ - непр
+
+$ \forall g: X \to \mathbb{R}^{n} $ - непр. $ f \simeq g $ 
+
+\emph{Доказательство}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{линейная-гомотопия}
+    \caption{линейная гомотопия}
+    \label{fig:линейная-гомотопия}
+\end{figure}
+
+\[
+    h_t(x) \coloneqq (1-t)f(x) + tg(x) \text{ - линейная гомотопия}
+\]
+
+\textbf{\underline{Пример}} $ Y \subset \mathbb{R}^{n} $ - выпуклое множество.\\
+Любое топологическое пространство $ X \quad \forall f,g : \ X \to Y $ непр. 
+$ f \simeq g $ 
+
+\vspace{5mm}
+
+Пусть $ X = \{ p \} $ - 1-элементное множество $ \implies $ гомотопия 
+$ h_t: X \to Y $ - путь в $ Y $ 
+
+\begin{figure}[ht]
+    \centering
+    \incfig{гомотопия-путь}
+    \caption{гомотопия-путь}
+    \label{fig:гомотопия-путь}
+\end{figure}
+\newpage
+
+\begin{tcolorbox}[title=Связная гомотопия]
+    \begin{definition}[Связная гомотопия]
+        Пусть $ f,g: X \to Y $ - непр. $ A \subset X \quad f|_{A} = g|_{A} $ 
+
+        Гомотопия $ h_t $ отображений $ f,g $ называется связной на множестве $ A $,
+        если
+        \[
+            \forall t \quad h_t|_{A} = f|_{A} = g|_{A}
+        \]
+        т.е.
+        \[
+            \forall x \in A \quad h_t(x) = f(x) = g(x)
+        \]
+    \end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=Гомотопия путей]
+    Пусть $ f,g : \ I \to Y $ - пути. $ f(0) = g(0), \ f(1) = g(1) $.
+
+    Под гомотопией путей всегда понимаем гомотопию, связанную на $ \{ 0, 1 \} $ 
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=Свободная гомотопия]
+    \begin{remark}
+        $ A = \varnothing $, то гомотопия называется свободной
+    \end{remark}
+\end{tcolorbox}
+
+\section*{\centering \S 2. Определение фундаментальной группы}
+\begin{tcolorbox}
+    \begin{definition}
+        Топологическим пространством с отмеченной точкой называется пара
+        $ (X, x_0), \ x_0 \in X $ 
+        
+        Петлёй с началом в точке $ x_0 $ называется непрерывное отображение
+        $ f: \ I \to X, \ f(0) = f(1) = x_0 $ 
+    \end{definition}
+\end{tcolorbox}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{петля}
+    \caption{петля}
+    \label{fig:петля}
+\end{figure}
+\newpage
+
+Гомотопия петель связана на $ \{ 0, 1 \} $ 
+
+$ F(X, x_0) $ - множество всех петель с началом в точке $ x_0 $ 
+
+$ \pi_1(X, x_0) $ - множество гомотопических классов петель
+
+\textbf{\underline{Пример}} $ \pi_1(\mathbb{R}^{n}, 0) $ - одноэлементное множество,
+т.к. линейная гомотопия путей связана на $ \{ 0, 1 \} $ 
+\[
+    h_t(x) = (1-t)h_0(x) + t h_1(x)
+\]
+\[
+    h_t(0) = (1-t)h_0(0) + t h_1(0) = (1-t+t)h_0(0) = h_0(0)
+\]
+аналогично $ h_t(1) = h_0(1) $ 
+
+\subsection*{Умножение петель}
+\[
+    u,v \in F(X, x_0) \quad (uv)(t) \coloneqq
+    \begin{cases}
+        u(2t), &\quad 0 \leq t \leq \frac{1}{2} \\
+        v(2t-1), &\quad \frac{1}{2} \leq t \leq 1
+    \end{cases}
+\]
+\newpage
+
+\begin{figure}[ht]
+    \centering
+    \incfig{умножение-петель}
+    \caption{умножение петель}
+    \label{fig:умножение-петель}
+\end{figure}
+
+\begin{tcolorbox}
+    \begin{statement}
+        $ f_0, g_0 $ - пути в $ X $. $ f(1) = g(0) $ \\
+        \[
+            (f_0 g_0)(t) = 
+            \begin{cases}
+                f_0(2t), &\quad 0 \leq t \leq \frac{1}{2} \\
+                g_0(2t-1), &\quad \frac{1}{2} \leq t \leq 1
+            \end{cases}
+        \]
+        \[
+            \begin{cases}
+                f_0 \simeq f_1 \\
+                g_0 \simeq g_1
+            \end{cases} \implies
+            f_0 g_0 \simeq f_1 g_1
+        \]
+        \begin{proof}
+            \begin{center}
+                \incfig{схема-построения-гомотопии}
+            \end{center}
+
+            $ f_t $ - гомотопия, соединяющая $ f_0 $ с $ f_1 $
+
+            $ g_t $ - гомотопия, соединяющая $ g_0 $ с $ g_1 $ 
+
+            $ \forall t \quad f_t g_t $ соединяет $ f_0 g_0 $ с $ f_1 g_1 $ 
+
+            По лемме о фундаментальном покрытии $ \{ f_t g_t \} $ непрерывное отображение
+        \end{proof}
+    \end{statement}
+
+    \begin{corollary}
+        $ u,v \in F(X, x_0) $ 
+        \[
+            [u][v] \coloneqq [uv] \text{ корректно определено}
+        \]
+    \end{corollary}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=Теорема о фундаментальной группе,
+    enhanced, 
+    breakable,
+    skin first=enhanced,
+    skin middle=enhanced,
+    skin last=enhanced,
+    ]
+    \begin{theorem}[о фундаментальной группе]
+        \[
+            (\pi_1(X, x_0), \text{ умножение}) \text{ - группа}
+        \]
+
+        \begin{proof}
+            1) ассоциативность
+            \[
+                ([u][v])[w] = [u]([v][w]) - ?
+            \]
+            \[
+                [uv][w] = [u][vw] - ?
+            \]
+            \[
+                [(uv)w] = [u(vw)] - ?
+            \]
+            \[
+                (uv)w \simeq u(vw) - ?
+            \]
+            \begin{center}
+                \incfig{построение}
+            \end{center}
+            \[
+                H(s,t) =
+                \begin{cases}
+                    u \left(\frac{4s}{t+1} \right), &\quad 0 \leq s \leq \frac{t+1}{4}\\
+                    v \left(4s-t-1 \right), &\quad \frac{t+1}{4} \leq s \leq \frac{t+2}{4}\\
+                    w \left(\frac{4s-t-2}{2-t} \right), &\quad 
+                    \frac{t+2}{4} \leq s \leq 1\\
+                \end{cases}
+            \]
+
+            2) $ \exists \epsilon_{x_0} = [e_{x_0}]: \ [u]\epsilon_{x_0}
+            = \epsilon_{x_0}[u] = [u]$ ?
+
+            $ e_{x_0} $ - постоянная петля: $ e_{x_0}(I) = x_0 $ 
+            \[
+                u e_{x_0} \simeq u - ?
+            \]
+
+            \begin{center}
+                \incfig{нейтральный-элемент}
+            \end{center}
+            \[
+                H(s,t) \coloneqq
+                \begin{cases}
+                    u \left(\frac{2s}{t+1} \right), &\quad 0 \leq s \leq \frac{t+1}{2}\\ 
+                    e_{x_0}(s), &\quad \frac{t+1}{2} \leq s \leq 1
+                \end{cases}
+            \]
+        \end{proof}
+    \end{theorem}
+\end{tcolorbox}
+\end{document}
