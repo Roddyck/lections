@@ -29,5 +29,167 @@
 \newtheorem*{definition}{Определение}
 
 \begin{document}
+\[
+    O(x_0) \text{ - функция диф-мая в окрестности } x_0
+\]
+\[
+    v: \ O(x_0) \to \mathbb{R} \text{ - линейное}
+\]
+\[
+    v(fg) = v(f) g(x_0) + f(x_0)v(g)
+\]
 
+T - множество всех дифференцируемых $ O(x_0) $ в окр-ти $ x_0 $ 
+
+\[
+    \gamma(t) : \ (- \epsilon, \epsilon) \to M \text{ гладкое отображение}
+\]
+\[
+    f \in 0(x_0)
+\]
+\[
+    \frac{f(\gamma(t))}{dt} |_{t = 0} = v_{\gamma}(f)
+\]
+\[
+    \gamma(t) = (\gamma_1(t), \dots, \gamma_n(t)) \quad \gamma_i(t) = x_i(\gamma(t))
+\]
+\[
+    \frac{df(\gamma_1, \dots, \gamma_n)}{dt} |_{t=0} = 
+    \frac{\partial f}{\partial x_1} |_{x_0} \gamma_1'(0) +
+    \dots +\frac{\partial f}{\partial x_n} |_{x_0} \gamma_n'(0)
+    = v_{\gamma}(f)
+\]
+\[
+    v_1, \dots, v_n \quad v_i = \frac{\partial}{\partial x_i} |_{x_0} \in T_{x_0}
+\]
+\[
+    v \in T_{x_0}
+\]
+\[
+    v(c) = 0, \ c = const
+\]
+\[
+    v(1) = 0
+\]
+\[
+    v(1) = v(1^2) =  ...
+\]
+\[
+    f(x_1, \dots, x_n) = f(0) + \sum_{i=1}^{n} \frac{\partial f}{\partial x_i} 
+    |_{0} \cdot x_i + g
+\]
+\[
+    x_1^{\alpha_1} \dots x_n^{\alpha_n} = x^\alpha \quad \alpha_1 + \dots + 
+    \alpha_n = k + 1
+\]
+\[
+    m = \{ f \in O(x_0) \ | \ f(x_0) = 0 \} \text{ - max идеал}
+\]
+\[
+    f \in m \implies \frac{1}{f} \in O_{x_0} \iff m \text{ - max идеал}
+\]
+\[
+    m^2  = \langle g \cdot h, \ g,h \in m \rangle
+\]
+\[
+    f = f(0) + \sum_{i= }^{n} \frac{\partial f}{\partial x_i} |_{x_0} x_i + g,
+    \quad g \in m^2
+\]
+\[
+    v \in T_{x_0} \quad v(m^2) = 0
+\]
+\[
+    f,g \in m
+\]
+\[
+    v(fg) = v(f) \underbrace{g(x_0)}_{=0} + \underbrace{f(x_0)}_{=0} v(g) = 0
+\]
+\[
+    v(f) = v(f(0) + \sum_{i=1}^{n} \frac{\partial f}{\partial x_i} \big|_0 x_i + g)
+    = \sum_{i=1}^{n} \frac{\partial f}{\partial x_i} \big|_0 \cdot v(x_i)
+    = \sum_{i=1}^{n} a_i \frac{\partial f}{\partial x_i} \big|_0
+    = \left(\sum_{i=1}^{n} a_i\frac{\partial}{\partial x_i} \big|_0 \right) (f)
+\]
+\[
+    v = \sum_{i=1}^{n} a_i \left(\frac{\partial}{\partial x_i} \right)_0
+\]
+\[
+    T_{x_0} = \langle \frac{\partial}{\partial x_i} \big|_0, \ i = 1, \dots, n \rangle 
+\]
+\[
+    \Phi: \ M \to N
+\]
+\[
+    \Phi(x_0) = y_0
+\]
+\[
+    d \Phi_{x_0} : \ \Gamma_{x_0} \to \Gamma_{y_0}
+\]
+\[
+    g \in O_{y_0} \quad v \in T_{x_0}
+\]
+\[
+    g \circ \Phi \in 0_{x_0}
+\]
+
+g определена на $ N $ $ g \circ \Phi $ определена 
+\[
+    v(g \circ \Phi) = d \Phi_{x_0}(v)(y)
+\]
+\[
+    \{ y_1, \dots, y_n \} \text{ - координаты в окр-ти т } y_0
+\]
+\[
+    \{ x_1, \dots, x_m \} \text{ - координаты в окр-ти w } x_0
+\]
+\[
+    y_1 = \phi_1(x_1, \dots, x_m)
+\]
+\[
+    \dots
+\]
+\[
+    y_n = \phi_n(x_1, \dots, x_m)
+\]
+\[
+    J\left( \frac{y_1, \dots, y_n}{x_1, \dots, x_m}\right) =
+    \begin{pmatrix}
+    \frac{\partial \phi_1}{\partial x_1}  & \dots & \frac{\partial \phi_1}{\partial x_m} \\
+    \dots & \dots & \dots\\
+     \frac{\partial \phi_n}{\partial x_1}& \dots  & \frac{\partial \phi_b}{\partial x_m}\\
+    
+    \end{pmatrix}
+\]
+\[
+    T_{y_0} = \langle \frac{\partial}{\partial y_i} \big|_{y_0} \rangle
+\]
+\[
+    T_{x_0} = \langle \frac{\partial}{\partial x_j} \big|_{x_0} \rangle
+\]
+\[
+    ( d \Phi_{x_0}(v)) = J\left( \frac{y_1, \dots, y_n}{x_1, \dots, x_m}\right)\big|_0(v)
+\]
+\[
+    \left( d \Phi_{x_0}\left(\frac{\partial}{\partial x_i}\right)_{x_0}\right) (y_i)
+    = \sum_{i=1}^{n} a_i \frac{\partial}{\partial y_i} \big|_{y_0} =
+    \left(\frac{\partial}{\partial x_1} ( y \cdot \Phi)\right)_{x_0}
+    = \frac{\partial \phi_i}{\partial x_1} \big|_{x_0}
+\]
+
+\section*{Векторное поле}
+X на многообразии M
+\[
+    X(x_i) \in T_{x_0}
+\]
+\[
+    X(x_0) = \sum_{i=1}^{n} a_i \frac{\partial}{\partial x_i} \big|_{x_0}
+\]
+
+В коорд.
+\[
+    X(x) = \sum_{i=1}^{n} a_i(x) \frac{\partial}{\partial x_i} \big|_{x}
+\]
+\[
+    X = \sum_{i=1}^{n} a_i(x) \frac{\partial}{\partial x_i}
+\]
 \end{document}

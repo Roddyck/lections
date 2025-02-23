@@ -1,0 +1,217 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\[
+    f(x) = 0 \ \forall x \in M \implies f(x) = 0 \text{ п.в.}
+\]
+\[
+    f(x) = 0 \text{ п.в.}, \ f(x) \text{ непрерывная} \implies f(x) = 0 \text{ п.в.}
+\]
+
+\section*{\centering Ступенчатые функции}
+
+$ [a,b] $ разобьём точками $ x_i \quad i = \overline{0,n}, \ x_0 = a, \ x_n = b $ 
+
+\[
+    \Delta x_i = x_i - x_{i-1} \quad x_{i-1} < x_i
+\]
+\[
+    \phi(x) = c_i \quad (x_{i-1} < x < x_i)
+\]
+
+\begin{figure}[ht]
+    \centering
+    \incfig{ступенчатая-функция}
+    \caption{ступенчатая функция}
+    \label{fig:ступенчатая-функция}
+\end{figure}
+
+$ \phi, \psi $ - ступенчатые функции\\
+$ \phi \leq \psi $, если $ \phi(x) \leq \psi(x) $ п.в. (во всех точках, кроме
+узлов)
+
+\section*{\centering Понятие интеграла Лебега}
+\[
+    \int_{a}^{b} \phi(x) dx = \sum_{i=1}^{n} c_i \Delta x_i
+\]
+
+Пусть $ f(x) \leq 0 \quad x \in [a,b] $ 
+
+Если $ \phi_n(x) \rightarrow f(x) $ п.в. и $ 0 \leq \phi_n(x) \leq \phi_{n+1}(x) $,
+то говорят, что $ \phi_n $ сходится к $ f $ снизу (обозначение $ \phi_n \uparrow f $) 
+
+\begin{tcolorbox}[title=Интеграл Лебега]
+    \begin{definition}[Интеграл Лебега]
+        \[
+            \phi_n \uparrow f, \ \exists \lim_{n \to \infty} \int_{a}^{b} 
+            \phi_n(x) dx = I \text{ - интеграл Лебега}
+        \]
+        \[
+            I = \int_{a}^{b} f(x) dx
+        \]
+    \end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{remark}
+    Известно, что если несобственный интеграл от неограниченной функции сходится
+    абсолютно, то существует интеграл Лебега с тем же значением
+\end{remark}
+\end{tcolorbox}
+
+\[
+    f(x) \gtrless 0 \quad x \in [a,b]
+\]
+\[
+    f_+(x) = \begin{cases}
+        f(x), &\quad f(x) \geq 0\\
+        0, &\quad f(x) < 0
+    \end{cases}
+\]
+\[
+    f_-(x) = \begin{cases}
+        0, &\quad f(x) > 0\\
+        -f(x), &\quad f(x) \leq 0\\
+    \end{cases}
+\]
+\[
+    f = f_+ - f_-
+\]
+\[
+    |f| = f_+ + f_-
+\]
+\[
+    \begin{cases}
+        \exists \int_{a}^{b} f_+(x) dx\\
+        \exists \int_{a}^{b} f_-(x) dx\\
+    \end{cases} \implies
+    \exists \int_{a}^{b} f(x) dx = \int_{a}^{b} f_+(x) dx - \int_{a}^{b} f_-(x) dx
+\]
+
+Зафиксируем отрезок $ [a,b] $ и рассмотрим множество функций, для которых
+существует интеграл Лебега. Такое множество называется пространством Лебега
+$ L[a,b] $ 
+\subsection*{Свойства}
+\[
+    1) \ \int_{a}^{b} c dx = c(b-a)
+\]
+\[
+    2) \ \left| \int_{a}^{b} f(x) dx \right| \leq \int_{a}^{b} |f(x)| dx
+\]
+\[
+    3) \ f \in L, \ g(x) = f(x) \text{ п.в} \implies g(x) \in L \quad 
+    \int_{a}^{b} f(x) dx = \int_{a}^{b} g(x) dx
+\]
+\[
+    4) \ f(x) \geq g(x) \text{ п.в.} \implies \int_{a}^{b} f dx \geq \int_{a}^{b} 
+    g dx
+\]
+\[
+    5) \ \int_{a}^{b} |f(x)| dx = 0 \iff f(x) = 0 \text{ п.в.}
+\]
+\[
+    6) \ f,g \in L, \ \lambda \in \mathbb{R} \implies \lambda f \pm g \in L
+    \quad \int_{a}^{b} (\lambda f \pm g) dx = \lambda \int_{a}^{b} fdx \pm 
+    \int_{a}^{b} gdx
+\]
+\[
+    7) \ \int_{a}^{b} |f \pm g| \leq \int_{a}^{b} |f|dx + \int_{a}^{b} |g|dx
+\]
+
+\begin{tcolorbox}[title=Теорема Лебега]
+    \begin{theorem}[Лебега]
+        Пусть $ \{ f_n(x) \}, \ f_n(x) \in L $. $ f_n(x) \to f(x) $ п.в.\\
+        $ |f_n(x)| \leq \phi(x) $ п.в., при достаточно больших $ n \geq n_0 $.
+        $ \phi(x) \in L $ 
+
+        Тогда
+        \begin{displaymath}
+            f \in L \quad \int_{a}^{b} f_n(x) dx \to \int_{a}^{b} f(x) dx
+        \end{displaymath}
+
+    \end{theorem}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=Сходимость в среднем]
+    \begin{definition}[Сходимость в среднем]
+        $ f_n, \ f \in L. \quad n \in \mathbb{N} \cup \{ 0 \} $ 
+
+        Будем говорить $ f_n $ сходится в среднем (сходимость в среднем 1-го порядка)
+        к $ f $, если
+        \[
+            \int_{a}^{b} |f_n - f| dx \to 0 \quad (f_n \xrightarrow{L} f)
+        \]
+    \end{definition}
+\end{tcolorbox}
+
+\subsection*{Свойства}
+
+\begin{tcolorbox}[title=Теорема о непрерывности интеграла относительно сходимости]
+    \begin{theorem}[о непрерывности интеграла относительно сходимости]
+        \[
+            f_n \xrightarrow{L} f \implies \int_{a}^{b} f_n dx \to \int_{a}^{b} 
+            f dx
+        \]
+
+        \begin{proof}
+            \[
+                \left| \int_{a}^{b} f_n dx - \int_{a}^{b} f dx \right| =
+                \left|\int_{a}^{b} (f_n - f) dx \right| \leq \int_{a}^{b} 
+                |f_n - f| dx \to 0
+            \]
+        \end{proof}
+    \end{theorem}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{theorem}
+    \[
+        f_n \rightrightarrows f \ x \in [a,b] \implies f_n \xrightarrow{L} f
+    \]
+
+    \begin{proof}
+        \[
+            \forall \epsilon > 0 \ \exists N(\epsilon) : \ \forall n > N \ 
+            \forall x \in [a,b] \implies |f_n - f| < \frac{\epsilon}{2(b-a)} 
+        \]
+        \[
+            \int_{a}^{b} |f_n - f| dx < \frac{\epsilon}{2(b-a)}\int_{a}^{b} dx =
+            \frac{\epsilon}{2} < \epsilon
+        \]
+    \end{proof}
+\end{theorem}
+\end{tcolorbox}
+\end{document}
