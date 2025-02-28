@@ -1,0 +1,279 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem{theorem}{Теорема}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\section*{\centering Пуассоновские процессы}
+\[
+    X_t, \ t> 0 \quad X_t \in \{ 0 \} \cup \mathbb{N}
+\]
+
+1) $ X_t $ - процесс с независимыми приращениями\\
+2) $ \underbrace{P(X_{t+h} - X_t \geq 2)}_{\text{ не зависит от } t} = o(h) \implies
+P(X_{t+h} - X_t = 1) = \lambda h + o(h) \quad P(X_{t+h} - X_t = 0) = 1 - 
+h \lambda + o(h)$ 
+
+\emph{Задание} Выписать конечномерные распределения
+\[
+    P(X_t = k) = \frac{(\lambda t)^{k}}{k!} e^{-\lambda t}
+\]
+
+\emph{Перенос занятий 12.05.2025 и 16.05.2025 19:00 zoom}
+
+\textbf{\underline{Кр к экзамену}}\\
+1) временные ряды, метод сезонной декомпозиции\\
+2) числовые характеристики случайных процессов\\
+3) SDE (стохастические дифференциальные уравнения). Формула замены переменных
+Ито
+
+\vspace{5mm}
+\textbf{Успешно решённая кр - 3 за экзамен}
+\vspace{5mm}
+
+\[
+    X_t \quad E(X^2_t) < \infty
+\]
+\[
+    ||X|| = (E(X^2_t))^{\frac{1}{2} }
+\]
+
+\begin{tcolorbox}
+\begin{definition}
+    С.п. $ X_t $ называется непрерывным в средне квадратичным, если $ ||X_t - X_s||
+    \xrightarrow{t - s \to 0} 0$ 
+\end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{theorem}
+    $ X_t $ непр. в ср. кв., если $ m(t) = E(X_t) $ - непр и корреляционная ф-я
+    непрерывна по $ (t,s) $ 
+\end{theorem}
+\end{tcolorbox}
+
+Пусть $ X_t $ - стационарный. $ K(t,s) = R(t-s)$ \\
+R(t) = K(t,0)\\
+$K(t,0) = E(X_t \cdot X_0) $
+
+\begin{tcolorbox}
+    \begin{theorem}
+        $ R(t) $ - непр в нуле (необходимо и достатчно для непр в ср.кв)
+
+        \begin{proof}
+            1) Необходимость
+            \[
+                K(t,s) = E(X_t X_s)
+            \]
+            \[
+                |K(t,0) - K(0,0)| = R(t) - R(0)| = |E(X_t X_0 - X_0^2)|
+                = |E((X_t - X_0)X_0)| \leq E(|X_t - X_0|^2)^{\frac{1}{2} }
+                (E(X_0^2))^{\frac{1}{2}}
+            \]
+            2) Достаточность
+            \[
+                t > s, \ t = s+h
+            \]
+            \[
+                ||X_t - X_s||^2 = ||X_{s+h} - X_s||^2 = ||X_h - X_0||^2 =
+                E((X_h - X_0)^2) = E(X_h^2) - 2E(X_h X_0) + E(X_0^2) =
+            \]
+            \[
+                R(0) - 2R(h) + R(0) \xrightarrow{h \to 0} 0
+            \]
+        \end{proof}
+    \end{theorem}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \begin{theorem}[Колмогоров А.Н.]
+        \[
+            E(|X_t - X_s|^{a}) \leq C |t-s|^{1+r} \quad a \geq 0, \ r > 0
+        \]
+        Тогда $ X_t $ имеет непрерывные траектории
+    \end{theorem}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \begin{theorem}[Ченцов Н.Н.]
+        $ t_1 < t_2 < t_3 $ 
+        \[
+            E(|X_{t_1} - X_{t_2}|^{a} \cdot |X_{t_2} - X_{t_3}|^{b}) \leq C
+            |t_1 - t_3|^{1+r}
+        \]
+    \end{theorem}
+\end{tcolorbox}
+
+\underline{Пример} Броун. движение
+\[
+    E((W_t - W_s)^2) = |t-s|
+\]
+\[
+    E((W_t - W_s)^4) = 3|t-s|^2
+\]
+
+$ W_t $ - имеет непрерывные траектории
+
+\begin{figure}[ht]
+    \centering
+    \incfig{пуассоновский-процесс}
+    \caption{пуассоновский процесс}
+    \label{fig:пуассоновский-процесс}
+\end{figure}
+\[
+    m(t) = \lambda t
+\]
+\[
+    K(t,s) = \min(t,s)
+\]
+
+\begin{tcolorbox}
+\begin{definition}
+    $ E(X_t^2) < \infty $ 
+    \[
+        \left|\left| \frac{X_{t+h}- X_t}{h} - X'_t \right|\right| \xrightarrow{h\to 0} 0
+    \]
+
+    $ X'_t $ - производная в среднеквадратичном
+\end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{theorem}
+    Необходимо и достаточно (для существования производной в ср.кв?)
+    \[
+        \left| \frac{\partial^{2} K(t,s)}{\partial t \partial s} \leq c < \infty 
+        \right|
+    \]
+    диф $ m(t) $ 
+\end{theorem}
+\end{tcolorbox}
+
+\section*{\centering Винеровский процесс}
+\[
+    K(t,s) = 
+    \begin{cases}
+        s, \quad s < t\\
+        t, \quad s \geq s
+    \end{cases}
+\]
+\[
+    \frac{\partial K}{\partial s} = 
+    \begin{cases}
+        1, \quad s < t\\
+        0, \quad s \geq t
+    \end{cases}
+\]
+
+\underline{Пример}
+\[
+    K = K(t,s) = 2 e^{- \alpha (t-s)^2}
+\]
+\[
+    \frac{\partial K}{\partial s} = 4 \alpha(t-s) e^{- \alpha (t-s)^2 }
+\]
+\[
+    \frac{\partial^2 K}{\partial s \partial t} = 4 \alpha(1 - 2 \alpha(t-s))^2
+    e^{- \alpha (t-s)^2 }
+\]
+
+\underline{Пример}
+\[
+    z(t) = a(t) X(t) + b(t) \frac{dx(t)}{dt} 
+\]
+\[
+    m(t) = E(X(t) \quad E(z(t)) = a(t) m(t) + b(t) \frac{dm(t)}{dt} = m_z(t)
+\]
+\[
+    K_z(t_1, t_2) = E\left(\left(ax(t_1) + \frac{dx(t_1)}{dt} -m_z(t_1)\right) \cdot
+    \left(ax(t_2) + \frac{dx(t_2)}{dt} -m_z(t_2)\right)\right) = \dots
+\]
+
+\[
+    z(t) = X(t) + \frac{d^2 X(t)}{dt^2} 
+\]
+\[
+    D_z(t) = E\left( \left( X(t) + \frac{d^2 X(t)}{dt^2} \right)^2 \right)
+    = D_x(t) + 2 \frac{\partial^{2} D_x(t)}{\partial t^2} +
+    \frac{\partial^{4} D_x(t)}{\partial t^4}
+\]
+
+\[
+    X_t = (-1)^{N_t} - \text{ телеграфный процесс}
+\]
+\[
+    N_t  \text{- пауссоновский процесс}
+\]
+
+\begin{equation}
+    \langle X \rangle_T = \frac{1}{T} \int_{0}^{T} X(t) dt
+\end{equation}
+\[
+    \text{траектория } x(t)
+\]
+\[
+    \langle x \rangle_t = \frac{1}{T} \int_{0}^{T} x(t) dt
+\]
+
+\[
+    E(\langle X \rangle_T) = E\left(\frac{1}{T} \int_{0}^{T} X(t) dt \right) =
+    \frac{1}{T} \int_{0}^{T} E(X(t)) dt = \frac{1}{T} \int_{0}^{T} m(t)dt 
+    \xrightarrow{T \to \infty} m
+\]
+
+Назовём процесс эргодическим, если 
+\[
+    \langle x \rangle_t \text{ - сх в ср.кв к } m
+\]
+
+\begin{tcolorbox}
+\begin{theorem}
+    $ X_t $ - эргодичен
+    \[
+        \frac{1}{T^2} \int_{0}^{T} \int_{0}^{T} K(t_1, t_2) d t_1 d t_2
+        \xrightarrow{T \to \infty} 0
+    \]
+\end{theorem}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \begin{theorem}[Слуцкий]
+        $ X_t $ - стационарен
+        1)
+        \[
+            J_t = \frac{1}{T^2} \int_{0}^{T} \int_{0}^{T} K(t_1, t_2) d t_1 d t_2
+            = \frac{2}{T} \int_{0}^{T} \left(1 - \frac{\tau}{T} \right) R(\tau)
+            d \tau
+        \]
+
+        2) $ J_t \xrightarrow{T \to \infty} 0 $, то $ X_t $ - эргодичен 
+    \end{theorem}
+\end{tcolorbox}
+\end{document}
