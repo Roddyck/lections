@@ -1,0 +1,189 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{proposal}{Предложение}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+$ X $ - векторное поле на многообразии $ M $ 
+\[
+    p \in M \mapsto X_p = X(p) \in T_p M
+\]
+
+$ U $ - коорд. окрестность точки $ p $. $ x_1, \dots, x_n $ - координаты 
+
+\[
+    \{ \partial_1 |_p, \dots, \partial_n |_p \} \text{ - б. } T_p M
+\]
+
+\[
+    X(p) = \sum_{i=1}^{n} f_i(p) \frac{\partial}{\partial x_i} |_p, \quad
+    f_i = f_i(x_1, \dots, x_n)
+\]
+
+Если $ f_i $ - гладкие функции в $ U $, то поле $ X $ называется гладким
+
+\[
+    X = \sum_{i=1}^{n} f_i(x_1, \dots, x_n) \frac{\partial}{\partial x_i}
+    \quad f_i = X(x_i)
+\]
+\[
+    X(p) = \sum_{i=1}^{n} f_i(x_1(p), \dots, x_n(p)) \frac{\partial}{\partial x_i} |_p, \quad
+\]
+
+$ X: \ O(U) \to O(U) $. $ O(U) \text{ - алгебра гладких функций на } U $  
+
+\[
+    X(g) = \sum_{i=1}^{n} f_i(x_1, \dots, x_n) \frac{\partial g}{\partial x_i} 
+\]
+\[
+    X(g \cdot h) = X(g) h + g X(h)
+\]
+\[
+    [X,Y] = X \cdot Y - Y \cdot X \text{ - коммутатор операторов}
+\]
+\[
+    [X, Y] = \sum_{i=1}^{n} h_i(x) \frac{\partial}{\partial x_i} \quad
+    h_i = [X,Y](x_i) = XY(x_i) - YX(x_i) = X(g_i) - Y(f_i) =
+\]
+\[
+    = \sum_{j} \left( f_j \frac{\partial g_i}{\partial x_j} -
+        g_j \frac{\partial f_i}{\partial x_j} \right)
+\]
+\[
+    Y = \sum_{i=1}^{n} g_i(x) \frac{\partial}{\partial x_i}
+\]
+\[
+    h_i = \sum_{j} \left( f_i \frac{\partial g_i}{\partial x_j} - g_j 
+    \frac{\partial f_i}{\partial x_j} \right)
+\]
+
+\begin{tcolorbox}
+    \begin{statement}
+        Пусть $ A $ - алгебра над полем $ K $.
+        $ D_1, D_2 $ - дифференцирование алгебры $ A $. (т.е., $ D_1, D_2 $ - лин. операторы
+        на $ A $, такие что $ D_i(ab) = D_i(a) b + a D_i(b))  \implies
+        [D_1, D_2] = D_1 D_2 - D_2 D_1 $ - диф. $ A $ 
+    \end{statement}
+\end{tcolorbox}
+
+\section*{ $ \Phi $ - связанные векторные поля}
+
+\begin{tcolorbox}[title=$ \Phi $ - связанные векторные поля]
+    \begin{definition}[$ \Phi $ - связанные векторные поля]
+        $ M, N $ - многообразия
+        \[
+            \Phi: M \to N \text{ - гладкое отображение}
+        \]
+        $ X $ в. поле на $ M $, $ Y $ - в. поле на $ N $  
+
+        Поля $ X, Y $ называются $ \Phi $ - связанными, если  
+        \[
+            d\Phi_p(X(p)) = Y(\Phi(p))
+        \]
+    \end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=$ \Phi $ - связанность коммутаторов]
+    \begin{proposal}
+        Пусть $ \Phi: M \to N $ - гл. отображение\\
+        $ X_i, \ i = 1,2 $ - в. поля на $ M $ \\
+        $ Y_i, \ i = 1,2 $ - в. поля на $ N $ \\
+        $ X_i, Y_i $ - $ \Phi $ - связанны
+
+        Тогда $ [X_1, X_2], [Y_1, Y_2] $ - $ \Phi $ - связанны
+
+        \begin{proof}
+            \[
+                g \in O(V), \ V \subset N
+            \]
+            \[
+                g \circ \Phi \in O(\Phi^{-1}(v))
+            \]
+            \[
+                U \subset \Phi^{-1}(v) \subset M
+            \]
+            \[
+                d\Phi_p(X_p)(Y) = X(g \circ \Phi)
+            \]
+            \[
+                Y = d \Phi(X)
+            \]
+            \[
+                d \Phi(X)(g) = X(g \circ \Phi)
+            \]
+            \[
+                Y_1 Y_2(g) = Y_1(Y_2(g)) = X_1(Y_2(g) \circ \Phi) \stackrel{\star}{=}
+            \]
+            \[
+                p \in M \quad Y_2(g) \circ \Phi(p) = Y_2(\Phi(p))(g)
+                = X_2(p)(g \circ \Phi)
+            \]
+            \[
+                Y_2(\Phi(p))(g) = (d\Phi_p X_2(p))(g)
+            \]
+            \[
+                \stackrel{\star}{=} X_1(X_2(g \circ \Phi))
+            \]
+            \[
+                (Y_1 Y_2 - Y_2 Y_1)(g) |_{\Phi(p)} = (X_1 X_2 - X_2 X_1)_p(g \circ \Phi)
+            \]
+            \[
+                [Y_1 Y_2] |_{\Phi(p)}(g) = [X_1 X_2]_p (g \circ \Phi) \iff
+                d \Phi_p ([X_1, X_2]_p) = [Y_1, Y_2]_{\Phi(p)}
+            \]
+            \[
+                [Y_1, Y_2] = d \Phi([X_1, X_2])
+            \]
+        \end{proof}
+    \end{proposal}
+\end{tcolorbox}
+
+Если $ \Phi $ - диффеоморфизм, то $ d \Phi $ - отображение.
+$ d\Phi: W(M) \to W(N) $, $ W $ - множество гладких векторных полей 
+\[
+    (d\Phi^{-1}_p) = (d\Phi^{-1})_{\Phi(p)}
+\]
+
+\begin{tcolorbox}[title=Алгебра Ли]
+    \begin{definition}[Алгебра Ли]
+        Пусть U - векторное пространство над полем $ K $.
+
+        L называется алгеброй Ли, если на L задана билинейная операция
+        $ (l_1, l_2) \to [l_1, l_2] $, удовлетворяющая условиям:\\
+        1) $ [l, l] = 0 \quad \forall l \in L $ \\
+        2) $ [l_1, [l_2, l_3] + [l_2, [l_3, l_1] + [l_3, [l_1,l_2]] = 0 
+        \quad \forall \, l_1, l_2, l_3$ 
+
+        1) - антикоммутативность. 2) - тождество Якоби
+    \end{definition}
+\end{tcolorbox}
+\end{document}
