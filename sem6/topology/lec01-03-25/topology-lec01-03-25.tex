@@ -1,0 +1,227 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\[
+    u \overline{u} \simeq e_{x_0}
+\]
+\begin{figure}[ht]
+    \centering
+    \incfig{ассоциативность}
+    \caption{ассоциативность}
+    \label{fig:ассоциативность}
+\end{figure}
+
+\[
+    H(s,t) = 
+    \begin{cases}
+        u(2s), &\quad 0 \leq s \leq \frac{1-t}{2}\\
+        u(1-s) = \overline{u}(s), &\quad \frac{1-t}{2} \leq s \leq \frac{1+t}{2} \\
+        \overline{u}(2s-1), &\quad \frac{1+t}{2} \leq s \leq 1
+    \end{cases}
+\]
+\[
+    \overline{u} u \simeq e_{x_0} \text{ доказывается аналогично}
+\]
+
+\begin{tcolorbox}[title=Фундаментальная группа]
+    \begin{definition}[Фундаментальная группа]
+        $ \pi_1(X, x_0) $ называется фундаментальной группой топологического
+        пространства $ X $ с началом в точке $ x_0 $ 
+    \end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{remark}
+    1) Пусть $ X_1 $ - компонента линейной связности пр-ва $ X $, $ x_0 \in X \implies
+    \pi_1(X, x_0) = \pi_1(X_1, x_0)$ 
+
+    2) Если $ \pi_1(X, x_0) = \{ [e_{x_0}] \} $, тогда пишут $ \pi_1(X, x_0) = 0 $ 
+    и говорят, что фундаментальная группа тривиальна
+
+    3) Если петля $ u \in F(X, x_0) $.\\
+    $ u \simeq e_{x_0} $, то говорят, что $ u $ гомотопна нулю, $ u \simeq 0 $ 
+\end{remark}
+\end{tcolorbox} 
+
+\section*{\centering Поведение фундаментальной группы при переносе начала}
+Пусть $ X $ линейно связно и $ x_0, x_1 \in X $. Пусть $ s $ - путь, соединяющий
+$ x_0 $ с $ x_1 $. 
+
+\[
+    F(X, x_0) \to F(X, x_1): \ u \mapsto (\overline{s} u)s
+\]
+\[
+    A_{\sigma}([u]) \coloneqq \sigma^{-1} [u] \sigma, \text{ где } \sigma = [s]
+\]
+
+$ A_{\sigma} $ - отображение переноса
+
+\begin{tcolorbox}
+    \begin{theorem}
+        $ A_{\sigma} $ - изоморфизм групп
+
+        \begin{proof}
+            1) $ A_{\sigma} $ - гомоморфизм ?\\
+            $ \forall \alpha, \beta \in \pi_1(X, x_0) $ 
+            \[
+                A_{\sigma}(\alpha \beta) = \sigma^{-1} \alpha \beta \sigma = 
+                \sigma^{-1} \alpha \sigma \sigma^{-1} \beta \sigma = A_{\sigma}
+                (\alpha) \cdot A_{\sigma}(\beta)
+            \]
+
+            2) $ (A_{\sigma})^{-1} = A_{\sigma^{-1}} $\\
+            $ A_{\sigma} \circ A_{\sigma^{-1}} = id_{\pi_1(X,x_1)} - ? $ 
+            \[
+                (A_{\sigma} \circ A_{\sigma^{-1}})(\alpha) = A_{\sigma}
+                (A_{\sigma^{-1}}(\alpha)) = A_{\sigma}(\sigma \alpha \sigma^{-1})
+                = \sigma^{-1} \sigma \alpha \sigma^{-1} \sigma = [e_{x_1}]
+                \alpha[e_{x_1}] = \alpha
+            \]
+            Аналогично $ A_{\sigma^{-1}} \circ (A_{\sigma})^{-1} = id_{\pi_1(X,x_1)}
+            \implies  (A_{\sigma})^{-1} = A_{\sigma^{-1}} \implies A_{\sigma}$ -
+            биекция
+        \end{proof}
+    \end{theorem}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \begin{remark}
+        \[
+            A_{\tau} \circ A_{\sigma} = A_{\sigma\tau}, \text{ где } \sigma=[s], \
+            \tau = [t]
+        \]
+
+        \begin{proof}
+            $ \forall \alpha \in \pi_1(X, x_0) $ 
+            \[
+                (A_{\tau} \circ A_{\sigma})(\alpha) = A_{\tau}(A_{\sigma}(\alpha))
+                = A_{\tau}(\sigma^{-1} \alpha \sigma) = \tau^{-1} \sigma^{-1}
+                \alpha \sigma \tau = (\sigma \tau)^{-1} \alpha (\sigma \tau) =
+                A_{\sigma \tau}(\alpha)
+            \]
+
+            2) $ A_{e_{x_0}} = id_{\pi_1(X, x_0)} $ 
+        \end{proof}
+    \end{remark}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=Изоморфизм переноса]
+    \begin{definition}[Изоморфизм переноса]
+        $ A_{\sigma} $ называется изоморфизм переноса
+    \end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \begin{definition}
+        $ X $ линейно связно. $ \pi_1(X) $ - фундаментальная группа пр-ва $ X $ 
+        с точностью до изоморфизма
+    \end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \begin{theorem}
+        Изоморфизм переноса не зависит от выбора пути, по которому переносится
+        начало $ \iff $ $ \pi_1(X) $ коммутативна
+    \end{theorem}
+
+    \begin{proof}
+        1) $ \implies: $ 
+        \[
+            \forall a,b \in \pi_1(X, x_0) \quad ab = ba - ?
+        \]
+        \[
+            aba^{-1}b^{-1} = [e_{x_0}] - ?
+        \]
+        \[
+            \begin{cases}
+                A_a(ab) = a^{-1}(ab)a = ba\\
+                A_{[e_{xO}]}(ab) = id_{\pi_1(X, x_0)}(a) = ab
+            \end{cases}
+            \implies ab = ba
+        \]
+
+        2) $ \impliedby: $ 
+        \[
+            A_{\sigma} = A_{\tau} - ?
+        \]
+        $ \forall \alpha \in \pi_1(X, x_0) $ 
+        \[
+            A_{\sigma}(a) = \sigma^{-1} \alpha \sigma
+        \]
+        \[
+            A_{\tau} = \tau^{-1} \alpha \tau
+        \]
+        \[
+            \sigma^{-1} \alpha \sigma \stackrel{?}{=} \tau^{-1} \alpha \tau
+        \]
+        \[
+            \alpha \sigma \stackrel{?}{=} \sigma \tau^{-1} \alpha \tau
+        \]
+        \[
+            \alpha \stackrel{?}{=} \underbrace{\sigma\tau^{-1}}_{\in \pi_1(X,x_0)}
+            \alpha \tau \sigma^{-1}
+        \]
+        \[
+            (\sigma \tau^{-1}) \alpha \tau \sigma^{-1} = \alpha \sigma \tau^{-1}
+            \tau \sigma^{-1} = \alpha
+        \]
+    \end{proof}
+\end{tcolorbox}
+
+\section{\centering Односвязные пространства}
+\begin{tcolorbox}[title=Односвязное пространство]
+    \begin{definition}[Односвязное пространство]
+        Линейно связное топологическое пространство называется односвязным,
+        если его фундаментальная группа тривиальна: $ \pi_1(X) = 0 $ 
+    \end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \begin{theorem}
+        При $ n > 1 $ сфера $ S^{n} $ односвязна
+        \begin{lemma}[Лебега о покрытии]
+            Пусть $ X $ - компактное метрическое пр-во. $ \{ U_{\alpha} \} $ -
+            открытое покрытие пр-ва $ X $ 
+
+            Тогда $ \exists \epsilon > 0 \ \forall A \subset X, \ diam A < \epsilon
+            \implies \exists \alpha : \ A \subset U_{\alpha}$ 
+        \end{lemma}
+    \end{theorem}
+\end{tcolorbox}
+\end{document}
