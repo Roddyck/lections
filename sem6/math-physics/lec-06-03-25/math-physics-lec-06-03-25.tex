@@ -1,0 +1,249 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\section*{Задача Коши для уравнения теплопроводности}
+
+\[
+    (x,y,z) \in \mathbb{R}^3, \ t \geq 0
+\]
+\begin{equation}
+    u_t(x,y,z,t) - a^2 \Delta u(x,y,z,t) = 0
+\end{equation}
+\begin{equation}
+    u|_{t=0} = \phi(x,y,z), \ (x,y,z) \in \mathbb{R}^3
+\end{equation}
+\[
+    u \in C^2(\mathbb{R}^3 \times (O, T))
+\]
+\[
+    u \in C(\mathbb{R}^3 \times [O, T])
+\]
+\[
+    \phi \in C(\mathbb{R}^3) \text{ и ограничена}
+\]
+
+Рассмотрим:
+\begin{equation}
+    F(x,y,z; \xi, \eta, \zeta, t) = \frac{1}{(2a \sqrt{\pi t})^3} 
+    e^{-\frac{(x-\xi)^2 + (y-\eta)^2 + (z-\zeta)^2}{4a^2 t} }
+\end{equation}
+
+Эта функция как функция от переменных $ (x,y,z,t) $ является решением уравнения
+теплопроводности
+
+\begin{equation}
+    \iiint_{-\infty}^{\infty} F(x,y,z; \xi, \eta, \zeta, t)d\xi d\eta d\zeta = 
+    \iiint_{-\infty}^{\infty} F(x,y,z; \xi, \eta, \zeta, t) dx dy dz = 1
+\end{equation}
+
+Если $ (\xi, \eta, \zeta) \neq (x,y,z) $, то
+\[
+    \lim_{t \to +0} F(x,y,z,\xi,\eta,\zeta) = 0
+\]
+
+Если $ (\xi, \eta, \zeta) \equiv (x,y,z) $, то
+\[
+    \lim_{t \to +0} F(x,y,z,\xi,\eta,\zeta) = \infty
+\]
+
+\begin{equation}
+    u(x,y,z,t) = \iiint_{-\infty}^{\infty} F(x,y,z; \xi, \eta, \zeta, t)
+    \phi(\xi,\eta,\zeta) d\xi d\eta d\zeta
+    \label{eq:5}
+\end{equation}
+$ (\ref{eq:5}) $ Является решением задачи Коши 
+\[
+    F(x,y,z; \xi, \eta, \zeta, t) \phi(\xi,\eta,\zeta) d\xi d\eta d\zeta 
+    \xrightarrow{t\to +0} \phi(x,y,z)
+\]
+
+$ \mathbb{R}^2 $:
+\[
+    u_t(x,y,t) - a^2 \Delta_{x,y} u(x,y,t) = 0
+\]
+\[
+    F(x,y,\xi,\eta,t) = \frac{1}{(2a \sqrt{\pi t})^2}
+    e^{-\frac{(x-\xi)^2 + (y-\eta)^2}{4a^2t} } 
+\]
+
+$ \mathbb{R}^{1} $:
+\[
+    F(x,\xi,t) = \frac{1}{(2a \sqrt{\pi t})^2} e^{-\frac{(x-\xi)^2}{4a^2t}}
+\]
+\[
+    u_t - a^2 \frac{\partial^{2} u}{\partial x^2} 
+\]
+
+$ F $ называется фундаментальным решением уравнения теплопроводности
+
+\section*{Теорема о максимуме и минимуме для уравнения теплопроводности}
+\[
+    (x,y,z) \in \Omega \subset \mathbb{R}^3 \quad \Omega \text{ - открытое и ограниченное}
+\]
+\[
+    t \in (0; T)
+\]
+\[
+    \overline{\Omega} = \Omega \cup \Gamma
+\]
+\[
+    Q_T = \Omega \times (O;T)
+\]
+\[
+    \overline{Q_T} = \overline{\Omega} \times [O;T]
+\]
+
+Нижнее основание $ \Sigma_0 = \overline{\Omega} \times \{ 0 \} $, верхнее основание
+$ \Sigma_T = \overline{\Omega} \times \{ T \} $.
+
+Боковая поверхность $ \Gamma_{\text{бок}} = \Gamma \times [0,T] $ 
+
+Классическим решением для уравнения теплопроводности будем называть функцию
+\[
+    u \in C^2(\Omega \times (0;T)) \cap C^{1}(\overline{Q}_T)
+\]
+
+\newpage
+
+\begin{tcolorbox}
+    \begin{theorem}
+        Пусть $ u $ - классическое решение уравнения теплопроводности. Тогда $ u $ принимает
+        свои наибольшие и наименьшие значения либо на нижнем основании цилиндра, либо на
+        боковой поверхности
+
+        \begin{proof}
+            Предположим, что $ u $ своё наибольшее значение $ M $ на $ \overline{Q}_T $ 
+            принимает в некоторой точке $ (x_0, y_0, z_0, t_0), \  0 < t_0 \leq T,
+            \ (x_0,y_0,z_0) \in \Omega$.
+
+            Пусть
+            \[
+                m = \max_{\Sigma_0 \cup \Gamma_{\text{бок}}} u
+            \]
+            
+            Тогда $ m < M $ 
+
+            Рассмотрим вспомогательную функцию:
+            \[
+                v(x,y,z,t) = u(x,y,z,t) +  \frac{M - m}{6 d^2} [(x-x_0)^2 
+                + (y-y_0)^2 + (z-z_0)^2]
+            \]
+
+            Заметим, что если $ (x,y,z,t) \in \Sigma_0 \cup \Gamma_{\text{бок}} $:
+            \[
+                v(x,y,z,t) \leq m + \frac{M - m}{6 d^2} \cdot d^2 = \frac{M+5m}{6} <
+                \frac{M+5M}{6} < M
+            \]
+            
+            Также заметим, что
+            \[
+                v(x_0, y_0, z_0, t_0) = u(x_0, y_0, z_0, t_0) = M
+            \]
+
+            Построенная функция $ v $ так же не может принимать своё наибольшее
+            значение на нижнем основании или боковой поверхности.
+
+            Тогда $ v $ принимает наибольшее значение в точке $ (x_1, y_1, z_1,t_1), \ 
+            0 < t_1 \leq T, \ (x_1,y_1,z_1) \in \Omega$ 
+
+            В точке $ (x_1, y_1, z_1,t_1) $
+            \[
+                \frac{\partial^2 v}{\partial x^2} \leq 0, \
+                \frac{\partial^2 v}{\partial y^2} \leq 0, \
+                \frac{\partial^2 v}{\partial z^2} \leq 0, \
+            \]
+            \[
+                \frac{\partial v}{\partial t} = 0, \text{ если } t_1 < T
+            \]
+
+            Если $ t_1 = T $:
+            \[
+                \frac{\partial v}{\partial t} \geq 0
+            \]
+
+            Получаем, что в точке $ (x_1, y_1, z_1,t_1) $
+            \[
+                \frac{\partial v}{\partial t} - a^2 \Delta v \geq 0
+            \]
+
+            С другой стороны:
+            \[
+                \frac{\partial v}{\partial t} - a^2 \Delta v = \underbrace{
+                \frac{\partial u}{\partial t} - a^2 \Delta u}_{=0} - \frac{M-m}{d^2} 
+                < 0
+            \]
+
+            Получили противоречие
+        \end{proof}
+    \end{theorem}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{remark}
+    Док-во теоремы о наименьшем значении получается при замене $ u $ на $ -u $ 
+\end{remark}
+\end{tcolorbox}
+
+\section*{Теорема о единственности решения задачи Коши для уравнения теплопроводности}
+\begin{equation}
+    u^{i}_t(x,y,z,t) - a^2 \Delta u^{i}(x,y,z,t) = f(x,y,z,t)
+\end{equation}
+\begin{equation}
+    u^{i}(x,y,z,t) |_{t=0} = \phi (x,y,z), \ (x,y,z) \in \mathbb{R}^3
+\end{equation}
+\[
+    u^{i}, \ i = 1, 2
+\]
+\[
+    u = u^{1} - u^2
+\]
+\begin{equation}
+    u_t(x,y,z,t) - a^2 \Delta u(x,y,z,t) = 0
+\end{equation}
+\begin{equation}
+    u(x,y,z,t) |_{t=0} = 0
+\end{equation}
+
+Докажем:
+\[
+    u(x,y,z,t) \equiv 0, \ (x,y,z) \in \mathbb{R}^3, \ t > 0
+\]
+
+\end{document}
