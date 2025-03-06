@@ -1,0 +1,193 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{note}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\section*{\centering Метрические пространства}
+$ X $ - метрическое пространство, если: \\
+$ \forall x,y \in X $ задано число $ \rho(x,y) $ - расстояние между $ x $ и $ y $  
+(метрика)
+
+\subsection*{Примеры}
+
+1) $ \rho(x,y) \geq 0, \ \rho(x,y) = 0 \iff x = y $\\
+2) $ \rho(x,y) = \rho(y,x) $\\
+3) $ \rho(x,z) \leq \rho(x,y) + \rho(y,z) $ 
+
+\[
+    |\rho(x,z) - \rho(y,z)| \leq \rho(x,y) \text{ - следствие из 3)}
+\]
+\[
+    \rho(x,y) = \rho(x-y, 0) \text{ - инвариантность относительно сдвига}
+\]
+\[
+    \rho(x) \stackrel{\text{dn}}{=} \rho(x,0)
+\]
+\[
+    \rho(x+y) \leq \rho(x) + \rho(y)
+\]
+
+1) $ \mathbb{R}^{n} $. $ \vec{x} = \{x_1, x_2, \dots, x_n\} $
+\[
+    \rho^2(x) = \sum_{k=1}^{n} x^2_k
+\]
+
+2) $ m_n $. $ x = (x_1, x_2, \dots, x_n) $ - упорядоченный набор 
+\[
+    \rho(x) = \max_{k = 1, \dots, n} |x_k|
+\]
+
+3) $ m $ - пространство ограниченных числовых последовательностей.
+$ x = (x_1, x_2, \dots, x_n \dots) $ 
+\[
+    \rho(x) = \sup_{k=1, \dots, \infty} |x_k|
+\]
+
+4) $ l $. $ x = (x_1, \dots, x_n \dots) $  
+\[
+    \rho(x) = \sum_{n=1}^{\infty} |x_n| < +\infty
+\]
+
+5) $ l_2 $. $ x = (x_1, \dots, x_n \dots) $  
+\[
+    \rho^2(x) = \sum_{n=1}^{\infty} x^2_n < +\infty
+\]
+
+6) $ s $ - пространство всех числовых последовательностей. 
+$ x = (x_1, \dots, x_n \dots) $
+\[
+    \rho(x) = \sum_{n=1}^{\infty} \frac{|x_n|}{2^{n}(1 + |x_n|)} 
+\]
+
+7) $ S $ - измеримые функции. $ x(t), \ t \in [a,b] $ 
+\[
+    \rho(x) = \int_{a}^{b} \frac{|x|}{1+|x|} dt 
+\]
+
+8) $ L $ 
+\[
+    \rho(x) = \int_{a}^{b} |x(t)| dt
+\]
+
+9) $ L_2 $ 
+\[
+    \rho^2(x) = \int_{a}^{b} x^2(t) dt
+\]
+
+10) $ C $ 
+\[
+    \rho(x) = \max_{t \in [a,b]} |x(t)|
+\]
+
+11) $ L_{\infty} $ - ограниченно измеримые функции 
+\[
+    \rho(x) = \inf \{C: C \geq |x(t)| \text{ п.в. } t \in [a,b]\}
+\]
+
+12) $ C^1_{[a,b]} \subset C_{[a,b]} $ 
+\[
+    \rho(x) = \max_{\forall t}|x(t)| + \max_{\forall t}|x'(t)|
+\]
+
+\section*{\centering Индуцированная метрика}
+\begin{tcolorbox}
+\begin{definition}
+    $ X $ - метр. пр-во, $ Z \subset X $ 
+
+    $ Z $ - метр. пр-во, с метрикой, индуцированной из $ X $ 
+\end{definition}
+\end{tcolorbox}
+
+\subsection*{Виды множеств в метрических пространствах}
+$ a \in X $ - м.п., $ r \geq 0 $ 
+\[
+    S(a,r) = \{ x: \ x \in X, \ \rho(a,x) < r \} \text{ открытый шар}
+\]
+\[
+    \overline{S}(a,r) = \{ x: \ x \in X, \ \rho(a,x) \leq r \} \text{ замкнутый шар}
+\]
+
+\begin{tcolorbox}
+    \begin{definition}
+        Окрестность $ S(a,\epsilon), \ \epsilon > 0 $ 
+    \end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{definition}
+    $ M \subset X $ - метр. пр-во
+
+    Если для $ x \in M \ \exists S(x,\epsilon) \subset M $, то $ x $ - внутренняя
+    точка $ M $ 
+\end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{definition}
+    $ x \in X $ - метр. пр-во, называется точкой прикосновения множества $ M $,
+    если $ \forall \epsilon > 0 \ \exists y \in M \ \rho(x,y) < \epsilon $ 
+\end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{definition}
+    Если множество содержит все свои точки прикосновения, то оно называется 
+    замкнутым
+\end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{statement}
+    Замыкание множества является замкнутым множеством
+\end{statement}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{statement}
+    Для того, чтобы множество было замкнутым необходимо и достаточно
+    открытость его дополнения
+\end{statement}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{definition}
+$ x_n \to x: \ \rho(x_n, x) \xrightarrow[n \to +\infty]{} 0 $ 
+\end{definition}
+\end{tcolorbox}
+
+\end{document}
