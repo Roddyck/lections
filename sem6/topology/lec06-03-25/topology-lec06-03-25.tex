@@ -1,0 +1,218 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage[most]{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\DeclarePairedDelimiter\set\{\}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\begin{tcolorbox}
+    \begin{lemma}[Лебега о покрытии]
+        $ X $ - компактное метрическое пространство
+        
+        Любые открытые покрытия $ \{ U_{\alpha} \} $ пространства $ X $ 
+        \[
+            \exists \delta > 0: \ \forall \, A \subset X, \ diam A < \delta
+            \ \exists \alpha \ A \subset U_{\alpha}
+        \]
+
+        \begin{proof}
+            $ X $ - метрическое $ \implies \forall b \in X \ \exists r_b > 0: \ 
+            \exists \alpha: \ D_{r_b}(b) \subset U_{\alpha}$ 
+
+            \[
+            \set*{D_{\frac{r_b}{2}}} \text{ - окрытое покрытие пространства } X
+            \]
+
+            $ X $ - компактное $ \implies \exists b_1, \dots , b_n : \ 
+            X = \bigcup_{i=1}^{n} D_{\frac{r_{b_i}}{2}}(b_i)$\\
+        $ \delta \coloneq min \set[\Big]{\frac{r_{b_i}}{2}}  $ 
+        \begin{center}
+            \def\svgwidth{0.5\columnwidth}
+            \import{./figures/}{lebesgues-lemma.pdf_tex}
+        \end{center}
+
+        Пусть $ a \in A \ \exists i : \ a \in D_{\frac{r_{b_i}}{2}}(b_i) $\\
+        $ \forall \subset D_{r_{b_i}}(b_i) \ ? $ 
+
+        \[
+            \forall c \in A \ \rho(c,b_i) \leq \rho(c,a) + \rho(a,b_i) < \delta
+            + \frac{r_{b_i}}{2} \leq r_{b_i} \implies c \in D_{r_{b_i}}(b_i)
+        \]
+        \[
+            A \subset D_{r_{b_i}}(b_i) \subset U_{\alpha}
+        \]
+        \end{proof} 
+    \end{lemma}
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced,breakable,skin first=enhanced,skin middle=enhanced,skin last=enhanced]
+    \begin{theorem}
+        При $ n > 1 $ сфера $ S^{n} $ односвязна
+
+        \begin{proof}
+            Пусть $ S^{n} \subset \mathbb{R}^{n+1}:  \ \sum_{i=1}^{n} x_i^2 = 1 $ 
+            \[
+                x_0 = (1, 0, \dots, 0)
+            \]
+
+            Пусть $ u: \ I \to S^{n} $ - петля с началом в точке $ x_0 $ 
+            \begin{center}
+                \def\svgwidth{0.5\columnwidth}
+                \import{./figures/}{loop.pdf_tex}
+            \end{center}
+
+            $ 1^{\circ} $. $ u(I) \neq S^n \implies \exists N \in S^n \setminus
+            u(I)$  
+
+            Пусть $ S_{p_{N}}: \ S^n \setminus N \to \mathbb{R}^{n} $ - 
+            стереографическая проекция c центром в точке $ N $ 
+            \begin{center}
+                \def\svgwidth{0.5\columnwidth}
+                \import{./figures/}{stereorgraphic-projection.pdf_tex}
+            \end{center}
+            \[
+                \frac{|t|}{1} = \frac{|x|}{1 - x_{n+1}} 
+            \]
+            \[
+                t = (t_1, \dots, t_n) = \frac{1}{1 - x_{n+1}} (x_1, \dots, x_n)
+                \text{ - гомеморфизм}
+            \]
+            \[
+                (S_{p_N} \circ u) \text{ - петля в } \mathbb{R}^n \text{ с началом
+                в точке }(1, 0, \dots, 0) \implies
+                \exists \text{ гомотопия } h_t : \ h_0 = S_{p_N} \circ u, \ 
+                h_1 = e_{x_0}
+            \]
+            \[
+                (S_{p_{N}})^{-1} \circ h_t \text{ - гомотопия, соединяющая } u 
+                \text{ с } e_{x_0}
+            \]
+
+            $ 2^{\circ} $ $ u(I) = S^n $. Покроем сферу $ S^n $ открытыми полусферами
+            $ \set*{U_{\alpha}} $ 
+            \[
+                u: I \to S^n \text{ непр } \implies \set{u^{-1}(U_{\alpha}}
+                \text{ - открытое покрытие отрезка } I
+            \]
+            $ I $ - компактное метр-ое $ \implies \exists $ разбиение 
+            $ (t_0, t_1, \dots, t_n): \ u([t_{i-1},t_i]) \subset U_{\alpha} $ 
+
+            $ u_i \coloneq u |_{[t_{i-1}, t_i]} $ - путь в $ U_{\alpha} \neq S^n
+            \implies \exists N \in S^n \setminus U_{\alpha}, N \notin u_i[t_{i-1}, t_i]$
+            $ \implies S_{p_N} \circ u_i $ - путь в $ \mathbb{R}^n \implies
+            $ он гомотопен  линейному пути $ \implies  S^{-1}_{p_N}$ заменяет путь
+            $ u_i $ гомотопным ему путем $ \widetilde{u}_i $ \\
+            $ \implies  u = u_1 u_2 \dots u_k \simeq \widetilde{u_1} \widetilde{u_2}
+            \dots \widetilde{u_n} \eqcolon \widetilde{u}$ 
+
+            $ \widetilde{u}(I) $ - объеденение дуг $ k $ окружностей $ \implies
+            \widetilde{u}(I) \neq S^n $ по $ 1^{\circ} $ $ \widetilde{u} \simeq
+            e_{x_0} \implies u \simeq e_{x_0}$ 
+        \end{proof}
+    \end{theorem}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{remark}
+    $ S^1 $ не односвязна
+\end{remark}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \begin{theorem}[Критерий односвязности]
+        Пусть $ X $ линейно связано: следующие утверждения равносильны:\\
+        1. $ X $ односвязно, т.е. любая петля в $ X $ с началом в отмеченной точке
+        $ x_0 $ гомотопна $ e_{x_0} $\\
+        2. Любая петля в $ X $ свободно гомотопна нулю\\
+        3. любое непрерывное отображение $ f: S^1 \to X $ продолжается до
+        непрерывного отображения $ D^2 \to X $\\
+        4. Любые два пути с одинаковыми началами и концами гомотопны как пути
+
+        \begin{proof}
+            $ 1 \implies 2 \ ? $  - очевидно по определению связанной гомотопии 
+
+            $ 2 \implies 3: $ Пусть $ u: S^1 \to X $ - петля в $X$.\\
+            Существует гомотопия $ H: S^1 \times I \to X$ 
+            \begin{center}
+                \def\svgwidth{0.5\columnwidth}
+                \import{./figures/}{homotopy-1.pdf_tex}
+            \end{center}
+
+            $ K $ - конус
+
+            $ pr_b: \ K \to D^2 $ - проекция на основанипе - гомеоморфизм
+            \[
+                \implies \overline{H} \circ pr_b^{-1}: \ D^2 \to X
+            \]
+            \[
+                (\overline{H} \circ pr_b^{-1}) |_{S^1 \times 0} = \overline{H}
+                |_{S^1 \times 0} = H |_{S^{1} \times 0} = f
+            \]
+            \begin{center}
+                \def\svgwidth{0.5\columnwidth}
+                \import{./figures/}{homotopy-2.pdf_tex}
+            \end{center}
+
+            по 3 $ \exists \ \overline{H} : \ D^2 \to X: \ \overline{H}|_{s_1}
+            = s_0 \overline{s_1}$ 
+
+            $ \implies \overline{H} \circ pr $ - искомая гомотопия
+
+            $ 4 \implies 1: $ т.к. петля $ u $ с началом в точке $ x_0 $ и 
+            петля $ e_{x_0} $ - частный случай пустей с общим началом и концом
+        \end{proof}
+    \end{theorem}
+\end{tcolorbox}
+
+\section*{\centering Накрытия}
+
+\begin{tcolorbox}
+\begin{definition}
+    Накрытием топологического пространства $ B $ называется непрерывное отображение
+    $ p: \ X \ro B $, которое сюрьективно и $ \forall b \in B \ \exists $ окрестность
+    $ U_b \subset B $ этой точки, для которой $ p^{-1}(U_b) = \bigcup_{\alpha}
+    V_{\alpha}, \ \forall \alpha$. $ V_{\alpha} $ - открыто в $ X $,
+    $ p|_{V_{\alpha}} : \ V_{\alpha} \to U_b $ - гомеоморфизм и $ V_{\alpha}
+    \cap V_{\beta} = \varnothing,$ если $ \alpha \neq \beta $.
+
+    $ X $ - называется пространством накрытия. $ B $ - база накрытия.
+    $ p $ - проекция накрытия
+\end{definition}
+\end{tcolorbox}
+
+\end{document}

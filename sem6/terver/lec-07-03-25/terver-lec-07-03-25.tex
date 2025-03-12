@@ -1,0 +1,125 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{note}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\section*{\centering Временные ряды}
+
+Было $ X_1, X_2, \dots, X_n \dots $ - незавсимые один расп случайные величины
+
+Теперь $ X_1, X_2, \dots, X_n \dots $ - посл-ть случайных величин (зависимые) 
+\[
+    X(t) = m(t) + \epsilon(t)
+\]
+\[
+    t = 1, 2, \dots
+\]
+\[
+    t = 0, 1, 2, \dots
+\]
+\[
+    t = -\infty, \dots 0, 1, 2, \dots
+\]
+
+Мат ожидание
+\[
+    m(t) = E(X(t)) \quad E(\epsilon(t)) = 0
+\]
+
+\begin{tcolorbox}
+\begin{proposal}
+    $ \epsilon(t) $ - стационарная пос-ть
+\end{proposal}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \begin{proposal}[2]
+        a) $ m(t) $ - медленное изменение\\
+        b) $ m(t) $ - небольшой период\\
+        c) $ m(t) $ - большой период
+
+        \begin{proof}
+            a) $ m(t) = \theta_0 \theta_1 t + \dots + \theta_m t^{m} $
+
+            $ x(t) = \theta_0 + \theta_1 t + \epsilon(t) $ 
+            \[
+                \{ x(t) \}_{-m}^{m} \quad t = -m, -m + 1, \dots , -1, 0, 1, \dots, m
+            \]
+
+            Оценка по МНК $ \theta_0, \theta_1 $ 
+            \[
+                \begin{cases}
+                    (2m+1)\theta_0 + \theta_1 \sum_{t=-m}^{m} t = \sum_{t=-m}^{m} x(t)\\
+                    \theta_0\sum_{t=-m}^{m} t + \theta_1 
+                    \sum_{t=-m}^{m} t^2 = \sum_{t=-m}^{m} t x(t)
+                \end{cases}
+            \]
+            \[
+                \sum_{t=-m}^{m} t = -m + (-m + 1) + \dots + (m-1) + m = 0
+            \]
+            \[
+                \hat{\theta}_0 = \frac{\sum_{t=-m}^{m}x(t)}{2m+1} = \hat{m}(0) 
+            \]
+            \[
+                \hat{\theta}_1 = \frac{\sum_{t=-m}^{m}t^2x(t)}{\sum_{t=-m}^{m}t^2} 
+            \]
+            \[
+                \sum_{i=1}^{n} t^2 = \frac{n(n+1)(2n+1)}{6} 
+            \]
+            \[
+                \hat{m}(t) = \frac{1}{2m+1} \sum_{k=-m}^{m} x(t+k)
+            \]
+            \[
+                Q(m)  =\sum_{k=0}^{t-1} \lambda^{k} (x(t-k) - m)^2
+            \]
+            \[
+                \hat{m}(t) = \lambda \hat{m}(t-1) + (1 - \lambda) x(t)
+            \]
+        \end{proof}
+\end{proposal}
+\end{tcolorbox}
+
+\section*{\centering Метод сезонной декомпозиции}
+
+В таблице преведены квартальные данные о продажах фирмы за период 1990-1993
+(млн долларов)
+
+тут воображаемая (не очень) табличка
+и 100500 перемножений, складываний, делений чиселок
+
+% TODO: надо чекнуть его лекцию
+\end{document}
