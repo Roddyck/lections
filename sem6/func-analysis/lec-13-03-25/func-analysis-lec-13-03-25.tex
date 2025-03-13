@@ -1,0 +1,220 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\DeclarePairedDelimiter\set\{\}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\section*{\centering Предел в метрическом пространстве}
+
+\begin{tcolorbox}
+    \begin{definition}[Сходимость по расстоянию]
+        $ x_n \to x: \ \rho(x_n) \xrightarrow[n \to +\infty]{} 0 $ 
+    \end{definition}
+\end{tcolorbox}
+
+В $ \mathbb{R}^{n} $ - сх-ть покоординатная\\
+$ m,C $ - сх-ть равномерная\\
+$ s $ - сх-ть покоординатная\\
+$ S $ - сх-ть почти всюду\\
+$ L_{\infty} $ - равномерная сх-ть почти всюду\\
+$ l, L $ - сх-ть в среднем\\
+$ l_2, L_2 $ - среднеквадратичная сходимость
+
+\subsection*{Свойства предела}
+
+1) доб $ \lor $ удал 
+
+2) единственнось
+
+3) сходимость $ \implies $ ограниченность
+
+\begin{tcolorbox}
+    \begin{statement}[Непрерывность расстояния]
+        \[
+            \begin{cases}
+                x_n \to x\\
+                y_n \to y
+            \end{cases} \implies
+            \rho(x_n, y_n) \to \rho(x,y)
+        \]
+    \end{statement}
+\end{tcolorbox}
+
+$ x $ - точка прикосновения $ M $ 
+\[
+    \forall \epsilon = \frac{1}{n} \implies \exists x_n \in M: \ \rho(x_n,x) <
+    \epsilon_n = \frac{1}{n} 
+\]
+
+\begin{tcolorbox}
+\begin{theorem}
+    Чтобы $ F $ было замкнутым $ \iff \Big((x_n \in F, \ x_n \to x) \implies (x \in
+    F)\Big)$ 
+\end{theorem}
+\end{tcolorbox}
+
+\section*{\centering Плотные множества}
+
+\begin{tcolorbox}
+    \begin{definition}[Плотное множество]
+        $ A,B $ - мн-во в МП
+
+        $ A $ плотно в $ B $, если $ \forall x \in B \ \forall \epsilon > 0 \ 
+        \exists y \in A: \ y \in S(x,\epsilon)$ ($ \forall x \in B \ \exists
+        \set{y_n}, \ y_n \in A: \ y_n \to X )$ 
+    \end{definition}
+\end{tcolorbox}
+
+\emph{Пример} 1) $ A = \mathbb{Q}, \ B = \mathbb{R} $ \\
+2) $ A = P, \ B = C $ 
+
+\subsection*{Свойства}
+1) $ A $ плотно в $ A $ 
+
+2) $ A $ плотно в $ B $. $ B $ плотно в $ D $. Тогда $ A $ плотно в $ D $  
+
+\begin{tcolorbox}
+    \begin{definition}
+        Если множество плотно во всем метрическом пространстве, то оно называется
+        плотным всюду
+    \end{definition}
+\end{tcolorbox}
+
+Рассмотрим множестве алгебраических полиномов с рациональными коэффицентами $ P_r $.
+Оно плотно в $ P $, которое плотно в $ C \implies P_r$ плотно в $ C $  
+
+$ P_r, P, C $ плотные в $ L_2 $ 
+
+$ C_{2\pi}[-\pi, \pi] \ x(-\pi) = x(\pi) $ плотно в $ C[-\pi, \pi] $ по
+метрике $ L_2[-\pi, \pi] $ 
+
+$ T_r $ плотно в $ T $ плотно в $ C_{2\pi} $ 
+
+\section*{\centering Сепарабельное метрическое пространство}
+\begin{tcolorbox}
+    \begin{definition}[Сепарабельное метрическое пространство]
+        Пространство сепарабельно, если в нем существует конечное или счётное
+        всюду плотное множество
+    \end{definition}
+\end{tcolorbox}
+
+Известно, что $ m $ - не сепарабельное
+
+\begin{tcolorbox}
+    \begin{statement}
+        Если $ X $ - сепарабельное МП, $ Y $ - подмножество, то $ Y $ - сепарабельное
+        МП с метрикой, индуцированной из $ X $ 
+
+        \begin{proof}
+            $ X $ - сепарабельно, значит есть счётное $ A $ - всюду плотное в $ X $
+            множество
+            \[
+                \forall y \in Y \ \forall n \ \epsilon = \frac{1}{n} \ \exists
+                x_{ny} \in A: \ \rho(y, x_{ny}) < \frac{1}{n} 
+            \]
+
+            Рассмотрим множество
+            \[
+                \set*{z: \ z \in Y. \ \rho(z, x_{ny}) < \frac{1}{n}} 
+            \]
+            Счётное количество множеств
+
+            Выберем $ z_n \in Y: \ \rho(z_n, x_{ny}) < \frac{1}{n} $.
+
+            Тогда
+            \[
+                \rho(z_n,y) \leq \rho(z_n, x_{ny}) + \rho(x_{ny}, y) < \frac{2}{n}    
+            \]
+
+            Значит $ Y $ - сепарабельно
+        \end{proof}
+    \end{statement}
+\end{tcolorbox}
+
+\section*{\centering Сходимость в себе}
+\begin{tcolorbox}
+    \begin{definition}
+        $ \set{x_n} $ сх-ся в себе, если $ \rho(x_m, x_n) \to 0, \ m > n \to +\infty $ 
+    \end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{statement}
+    Из сходимости следует сходимость в себе
+    \begin{proof}
+        $ x_n \to a $ 
+        \[
+            \rho(x_m, x_n) \leq \rho(x_m, a) + \rho(x_n, a) \to 0
+        \]
+    \end{proof}
+\end{statement}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{statement}
+    $ \exists \epsilon > 0 \quad \rho(x_m, x_n) \geq \epsilon $, то нет сходящейся
+    подпоследовательности
+\end{statement}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{statement}
+    Если последовательность сходится в себе, то она ограничена
+\end{statement}
+\end{tcolorbox}
+
+Сх-ть в себе $ \stackrel{?}{\implies} $ Сх-ть
+
+\begin{tcolorbox}
+    \begin{definition}[Полное метрическое пространство]
+    Метрическое пространство называется полным, если в нём из сходимости в себе
+    следует сходимость
+\end{definition}
+\end{tcolorbox}
+
+\section*{\centering Компактное множество}
+
+\begin{tcolorbox}
+    \begin{definition}[Предкомпактное множество]
+        Множество называется предкомпактным (относительно компактным), если
+        любая последовательность его элементов содержит сходящуюся подпоследовательность
+    \end{definition}
+\end{tcolorbox}
+
+\end{document}
