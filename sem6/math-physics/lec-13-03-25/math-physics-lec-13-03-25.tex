@@ -1,0 +1,345 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage[most]{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\DeclarePairedDelimiter\set\{\}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\begin{equation}
+    u_t(x,y,z,t) - a^2 \Delta u(x,y,z,t) = f(x,y,z,t) \quad 
+    (x,y,z) \in \mathbb{R}^3, \ t > 0
+    \label{eq:1}
+\end{equation}
+\begin{equation}
+    u|_{t = 0} = u_0(x,y,z)
+    \label{eq:2}
+\end{equation}
+\begin{tcolorbox}[title=Теорема о единственности решения задачи Коши,%
+    enhanced,breakable,skin first=enhanced,skin middle=enhanced,skin last=enhanced]
+\begin{theorem}[Единственность решения задачи Коши]
+    Задача Коши имеет не больлее одного ограниченного решения.
+
+    $ \exists M > 0 \ |u(x,y,z,t)| < M, \ (x,y,z) \in \mathbb{R}^3, t \leq 0 $ 
+
+    \begin{proof}
+        Предположим, что есть два решения задачи $ (\ref{eq:1}) - (\ref{eq:2}) $ 
+
+        Рассмотрим $ u = u^{1} - u^{2} $ 
+
+        Получим
+        \begin{equation}
+            u_t(x,y,z,t) - a^2 \Delta u(x,y,z,t) = 0 \quad 
+            (x,y,z) \in \mathbb{R}^3, \ t > 0
+            \label{eq:3}
+        \end{equation}
+        \begin{equation}
+            u|_{t = 0} = 0
+            \label{eq:4}
+        \end{equation}
+        \[
+            |u| < 2M
+        \]
+
+        Определим в $ \mathbb{R}^3 \quad B_L(0) $ - шар радиуса $ L $ с центром
+        в нуле
+        \[
+            B_L(0) = \set*{(x,y,z) \in \mathbb{R}^3: \ x^2+y^2+z^2 < L^2}
+        \]
+        \[
+            \Gamma_L(0) = \set*{(x,y,z) \in \mathbb{R}^3: \ x^2+y^2+z^2 = L^2}
+        \]
+
+        \[
+            Q_T = B_L(0) \times (0; T) \subset \mathbb{R}^4
+        \]
+        \[
+            \overline{Q_T} = \overline{B_L(0)} \times [0;T]
+        \]
+        \[
+            \Sigma = \Gamma_L(0) \times [0;T]
+        \]
+        \[
+            \Sigma_0 = \overline{B_L(0)}
+        \]
+
+        Рассмотрим функцию
+        \begin{equation}
+            v(x,y,z,t) = \frac{12M}{L^2} \left(\frac{x^2+y^2+z^2}{6} + a^2t \right)
+            \label{eq:5}
+        \end{equation}
+
+        Легко убедиться в том, что
+        \[
+            v_t - a^2 \Delta v = 0
+        \]
+
+        Также $ v - u $ и $ v+u $ тоже удовлетворяют уравнению теплопроводности
+
+        Тогда можем применить к этим функция теорему о максимуме и минимуме
+        уравнения теплопроводности
+
+        На нижнем основании $ \Sigma_0 $
+        \[
+            v-u \geq 0, \quad v+u \geq 0
+        \]
+
+        На $ \Sigma $:
+        \[
+            v = \frac{12M}{L^2} \left(\frac{L^2}{6} + a^2 t \right) \geq 
+            \frac{12M}{6} \cdot \frac{L^2}{6} = 2M
+        \]
+        Т.е. $ v \geq 2M $ \\
+        Т.к. $ |u| < 2M $, то на $ \Sigma $ 
+        \[
+            v-u \geq 0, \quad v+u \geq 0
+        \]
+
+        По теореме о макс и мин ур-я теплопроводности функции $ v-u, \ v+u $ 
+        достигают наименьшего значения либо на основании, либо на боковой
+        поверхности, а это наименьшее значение не отрицательно. А значит
+        и во всем цилиндре $ \overline{Q_T} $:
+        \[
+            v-u \geq 0, \quad v+u \geq 0
+        \]
+
+        Из этого следует, что в $ \overline{Q_T} $ 
+        \[
+            |u| \leq v
+        \]
+
+        Рассмотрим произвольную точку $ (x_0, y_0, z_0, t_0) \in \mathbb{R}^3
+        \times (0;T)$ 
+
+        Можно выбрать достаточно большие $ T, L $, чтобы точка попала в цилиндр
+        $ Q_T $
+
+        Тогда
+        \[
+            |u(x_0,y_0,z_0,t_0)| \leq v(x_0,y_0,z_0,t_0)
+        \]
+
+        Рассмотрим
+        \[
+            v(x_0,y_0,z_0,t_0) = \frac{12M}{L^2} 
+            \left(\frac{x_0^2+y_0^2+z_0^2}{6} + a^2 t_0 \right)
+        \]
+
+        $ v $ в этой точке может быть сколь угодно малым, в зависимости от $ L $ 
+
+        Тогда $ u(x_0, y_0,z_0,t_0) = 0 $.
+
+        Значит, что $ u^{1} = u^2 $ 
+
+    \end{proof}
+\end{theorem}
+\end{tcolorbox}
+
+\section*{Теорема о единственности решения смешанной задачи для уравнения
+теплопроводности}
+
+Решения будем искать в области $ \Omega \subset \mathbb{R}^3, \ \Gamma = 
+\partial \Omega$ 
+
+Пусть $ \Gamma = \Gamma_1 \cup \Gamma_2 \cup \Gamma_3, \ \Gamma_i \cap \Gamma_j
+= \varnothing, \ \text{if } i \neq j$ 
+
+Начальные и граничные условия:
+\[
+    u|_{t=0} = u_0(x,y,z), \ (x,y,z) \in \Omega
+\]
+\begin{subequations}
+    \begin{align}
+        &u|_{\Gamma_1} = u_{\Gamma}(x,y,z,t), \ (x,y,z) \in \Gamma_1, \ t \geq 0\\
+        &\lambda \frac{\partial u}{\partial v} = -q_{\Gamma}(x,y,z,t)\\
+        &\lambda \frac{\partial u}{\partial v} + hu = h_t...
+    \end{align}
+\end{subequations}
+
+\begin{tcolorbox}[enhanced,breakable,skin first=enhanced,skin middle=enhanced,skin last=enhanced]
+    \begin{theorem}
+        Решение смешанной задачи единственно
+        \begin{proof}
+            Предположим, что есть два решения. $ u = u^1 - u^2 $. Получим
+            \begin{equation}
+                u_t(x,y,z,t) - a^2 \Delta u(x,y,z,t) = 0
+                \label{eq:7}
+            \end{equation}
+            \begin{equation}
+                u|_{t=0} = 0 \ (x,y,z) \in \Omega
+            \end{equation}
+            \begin{subequations}
+                \begin{align}
+                &u|_{\Gamma_1} = 0 \ (x,y,z) \in \Gamma_1, \ t \geq 0\\
+                &\lambda \frac{\partial u}{\partial v} = 0\\
+                &\lambda \frac{\partial u}{\partial v} + hu = 0
+                \end{align}
+            \end{subequations}
+            \[
+                (\ref{eq:7}) \cdot u, \ \int_{\Omega} dx dy dz
+            \]
+
+            Получим следующее
+            \begin{equation}
+                \int_\Omega u u_t dx dy dz - a^2 \int_\Omega u \Delta u dxdydz = 0
+                \label{eq:10}
+            \end{equation}
+            \[
+                u u_t = \frac{1}{2} \frac{\partial}{\partial t} (u^2)
+            \]
+            \[
+                \int_\Omega u u_t dxdydz = \frac{1}{2} \frac{d}{dt} \int_{\Omega}
+                u^2 dxdydz
+            \]
+            \[
+                u \Delta u = \frac{\partial}{\partial x} \left( u \frac{\partial u}{\partial x} 
+                \right) + \frac{\partial}{\partial y} \left( u \frac{\partial u}{\partial y} 
+                \right) + \frac{\partial}{\partial z} \left( u \frac{\partial u}{\partial z} 
+                \right) + \left[ \left( \frac{\partial u}{\partial x} \right)^2
+                    + \left( \frac{\partial u}{\partial y} \right)^2 +
+                \left( \frac{\partial u}{\partial z} \right)^2 \right]
+            \]
+            \[
+                \int_{\Omega} u \Delta u dxdydz
+                = \int_{\Omega}\frac{\partial}{\partial x} \left( u \frac{\partial u}{\partial x} 
+                \right) + \frac{\partial}{\partial y} \left( u \frac{\partial u}{\partial y} 
+                \right)dxdydz
+                + \frac{\partial}{\partial z} \left( u \frac{\partial u}{\partial z} 
+                \right) + \int_{\Omega}\left[ \left( \frac{\partial u}{\partial x} \right)^2
+                    + \left( \frac{\partial u}{\partial y} \right)^2 +
+                \left( \frac{\partial u}{\partial z} \right)^2 \right] dxdydz
+            \]
+
+            Применим теорему Гаусса-Остроградского
+            \begin{equation}
+                \int_\Omega u \Delta u dxdydz = \int_{\Gamma} u \frac{\partial u}{\partial v} 
+                d \Gamma - \int_{\Omega}(u_x^2 + u_y^2 + u_z^2) dxdydz
+                \label{eq:11}
+            \end{equation}
+
+            Подставим в $ (\ref{eq:10}) $ 
+            \begin{equation}
+                \frac{1}{2} \frac{d}{dt} \int_{\Omega}u^2 dxdydz - a^2
+                \int_{\Gamma}u \frac{\partial u}{\partial \nu} d \Gamma
+                + a^2 \int_\Omega (u_{x}^2 + u_y^2 + u_z^2) dxdydz = 0
+                \label{eq:12}
+            \end{equation}
+            \[
+                \frac{1}{2} \frac{d}{dt} \int_{\Omega}u^2 dxdydz + a^2
+                \int_{\Gamma} \frac{h}{\lambda} u^2 d \Gamma
+                + a^2 \int_\Omega (u_{x}^2 + u_y^2 + u_z^2) dxdydz = 0
+            \]
+            \[
+                \frac{1}{2} \frac{d}{dt} \int_{\Omega}u^2 dxdydz = - a^2
+                \int_{\Gamma} \frac{h}{\lambda} u^2 d \Gamma
+                - a^2 \int_\Omega (u_{x}^2 + u_y^2 + u_z^2) dxdydz
+            \]
+
+            Рассмотрим функцию
+            \[
+                \Phi(t) = \int_\Omega u^2(x,y,z,t) dxdydz
+            \]
+
+            Из последнего равенства следует
+            \[
+                \frac{1}{2} \frac{d\Phi(t)}{dt} \leq 0
+            \]
+            \[
+                \Phi(0) = 0, \ \Phi(t) \geq 0
+            \]
+            \[
+                \Phi(t) \equiv 0
+            \]
+
+            Отсюда
+            \[
+                u^2(x,y,z,t) \equiv 0
+            \]
+            \[
+                u \equiv 0
+            \]
+        \end{proof}
+    \end{theorem}
+\end{tcolorbox}
+
+\section*{Применение метода разделения переменных для уравнения теплопроводности
+стержня}
+\begin{equation}
+    u_t(x,t) - a^2 u_{xx}(x,t) = f(x,t) \quad x \in (0,l), \ t > 0
+\end{equation}
+\begin{equation}
+    u|_{t=0} = u_0(x)
+\end{equation}
+\begin{equation}
+    u(0,t) = u(l,t) = 0
+\end{equation}
+
+Рассматриваем
+\[
+    u_t - a^2 u_{xx} = 0
+\]
+
+Ищем решение вида
+\[
+    u = T(t) X(x)
+\]
+
+\[
+    T'(t) X(x) - a^2 T(t) X''(x) = 0
+\]
+\[
+    \frac{T'(t)}{a^2 T(t)} = \frac{X''(x)}{X(x)} = -\lambda
+\]
+\[
+    \begin{cases}
+        X''(x) + \lambda X(x) = 0\\
+        X(0) = X(l) = 0
+    \end{cases}
+\]
+\[
+    \lambda_n = \left( \frac{\pi n}{l} \right)^2, \ n \in \mathbb{N}
+\]
+\[
+    X_n(x) = \sin \frac{\pi n x}{l} 
+\]
+
+Будем искать решение в виде
+\[
+    u(x,t) = \sum_{n=1}^{\infty} T_n(t) X_n(x) = \sum_{n=1}^{\infty} T_n(t)
+    \sin \frac{\pi n x}{l}
+\]
+\end{document}
