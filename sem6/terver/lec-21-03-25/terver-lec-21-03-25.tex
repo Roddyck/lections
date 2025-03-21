@@ -1,0 +1,265 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\DeclarePairedDelimiter\set\{\}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\section*{\centering Формула замены переменных Ито}
+\begin{equation}
+    X(t) = X(0) + \int_{0}^{t} a(s,\omega) ds + \int_{0}^{t} b(s, \omega) dw(s)
+\end{equation}
+\begin{equation}
+    dX(t) = a(s, \omega) dt + b(t, \omega) d w(t)
+\end{equation}
+\[
+    f(t,x) \quad Y(t) = f(t, X(t))
+\]
+\[
+    dY(t) = ?
+\]
+\[
+    X(t) = x_0 + at + b w(t) \text{, где $ a,b $ - случайные величины} \quad
+    x_0 = 0
+\]
+\[
+    f(t, at + b W(t))
+\]
+\[
+    f = f(t, at + b w) = u(t, w) \equiv u
+\]
+\[
+    f_t(t, at+bw) + af'_w(t,w) = u'_t
+\]
+\[
+    bf'_w(t, at + bw) = u'_w
+\]
+\[
+    b^2 f'_{ww}(t, at + bw) = u''_{ww}
+\]
+\[
+    u(t, \omega) \quad [0, T) \ \Delta 2^{-n}
+\]
+\[
+    t_k - t_{k-1} = \frac{1}{2^{n}} = \epsilon 
+\]
+\[
+    w(t_k) - w(t_{k-1}) = \Delta w_{t_k}
+\]
+\[
+    u(t, w(t)) - u(0,0) = \sum u(u \epsilon, w_{k} \epsilon) -
+    u((k-1)\epsilon, w_k \epsilon) + \sum (u(k-1)\epsilon,
+    w_k \epsilon) - u((k-1)\epsilon, w_{k-1}\epsilon) \approx 
+\]
+\[
+    \sum u'_t(k \epsilon, w_k \epsilon)\epsilon + \sum u'_w \cdot \Delta w + 
+    \frac{1}{2} \sum u''_{ww}(\Delta w_k)^2
+\]
+\[
+    \int_{0}^{t} u'_s(s, w_s) ds + \int_{0}^{t} u'_w(s,w_s) dw_s +
+    \frac{1}{2} \int_{0}^{t} u''_{ww} (s,w_s) ds
+\]
+\[
+    df(t, w_t) = \left[f'_t + af'_w + \frac{1}{2} f''_{ww} b^2 \right]dt +
+    bf'_w dw_t
+\]
+\[
+    f(t,x) \quad \exists \, f'_t, f'_x, f''_{x x} \text{ - непрерывные}
+\]
+\[
+    z(t) = \exp\left( \int_{0}^{t} a(s) dw_s - \frac{1}{2} \int_{0}^{t} a^2(s) ds\right)
+\]
+\[
+    f = f(t,w) = e^y
+\]
+\[
+    dY(t) = -\frac{1}{2} \alpha^2(t) dt+ \alpha(t) dw_t
+\]
+\[
+    a = \frac{1}{2} \alpha^2, \ b = \alpha(t)
+\]
+\[
+    f'_t = 0, \  f'_y = e^{y}, \ f''_{ww} = e^{y}
+\]
+\[
+    df(t, w_t) = \left[f'_t + af'_y + \frac{1}{2} f''_{yy} b^2 \right]dt +
+    bf'_w dw_t
+\]
+\[
+    f'_t + a f'_y + \frac{1}{2} b^2 f''_{y y} = -\frac{1}{2} \alpha^2(t) e^{Y(t)} +
+    \frac{1}{2} \alpha(t) e^{Y(t)}
+\]
+\[
+    bf'_y = \alpha(t) e^{Y(t)}
+\]
+\begin{tcolorbox}
+\[
+    dz(t) = \alpha(t) z(t) dw(t)
+\]
+\end{tcolorbox}
+
+\[
+    s(t) = s(0) \exp\left(\sigma w(t) + at - \frac{\sigma^2 t}{2} \right)
+    \text{ - геометрические (экономическое) Броунское движение}
+\]
+
+Рассмотрим дифференциальное уравнение
+\begin{equation}
+    \begin{aligned}
+        &dN(t) = r(t) N(t) dt\\
+        &\frac{d N(t)}{N(t)} = r(t) dt\\
+        &N(t) = N(t) e^{-r(t)}
+    \end{aligned}
+\end{equation}
+\[
+    \frac{dN(t)}{N(t)} = r(t) + W(t)
+\]
+\[
+    dN(t) = r(t)N(t) + N(t)dw(t)
+\]
+\subsection*{Простейшие СДУ}
+\emph{Однородные уравнения}
+\begin{equation}
+    dX(t) = a(t)dt + b(t) dw(t)
+\end{equation}
+\[
+    X(t) = \int_{0}^{t} a(s)ds + \int_{0}^{t} b(s) dw(s)
+\]
+\[
+    f(t,w) = b(t) \cdot w \quad f'_t = b'(t)w, \ f'_w = b(t), \ f''_{ww} = 0
+\]
+\[
+    dw(t) = dw(t) \quad a = 0, \ b = 1
+\]
+\[
+    d(b(t) \cdot w(t)) = b'(t)w(t)dt + b(t)dw(t)
+\]
+\[
+    \int_{0}^{t} f(s) w(s) ds = b(t) w(t) - \int_{0}^{t} b(s) w(s) ds
+\]
+
+\emph{Линейные однородные уравнения}
+\[
+    X(t) = 1 + \int_{0}^{t} \arctan(s) ds + \int_{0}^{t} s^3 dw(s)
+\]
+\[
+    dX(t) = \arctan(t) dt + t^3 dw(t)
+\]
+\begin{equation}
+    dX(t) = a_1(t) X(t) dt + b_1(t)X(t) dw(t)
+\end{equation}
+\begin{equation}
+    X(t) = x_0 \exp\left(\int_{0}^{t} \left(a_1(s) - \frac{1}{2} b^2_1(s)\right)ds +
+    \int_{0}^{t} b_1(s) dw(s) \right)
+\end{equation}
+\[
+    dN(t) = r(t) N(t) + N(t) dw(t)
+\]
+\[
+    X(t) = N_0 \exp\left( \int_{0}^{t} \left( r(s) - \frac{1}{2} \right) ds + w(t) \right)
+\]
+
+\textbf{Найти решение СДУ}
+\[
+    dX(t) = 2X(t) dt + e^t X(t)dw(t)
+\]
+\[
+    X(t) = \exp\left( \int_{0}^{t} \left(2 - \frac{1}{2} e^s \right) ds +
+        \int_{0}^{t} e^s dw(s) \right)
+\]
+
+\emph{Линейные неоднородные уравнения}
+\[
+    dX(t) = (a_1(t) X(t) + a_2(t)) dt + (b_1(t)X(t) + b_2(t)) dw(t)
+\]
+\[
+    a_1,a_2,b_1,b_2 \text{ - числа}
+\]
+\[
+    Y(t) = b_1(t)X(t) + b_2(t) \quad b_1 \neq 0
+\]
+\[
+    X(t) = \frac{Y(t) - b_2}{b_1} 
+\]
+\[
+    dX(t) = \frac{1}{b_1} dY(t)
+\]
+\[
+    b_1 dX(t) = dY(t)
+\]
+\[
+    a_1 \cdot X(t) + a_2 = a_1 \frac{Y(t) - b_2}{b_1} + a_2 = \frac{a_1Y(t)}{b_1} 
+    - \frac{b_2}{b_1} + \frac{a_2b_1}{b_1} 
+\]
+\[
+    dY(t) = (a_1 Y(t) - b_2 + a_2)dt + b_1 Y(t) dw(t)
+\]
+\[
+    dY(t) = a_1 Y(t) dt + b_1Y(t) dw(t)
+\]
+\[
+    \widetilde{Y}(t) = Y(t) + (a_2 - b_2)
+\]
+\[
+    f(t,x) = dx + (a_2 - b_2)t \quad f'_t = (a_2 - b_2)
+\]
+\[
+    dX(t) = (X^4(t) + 6X(t))dt + X(t)dw(t)
+\]
+\[
+    y = f(x) = -\frac{1}{3} x^{-3}
+\]
+\[
+    x = -\frac{1}{\sqrt[3]{3}}y^{-\frac{1}{3}} \quad c_0 = -\sqrt[3]{3} 
+\]
+\[
+    f'_t = 0, \ f'_x = \frac{1}{x^4}, \ f''_{x x} = -\frac{4}{x^5} 
+\]
+\[
+    dY(t) = -6(1 + Y(t)) dt  - 3 Y(t) dw(t)
+\]
+\[
+    d \widetilde{Y}(t) = -6 \widetilde{Y}(t) dt - 3 \widetilde{Y}(t) dw(t)
+\]
+\[
+    dz(t) = -6dt - 3 dw(t)
+\]
+\[
+    z(t) = x_0 \exp\left( -\frac{15}{2} t - 3 w(t)\right)
+\]
+\end{document}

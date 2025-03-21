@@ -1,0 +1,248 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage[most]{tcolorbox}
+\usepackage{xfrac}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\DeclarePairedDelimiter\set\{\}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\[
+    I \xrightarrow{f} B 
+\]
+\begin{figure}[ht]
+    \centering
+    \incfig{pic1}
+    \caption{pic1}
+    \label{fig:pic1}
+\end{figure}
+Отрезок разбит на $ t_0, \dots, t_n $ 
+\[
+    \widetilde{f}|_{[t_0,t_1]} \coloneq p^{-1} \circ f|_{[t_0, t_1]}
+\]
+\[
+    f(t_i) \eqcolon b_i
+\]
+\[
+    \widetilde{f}(t_1) \eqcolon x_1 \in V_2 \quad \widetilde{f}|_{[t_{i-1}, t_i]}
+    \coloneq p^{-1} \circ f|_{[t_{i-1}, t_i]}
+\]
+\[
+    x_i \in V_{i+1}, \ p: \ V_{i+1} \to U_{i+1}
+\]
+
+$ \widetilde{f} $ непрерывно, т.к. $ \forall i \ \widetilde{f}|_{t_{i-1}, t_i} $ 
+непрерывно, а $ set{[t_{i-1}, t_i]} $ - фундаментальное покрытие отрезка $ I $.
+Единственность $ \widetilde{f} $ следует из построения
+
+\begin{tcolorbox}
+    \begin{theorem}[О накрывающей гомотопии]
+        Пусть $ p: \ X \to B $ - накрытие, $ b_0 \in B $, $ x_0 \in p^{-1}(b_0) $.
+        Пусть пути $ f, f': I \to B $ с $ f(0) = f'(0) = b_0, \ f(1) = f'(1) $ 
+        гомотопны.
+
+        Тогда накрывающие пути $ \widetilde{f}, \widetilde{f'} $ с $ \widetilde{f}(0)
+        = \widetilde{f}'(0) = x_0$ гомотопны и, в частности $ \widetilde{f}(1)
+        = \widetilde{f}'(1)$ 
+
+        \begin{proof}
+            $ \set*{ U \text{ - прав. накр. окр-ть некоторой точки} \in B} $ -
+            открытое покрытие базы $ B $.
+
+            $ H $ непр $ \implies \set*{H^{-1}(U)} $ - открытое покрытие пространства
+            $ I^2 $ 
+
+            $ I^2 $ комп. метрическое пр-во $ \implies  $ по лемме Лебега
+            $ \exists $ разбиение $ \set{Q_{ij}} $ пр-ва $ I $ 
+            \[
+                H(Q_{ij}) \subset U_{ij} \text{ - прав. накрытая окр-ть}
+            \]
+            \[
+                Q_{ij} = [s_{i-1}, s_i] \times [t_{j-1}, t_j], \ i,j = 0 \dots, n
+            \]
+            \[
+                \exists ! \, V_{00} \ni x_0: \ p : V_{00} \xrightarrow{\cong} U_{00}
+            \]
+            \[
+                \widetilde{H}|_{Q_{00}} \coloneq p^{-1} \circ H|_{Q_{00}}
+            \]
+            \[
+                \exists ! \, V_{10} \supset \widetilde{H}(s_1 \times [t_0, t_1])
+                : \ p: V_{10} \xrightarrow{\cong} U_{10}
+            \]
+            \[
+                \widetilde{H}|_{Q_{10}} \coloneq p \circ H|_{Q_{10}}: \
+                Q_{10} \to V_{10}
+            \]
+            \[
+                \widetilde{H}|_{Q_{n-1, 0}} = p^{-1} \circ H|_{n-1, 0}
+            \]
+            \[
+                f_i = H|_{I \times t_i}, \quad i = 1, \dots, n
+            \]
+            \begin{center}
+                \def\svgwidth{0.5\columnwidth}
+                \import{./figures/}{pic2.pdf_tex}
+            \end{center}
+
+            Можно считать, что $ H|_{T \times [t_0, t_1]} $ - гомотопия между
+            $ f $ и $ f_1 \implies \widetilde{H}|_{I \times [t_0, t_1]} $ -
+            гомотопия между $ \widetilde{f} $ и $ \widetilde{f}_1 $  
+
+            Аналогично строится $ \widetilde{H}|_{T \times [t_j, t_{j+1}]} \implies
+            \widetilde{f} \simeq \widetilde{f_1} \simeq \widetilde{f_2} \dots
+            \simeq \widetilde{f_n} = f' \implies \widetilde{f} \simeq \widetilde{f'}
+            \implies \widetilde{f}(1) = \widetilde{f'}(1)$ 
+        \end{proof}
+    \end{theorem}
+\end{tcolorbox}
+
+\section*{\centering \S Фундаментальная группа окружности}
+
+\begin{tcolorbox}[enhanced,breakable,skin first=enhanced,skin middle=enhanced,skin last=enhanced]
+    \begin{theorem}
+        \[
+            \pi_1(S^1) \cong \mathbb{Z}
+        \]
+
+        \begin{proof}
+            \[
+                p: \ \mathbb{R} \to S^1
+            \]
+            \[
+                p(x) = (\cos 2 \pi x, \sin 2 \pi x)
+            \]
+            \[
+                \phi: \ \mathbb{Z} \to \pi_1(S, b_0)
+            \]
+            \[
+                \phi(n) = [f_n], \text{ где } f_n(t) \coloneq (\cos 2\pi nt,
+                \sin 2\pi nt), \quad t \in [0,1]
+            \]
+            \begin{center}
+                \def\svgwidth{0.5\columnwidth}
+                \import{./figures/}{pic3.pdf_tex}
+            \end{center}
+
+            1) $ \phi $ - гомоморфизм - ?
+            \[
+                \phi(k+n) = \phi(k) \phi(n) - ?
+            \]
+            \[
+                [f_{k+n}] = [f_k f_n] - ?
+            \]
+            \[
+                f_{n+k} \simeq f_k f_n - ?
+            \]
+            \begin{center}
+                \def\svgwidth{\columnwidth}
+                \import{./figures/}{pic4.pdf_tex}
+            \end{center}
+
+            2) $ \phi $ - мономорфизм - ?
+            \[
+                \ker \phi = \set{0} - ?
+            \]
+            \[
+                \forall \, n \in \mathbb{Z} \quad n \in \ker \phi \implies \phi(n)
+                = [e_{b_0}] \implies f_n \simeq e_{b_0}
+            \]
+            \[
+                n = 0 - ?
+            \]
+
+            Пусть $ \widetilde{f}_n $ - путь, накрывающий петлю $ f_n $  
+
+            Ясно, что $ \widetilde{f_n}(t) = nt, \ t \in [0,1] $, т.к.
+            $ p(\widetilde{f_n}(t)) = (\cos 2\pi nt, \sin 2\pi nt) = f_n(t) \implies
+            \widetilde{f}_n(1) = n$ 
+
+            Ясно, что $ \widetilde{e}_{b_0} = e_0, \ O \in \mathbb{R} $
+            $\implies \widetilde{e}_{b_0}(1) = 0$
+
+            По теореме о накрывающей гомотопии $ \widetilde{f_n} \simeq e_0 \implies
+            n = 0$ 
+
+            3) $ \phi $ - эпиморфизм - ?
+            \[
+                \forall \, [u] \in \pi_1(S^1, b_0) \ \exists \, n \in \mathbb{Z}: \
+                [u] = \phi(n) = [f_n] - ?
+            \]
+
+            Пусть $ \widetilde{u} $ - путь с началом в точке $ 0 \in \mathbb{R} $ 
+            накрывающий петлю $ u \implies n = \widetilde{u}(1) \in \mathbb{Z} $ 
+            \[
+                u \simeq f_n - ?
+            \]
+            \[
+                \widetilde{u} \simeq \widetilde{f_n} - ?
+            \]
+
+            $ \mathbb{R} $ односвязно, $ \widetilde{u}(0) = \widetilde{f_n}(0) = 0 $.
+            $ \widetilde{u}(1) = \widetilde{f_n}(1) = n \implies \widetilde{u} \simeq
+            \widetilde{f_n} \implies u = p \circ \widetilde{u} \simeq p \circ \widetilde{f_n}
+            = f_n$ 
+        \end{proof}
+    \end{theorem}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{remark}
+    \[
+        [f_n] = [f_1]^n
+    \]
+\end{remark}
+\end{tcolorbox}
+
+\section*{\centering \S Фундаментальная группа вещественного проективного пространства}
+\begin{tcolorbox}
+\[
+    \mathbb{R} P^n = \set{ l \subset R^{n+1} \ | \ 0 \in l}, \ l \text{ - прямая}
+\]
+\[
+    S^n \subset R^{n+1} \text{ - единичная сфера с центром в точке 0}
+\]
+
+$ \exists $ отображение $ p: S^n \to \mathbb{R}P^n: p(x) \coloneq l \ni x, -x   $ 
+\[
+    \forall l \in \mathbb{R} P^n: \ p^{-1}(l) = \set{x, -x} \implies
+    \mathbb{R} P^n = \sfrac{S^n}{x \sim -x} \implies \text{ топология в } \mathbb{R}P^n
+    \text{ - фактор-топология, $ p $ - проекция на фактор-пр-во - непр. отображение}
+\]
+\end{tcolorbox}
+
+\end{document}

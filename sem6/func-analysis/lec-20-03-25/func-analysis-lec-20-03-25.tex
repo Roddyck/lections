@@ -1,0 +1,208 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage[most]{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\DeclarePairedDelimiter\set\{\}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\section*{\centering Компактное множество}
+
+\begin{tcolorbox}
+    \begin{statement}
+        Если множество предкомпактно, то оно ограничено
+
+        \begin{proof}
+            Допустим, что это не так
+            \[
+                x_1 \in M \quad \exists x_2: \ \rho(x_1, x_2) > 1, \quad
+                \exists x_3: \ \rho(x_1, x_3) > \rho(x_1, x_2) + 1 \dots
+                \exists x_{n+1}: \ \rho(x_1, x_{n+1}) > \rho(x_1, x_n) + 1
+            \]
+            \[
+                \rho(x_{n+1}, x_n) \geq \rho(x_{n+1}, x_1) - \rho(x_n, x_1) = 1
+            \]
+        \end{proof}
+    \end{statement}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \begin{remark}
+        Обратное верно только для конечномерных пространств
+    \end{remark}
+\end{tcolorbox}
+
+\section*{\centering Критерий Хаусдорфа предкомпактности множества}
+
+\begin{tcolorbox}
+    \begin{definition}[$ \epsilon $ - сеть множества $K$]
+        Множество $ M $ называется $ \epsilon $ - сетью множества $ K $, 
+        если
+        \[
+            \forall x \in K \ \exists y \in M: \ \rho(x,y) < \epsilon
+        \]
+        $ M $ - конечное множество, конечная $ \epsilon $ - сеть
+    \end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced,breakable,skin first=enhanced,skin middle=enhanced,skin last=enhanced]
+    \begin{theorem}[Критерий Хаусдорфа предкомпактности множества]
+        Для предкомпактности множества необходимо, а в полном метрическом
+        пространстве и достаточно, чтобы
+        \[
+            \forall \epsilon > 0 \ \exists \text{ конечная } \epsilon \text{ - сеть
+            для этого множества}
+        \]
+
+        \begin{proof}
+            1. $ \implies: $ 
+
+            Пусть дан $ \epsilon > 0 $\\
+            Возьмём $ x_1 \in K $. Рассмотрим $ S(x_1, \epsilon) $\\
+            1) $ K \subseteq S(x_1, \epsilon) $\\
+            2) $ K \not\subseteq S(x_1, \epsilon) $\\
+            Рассмотрим $ x_2 \notin S(x_1, \epsilon) \quad \rho(x_2, x_1) > \epsilon $\\
+            1) $ K \subseteq S(x_1, \epsilon) \cup S(x_2, \epsilon) $ \\
+            2) $ K \not\subseteq S(x_1, \epsilon) \cup S(x_2, \epsilon) $ \\
+            Возьмём $ x_3, \ \rho(x_3, x_1) > \epsilon, \rho(x_3, x_2) > \epsilon $
+
+            Пусть $ x_n \in \bigcup_{k=\overline{1, n-1}} S(x_k, \epsilon) $.
+            Получаем последовательность $ \set*{x_n} $ 
+            \[
+                \rho(x_m, x_n) > \epsilon \quad m > n
+            \]
+            Противоречие с предкомпактностью. Значит процесс не бесконечный.
+            Тогда существует конечная $ \epsilon $ - сеть
+
+            2. $ \impliedby: $ предкомпактность? 
+
+            Пусть $ \set{x_n}, \ x_n \in K $. Зададим $ \epsilon_n \to 0 $  
+
+            $ \forall \epsilon_m \ \exists $ конечная $ \epsilon $ - сеть $ a_{p,m} $ 
+
+            Рассмотрим шары $ S(a_{p,m}, \epsilon_1) $ 
+            \[
+                \bigcup S(a_{p,m}, \epsilon_1) \ni x_n
+            \]
+            \[
+                S_1 = \bigcup S(a_{p,1}, \epsilon_1) \ni x_n 
+            \] 
+            \[
+                T_1 \text{ - последовательность попавшая в } S_1
+            \]
+            \[
+                S_2 = \bigcup S(a_{p,2}, \epsilon_2) \ni x_n 
+            \] 
+            \[
+                T_2 \text{ - последовательность попавшая в } S_2
+            \]
+            \[
+                T_{k+1} \subseteq T_k \subset S_k
+            \]
+
+            Выберем из $ T_1 $ элемент $ x_{n_1} $.\\ 
+            Выберем из $ T_2 $ элемент $ x_{n_2}, \ n_2 > n_1 $.\\ 
+            Выберем из $ T_k $ элемент $ x_{n_k} $. 
+
+            Возьмём $ k > m $. Тогда $ x_{n_m} \in T_m \subset S_m $,
+            $ x_{n_k} \in T_k \subset T_m \subset S_m $ 
+            \[
+                \rho(x_{n_k}, x_{n_m}) < 2 \epsilon_m \to 0 \quad
+                \forall k>m \to +\infty
+            \]
+            \[
+                \set*{x_{n_k}} \text{ сходится в себе}
+            \]
+
+            Полное МП $ \implies \exists \lim_{k \to \infty} x_{n_k} = x $ 
+        \end{proof}
+    \end{theorem}
+\end{tcolorbox}
+
+\section*{\centering Критерии предкомпактности в пространствах $ C, L_2 $} 
+\begin{tcolorbox}
+    $ C[a,b] $
+
+    $ K $ - предкомпактно $ \iff $\\
+    1) $ \exists c: \ |x(t)| \leq c \ (\forall x \in K, \ \forall t \in [a,b]) $\\
+    2) $ \forall \epsilon > 0 \ \exists \delta(\epsilon): \ \forall h: \ |h| < 
+    \delta(\epsilon), \ \forall x \in K, \ \forall t \in [a,b] \implies
+    |x(t+h) - x(t)| < \epsilon$ - равностепенная непрерывность
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    $ L_2[a,b] $
+
+    $ K $ - предкомпактно $ \iff $\\
+    1) $ \exists c: \ \int_{a}^{b} x^2(t) dt \leq c \ \forall x \in K $ \\
+    2) $ \forall \epsilon > 0 \ \exists \delta(\epsilon): \ \forall h: \ |h| < 
+    \delta(\epsilon), \ \forall x \in K\implies
+    \int_{a}^{b} (x(t+h) - x(t))^2 dt < \epsilon$
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \begin{definition}[Компактное множество]
+        Замкнутое предкомпактное множество называется компактным
+    \end{definition}
+\end{tcolorbox}
+
+Отсюда следует, что в любой последовательности точек компакта есть сходящаяся
+подпоследовательность, причём её предел тоже принадлежит компакту
+
+\section*{\centering Непрерывные операции в метрических пространствах}
+
+Пусть $ X,Y $ - метрические пространства. $ A: \ X \to Y $ - операция 
+
+\begin{tcolorbox}
+    \begin{definition}
+        Если $ (x_n \to x) \implies (A(x_n) \to A(x)) $, то $ A $ непрерывная в точке $ x $ 
+    \end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \[
+        A: \ X \to Y = \mathbb{R} \text{ - функционал}
+    \]
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \begin{theorem}
+        Если функционал $ f $ непрерывный на компакте $ K $, то $ f(K) $ ограниченно
+        и на компакте существуют оба экстремума этого функционала
+    \end{theorem}
+\end{tcolorbox}
+\end{document}
