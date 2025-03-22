@@ -1,0 +1,237 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\DeclarePairedDelimiter\set\{\}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+
+\emph{Примеры алгебр Ли}
+\[
+    G = GL(n, \mathbb{R}) \subset M_n(\mathbb{R}) \text{ - открытое подмножество}
+\]
+\[
+    M_n(\mathbb{R}) \cong \mathbb{R}^{n^2}
+\]
+\[
+    A \in T_e(G),  \quad e = E
+\]
+$ x_{ij} $ - координаты на $ G $ 
+\[
+    A = \sum_{i,j} a_{ij} \frac{\partial}{\partial x_{ij}} \Bigg|_l,
+    \quad A = (a_{ij})
+\]
+\[
+    \forall \, g \in GL(n, \mathbb{R}) \quad T_g(G) = \mathbb{R}^{n^2} = M_n(\mathbb{R})
+\]
+\[
+    dL_g(A)
+\]
+\[
+     g = (g_{ij}), \ x = (x_{ij})
+\]
+\[
+    L_g(x) = gx = ((gx)_{ij})
+\]
+\[
+    (gx)_{ij} = \sum_{k=1}^{n} g_{ik} x_{kj}
+\]
+\[
+    x \to  
+\]
+\[
+    \begin{aligned}
+        &x'_1 = b_{11} x_1 + \dots + b_{1n}x_n = f_1(x_1,\dots,x_n)\\
+        &x'_2 = b_{21} x_1 + \dots + b_{2n}x_n= f_2(x_1,\dots,x_n)\\
+        &\dots\dots\dots\\
+        &x'_n = b_{n1} x_1 + \dots + b_{nn}x_n= f_n(x_1,\dots,x_n)\\
+    \end{aligned}
+\]
+\[
+    J = \begin{pmatrix}
+    b_{11} & \dots & b_{1n}\\
+    b_{21} & \dots & b_{2n}\\
+    \dots & \dots & \dots\\
+    b_{n1} & \dots & b_{nn}\\
+    
+    \end{pmatrix}
+\]
+\[
+    df_x(v) = (\partial_1 |_{x'} \dots \partial_n|_{x'}) B
+    \begin{pmatrix}
+    \alpha_1\\
+    \vdots\\
+    \alpha_n\\
+    
+    \end{pmatrix}
+    = \alpha_1 l_1 + \dots + \alpha_n l_n
+\]
+\[
+    (x') = B(x)
+\]
+\[
+    dL_g(A) = g \cdot A
+\]
+\[
+    X_A \text{ - левое инвариантное поле на } G
+\]
+\[
+    X_A(g) = g \cdot A
+\]
+\[
+    x \in G, \quad X_A(x) = x \cdot A =
+    \sum_{i,j} \left( \sum_{k} x_{ik} a_{kj} \right) \frac{\partial}{\partial x_{ij}} 
+\]
+\[
+    Z = [X_A, X_B] = \sum h_{ij} \cdot \frac{\partial}{\partial x_{ij}} 
+\]
+\[
+    h_{ij} = Z(x_{ij})
+\]
+\[
+    Z = X_A X_B - X_B X_A
+\]
+\[
+    Z(x_{ij}) = X_A(X_B(x_{ij}) - X_B(X_A(x_{ij}) = 
+    X_A\left(\sum_{k} x_{ik}b_{kj}\right) - X_B\left(\sum_{k} x_{ik} a_{kj}\right)
+\]
+\[
+    = \sum_{i,j} \left( \sum_{s} (x_{is} a_{sj}) \frac{\partial}{\partial x_{ij}} 
+    \left( \sum_{k} x_{ij}b_{kj}\right) - \dots \right)
+\]
+\[
+    = \sum_{k} \left( \sum_{s} x_{is} a_{sk} \right) b_{kj} -
+    \sum_{k} \left( \sum_{s} x_{is} b_{kj} \right) a_{sk} 
+    = \sum_{s} x_{is} \left(\sum_{k} a_{sk} b_{kj}\right) - \sum_{s} x_{is}
+    \left(\sum_{k} b_{kj}a_{sk}\right)
+\]
+\[
+    = \sum_{s} x_{is}(AB-BA)_{sj} = \sum_{s} x_{is}([A,B])_{sj}
+\]
+\[
+    Z = [X_A, X_B] = \sum h_{ij} \cdot \frac{\partial}{\partial x_{ij}} 
+    = \sum_{i,j} \left( \sum_{s} x_{is} C_{sj}\right) \frac{\partial}{\partial x_{ij}}
+    = X_C
+    , \quad C = [A,B]
+\]
+\[
+    X_A = 
+    \sum_{i,j} \sum_{k} x_{ik}a_{kj} \frac{\partial}{\partial x_{ij}}
+\]
+\[
+    Z(e) = \left( \sum_{i,j,s} \delta_{is} e_{si}\right) \frac{\partial}{\partial x_{ij}} 
+    \Bigg|_e = \sum_{i,j} c_{ij}\frac{\partial}{\partial x_{ij}} 
+\]
+\[
+    g = gl(n, \mathbb{R})
+\]
+\[
+    X_A, X_B, \ (X_A, X_B)(e) = X_C
+\]
+\[
+    (A,B) \mapsto C = [A,B]
+\]
+\[
+    L \text{ - алгебра Ли}
+\]
+\[
+    \dim L = 1, \quad L = \langle e_1 \rangle
+\]
+\[
+    [a,b] = 0, \ \forall \, a,b \in L
+\]
+\[
+    a = \alpha e_1, \ b = \beta e_1
+\]
+\[
+    [a,b] = [\alpha e_1, \beta e_1] = \alpha \beta [e_1, e_1] = 0
+\]
+\[
+    \frac{d}{dx} \bigg|_0 \text{ - базисный вектор в 0}
+\]
+\[
+    \frac{d}{dx} \bigg|_x \text{ - базисный вектор a x}
+\]
+\[
+    L_a(x) = a+x
+\]
+\[
+    J = (1)
+\]
+\[
+    dL_a = \left( \frac{d}{dx} \bigg|_0 \right) = \frac{d}{dx} \bigg|_a
+    (1)
+\]
+\[
+    (1) = \frac{d}{dx} \bigg|_a
+\]
+\[
+    X_{\frac{d}{dx} \big|_0} = \frac{d}{dx} 
+\]
+\[
+    L(G) = \langle \frac{d}{dx} \rangle_{\mathbb{R}}
+\]
+\[
+    \mathbb{R}^{\star} = (\mathbb{R} \setminus \{ 0 \}, \cdot)
+\]
+\[
+    \frac{d}{dx} \bigg|_1
+\]
+\[
+    L_a x =  ax
+\]
+\[
+    J = (a)
+\]
+\[
+    dL_a\left( \frac{d}{dx} \bigg|_1\right) = \frac{d}{dx} \bigg|_a J(1) = 
+    \frac{d}{dx} \bigg|_a \cdot a = a \frac{d}{dx} \bigg|_a
+\]
+\[
+    X_{\frac{d}{dx} \big|_1}(x) = x \cdot \frac{d}{dx} 
+\]
+\[
+    G = (\mathbb{R}, +)
+\]
+\[
+    L(G) = \langle x \frac{d}{dx} \rangle
+\]
+\[
+    e^x: \ (\mathbb{R}, +) \to (\mathbb{R}^+, \cdot) \text{ - изоморфизм (не 
+    алгебраический)}
+\]
+\end{document}
