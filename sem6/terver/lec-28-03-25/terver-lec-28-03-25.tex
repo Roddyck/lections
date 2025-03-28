@@ -1,0 +1,256 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\DeclarePairedDelimiter\set\{\}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\section*{\centering Частная и множественная корреляция}
+\[
+    \begin{pmatrix}
+    X_1\\
+    X_2\\
+    
+    \end{pmatrix} \in N \left( \begin{pmatrix}
+    0\\
+    0\\
+    
+    \end{pmatrix},
+    \begin{pmatrix}
+    1 & \rho_{12}\\
+    \rho_{12} & 1\\
+    
+    \end{pmatrix}
+    \right)
+\]
+\[
+    \begin{pmatrix}
+    X_1\\
+    X_2\\
+    X_3
+    
+    \end{pmatrix}
+    \rightarrow
+    \begin{pmatrix}
+    1 & \rho_{12} & \rho_{13}\\
+    \rho_{12} & 1 & \rho_{23}\\
+    \rho_{13} & \rho_{23} & 1\\
+    
+    \end{pmatrix}
+\]
+
+Корреляция $ X_1, X_2 $ при условии $ X_3 = x_3 $ - фикс 
+\[
+    \rho_{12 \cdot 3}
+    = \frac{\rho_{12}-\rho_{13}\rho_{23}}{\sqrt{1-\rho_{13}^2}\sqrt{1-\rho_{23}^2}} 
+\]
+\[
+    \mathbb{X} \in N(0, \Sigma)
+\]
+\[
+    \mathbb{X} = \begin{bmatrix}
+    \mathbb{X}_1\\
+    \mathbb{X}_2\\
+    
+    \end{bmatrix}
+\]
+\[
+    \Sigma = \begin{bmatrix}
+    \Sigma_{11} & \Sigma_{12}\\
+    \Sigma_{21} & \Sigma_{22}\\
+    
+    \end{bmatrix}
+\]
+\[
+    \Sigma_{11} = E(\mathbb{X}_1 \mathbb{X}_1^T)
+\]
+\[
+    \Sigma_{12} = E(\mathbb{X}_1 \mathbb{X}_2^T)
+\]
+\[
+    \Sigma_{22} = E(\mathbb{X}_2 \mathbb{X}_2^T)
+\]
+\[
+    \mathbb{Y}_1 = \mathbb{X}_1 - A \cdot \mathbb{X}_2
+\]
+\[
+    \mathbb{Y}_2 = \mathbb{X}_2
+\]
+\[
+    \begin{bmatrix}
+    \mathbb{Y}_1\\
+    \mathbb{Y}_2\\
+    
+    \end{bmatrix}
+    \in N(0, \dots)
+\]
+\[
+    E(\mathbb{Y}_1 \cdot \mathbb{Y}_2^T) = 0
+\]
+\[
+    E(\mathbb{Y}_1) = 0 \quad E(\mathbb{Y}_2) = 0
+\]
+\[
+    E((\mathbb{X}_1 - A \mathbb{X}_2) \mathbb{X}_2^T) = 0 = \Sigma_{12} - A
+    \Sigma_{22} = 0
+\]
+\[
+    \Sigma_{12} = A \Sigma_{22} \ \big| \ \cdot \Sigma_{22}^{-1}
+\]
+\[
+    A = \Sigma_{12} \Sigma_{22}^{-1}
+\]
+\[
+    \mathbb{Y}_1 = \mathbb{X}_1 - \Sigma_{12} \Sigma_{22}^{-1} \mathbb{X}_2
+\]
+\[
+    E(\mathbb{Y}_1 | \mathbb{X}_2) = E(\mathbb{X}_1 | \mathbb{X}_2) -
+    \Sigma_{12}\Sigma_{22}^{-1} \mathbb{X}_2 = 0
+\]
+\[
+    E(\mathbb{X}_1 | \mathbb{X}_2) = \Sigma_{12}\Sigma_{22}^{-1} \mathbb{X}_2
+\]
+\[
+    E(\mathbb{X}_1) = \mu_1 \quad E(\mathbb{X}_1 - \mu_1) = 0
+\]
+\[
+    E(\mathbb{X}_2) = \mu_2 \quad E(\mathbb{X}_2 - \mu_2) = 0
+\]
+\[
+    E(\mathbb{X}_1 | \mathbb{X}_2) = \mu_1 + \Sigma_{12}\Sigma_{22}^{-1}
+    (\mathbb{X}_2 - \mu_2)
+\]
+\[
+    \mathbb{X} = \begin{pmatrix}
+    X_1\\
+    X_2\\
+    
+    \end{pmatrix} \in N \left( \begin{pmatrix}
+    0\\
+    0\\
+    
+    \end{pmatrix},
+    \begin{pmatrix}
+    \sigma_1^2 & \rho \sigma_{12}\\
+    \rho \sigma_{12} & \sigma_{2}^2\\
+    
+    \end{pmatrix}
+    \right)
+\]
+\[
+    E(X_1 | X_2) = \mu_1 + \rho \sigma_1 \sigma_2 \cdot \frac{1}{\sigma_2^2} 
+    (x_2 - \mu_2) = \mu_1 + \rho \frac{\sigma_1}{\sigma_2} (x_2 - \mu_2)
+\]
+
+\[
+    \mathbb{X} = \begin{pmatrix}
+    \mathbb{X}_1\\
+    \mathbb{X}_2\\
+    
+    \end{pmatrix},
+    \quad
+    \mathbb{X}_1 = \begin{pmatrix}
+    X_1\\
+    X_2\\
+    
+    \end{pmatrix}, \quad \mathbb{X}_2 = X_3
+\]
+\[
+    \Sigma = \begin{pmatrix}
+    1 & \rho_{12} & \vdots & \rho_{13}\\
+    \rho_{12} & 1 & \vdots & \rho_{23}\\
+    \dots & \dots & \dots & \dots\\
+    \rho_{13} & \rho_{23} & \vdots & 1\\
+    
+    \end{pmatrix}
+\]
+\[
+    \mathbb{Y}_1 = \mathbb{X}_1 - \Sigma_{12}\Sigma_{22}^{-1} \mathbb{X}_2
+\]
+\[ 
+    E(\mathbb{Y}_1) = 0
+\]
+\[
+    E(\mathbb{Y}_1 \cdot \mathbb{Y}_1^T) = \Sigma_{12 \cdot 3} = \dots =
+    \Sigma_{11} - \Sigma_{12}\Sigma_{22}^{-1}\Sigma_{21}
+\]
+\begin{tcolorbox}
+    \[
+        \mathbf{\Sigma \ balls}
+    \]
+\end{tcolorbox}
+\[
+    (X_1, X_2, X_3, X_4)^T
+\]
+\[
+    \rho_{12 \cdot 34} = \frac{\rho_{12 \cdot 4} - \rho_{13 \cdot 4}\rho_{23 \cdot 4}}
+    {\sqrt{1-\rho_{13 \cdot 4}^2} \sqrt{1 - \rho_{23 \cdot 4}^2}} 
+\]
+\[
+    \rho_{1j \cdot q_j} = \frac{-\mathbb{R}_{1j}}{\sqrt{\mathbb{R}_{11}} \sqrt{\mathbb{R}_{jj}}} 
+\]
+\[
+    q_j = \set{1, 2 \dots, m} \setminus \set{1, j}
+\]
+\[
+    \mathbb{R} \text{ - матрица корреляции}
+\]
+\[
+    \mathbb{R}_{1j}, \ \mathbb{R}_{11}, \mathbb{R}_{jj} \text{ - алгебраческие
+    дополнения}
+\]
+\[
+    E(X_1 | \mathbb{X}_2 = \mathbf{x}_2)
+\]
+\begin{tcolorbox}
+    \begin{center}
+        \url{https://source.unn.ru/}
+    \end{center}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=Множественный коэффициент корреляции]
+    \[
+        1 - R_{1(2 \dots n)}^2 = \frac{\sigma_{1 \cdot 2 \dots m}^2}{\sigma_1^2} 
+    \]
+    \[
+        R_{1(2 \dots n)}^2
+        \text{ - множественный коэффициент корреляции}
+    \]
+\end{tcolorbox}
+\end{document}
