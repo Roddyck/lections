@@ -1,0 +1,151 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\DeclarePairedDelimiter\set\{\}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\begin{tcolorbox}[title=Подгруппа Ли]
+    \begin{definition}[Подгруппа Ли]
+        $ G $ - группа Ли, $ H \subset G $ - подгруппа и подмногообразие (т.е. для любого
+        $ h \in H, \ \exists $ окрестность $ h \in U \subset H $ и координатная окрестность
+        $ V $ точки $ h $ в $ G $, такие что $ U $ - координатная плоскость в $ V $)  
+    \end{definition}
+\end{tcolorbox}
+
+$ H \stackrel{i}{\hookrightarrow} G $. i - гладкое отображение 
+\[
+    v \in T_e(H)
+\]
+$ \widetilde{X} $ - векторное поле на $ G $.
+\[
+    \widetilde{X}(g) = (dL_g)_e(v), \ g \in G
+\]
+\[
+    h \in H, \ X(h) \text{ - значение поля на } H
+\]
+\[
+    L(H) \to L(G)
+\]
+\[
+    \text{ левое инвариантоное }X \to X(e) = v \to \widetilde{X}(g) = (dL_g)_e(v)
+\]
+\[
+    \widetilde{X}(h) = X(h), \ \forall h \in H
+\]
+\[
+    L(H) \stackrel{di}{\hookrightarrow} L(G)
+\]
+\[
+    X,Y \in L(H) \quad [X,Y] \in L(H)
+\]
+\[
+    \widetilde{[X,Y]} = [\widetilde{X}, \widetilde{Y}]
+\]
+
+$ X $ и $ \widetilde{X} $ - $ i $ - связаны. $ (di)_h(X(h)) = \widetilde{X}(i(h)) =
+\widetilde{X}(h)$ 
+\[
+    di: \ X \to \widetilde{X} \text{ - гомооморфизм алгебр Ли}
+\]
+\[
+    di([X,Y]) = [di(X), di(Y)]
+\]
+\[
+    L(H) \equiv di(L(H)) \subset L(G)
+\]
+
+$ A $ алгебра Ли ортогональной группы
+\[
+    O(h) \subset GL(n)
+\]
+\[
+    \mathbb{R}^n, \ (X,Y) = x_1 y_1 + \dots + x_n y_n = 
+    (x)^t (y) \quad x,y \in \mathbb{R}
+\]
+\[
+    A(x) \text{ - действие } A \in GL(n) \text{ i } x \in \mathbb{R}^n
+\]
+\[
+    (Ax, Ay) = (x,y) \quad (Ax)^t \cdot (Ay) = (x)^t (y)
+\]
+\[
+    (x)^t A^t A (y) = (x)^t (y) \implies A^t \cdot A = E
+\]
+\[
+    O(n) = \set{A \in GL(n) \ | \ A^t \cdot A = E}
+\]
+\[
+    \sum_{k=1}^{n} x_{ki} x_{kj} = s_{ij} 
+\]
+\[
+    A(s) \in O(n) \quad A(0) = E
+\]
+\[
+    A(s)^t \cdot A(s) = E
+\]
+\[
+    \frac{d}{ds} (A(s)^t \cdot A(s)) = 0
+\]
+\[
+    \frac{dA(s)^t}{ds} * A(s) + (A(s))^t \cdot \frac{dA(s)}{ds} = 0 \bigg|_{s=0}
+\]
+\[
+    \frac{dA(s)^t}{ds} \bigg|_{s=0} + \frac{dA(s)}{ds} \bigg|_{s=0} = 0
+\]
+\[
+    \frac{dA(s)}{ds}\bigg|_{s=0} = B \in gl(n) \implies B^t + B = 0
+\]
+\begin{tcolorbox}
+    \[
+        B^t = -B
+    \]
+\end{tcolorbox}
+
+\[
+    T_e(0(n)) = \set{B \in gl(n) \ | \ B^t = -B}
+\]
+
+$ G $ - группа Ли, $ H $ - подгруппа Ли
+\[
+    L(H) \subset L(G) \quad \mathfrak{h} = T_e(H) \quad \mathfrak{g} = (T_e(G), \, [,])
+\]
+\[
+    \mathfrak{h} \subset \mathfrak{g}, \ h \text{ - подалгебра Ли в } g
+\]
+\end{document}
