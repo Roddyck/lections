@@ -1,0 +1,259 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\DeclarePairedDelimiter\set\{\}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+\newtheorem*{consequence}{Следствие}
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\begin{tcolorbox}
+\begin{theorem}
+    
+    \begin{proof}
+        $ \Omega \subset \mathbb{R}^3 $ 
+
+          $ \Omega \to \Omega_{\epsilon} $ 
+
+          $ \Gamma \to \Gamma \cup S_{\epsilon} $
+          \[
+              v = \frac{1}{r_{M M_0}} = \frac{1}{\sqrt{(x-x_0)^2 + (y-y_0)^2 +
+              (z-z_0)^2}} = \frac{1}{r}
+          \]
+          \begin{equation}
+              \iiint_{\Omega_{\epsilon}} \frac{\Delta u}{r} dxdydz 
+              = \iint_{\Gamma} \left(\frac{1}{r} \frac{\partial u}{\partial \nu} - u 
+              \frac{\partial \frac{1}{r} }{\partial \nu} \right) d \Gamma
+              + \iint_{S_{\epsilon}} \left(\frac{1}{r} \frac{\partial u}{\partial \nu} - u 
+              \frac{\partial \frac{1}{r} }{\partial \nu} \right) d \Gamma
+          \end{equation}
+
+          Предпологаем $ u \in C^n (\overline{\Omega}) $\\
+          $ \overline{\Omega} = \Omega \cup \Gamma $ 
+
+          Тогда по теореме Вейерштрасса
+          \[
+              \exists C > 0: \ \forall (x,y,z) \in \overline{\Omega} \  
+              |u(x,y,z)| \leq C, \ |\text{grad}\, u| = 
+              \sqrt{\left(\frac{\partial u}{\partial x}\right)^2 +
+              \left(\frac{\partial u}{\partial y}\right)^2 +
+              \left(\frac{\partial u}{\partial z}\right)^2} \leq C
+          \]
+
+          Рассмотрим:
+          \[
+              \iiint_{\overline{B_{\epsilon}(M_0)}} \frac{\Delta u}{r} dxdydz
+          \]
+
+          Если перейти в сферическую систему координат
+          \[
+              \begin{cases}
+                  x = r \cos \phi \sin \theta\\
+                  y = r \sin \phi \sin \theta\\
+                  z = r \cos \theta
+              \end{cases} \quad \theta \in [0;\pi], \ \phi \in [0; 2\pi]
+          \]
+
+          То элемент объёма
+          \[
+              dV = dxdydz = r^2 \sin \theta d\theta d\phi dr
+          \]
+          \[
+              \iiint_{\overline{B_{\epsilon}(M_0)}} \frac{\Delta u}{r} dxdydz
+              = \int_{0}^{2\pi} d \phi \int_{0}^{\pi} \sin \theta d \theta
+              \int_{0}^{\epsilon} \Delta u \cdot r dr
+          \]
+          \[
+              \Bigg|\iiint_{\overline{B_{\epsilon}(M_0)}} \frac{\Delta u}{r} dxdydz\Bigg|
+              = \int_{0}^{2\pi} d \phi \int_{0}^{\pi} \sin \theta d \theta
+              \int_{0}^{\epsilon} |\Delta u| \cdot r dr \leq C \frac{\epsilon^2}{2} 
+              \cdot 2 \cdot 2 \pi \xrightarrow[\epsilon \to 0]{} 0
+          \]
+          \[
+              \iiint_{\Omega_{\epsilon}} \frac{\Delta u}{r} dxdydz = 
+              \iiint_{\Omega} \frac{\Delta u}{r} dxdydz - 
+              \iiint_{B_{\epsilon}} \frac{\Delta u}{r} dxdydz
+          \]
+          \[
+              \iiint_{\Omega_{\epsilon}} \frac{\Delta u}{r} dxdydz
+              \xrightarrow[\epsilon \to 0]{} \iiint_{\Omega} \frac{\Delta u}{r} dxdydz
+          \]
+          \[
+              \iint_{S_{\epsilon}} \frac{1}{r} \frac{\partial u}{\partial \nu} d\Gamma
+              = \epsilon^2 \int_{0}^{2\pi} d \phi \int_{0}^{\pi} \sin\theta d\theta
+              \cdot \frac{1}{\epsilon} \bigg| \frac{\partial u}{\partial \nu} 
+              \bigg| \leq \epsilon \cdot C \cdot 4\pi
+              \xrightarrow[\epsilon \to 0]{} 0
+          \]
+          \[
+              \bigg| \frac{\partial u}{\partial \nu} \bigg|
+              = | (grad \, u, \vec{\nu}) \leq 
+              \sqrt{\left(\frac{\partial u}{\partial x}\right)^2 +
+              \left(\frac{\partial u}{\partial y}\right)^2 +
+              \left(\frac{\partial u}{\partial z}\right)^2} \leq C
+          \]
+
+          На $ S_{\epsilon} $:
+          \[
+              \frac{\partial}{\partial \nu} = -\frac{\partial}{\partial r}, \
+              \frac{\partial \frac{1}{r} }{\partial \nu} = -
+              \frac{\partial }{\partial r}\left(\frac{1}{r}\right) = \frac{1}{\epsilon^2}  
+          \]
+          \[
+              \iint_{S_{\epsilon}} u \frac{\partial \frac{1}{r} }{\partial \nu} 
+              d \Gamma = \frac{1}{\epsilon^2} \iint_{S_{\epsilon}}u d\Gamma
+              = \frac{1}{\epsilon^2} u(M^{\epsilon}) \cdot 4\pi \epsilon^2
+              \xrightarrow[\epsilon \to 0]{} 4\pi u(M_0)
+          \]
+          \[
+              \frac{1}{4\pi} \iiint_{\Omega} \frac{\Delta u}{r_{M M_0}} dxdydz = 
+              \iint_{\Gamma}\left(\frac{1}{r} \frac{\partial u}{\partial \nu} -
+              u \frac{\partial \frac{1}{r} }{\partial \nu} \right) d\Gamma - 4\pi
+              u(M_0)
+          \]
+          \[
+              u(M_0) = -\frac{1}{4\pi} \iiint_{\Omega} \frac{\Delta u}{r_{M M_0}} dxdydz = 
+              + \frac{1}{4\pi} 
+              \iint_{\Gamma}\left(\frac{1}{r} \frac{\partial u}{\partial \nu} -
+              u \frac{\partial \frac{1}{r} }{\partial \nu} \right) d\Gamma
+          \]
+    \end{proof}
+\end{theorem}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \begin{consequence}
+        Если $ u $ - гармоническая, т.е. $ \Delta u = 0 $ в $ \Omega $. Тогда
+        \begin{equation}
+            u(M_0) = \frac{1}{4\pi} \iint_{\Gamma}\left(\frac{1}{r} \frac{\partial u}{\partial \nu} -
+              u \frac{\partial \frac{1}{r} }{\partial \nu} \right) d\Gamma 
+        \end{equation}
+    \end{consequence}
+\end{tcolorbox}
+
+\section*{\centering Свойства гармонических функций}
+
+\begin{tcolorbox}
+    \underline{Вопросы из билета}\\
+    1. Свойства гармонических функций. Теорема о среднем арифметическом\\
+    2. Свойства гармонических функций. Теорема о максимуме и минимуме для
+    гармонической функции
+\end{tcolorbox}
+\begin{equation}
+    \Delta u(x,y,z) = 0 \quad u \in C^2(\overline{\Omega})
+\end{equation}
+\[
+    \iint_{\Omega} \left(\frac{\partial}{\partial x} \left(\frac{\partial u}{\partial x}\right) 
+    +\frac{\partial}{\partial y} \left(\frac{\partial u}{\partial y}\right)
+    +\frac{\partial}{\partial z} \left(\frac{\partial u}{\partial z}\right)\right)
+    dxdydz
+    = 0
+\]
+\[
+    \iint_{\Omega} \left(\frac{\partial u}{\partial x} \cos \widehat{\nu x} 
+    +\frac{\partial u}{\partial y} \cos \widehat{\nu y}
+    +\frac{\partial u}{\partial z} \cos \widehat{\nu z}\right)
+    d \Gamma = \iint_{\Gamma}\frac{\partial u}{\partial \nu} d\Gamma = 0
+\]
+\begin{tcolorbox}
+    \begin{theorem}[О среднем арифмитическом]
+        Пусть $ u \in C^2(\overline{B_R(M_0)}) $ гармоническая в $ B_R(M_0) $ 
+
+        $ \Gamma = S_{R}(M_0) $ 
+
+        По следствию:
+        \[
+            u(M_0) = \frac{1}{4\pi} \iint_{S_R(M_0)} \frac{1}{R} \frac{\partial u}{\partial \nu} 
+            d\Gamma - \frac{1}{4\pi} \iint_{S_R(M_0)}u \left(-\frac{1}{r^2} \right)
+            \bigg|_{r=R} 
+        \]
+        \begin{equation}
+            u(M_0) = \frac{1}{4 \pi R^2}  \iint_{S_R(M_0)} u d\Gamma
+        \end{equation}
+    \end{theorem}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \begin{theorem}[о максимуме и минимуме для гармонической функции]
+
+        Пусть $ \Omega \subset \mathbb{R}^3 $ - открытое ограниченное, с границей
+        $ \Gamma $, $ u \in C^2(\Omega) \cap C(\overline{\Omega}) $ - 
+        гармоническая.
+
+        Тогда наибольшее и наименьшее значения достигаются на границе $ \Gamma $ 
+        и функция может принимать наибольшше или наименьшее значение во внутренней точке
+        только в том случае, когда $ u \equiv const $ 
+
+        \begin{proof}
+            Предположим, что $ u $ приняла своё наибольшее значение во внутренней точке
+            $ M_0 $. Докажем, что $ u \equiv const $.
+
+            Тогда $ \exists\, r_0 > 0: \ \overline{B_{r_0}(M_0)} \subset \Omega $.
+
+            По теореме о среднем:
+            \[
+                u(M_0) = \frac{1}{4\pi r_0^2} \iint_{S_{r_0}(M_0)} u(M) d \Gamma
+            \]
+
+            Также справедливо
+            \[
+                u(M_0) = \frac{1}{4\pi r_0^2} \iint_{S_{r_0}(M_0)} u(M_0) d \Gamma
+            \]
+            \[
+                \frac{1}{4\pi r_0^2} \iint_{S_r(M_0)}\underbrace{(u(M_0) - u(M))}_{\geq 0}
+                d \Gamma = 0
+            \]
+            \[
+                u(M_0) \equiv u(M)
+            \]
+
+            Те же рассуждения справедливы для любых $ r: \ 0 < r \leq r_0 $ 
+
+            Тогда в $ \overline{B_{r_0}(M_0)} \ u(M) \equiv u(M_0)$ 
+
+            Если рассмотрим точку $ N \in \Omega $. Можем соединить $ M_0 $ с
+            $ N $ линией конечное длины. Множество точек этой линий $ l $ замкнуто.
+
+            Если взять $ R_0 = dist \set{l; \Gamma} > 0 $ 
+
+            И если в предыдущих рассуждениях взять $ r_0 = R_0 $, то можно построить
+            конечную цепь шаров $ \set{B_{R_0}(M_i)}_{i=0}^{m}, \ M_{i+1} \in
+            B_{R_0}(M_i), \ i = 0, \dots, m-1$. $ N \in \overline{B_{R_0}(M_m)} $  
+        \end{proof}
+    \end{theorem}
+\end{tcolorbox}
+\end{document}

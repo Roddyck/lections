@@ -1,0 +1,184 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\DeclarePairedDelimiter\set\{\}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+\newtheorem*{consequence}{Следствие}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\section*{\centering Линейное пространство}
+\begin{tcolorbox}
+    \begin{definition}
+        $ A \subset X $ - лин. пр-во.
+
+        А - линейное подпространство, если 
+        \[
+            \forall \, x,y \in A \implies x+y \in A \quad \lambda \cdot x \in A
+        \]
+    \end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \begin{definition}
+        $ X,Y $ - лин. пр-во. $ A: X \to Y $.
+
+        A - линейный оператор, если 
+        \[
+            A(x+y) = A(x) + A(y)
+        \]
+        \[
+            A(\lambda x) = \lambda A(x)
+        \]
+    \end{definition}
+\end{tcolorbox}
+
+Рассмотрим операции
+\[
+    (A+B)x \coloneq Ax + Bx
+\]
+\[
+    (\lambda A)x \coloneq \lambda Ax
+\]
+\[
+    0x \coloneq 0
+\]
+
+Таким образом, множество линейных операторов является линейным пространством
+
+Введем в рассмотрение
+\[
+    (AB)x \coloneq A(Bx) \quad \forall\, x
+\]
+\[
+    A(B-C) = AB - AC
+\]
+
+Рассмотрим
+\[
+    A: \ X \to X
+\]
+\[
+    Ix \equiv x \ (\forall x) \text{ тождественный оператор}
+\]
+\[
+    A^0 = I \quad A^1 = A \quad A^2 = A A \quad \dots \ A^n = A A^{n-1}
+\]
+
+\[
+    A: \ X \to Y
+\]
+Рассмотрим
+\[
+    A(X) \subseteq Y
+\]
+
+\begin{tcolorbox}
+    \begin{definition}[Обратный оператор]
+        $ X,Y $ - лин. пр-ва, $ A: \ X \to Y $ - сюрьект.
+
+        Если $ \forall y \in Y\  \exists ! x \in X: \ y = Ax $, то A - биекция
+
+        Тогда существует обратный оператор
+        \[
+            A^{-1}: \ Y \to X
+        \]
+        \[
+            Ax = y \sim x = A^{-1} y
+        \]
+    \end{definition}
+\end{tcolorbox}
+
+\emph{Пример}\\
+$ X $ - гладкие функции $ x(t) \quad x \in [a,b], \ x(a) = 0, \ Y = C[a,b] $ 
+
+\[
+    y = Ax, \ y = x'(t), \ y = \frac{d}{dt}(x(t))
+\]
+\[
+    x = A^{-1} y \quad x(t) = \int_{a}^{t} y(\tau) d \tau
+\]
+
+\begin{tcolorbox}
+    \begin{statement}
+        $ A $ - линейный, то $ A^{-1} $ - линейный
+    \end{statement}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \begin{statement}
+        $ A $ - линейный обратимый, то $ \set{e_1, e_2, \dots , e_n} $ - лнз
+        $ \iff \set{Ae_1, Ae_2, \dots, Ae_n} $ - лнз 
+    \end{statement}
+\end{tcolorbox}
+
+\section*{\centering Линейное нормированное пространство}
+\begin{tcolorbox}
+    \begin{definition}
+        $ X $ - ЛП, называется ЛНП, если  
+        \[
+            \forall \, x \in X, \ \exists \ ||x||
+        \]
+        1) $ ||x|| \geq 0, \quad ||x|| = 0 \iff x = 0 $ 
+
+        2) $ ||\lambda x|| = |\lambda| \cdot ||x|| $ 
+
+        3) $ ||x+y|| \leq ||x|| + ||y|| $ 
+    \end{definition}
+\end{tcolorbox}
+
+\subsection*{Свойства}
+$ || -x || = ||x|| $\\
+$ ||0|| = 0 $\\
+$ ||x-y|| \leq ||x|| + ||y|| $ \\
+$ \bigg| ||x|| - ||y|| \bigg| \leq ||x-y|| $ 
+
+\begin{tcolorbox}
+    \begin{statement}
+        ЛНП является МП
+    \end{statement}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \begin{definition}
+        Подпространством $ Y $ в ЛНП $ X $ будем называть линейное подпространство
+        линейного пространства замкнутое (относительно предельного перехода)
+        \[
+            \forall y_n \in Y, \ y_n \to y \text{ в ЛНП } X \implies y \in Y
+        \]
+    \end{definition}
+\end{tcolorbox}
+\end{document}
