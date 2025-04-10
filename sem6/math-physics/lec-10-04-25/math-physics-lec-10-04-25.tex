@@ -1,0 +1,211 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\DeclarePairedDelimiter\set\{\}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+\newtheorem*{consequence}{Следствие}
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\section*{Применение теоремы о максимуме и минимуме}
+\[
+u \in C^2(\Omega) \cap C(\overline{\Omega})
+\]
+\begin{equation}
+    \Delta u(x,y,z) = f(x,y,z)
+\end{equation}
+\begin{equation}
+    u |_{\Gamma} = U|_{\Gamma}(x,y,z), \ (x,y,z) \in \Gamma
+\end{equation}
+
+$ \Omega \subset \mathbb{R}^3 $ - открытая ограниченная область
+
+Предположим, что существует два решения $ u^i, \ i = 1,2 $ 
+
+Рассмотрим $ u = u^1 - u^2 $ 
+\[
+    \Delta u(x,y,z) = 0
+\]
+\[
+    u(x,y,z)|_{\Gamma} = 0
+\]
+\[
+    0 \leq u(x,y,z) \leq 0 \implies u \equiv 0
+\]
+
+\section*{Единственность решения основных краевых задач для уравнения Пуассона}
+
+$ \Omega \subset \mathbb{R}^3 $ - открытая ограниченная область. 
+$ \Gamma = \partial \Omega = \Gamma_1 \cup \Gamma_2 \cup \Gamma_3, \ 
+\Gamma_i \cap \Gamma_j = \varnothing, \ i \neq j$ 
+\begin{subequations}
+    \begin{align}
+            &u(x,y,z) |_{\Gamma_1} = u_{\Gamma}(x,y,z), \ (x,y,z) \in \Gamma_1\\
+            &\frac{\partial u(x,y,z)}{\partial \nu} \bigg|_{\Gamma_2} = q_{\Gamma}(x,y,z)
+            \ (x,y,z) \in \Gamma_2\\
+            &\left( \frac{\partial u}{\partial \nu} + hu \right)\bigg|_{\Gamma_3} = T_{\Gamma}(x,y,z)
+            \ (x,y,z) \in \Gamma_3
+    \end{align}
+\end{subequations}
+
+Предположим, что существует два решения $ u^i, \ i = 1,2 $ 
+
+Рассмотрим $ u = u^1 - u^2 $ 
+\begin{equation}
+    \Delta u(x,y,z) = 0
+\end{equation}
+\begin{subequations}
+    \begin{align}
+            &u(x,y,z) |_{\Gamma_1} = 0\\
+            &\frac{\partial u(x,y,z)}{\partial \nu} \bigg|_{\Gamma_2} = 0\\
+            &\left( \frac{\partial u}{\partial \nu} + hu \right)\bigg|_{\Gamma_3} = 0
+    \end{align}
+\end{subequations}
+\[
+    \underbrace{\iiint_{\Omega} u \cdot \Delta u dxdydz}_{=0} = \iint_{\Gamma}u \frac{\partial u}{\partial \nu} 
+    d\Gamma - \iiint_{\Omega} \left( \left( \frac{\partial u}{\partial x} \right)^2
+    + \left( \frac{\partial u}{\partial x} \right)^2 + 
+\left( \frac{\partial u}{\partial x} \right)^2\right)
+\]
+\[
+    \underbrace{\iiint_{\Omega} \left( \left( \frac{\partial u}{\partial x} \right)^2
+    + \left( \frac{\partial u}{\partial x} \right)^2 + 
+\left( \frac{\partial u}{\partial x} \right)^2\right)}_{\geq 0} = 
+\underbrace{-\iint_{\Gamma_3}h u^2 d\Gamma}_{\leq 0}
+\]
+\[
+    \frac{\partial u}{\partial x} = 0, \quad 
+    \frac{\partial u}{\partial y} = 0, \quad
+    \frac{\partial u}{\partial z} = 0
+\]
+\[
+    u(x,y,z) \equiv const \text{ в } \Omega 
+\]
+
+Пусть $ \Gamma_1 \neq \varnothing \implies u(x,y,z) \equiv 0 $ 
+
+Пусть $ \Gamma_3 \neq \varnothing $. Тогда: 
+\[
+    \iint_{\Gamma_3} h u^2 d\Gamma = 0 \implies u|_{\Gamma_3} = 0 \implies
+    u(x,y,z) \equiv 0
+\]
+
+Пусть $ \Gamma_1 \neq \varnothing, \ \Gamma_3 \neq \varnothing, \ \Gamma_2 = \Gamma $ 
+\[
+    \Delta u = 0 \quad \frac{\partial u}{\partial \nu} = 0
+\]
+
+В случае, когда на всей границе задаётся граничное условие Неймана, если
+решение существует, то оно не единственно. Все другие решения будет отличаться
+на константу.
+
+\begin{tcolorbox}
+    \begin{remark}[по поводу задачи Неймана]
+        \[
+            \Delta u(x,y,z) = f(x,y,z)
+        \]
+        \[
+            \frac{\partial u}{\partial \nu} \bigg|_{\Gamma} = q_{\Gamma}(x,y,z)
+        \]
+
+        \[
+            \iiint_{\Omega} \Delta u dxdydz = \iiint_{\Omega} f dxdydz
+        \]
+        \[
+            \iint_{\Gamma} \frac{\partial u}{\partial \nu} d\Gamma = 
+            \iiint_{\Omega} f dxdydz
+        \]
+        \[
+            \iint_{\Gamma} q_{\Gamma} d\Gamma = 
+            \iiint_{\Omega} f dxdydz
+        \]
+
+        Получили необходимое условие существования решения\\
+        Оно же является и достаточным условием (без доказательства)
+    \end{remark}
+\end{tcolorbox}
+
+\section*{Задача Дирихле для уравнений Пуассона в круге. Формула Пуассона}
+\[
+    x^2 + y^2 < L^2
+\]
+\[
+    \frac{\partial^{2} u(x,y)}{\partial x^2} + \frac{\partial^{2} u(x,y)}{\partial y^2}
+    = 0
+\]
+\[
+    u\big|_{x^2+y^2=L^2} = u_{\Gamma}(x,y)
+\]
+\[
+    \begin{cases}
+        x = r\cos \phi\\
+        y = r \sin \phi
+    \end{cases} \quad
+    0 < r \leq L, \ \phi \in [0; 2\pi]
+\]
+\[
+    u(x,y) = \widetilde{u}(r,\phi) = u(r\cos \phi, r\sin \phi)
+\]
+\[
+    \Delta u = \frac{1}{r} \frac{\partial}{\partial r} \left( r
+    \frac{\partial \widetilde{u}(r,\phi)}{\partial r} \right)
+    + \frac{1}{r^2} \frac{\partial^{2} \widetilde{u}(r,\phi)}{\partial \phi^2} 
+    = 0
+\]
+\begin{equation}
+    \frac{1}{r} \frac{\partial}{\partial r} \left( r
+    \frac{\partial \widetilde{u}(r,\phi)}{\partial r} \right)
+    + \frac{1}{r^2} \frac{\partial^{2} \widetilde{u}(r,\phi)}{\partial \phi^2} 
+    = 0
+\end{equation}
+\begin{equation}
+    \widetilde{u}(r,\phi) \big|_{r = L} = f(\phi)
+\end{equation}
+
+Будем считать $ \phi \in (-\infty, \infty) $. $ f(\phi) = f(\phi + 2\pi),
+\ \forall \phi \in \mathbb{R} $  
+
+Добавим условие
+\begin{equation}
+    \widetilde{u}(r,\phi) = \widetilde{u}(r,\phi + 2\pi)
+\end{equation}
+
+Так как преобразование вырожденно в точке $ r = 0 $. Потребуем
+\begin{equation}
+    |\widetilde{u}(r;\phi)| \bigg|_{r = +0} < \infty
+\end{equation}
+\end{document}

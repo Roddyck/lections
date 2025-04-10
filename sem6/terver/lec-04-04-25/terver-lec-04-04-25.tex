@@ -1,0 +1,235 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\DeclarePairedDelimiter\set\{\}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+\newtheorem*{consequence}{Следствие}
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\textbf{\underline{Крайный срок кр - 25 апреля 2025 23:59}}
+
+\[
+    x_t = B\theta + \epsilon t, \quad t = 1, \dots, n
+\]
+$ \set{\epsilon_t} $ - независимые одномер. распр. случайные величины
+\[
+    E(\epsilon_t) = 0
+\]
+\[
+    E(\epsilon \epsilon^T) = \sigma^2
+\]
+
+Предположение
+\[
+    \epsilon_t = \rho \epsilon_{t-1} + \delta_t
+\]
+\[
+    E(\delta_t) = 0, \ E(\delta_t \delta_s) = \begin{cases}
+        \sigma_0^2, \ s = t\\
+        0,\  s \neq t
+    \end{cases}
+\]
+\[
+    \epsilon_t  = \rho(\rho \epsilon_{t-2} + \delta_{t-1}) + \delta_t = 
+    \rho^2 \epsilon_{t-2} + \rho \delta_{t-1} + \delta_t = \rho^2(\rho \epsilon_{t-3}
+    + \delta_{t-2}) + \rho\delta_{t-1} + \delta_t = \rho^3
+    \epsilon_{t-3} + \rho^2\delta_{t-2} + \rho \delta_{t-1}
+\]
+\[
+    + \delta_t = \delta_t + \rho \delta_{t-1} + \rho^2 \delta_{t-2} + \rho^3
+    \delta_{t-3} + \dots
+\]
+\[
+    D(\epsilon_t) = D(\delta_t) + \rho^2 D(\delta_{t-1}) + \rho^4 D(\delta_{t-2}) + \dots
+\]
+\[
+    E(\epsilon_t) = 0 \quad D(\epsilon_t) = \sigma^2 = \frac{\sigma_0^2}{1-\rho^2} 
+\]
+\[
+    \epsilon_t \epsilon_{t-k} = ((\delta_t + \rho \delta_{t-1} + \dots +
+    \rho^{k-1}\delta_{t-k+1} + \rho^k(\delta_{t-k} + \rho \delta_{t-k-1} + \dots))
+\]
+\[
+    E(\delta_t \delta_{t-k}) = \rho^k \sigma^2 = \frac{\sigma_0^2}{1-\rho^2} 
+    \rho^k
+\]
+\[
+    \begin{cases}
+        X = B\theta + \epsilon\\
+        E(\epsilon) = 0\\
+        \Sigma = E(\epsilon \epsilon^T) = \sigma^2 \Sigma_0
+    \end{cases}
+\]
+\[
+    \Sigma_0 = \begin{pmatrix}
+    1 & \rho & \rho^2 & \dots & \rho^{n-1}\\
+    \rho & 1 & \rho & \dots & \rho^{n-2}\\
+    \rho^2 & \rho & \dots & \dots & \dots\\
+    \dots & \dots & \dots & \dots & \dots\\
+    \rho^{n-1} & \rho^{n-2} & \dots & \dots & 1\\
+    
+    \end{pmatrix}
+\]
+\[
+    \Sigma_{03} = \begin{pmatrix}
+    1 & \rho & \rho^2\\
+    \rho & 1 & \rho\\
+    \rho^2 & \rho & 1\\
+    
+    \end{pmatrix}
+\]
+\[
+    \Sigma_{03}^{-1} = \frac{1}{1-\rho^2} \begin{pmatrix}
+    1 & -\rho & 0\\
+    -\rho & 1+\rho & -\rho\\
+    0 & -\rho & 1\\
+    
+    \end{pmatrix}
+\]
+\[
+    A^{-1}_3 = 
+    \begin{pmatrix}
+    1 & -\rho & 0\\
+    -\rho & 1+\rho & -\rho\\
+    0 & -\rho & 1\\
+    
+    \end{pmatrix}
+\]
+\[
+    A_{3}^{-1/2} = 
+    \begin{pmatrix}
+    \sqrt{1-\rho}  & 0 & 0\\
+    -\rho & 1 & 0\\
+    0 & -\rho & 1\\
+    
+    \end{pmatrix}
+\]
+\[
+    C^{-1} = A_n^{-1/2} = 
+    \begin{pmatrix}
+    \sqrt{1-\rho^2}  & 0 & 0 & \dots & 0\\
+    -\rho & 1 & 0 & \dots & 0\\
+    0 & -\rho & 1 & \dots & 0\\
+    \dots & \dots & \dots & -\rho & 1\\
+    
+    \end{pmatrix}
+\]
+\[
+    Y = C^{-1} X = (\sqrt{1-\rho^2} x_1, x_2- \rho x_1, \dots, x_n - \rho x_{n-1})
+\]
+\[
+    U = C^{-1} B = \begin{pmatrix}
+    \sqrt{1-\rho^2}  & \sqrt{1-\rho^2} b_{11} & \dots & \sqrt{1-\rho^2} b_{1p} \\
+    1- \rho& b_{21}-\rho b_{11}  & \dots & b_{2p} - \rho b_{1p} \\
+     &  &  & \\
+    
+    \end{pmatrix}
+\]
+\[
+    x_t = \theta b_t + \epsilon_t
+\]
+
+Считаем, что $ \set{\epsilon_t} $ - независимые случайные величины
+\[
+    \tilde{\theta}_{\text{об}} = \frac{\sum_{t} b_t x_t}{\sum_{t} b^2_t} 
+\]
+\[
+    D(\tilde{\theta}_{\text{a}}) = \sigma^2(B^TB)^{-1} \frac{\sigma^2}{\sum_{t} b^2_t} 
+\]
+
+\[
+    DW = \frac{\sum_{t=2}^{n} (e_t - e_{t-1})^2}{\sum_{t=2}^{n} e_t^2} =
+    \frac{\sum_{t=2}^{n} e_t^2 - 2 \sum_{t=2}^{n} e_t e_{t-1} + \sum_{t=1}^{n-1}e_t^2 +
+    e_n^2}{\sum_{t=2}^{n} e_t^2} = 
+    2 \left( 1 - \frac{\sum_{t=2}^{n}e_te_{t-1}}{\sum_{t=2}^{n} e_t^2}\right) 
+\]
+
+\emph{Пример}
+
+доходность $ A \sim Y_t, \quad B \sim X_t $ 
+\[
+    y_t = \beta_1 + \beta_2 x_t + \epsilon_t
+\]
+\begin{center}
+    \begin{tabular}{ |c|c|c| }
+        \hline
+        $t$ & $y_t$ & $x_t$\\
+        \hline
+        1 & -2.825 & -5.31 \\
+        2 & 26.02 & 16.84\\
+        \dots & \dots & \dots\\
+        15 & 18.01 & 10.73\\
+        \hline
+    \end{tabular}
+\end{center}
+
+$ \epsilon_t $ - нез. с.в. Оценим по МНК $ \beta_1, \ \beta_2 $ 
+\[
+    \hat{y} = 4.06 + 1.3 x_t \quad DW = 0.503
+\]
+\[
+    e_t = y_t - \hat{y}_t \quad r = 0.748
+\]
+
+\section*{\centering Мартингал}
+\begin{tcolorbox}
+\begin{definition}
+    1) $ \set{X_n}, \ n = 1, 2, \dots $ \\
+    2) Фильтрация $ \sigma\text{-алгебра - }\mathcal{F} \subset \mathcal{F}_{n+1} $ \\
+    Естественная фильтрация
+    \[
+        \mathcal{F}_n = \mathcal{F}(X_1, \dots, X_n) \quad \forall\, n
+    \]
+
+    Пусть $ E(|X_n|) < \infty $ 
+
+    a) Мартингал
+    \[
+        E(X_m | \mathcal{F}_n) = X_n
+    \]
+    b) субмартингал
+    \[
+        X_n \leq E(X_m | \mathcal{F}_n)
+    \]
+    c) супермартингал
+    \[
+        X_n \geq E(X_m | \mathcal{F}_n)
+    \]
+\end{definition}
+\end{tcolorbox}
+\end{document}
