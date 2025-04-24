@@ -1,0 +1,268 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\DeclarePairedDelimiter\set\{\}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+\newtheorem*{consequence}{Следствие}
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{note}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\begin{tcolorbox}
+    \begin{definition}[Сходимость по норме]
+    \[
+        x_n \to x \ ||x_n - x|| \to 0
+    \]
+    \end{definition}
+\end{tcolorbox}
+\begin{tcolorbox}[title=Непрерывность нормы]
+    \[
+        ||x_n - x|| \to 0 \implies ||x_n|| \to ||x||
+    \]
+\end{tcolorbox}
+\[
+    x_n \to x \quad y_n \to y \quad \lambda_n \to \lambda
+\]
+\[
+    \lambda_n x_n + y_n \to \lambda x + y
+\]
+\section*{\centering Полная система элементов}
+\begin{tcolorbox}
+    \begin{definition}[Полная система элементов]
+    Система элементов называется полной, если для любого элемента $ x $ этого пространства
+    $ \forall \epsilon > 0 \ \exists L $ - линейная комбинация элементов системы такая, что
+    $ ||L - x|| < \epsilon$ 
+
+    Эквивалетно:
+
+    система полная, если $ \forall x \in X \ E \set{L_n} \ L_n \to x \quad
+    ||L_n - x|| \to 0$ 
+    \end{definition}
+\end{tcolorbox}
+
+\emph{Пример} $ \set{1, t, t^2, t^3, \dots, t^n, \dots} $ - полная в $ C, L_2 $ 
+
+$ \set{1, \cos x, \sin x, \cos 2x, \sin 2x, \dots} $ - полная в $ C_{2\pi}, L_{2\pi} $ 
+
+\begin{tcolorbox}
+    \begin{definition}[сходимость в себе]
+        $ \set{x_n} $ сходится в себе по норме, если $ \forall \epsilon > 0, \ 
+        \exists N(\epsilon): \ \forall m > n > N(\epsilon) \implies ||x_n - x_m|| < \epsilon$ 
+    \end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \begin{definition}
+        Если в ЛНП из сходимости в себе следует сходимость, то это полное ЛНП называется
+        Банахово пространство (B - пространство)
+    \end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{note}
+    Подпространство в Банаховом пространстве само является Банаховым
+\end{note}
+\end{tcolorbox}
+
+\section*{\centering Ряд элементов в Банаховом пространстве}
+
+Пусть $ \set{x_n}_{n = 0\dots \infty} $. $ \set{s_n} \ s_n = \sum_{k=0}^{n} x_k $  
+\[
+    \lim_{n \to \infty} s_n = s = \sum_{n=0}^{\infty} x_n
+\]
+\[
+    \underbrace{s_n}_{\to s} - \underbrace{s_{n-1}}_{\to s} = x_n
+    \implies x_n \to 0
+\]
+
+\[
+    \sum_{n=0}^{\infty} x_n \text{ - сходится} \iff
+    \set{s_n} \text{ - сходится в себе}
+\]
+
+\begin{tcolorbox}
+    \begin{theorem}[Достаточный признак сходимости]
+        Если $ \forall n \ ||x_n|| \leq c_n, \quad \sum_{n=0}^{\infty}
+        c_n = c$, то $ \sum_{n=0}^{\infty} x_n $ - сходится, причем $ ||s|| \leq c $   
+    \end{theorem}
+\end{tcolorbox}
+
+\section*{\centering Понятие линейного ограниченного оператора}
+
+\begin{tcolorbox}
+\begin{definition}
+    Пусть $ X, Y $ - ЛНП. $ A: X \to Y $ - линейный оператор
+
+    Если $ \exists c: \ \forall x \in X \quad ||Ax|| \leq c \cdot ||x|| $, то
+    оператор $ A $ называют линейным ограниченным
+\end{definition}
+\end{tcolorbox}
+
+Рассмотрим
+\[
+    \rho(Ax, Az) = ||Ax - Az|| = ||A(x-z)|| \leq c \cdot ||x-z|| = c \cdot
+    \rho(x,z)
+\]
+
+\begin{tcolorbox}
+\begin{theorem}[1]
+    Для того, чтобы линейный оператор был ограниченным необходимо и достаточно,
+    чтобы он был непрерывным
+
+    \begin{proof}
+        $ \implies: $ A - лин. огр $ \implies A \in Lip \implies A $ - непрерывный 
+
+        $ \impliedby: $ А - лин. непрерывный\\
+        От противного. Допустим $ A $ - не ограниченный. $ \forall c \ \exists x
+        ||Ax|| > c \cdot ||x||$.\\
+        $ \forall n \ \exists x_n : \ ||Ax_n|| > n \cdot ||x_n|| $.
+
+        При том $ x_n \neq 0 $.
+
+        Построим последовательность
+        \[
+            z_n \coloneq \frac{x_n}{n \cdot ||x_n||}
+        \]
+        \[
+            ||z_n|| = \frac{1}{n} \to 0, \ n \to \infty, \quad z_n \to 0
+        \]
+
+        \[
+            Az_{n} = A\left(\frac{x_n}{n \cdot ||x_n||}\right) = 
+            \frac{1}{n \cdot ||x_n||} \cdot A(x_n)
+        \]
+        \[
+            ||Az_n|| = \frac{1}{n \cdot ||x_n||} ||Ax_n|| > 
+            \frac{n \cdot ||x_n||}{n \cdot ||x_n||} = 1
+        \]
+        \[
+            z_n \to 0 \quad Az_n \to A 0 = 0
+        \]
+
+        Противоречие
+    \end{proof}
+\end{theorem}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    \begin{theorem}[2]
+        Для того, чтобы линейный оператор был ограниченным необходимо и достаточно, чтобы
+        он ограниченное множество отображал в ограниченное
+
+        \begin{proof}
+            Аналогично теореме 1
+        \end{proof}
+    \end{theorem}
+\end{tcolorbox}
+\begin{tcolorbox}
+    \begin{statement}
+        $ A $ - линейный ограниченный
+        \[
+            \sum_{n=0}^{\infty} \lambda_n x_n = s \implies \sum_{n=0}^{\infty} \lambda_n A x_n = As
+        \]
+
+        \begin{proof}
+            \[
+                A(s_n) = A\left(\sum_{k=0}^{\infty}  \lambda_k x_k\right)
+                = \sum_{k=0}^{\infty} \lambda_k A(x_k)
+            \]
+            \[
+                s_n \to s \quad A(s_n) \to As
+            \]
+        \end{proof}
+    \end{statement}
+\end{tcolorbox}
+
+\section*{\centering Норма оператора}
+
+\[
+    M = \set{c: \ ||Ax|| \leq c ||x|| \quad \forall \, x}
+\]
+\[
+    \alpha = \inf M \quad \exists c_n \in M, \ c_n \to \alpha
+\]
+
+Рассмотрим:
+\[
+    \forall x : \ ||Ax|| \leq c_n ||x|| \quad n \to \infty
+\]
+\[
+    ||Ax|| \leq \alpha \cdot ||x|| \quad \forall x
+\]
+\[
+    \alpha = \min M
+\]
+\begin{tcolorbox}
+\begin{definition}
+    Если $ A $ - линейный ограниченный оператор, то нормой оператора будем называть
+    \[
+        ||A|| = \min \set{c: \ ||Ax|| \leq c ||x||, \ \forall x}
+    \]
+\end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+1) $ ||A|| \geq 0 $\\
+2) $ ||Ax|| \leq c \cdot ||x|| \ \forall x, \quad ||A|| \leq c $\\
+\begin{equation}
+    ||Ax|| \leq ||A|| \cdot ||x||
+\end{equation}
+\end{tcolorbox}
+
+\[
+    ||A|| = \min \set*{c: \frac{||Ax||}{||x||} \leq c, \ \forall x \neq 0}
+\]
+\[
+    ||A|| = \sup \set*{\frac{||Ax||}{||x||}, \ \forall x \neq 0}
+\]
+\[
+    ||A|| = \sup \set*{||Az||, \ \forall z: ||z|| = 1}
+\]
+
+Рассмотрим:
+\[
+    \beta = \sup \set{||Ax||, \ \forall x: \ ||x|| \leq 1}
+\]
+\[
+    \beta \geq ||A||
+\]
+\[
+    ||Ax|| \leq ||A|| \cdot ||x|| \leq ||A|| \quad \beta \leq ||A||
+\]
+\[
+    \beta = ||A||
+\]
+\end{document}

@@ -1,0 +1,242 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\DeclarePairedDelimiter\set\{\}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+\newtheorem*{consequence}{Следствие}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\emph{Пример}
+
+\[
+    A: \mathbb{R}^{n} \to \mathbb{R}^{n}
+\]
+\[
+    A \sim (a_{i,k})
+\]
+\[
+    ||Ax|| \leq c||x||
+\]
+\[
+    c^2 = \sum_{i,k} a^2_{i,k}
+\]
+\[
+    ||A||^2 \leq \sum_{i,k} a^2_{i,k}
+\]
+\[
+    A :m_n \to m_p
+\]
+\[
+    A \sim (a_{i,k})
+\]
+\[
+    ||A|| = \max_i \sum_{k} |a_{i,k}|
+\]
+\[
+    A : l_2 \to l_2
+\]
+\[
+    A \sim (a_{i,k})
+\]
+\[
+    ||A||^2 \leq \sum_{i,k}^{\infty} a^2_{i,k}
+\]
+\[
+    A :m \to m
+\]
+\[
+    ||A||^2 \leq \sup_i \sum_{k} |a_{i,k}|
+\]
+\[
+    (Ax)_{(s)} = \int_{a}^{b} Q(s,t) x(t) dt
+\]
+\[
+    a \leq s \leq b \quad a \leq t \leq b
+\]
+\[
+    1) \ A: L_2 \to L_2 \quad ||A||^2 \leq ||Q||^2
+\]
+\[
+    ||A||^2 \leq \iint Q^2(s,t) dsdt
+\]
+\[
+    2) \ A: C \to C
+\]
+\[
+    ||A|| = \max_s \int_{a}^{b} |Q(s,t)|dt
+\]
+
+\section*{\centering Принцип сжимающих отображения для линейного уравнения}
+$ X $ - B - пр-во. $ A $ - лин. огр. $ : X \to X $ 
+\[
+    ||A|| \leq q < 1 \quad x = S(x), \ S(x) = Ax + y
+\]
+
+\begin{tcolorbox}
+\begin{theorem}
+    Пусть $ X $ - B - пр-во. $ y \in X, \ A: X \to X $ лин. огран. 
+    $ ||A|| \leq q < 1 $.
+
+    Тогда уравнение $ x = Ax + y $ $\exists ! \text{ решение } x^{\star}$
+    \[
+        x_0 \in X \quad x_{n+1} = Ax_{n} + y \to x^{\star}
+    \]
+
+    Погрешность
+    \[
+        ||x_n - x^{\star}|| \leq \frac{q^n}{1-q} \cdot ||x_0 - Ax - y||
+    \]
+\end{theorem}
+\end{tcolorbox}
+
+Множество всех линейных ограниченных операторов ЛНП $ X $ в ЛНП $ Y $.
+Обозначим $ (X \to Y) $. Это множество составляет линейное подпространство
+в линейном пространстве всех линейных операторов, которые отображают $ X $ в $ Y $ 
+
+Пусть $ ||(A+B)x|| = ||Ax + Bx|| \leq ||Ax|| + ||Bx|| \leq ||A||\cdot ||x||
++ ||B|| \cdot ||x|| = (||A|| + ||B||) \cdot ||x||$ 
+\[
+    ||(A+B)x|| \leq (||A|| + ||B||) \cdot ||x|| \implies ||A+B|| \leq 
+    ||A|| + ||B||
+\]
+\[
+    ||(\lambda A)x|| = ||\lambda Ax|| = |\lambda|\cdot ||Ax|| \leq 
+    |\lambda| \cdot ||A||\cdot ||x||
+\]
+\[
+    ||\lambda A|| \leq |\lambda| \cdot ||A||
+\]
+\[
+    ||A|| = 0 \quad ||Ax|| \leq ||A|| \cdot ||x|| = 0 \ \forall \, x
+\]
+\[
+    ||Ax|| = 0 \quad Ax = 0 \quad A = 0
+\]
+
+Рассмотрим
+\[
+    ||\lambda A|| = \sup_{||x|| = 1} ||(\lambda A)x|| = \sup |\lambda|
+    ||Ax|| = |\lambda| \cdot \sup ||Ax|| = |\lambda| \cdot ||A||
+\]
+
+1) $ ||A|| \geq 0 \quad ||A|| = 0 \iff A = 0 $\\
+\indent 2) $ ||\lambda A|| = |\lambda| \cdot ||A|| $\\
+\indent 3) $||A + B|| \leq ||A|| + ||B||$
+
+\[
+    ||(AB)x|| = ||A(Bx)|| \leq ||A|| \cdot ||Bx|| \leq ||A|| \cdot ||B|| \cdot
+    ||x|| \ \forall \, x
+\]
+\[
+    ||AB|| \leq ||A|| \cdot ||B||
+\]
+\[
+    A: \ X \to X
+\]
+\[
+    A^{n} = A(A^{n-1})
+\]
+\[
+    ||A^{n}|| \leq ||A||^{n} \text{ - грубая оценка}
+\]
+
+Пусть $ X = Y = C_{[0,1]} $ 
+\[
+    (Ax)_{(s)} = \int_{0}^{s} x(t) dt
+\]
+\[
+    ||A|| = \max_s \int_{0}^{t} dt = 1, \ ||A^{n}|| \leq ||A||^{n} = 1
+\]
+\[
+    A(Ax) = \int_{0}^{s} \left( \int_{0}^{t} x(\tau) d \tau \right) dt
+    = \int_{0}^{s} dt \int_{0}^{t} x(\tau) d \tau = 
+    \int_{0}^{s} d \tau \cdot x(\tau) \int_{\tau}^{s} dt = 
+    \int_{0}^{s} (s - \tau) x(\tau) d \tau
+\]
+\[
+    A^{n} x = \int_{0}^{s} \frac{(s - \tau)^{n-1} x(t) dt}{(n-1)!}
+\]
+\[
+    ||A^{n}|| = \frac{1}{n!} 
+\]
+
+Пусть $ X,Y $ - ЛНП. $ \set{A_n}, \ A $ - лин.огр $ : X \to Y $ 
+
+\begin{tcolorbox}
+    \begin{definition}
+        $ A_n \to A $ по норме (сильная или равномерная сходимость), если
+        $ ||A_n - A|| \xrightarrow[n \to \infty]{} 0 $ 
+
+        Если $ \forall \, x \ A_n x \to Ax $ (поточечная или слабая сходимость)
+    \end{definition}
+\end{tcolorbox}
+\[
+    ||A_n x - Ax|| = ||(A_n - A)x|| \leq ||A_n - A|| \cdot ||x||
+\]
+
+
+Пусть $ X,Y $ - ЛНП.
+\[
+    A_n : \ X \to Y \text{ - лин.огр}
+\]
+\[
+    S_n = \sum_{k=0}^{n} A_k \quad S_n \to S \quad S = \sum_{n=0}^{\infty} A_n
+\]
+\[
+    \sum_{k=0}^{n} (A_k x) = S_n x \to Sx = \left( \sum_{n=0}^{\infty} 
+    A_n \right) x
+\]
+\[
+    \sum_{k=0}^{n} (A_k x) = \left(\sum_{k=0}^{n} A_k\right)x
+\]
+\[
+    \sum_{n=0}^{\infty} (BA_n) = B \sum_{n=0}^{\infty} A_n
+\]
+\[
+    \sum_{n=0}^{\infty} (A_nB) = \left( \sum_{n=0}^{\infty} A_n \right) B
+\]
+
+$ X $ - B - пр-во. $ A: \ X \to X $ 
+\[
+    ||A^{n}|| \leq a_n, \ \forall n, \ \sum_{n=0}^{\infty} a_n = \sigma
+\]
+
+Тогда 
+\[
+    \sum_{n=0}^{\infty} A^{n} = S \ : X \to X \quad ||S|| \leq \sigma
+\]
+\end{document}

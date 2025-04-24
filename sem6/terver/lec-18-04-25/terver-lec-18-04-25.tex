@@ -1,0 +1,144 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\DeclarePairedDelimiter\set\{\}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+\newtheorem*{consequence}{Следствие}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\section*{\centering Пуассоновский процесс}
+$ \set{X_t} , \ t \geq 0 $ \\
+1) С целочисленными значениями\\
+2) $ X_t $ - процесс с независимыми приращениями\\
+3) $ P(X_t = k) = \frac{(\lambda t)^{k}}{k!} e^{-\lambda t} $ 
+
+Предположение\\
+1) $p(h)$ - вероятность того, что ... $ \geq 1 $\\
+$ p(h) = ah + o(h), \ h \to 0$ 
+\[
+    P_m(t) = P(X(t) = m)
+\]
+\[
+    p(h) = P_1(h) + P_2(h) + \dots
+\]
+2) $ \geq 2: \ P_2(h) + P_3(h) + \dots = o(h) $.
+
+Формула полной вероятности
+\[
+    P_0(t+h) = P_0(t) P_0(h)
+\]
+\[
+    P_0(h) + \sum_{j=1}^{\infty} P_j(h) = 1
+\]
+\[
+    P_0(h) = 1 - p(h)
+\]
+\[
+    P_0(t+h) = P_0(t) - P_0(t) p(h)
+\]
+\[
+    \frac{\partial P_0(t)}{\partial t} \leftarrow \frac{P_0(t+h) - P_0(t)}{h} =
+    -P_0(t) \frac{p(h)}{h} \to - a P_0(t)
+\]
+\[
+    \frac{\partial P_0(t)}{\partial t}  = -P_0(t) \cdot a
+\]
+\[
+    \dots\dots\dots\dots\dots\dots \dots\dots\dots\dots\dots\dots
+\]
+
+\[
+    P_m(t), \ m = 1, 2, \dots
+\]
+\[
+    P_m(t+h) = P_m(t) \cdot P_0(h) + P_{m-1}(t) P_1(h) + 
+    \sum_{j=2}^{\infty} P_{m-j}(t) P_j(h)
+\]
+\[
+    \sum_{j=2}^{\infty} P_{m-j}(t) P_j(h)
+    \leq \sum_{j=2}^{\infty} P_j(h) = o(h)
+\]
+\[
+    P_m(t+h) = P_m(t) (1- p(h)) + P_{m-1}(t)ah + o(h)
+\]
+\[
+    \frac{P_m(t+h) - P(t)}{h} = -P_m(t)a + P_{m-1}(t) a + o(h)
+\]
+
+При $ h \to 0 $ 
+\[
+    \frac{d P_m(t)}{dt} = -P_m(t)a + aP_{m-1}(t)
+\]
+
+\[
+    Q_m(t) = P_m(t) e^{-at}
+\]
+\[
+    P_m(0) = 0
+\]
+\[
+    Q'_m(t) = P'_m(t) \cdot e^{-at} + aP_m(t) \cdot e^{-at}
+\]
+\[
+    Q'_m(t) = aQ_{m-1}(t)
+\]
+\[
+    Q_1'(t) = -a Q_0(t)
+\]
+\[
+    Q_1(t) = at + c = at
+\]
+
+\[
+    Q_2'(t) = a Q_1(t) \quad Q(0) = 0
+\]
+\[
+    Q_2(t) = \frac{a^2 t^2}{2} + c \implies c = 0
+\]
+
+\section*{\centering Процессы рождения и гибели}
+\[
+    \frac{dP_k(t)}{dt} = \underbrace{\lambda_{k-1}}_{\text{рождение}} P_{k-1}(t) - 
+    (\lambda_k + \mu_k) P_k(t) + \underbrace{\mu_{k+1}P_{k+1}(t)}_{\text{гибель}}
+\]
+\[
+    P_k(t+h) = \lambda_{k-1} h P_{k-1}(t) + (1 - \lambda_kh - \mu_k h)
+    P_k(t) + \mu_{k+1} h P_{k+1}(t)
+\]
+
+
+\end{document}
