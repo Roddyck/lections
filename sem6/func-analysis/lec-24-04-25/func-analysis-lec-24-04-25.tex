@@ -1,0 +1,266 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\DeclarePairedDelimiter\set\{\}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+\newtheorem*{consequence}{Следствие}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\section*{\centering B-пространство линейных ограниченных операторов}
+Пусть $ X,Y $ - ЛНП\\
+$ A_n: \ X \to Y $ - лин. огр.
+\[
+    \forall m > n \to + \infty \quad ||A_m  - A_n|| \to 0
+\]
+
+\begin{tcolorbox}
+\begin{theorem}
+    Если $ Y $ - Банахово пространство, то $ (X \to Y) $ - Банахово пространство
+
+    \begin{proof}
+        Рассмотрим:
+        \[
+            ||A_mx - A_n x|| \leq ||(A_m - A_n)(x)|| \leq 
+            \underbrace{||A_m - A_n||}_{\to 0} \cdot ||x||
+            \implies \set{A_n x} \text{ - сходится в себе}
+        \]
+        \[
+            \exists \lim_{n \to \infty} A_n x = y \in Y
+        \]
+        Обозначим $ y \coloneq A(x) $ 
+        \[
+            A(\lambda x) = \lim_{n \to \infty} A_n(\lambda x) = \lambda
+            \lim_{n \to \infty} A_n(x) = \lambda A(x)
+        \]
+        \[
+            A(x+z) = \dots = A(x) + A(z)
+        \]
+
+        Дано $ \set{A_m} $ - сходится в себе $ \implies \set{A_n} $ - огр. т.е.
+        $ \exists c \ | \ ||A_n|| \leq c, \ \forall n $ 
+        \[
+            ||A_n x|| \leq ||A_n|| \cdot ||x|| \leq c \cdot ||x||
+        \]
+        \[
+            ||A_n x|| \leq c \cdot ||x||, \ n \to \infty
+        \]
+        \[
+            ||Ax|| \leq c ||x||
+        \]
+        Следовательно $ A $ - линейный ограниченный
+
+        Пусть $ ||x|| = 1 $. Рассмотрим:
+        \[
+            ||A_m x - A_n x|| \leq ||A_m - A_n|| \cdot ||x|| = ||A_m - A_n|| < 
+            \varepsilon
+        \]
+
+        Фиксируем $ n $. $ m \to +\infty $. Рассмотрим:
+        \[
+            A_m x \to Ax
+        \]
+        \[
+            \alpha_n = ||Ax - A_n x|| \leq \varepsilon
+        \]
+        \[
+            ||A - A_n|| = \sup_{||x|| = 1} \alpha_n \leq \varepsilon
+        \]
+
+        Получаем, что
+        \[
+            A_n \to A
+        \]
+    \end{proof}
+\end{theorem}
+\end{tcolorbox}
+
+\section*{\centering Положительно определённые операторы в линейных нормированных
+пространствах}
+\begin{tcolorbox}
+\begin{definition}
+    Пусть $ X,Y $ - ЛНП. $ A: \ X \to Y $ - линейный оператор
+
+    Будем говорить, что этот оператор положительно определён $ A > 0 $, с нижней
+    границей $ m > 0 $, если
+    \[
+        \forall x \quad ||Ax|| \geq m \cdot ||x||
+    \]
+\end{definition}
+\end{tcolorbox}
+
+\textbf{Пример}
+
+1) $ A = I $
+\[
+    ||Ix|| = 1 \cdot ||x||
+\]
+
+2) $ C: X \to X, \ ||C|| \leq q < 1 $\\
+$ A \coloneq I - C $ 
+\[
+    ||Ax|| = ||(I - C)x|| = ||Ix - Cx|| = ||x - Cx|| \geq ||x|| - ||Cx|| \geq
+\]
+\[
+    ||Cx|| \leq ||C|| \cdot ||x|| \leq q \cdot ||x||
+\]
+\[
+    \geq ||x|| - q \cdot ||x|| = (1 - q) \cdot ||x|| = m \cdot ||x||
+\]
+
+\section*{\centering Условия существования и ограниченности обратного оператора}
+\begin{tcolorbox}
+\begin{theorem}[1]
+    Пусть $ X,Y $ - ЛНП, линейный оператор $ A: \ X \to Y $.
+
+    Для того, чтобы $ A: \ X \to Y $ - сюрьекция и $ A > 0, \ m > 0 $
+    необходимо и достаточно:
+    \[
+        \exists A^{-1} \text{ - сюрьективный линейный ограниченный,}
+    \]
+    причём
+    \[
+        ||A^{-1}|| \leq \frac{1}{m}, \ ||A^{-1} y|| \leq \frac{1}{m} ||y|| 
+    \]
+
+    \begin{proof}
+        $ \implies: $ 
+        \[
+            A(X) = Y \quad \exists A^{-1} \quad A^{-1}(Y) = ?
+        \]
+
+        от противного. Рассмотрим $ x,y \in X. \ Ax = y, \ Az = y. $ 
+        \[
+            \underbrace{Ax-Az}_{=y-y=0} = A(x-z)
+        \]
+        \[
+            0 = ||0|| = ||A(x-z)|| \geq m \cdot ||x-z||
+        \]
+        \[
+            ||x-z|| \leq 0 \quad x - z = 0 \quad x = z
+        \]
+
+        Рассмотрим:
+        \[
+            ||y|| = ||Ax|| \geq m \cdot ||x|| = m \cdot ||A^{-1} y||
+        \]
+        \[
+            ||y|| \geq m \cdot ||A^{-1} y||
+        \]
+        \[
+            ||A^{-1} y|| \leq \frac{1}{m} ||y||
+        \]
+
+        $ \impliedby: $ 
+        \[
+            A^{-1}(Y) = X \quad ||x|| = ||A^{-1} y|| \leq \frac{1}{m} ||y||
+            = \frac{1}{m} ||Ax||
+        \]
+        \[
+            ||Ax|| \geq m \cdot ||x|| \quad \forall x
+        \]
+    \end{proof}
+\end{theorem}
+\end{tcolorbox}
+
+\[
+    Ax = y \quad x = A^{-1} y
+\]
+\[
+    ||\Delta x|| = ||\Delta A^{-1} y|| = ||A^{-1} \Delta y|| \leq \frac{1}{m} 
+    ||\Delta y||
+\]
+
+\begin{tcolorbox}
+\begin{theorem}[2]
+    Пусть $ A $ - лин.огр. $ : \ X \to X $. $ X $ - B-пр-во.\\
+    $ ||A^n|| \leq a_n \ : \ \sum_{n=0}^{\infty} a_n = \sigma $. 
+
+    Тогда
+    \[
+        \exists S = (I - A)^{-1} \quad S = \sum_{n=0}^{\infty} A^n, \ 
+        ||S|| \leq \sigma
+    \]
+
+    \begin{proof}
+        Существование оператора $ S $ следует из теоремы с прошлой лекции.
+
+        Докажем, что $ S = (I - A)^{-1} $ 
+        \[
+            (I-A) \cdot S = (I - A) \cdot \sum_{n=0}^{\infty} A^n
+            = \sum_{n=0}^{\infty} (A^n - A^{n+1}) = \sum_{n=0}^{\infty} A^n
+            - \sum_{n=0}^{\infty} A^{n+1} = 
+            \sum_{n=0}^{\infty} A^n - \sum_{m=1}^{\infty} A^m = A^0 = I
+        \]
+    \end{proof}
+\end{theorem}
+\end{tcolorbox}
+
+Рассмотрим:
+\[
+    x = Ax + y
+\]
+\[
+    Ix - Ax = y
+\]
+\[
+    (I-A) x = y
+\]
+\[
+    x = (I-A)^{-1} y = \sum_{n=0}^{\infty} A^n y
+\]
+\[
+    x_n = \sum_{k=0}^{n} A^k y = y + Ay + A^2 y + \dots + A^n y
+    = y + A(y + Ay + \dots + A^{n-1}y)
+\]
+\[
+    x_n = y + Ax_{n-1}, \quad x_0 = y, \quad x_n \to x
+\]
+
+\begin{tcolorbox}
+\begin{theorem}[3]
+    В условиях теоремы 2 уравнение
+    \[
+        x = Ax + y
+    \]
+    имеет единственно решение и итерационный процесс
+    \[
+        x_n = y + Ax_{n-1}, \quad x_0 = y, \quad x_n \to x
+    \]
+    сходится к этому решению
+\end{theorem}
+\end{tcolorbox}
+\end{document}

@@ -1,0 +1,183 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{tikz-cd}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\DeclarePairedDelimiter\set\{\}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+\newtheorem*{consequence}{Следствие}
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\[
+    v \in T_e(G)
+\]
+\begin{equation}
+    \label{eq:1}
+    \begin{cases}
+        \frac{d\theta}{dt} = dL_{\theta(t)}(v)\\
+        \theta(0) = e
+    \end{cases}
+\end{equation}
+
+$ \exists! \  \theta(t) $ - решение $ (\ref{eq:1}) $ при 
+$ t \in (-\varepsilon, \varepsilon) $ 
+\[
+    \psi(t) = \theta\left( \frac{t}{N} \right)^N, \ t \in \mathbb{R}
+\]
+\[
+    N \in \mathbb{N} \ : \ \bigg| \frac{t}{N} \bigg| < \frac{\varepsilon}{2} 
+\]
+\[
+    t \in (t_0 - \delta, t_0 + \delta)
+\]
+\[
+    \bigg| \frac{t}{N} \bigg| < \frac{\varepsilon}{2} \implies
+    \frac{t}{N} \text{ гладко зависит от } t \in (t_0 - \delta, t_0 + \delta)
+\]
+
+$ \theta\left( \frac{t}{N} \right) $ - гладкая \\
+$ \theta\left( \frac{t}{N} \right)^N $ - гладко зависит от $ t $ \\
+$ \implies \psi(t) $ - гладко зависит от $ t \in \mathbb{R} $ 
+
+Рассмотрим:
+\[
+    \psi(s + t) = \theta\left( \frac{s + t}{N} \right)^N = \left(
+    \theta\left( \frac{s}{N}\right) \theta\left( \frac{t}{N} \right)\right)^N
+    = \theta\left(\frac{s}{N} \right)^N \cdot \theta\left(\frac{t}{N} \right)^N
+    = \psi(s) \cdot \psi(t)
+\]
+\[
+    \theta\left(\frac{s}{N}\right)\theta\left(\frac{t}{N}\right)
+    = \theta\left( \frac{s+t}{N} \right) = \theta\left(\frac{t+s}{N}\right)
+    = \theta\left(\frac{t}{N}\right)\theta\left(\frac{s}{N}\right)
+\]
+
+\[
+    \frac{d \psi}{dt} \bigg|_{t=0} = \frac{d \theta}{dt} \bigg|_{t=0} = v
+\]
+
+\section*{\centering Экпоненциональное отображение}
+$ \theta_v(t) $ - однопараметрическая подгруппа такая, что $ \frac{d\theta_v}{dt}
+\big|_{v=0} = v$ 
+
+Определим:
+\[
+    \exp : \ T_e(G) \to G, \ \exp(v) = \theta_v(1) \in G
+\]
+
+$ G \sim (\mathbb{R}^{\star}, \cdot) $.
+\[
+    T_1(G) = \mathbb{R}, \ \exp v = e^{v}
+\]
+\[
+    \frac{d\theta}{dt} = \theta(t) \cdot v
+\]
+
+$ G = GL(n, \mathbb{R}), \quad T_e(G) = M_n(\mathbb{R}) $ 
+\[
+    \theta_v(t) = A(t)
+\]
+\[
+    \frac{dA(t)}{dt} = A(t) \cdot v \quad v \in M_n(\mathbb{R})
+\]
+\[
+    \exp(B) = E + B + \frac{B^2}{2!} + \dots + \frac{B^{m}}{m!} + \dots
+\]
+\[
+    \bigg|\bigg|\frac{B^m}{m!}\bigg|\bigg| \leq \frac{||B||^{m}}{m!} 
+\]
+\[
+    \exp(||B||) = 1 + ||B|| + \dots + \frac{||B||^m}{m!} + \dots
+\]
+\[
+    \exp(At) = 1 + A \cdot t + \frac{A^2t^2}{2} + \dots
+\]
+\[
+    \frac{d\exp(At)}{dt} = A + A^2 t + \frac{A^3 t^2}{2!} + \dots =
+    \exp(At) \cdot A
+\]
+\[
+    \exp(At)\big|_{t=0} = 1 = E
+\]
+\[
+    ab=ba \quad \exp(a+b) = \exp a \cdot \exp b 
+\]
+\[
+    \theta_A(t) = \exp(At)
+\]
+
+\begin{tcolorbox}
+\begin{theorem}
+    $ G, H $ - группы Ли. $ \phi: \ G \to H $ - гомоморфизм групп Ли
+    \[
+        \begin{tikzcd}
+            T_e(G) \arrow{r}{(d \phi)_e } \arrow[swap]{d}{\exp} & T_e(H) \arrow{d}{\exp}\\
+            G \arrow{r}{\phi} & H
+        \end{tikzcd}
+    \]
+    коммутативна
+
+    \begin{proof}
+        \[
+            \phi(\exp(v)) = \exp(d \phi_e(v))
+        \]
+
+        $ \theta_v(t) $ - однопар. подгруппа в $ G $ 
+        \[
+            \frac{d \phi(\theta_v(t))}{dt} \bigg|_{t=0} = (d \phi)_e \cdot 
+            \frac{d\theta_v(t)}{dt} \bigg|_{t=0} = d \phi_e(v)
+        \]
+        \[
+            w = \frac{d \tilde{\theta}_w(t)}{dt} \bigg|_{t=0} = d \phi_e(v)
+        \]
+        \[
+            (\theta_v(t)) = \widetilde{\theta}_{(d \phi)_e(v)} \ | \ t = 0 \implies
+        \]
+    \end{proof}
+\end{theorem}
+\end{tcolorbox}
+
+\[
+    O(n) \hookrightarrow GL(n, \mathbb{R})
+\]
+\[
+    v \in O(n)
+\]
+\[
+    v \in T_e(G) \subset M_n(\mathbb{R}) = T_e(H)
+\]
+\end{document}
