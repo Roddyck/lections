@@ -1,0 +1,95 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\DeclarePairedDelimiter\set\{\}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+\newtheorem*{consequence}{Следствие}
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\section*{\centering Броуновское движение}
+
+$ \set{x_t}, \ t \geq 0 $. Р.Броун 1827
+
+\underline{Н. Винер}
+
+\begin{enumerate}
+    \item $ x_0 = 0 $ п.н.
+    \item $ t_0 = 0 < t_1 < t_2 < \dots < t_n $\\
+        $ x_{t_n} - x_{t_{n-1}}, \dots, x_{t_2} - x_{t_1} $ - независимы 
+    \item $ (x_t - x_s) \in \mathcal{N}(0, \sigma^2(t-s)) $ 
+    \item $ \set{x_t} $ - траектория непрерывна
+\end{enumerate}
+
+\[
+    E(x_t) = 0 \quad E(x_tx_s) = \sigma^2 = \min(t,s)
+\]
+$ \set{\psi_n(t)} $ - полная ортогональная система функций
+\[
+    x_t(\omega) = \sum_{n=1}^{\infty} a_n(t) \psi(t)
+\]
+\[
+    E(a_m) = 0
+\]
+\[
+    E(a_ma_n) = \int_{0}^{1} \int_{0}^{1} E(x_tx_s) \psi_n(t) \psi_n(s) dt ds
+\]
+\[
+    \set{\psi_n} = \set*{\sin\left(n + \frac{1}{2}\right) \pi t}
+\]
+
+$ \set{W(t)}_{t \geq 0} \quad (\sigma^2 = 1) $ 
+\begin{enumerate}
+    \item $ D(W_t - W_s) = t-s $ 
+    \item $ \xi_n = \sum_{i=0}^{n} (W_{t_{i+1}} - W_{t_i})^2 
+        \xrightarrow[n\to \infty]{p} $ 
+\end{enumerate}
+
+\textbf{Задача}
+
+Есть два города, между которые ездят поезда.
+
+Есть две конкурирующие компании. Цель перевести 1000 пассажиров
+
+$ \nu $ - имеет отрицательное биномиальное распределение
+\[
+    NB(p, m)
+\]
+\[
+    P(\nu = m) = C_{n-1}^{m-1} p^m q ^{n-m}
+\]
+\end{document}

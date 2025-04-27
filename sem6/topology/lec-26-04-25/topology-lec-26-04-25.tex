@@ -1,0 +1,257 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\DeclarePairedDelimiter\set\{\}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+\newtheorem*{consequence}{Следствие}
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\begin{tcolorbox}
+\begin{theorem}
+    $ M $ - n-мерное гладкое ориентированное многообразие, то его край
+    $ (n-1) $-мерное гладкое ориентированное многообразие
+\end{theorem}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{definition}
+    $ f: \ M \to N $ - отображение, $ M $ - n-мерное гладкое многообразие,
+    $ N $ - k-мерное. $ f $ называется гладким, если
+    \[
+        \forall \phi \in Atl M, \ \forall \psi \in Atl N
+    \]
+    \[
+        \psi \circ f \circ \phi^{-1}: \ \mathbb{R}^n \to \mathbb{R}^k
+    \]
+    гладкое отображение
+\end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{definition}
+    $ r \coloneq \phi ^{-1}: \ \mathbb{R}^n \to U $ - параметризация. (Пусть
+    для простоты $ U \subset \mathbb{R}^m) $ 
+
+    $ r'_{x_i}(0), \ i = 1, \dots, n $ 
+    \[
+        v(x_0) \coloneq \sum_{i=1}^{n} v_i r'_{x_i}(0)
+    \]
+    касательный вектор точки $ x_0 \in M $ 
+
+    \[
+        T_{x_0}M \coloneq \set{v(x_0) = \sum v_i r'_{x_i}(0) \ | \ v_i \in \mathbb{R}}
+    \]
+    называется касательным пространством в точке $ x_0 $ 
+
+    \[
+        TM \coloneq \bigcup_{x_0 \in M} T_{x_0}M
+    \]
+    тотальное касательное пространство или касательное расслоение многообразия
+    $ M $ 
+\end{definition}
+\end{tcolorbox}
+\begin{figure}[ht]
+    \centering
+    \incfig{def2}
+    \caption{Касательное пространство}
+    \label{fig:def2}
+\end{figure}
+
+\section*{\centering \S Объём многообразия}
+
+\subsection*{Примеры}
+1) Прямоугольник:
+\[
+    S = |\vec{a} \times \vec{b}| = |
+    \begin{vmatrix}
+    \vec{i} & \vec{j} & \vec{k}\\
+    a_1 & a_2 & 0\\
+    b_1 & b_2 & 0\\
+    
+    \end{vmatrix}|
+\]
+
+2) Параллелепипед
+\[
+    V(\vec{a}, \vec{b}, \vec{c}) = |\vec{a} \vec{b} \vec{c}| = 
+    \begin{vmatrix}
+    a_1 & a_2 & a_3\\
+    b_1 & b_2 & b_3\\
+    c_1 & c_2 & c_3\\
+    
+    \end{vmatrix}
+\]
+
+\begin{tcolorbox}
+\begin{definition}
+    В $ \mathbb{R}^n $ пусть $ e_1, \dots, e_n $ - ортонормированный базис,
+    $ a_1, \dots, a_n \in \mathbb{R}^n $. Ориентированным объёмом параллелепипеда,
+    построенного на векторах $ a_1, \dots, a_n $ называется число $ V(a_1, \dots, a_n)
+    \coloneq \det A$, где $ A $ - матрица, составленная из координат векторов
+    $ a_1, \dots, a_n $ в базисе $ e_1, \dots, e_n $ 
+\end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\begin{remark}
+    1) $ a_1, \dots, a_n  $ и  $ e_1, \dots, e_n $ дают одинаковую ориентацию
+    пространства $ \mathbb{R}^n \iff \det A > 0 $ 
+
+    2) $ G = (e_i, e_j) $ - матрица грама базиса $ e_1, \dots, e_n $ 
+    \[
+        G = A A^T \implies |G| = |A|^2 \implies
+        V(a_1, \dots, a_n) = \sqrt{\det G} 
+    \]
+\end{remark}
+\end{tcolorbox}
+
+\subsection*{Объем многообразия}
+
+$ M $ n-мерное гладкое многообразие. $ \phi: \ U \to \mathbb{R}^n $ - карта,
+$ r = \phi^{-1} $ 
+
+\begin{figure}[ht]
+    \centering
+    \incfig{volume}
+    \caption{Объем многообразия}
+    \label{fig:volume}
+\end{figure}
+
+Покроем $ \mathbb{R}^n $ маленькими параллелепипедами $ V_{x_0}(\Delta x_1, \dots,
+\Delta x_n) \approx \sqrt{\det (r'_{x_i} r'_{x_j}} $ 
+\[
+    V(U) = \int_{U} V_{x_0} dx_1 \dots dx_n
+\]
+\[
+    V(M) = \int_{M} V(x) d x_1 \dots d x_n \text{ - объём многообразия } M
+\]
+
+\newpage
+\section*{\centering \S Внешняя алгебра}
+\begin{tcolorbox}
+\begin{definition}
+    Пусть $ L $ - вещественное линейное пространство с базисом $ e_1, \dots, e_n $.
+
+    \[
+        \Lambda L = \bigcup_{k=0}^{n} \Lambda^n L,
+    \]
+    где $ \Lambda^0 L = \mathbb{R}, \ \Lambda^1 L = L, \Lambda^k L $ - линейное пространство
+    с базисом $ (e_{\alpha} \coloneq e_{\alpha_1} \wedge \dots \wedge e_{\alpha_k}) $,
+    где $ 1 \leq \alpha_1 < \alpha_2 \dots < \alpha_k \leq n $ 
+    \[
+        \dim \Lambda^k = C_n^k
+    \]
+\end{definition}
+\end{tcolorbox}
+
+Введём операцию внешнего умножения в $ \Lambda L: $\\
+1. $ \forall \lambda \in \Lambda^0 \ \forall e_{\alpha} \in \Lambda^k L $ 
+\[
+    \lambda \wedge e_{\alpha} \coloneq \lambda e_{\alpha}
+\]
+2. $ \forall e_{\alpha}, e_{\beta}, \ e_{\alpha} = e_{\alpha_1} \wedge \dots
+\wedge e_{\alpha_k}, \ e_{\beta} = e_{\beta_1} \in \Lambda^1 L $ 
+\[
+    e_{\alpha} \wedge e_{\beta} = e_{\alpha_1} \wedge \dots \wedge e_{\alpha_i}
+    \wedge e_{\beta_1} \wedge \dots \wedge e_{\alpha_k} \cdot (-1)^{n-i},
+    \ \alpha_1 < \dots
+    < \alpha_i < \beta_1 < \alpha_{i+1} < \dots < \alpha_k
+\]
+\[
+    \beta_1 \notin \set{\alpha_1, \dots, \alpha_k}
+\]
+\[
+    e_{\alpha} \wedge e_{\beta_1} = 0, \ \exists i \quad \alpha_i = \beta_1
+\]
+
+Т.е. $ \forall e_i, e_j \in \Lambda^1 L $ 
+\[
+    e_i \wedge e_j = 
+    \begin{cases}
+        0, &\quad i = j\\
+        =-e_j \wedge e_i, &\quad i \neq j
+    \end{cases}
+\]
+3. По ассоциативности внешнего умножения $ \wedge $ и по линейности операция
+$ \wedge $ продолжается на все $ \Lambda L $.
+
+$ \Lambda L $ называется внешней алгеброй, а её элементы называются внешними
+формами:
+\[
+    \omega = \sum_{\alpha} \omega_{\alpha} e_{\alpha}
+    \coloneq \sum_{1 \leq \alpha_1 < \dots < \alpha_k \leq n} 
+    \omega_{\alpha_1, \dots, \alpha_k} e_{\alpha_1} \wedge \dots \wedge
+    e_{\alpha_k}, \quad \omega_{\alpha_1, \dots, \alpha_k} \in \mathbb{R}
+\]
+
+\subsection*{Свойства $ \wedge $} 
+1. $ \omega \in \Lambda^k $ (т.е. $ \omega $ - это к-форма), $ \eta \in \Lambda^m $  
+\[
+    \omega \wedge \eta = (-1)^{km} \eta \wedge \omega
+\]
+
+2. $ k+m > n \implies \omega \wedge \eta = 0 $ 
+
+3. $ \omega \wedge \omega = 0 \quad \forall \omega \in \Lambda^k L, \ k $ нечётно
+
+\textbf{\underline{Д-во}}
+\[
+    \left(\sum \omega_{\alpha} e_{\alpha}\right) \left(\sum \omega_{\beta} e_{\beta}\right)
+    = \sum_{\alpha,\beta} \omega_{\alpha} \omega_{\beta} e_{\alpha} e_{\beta}
+    = \sum (\omega_{\alpha} \omega_{\beta} - \omega_{\beta} \omega_{\alpha})
+    e_{\alpha} e_{\beta} = 0
+\]
+
+\begin{tcolorbox}
+\begin{remark}[Значение внешней формы на векторах]
+    $ L $ - линейное пространство с базисом $ e_1, \dots, e_n \implies L^{\star} $ -
+    двойственное линейное пространство с базисом $ e^{\star}_1, \dots, e^{\star}_n $
+    \[
+        \implies e_i^{\star}(e_j) = \delta_{ij} = 
+        \begin{cases}
+            1, \ i = j\\
+            0, \ i \neq j
+        \end{cases}
+    \]
+    \[
+        \omega \in \Lambda^k L^{\star}, \ \omega = \sum_{\alpha}
+        \omega_{\alpha} e_{\alpha}, \ v_1, \dots, v_k \in L
+    \]
+\end{remark}
+\end{tcolorbox}
+\end{document}
