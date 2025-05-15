@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# TODO: setup typst stuff
 selected=$(find ./sem6 -maxdepth 1 -mindepth 1 | fzf)
 selected_name=$(basename $selected)
 
