@@ -6,35 +6,17 @@ if [[ -z $selected ]]; then
     exit 1
 fi
 
-read -p "tex or typst: " choice
-
-if [[ -z choice ]]; then
-    echo "no choice selected"
-    exit 0
-fi
-
 cur_date=$(date +"%d-%m-%y")
 
 new_dir="$selected/lec-$cur_date"
-
-setup_tex() {
-    mkdir $new_dir
-    mkdir "$new_dir/figures"
-    touch "$new_dir/$selected_name-lec-$cur_date.typ"
-}
-
-setup_typst() {
-    mkdir $new_dir
-    mkdir "$new_dir/figures"
-    touch "$new_dir/$selected_name-lec-$cur_date.typ"
-    cp $HOME/Templates/template-lec.typ $new_dir
-}
-
 if [ -d $new_dir ]; then
     tmux-sessionizer $new_dir
     exit 0
 fi
 
-[[ $choice == "tex" ]] && setup_tex || setup_typst
+mkdir $new_dir
+mkdir "$new_dir/figures"
+touch "$new_dir/$selected_name-lec-$cur_date.typ"
+cp $HOME/Templates/template-lec.typ $new_dir
 
 tmux-sessionizer $new_dir
