@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
-# TODO: setup typst stuff
-selected=$(find ./sem6 -maxdepth 1 -mindepth 1 | fzf)
+selected=$(find ./sem6 ./test -maxdepth 1 -mindepth 1 | fzf)
 selected_name=$(basename $selected)
 
 if [[ -z $selected ]]; then 
+    exit 1
+fi
+
+read -p "tex or typst: " choice
+
+if [[ -z choice ]]; then
+    echo "no choice selected"
     exit 0
 fi
 
@@ -11,13 +17,24 @@ cur_date=$(date +"%d-%m-%y")
 
 new_dir="$selected/lec-$cur_date"
 
+setup_tex() {
+    mkdir $new_dir
+    mkdir "$new_dir/figures"
+    touch "$new_dir/$selected_name-lec-$cur_date.typ"
+}
+
+setup_typst() {
+    mkdir $new_dir
+    mkdir "$new_dir/figures"
+    touch "$new_dir/$selected_name-lec-$cur_date.typ"
+    cp $HOME/Templates/template-lec.typ $new_dir
+}
+
 if [ -d $new_dir ]; then
     tmux-sessionizer $new_dir
     exit 0
 fi
 
-mkdir $new_dir
-mkdir "$new_dir/figures"
-touch "$new_dir/$selected_name-lec-$cur_date.tex"
+[[ $choice == "tex" ]] && setup_tex || setup_typst
 
 tmux-sessionizer $new_dir
