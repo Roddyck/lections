@@ -1,3 +1,5 @@
+#import "@preview/rose-pine:0.2.0": apply, rose-pine
+#import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge
 #import "template-lec.typ": conf, note, qedsymbol, theorem, conseq
 #show: doc => conf([Топология. Лекция (24.05.25)], doc)
 #show math.integral: math.limits.with(inline: false)
@@ -16,6 +18,26 @@
 
 $M$ - гладкое n - мерное многообразие
 // Тут рисунок 1
+
+#align(center)[#diagram(
+    cell-size: 10mm,
+    {
+      let (m, u, v, r_1, r_2) = ((0, -1), (-1, 0), (1, 0), (-2, 1), (2, 1))
+      node(m, $M$)
+      node(u, $U$)
+      node(v, $V$)
+      node(r_1, $RR^n$)
+      node(r_2, $RR^n$)
+
+      edge(m, u, $subset$)
+      edge(m, v, $subset$)
+      edge(u, r_1, $phi$, "->")
+      edge(v, r_2, $phi$, "->")
+      edge(r_1, r_2, $phi compose psi^(-1)$, "->")
+    },
+  )
+]
+
 $
   omega in Lambda^k (T^* M) " - k - форма"
 $
@@ -49,6 +71,24 @@ $
 
 #note[
   // Тут рисунок 2
+  #align(center)[#diagram(
+      cell-size: 10mm,
+      {
+        let (m, u, v, r_1, r_2) = ((0, -1), (-1, 0), (1, 0), (-2, 1), (2, 1))
+        node(m, $M$)
+        node(u, $U$)
+        node(v, $V$)
+        node(r_1, $RR^n$)
+        node(r_2, $RR^n$)
+
+        edge(m, u, $subset$)
+        edge(m, v, $subset$)
+        edge(u, r_1, $phi$, "->")
+        edge(v, r_2, $phi$, "->")
+        edge(r_1, r_2, $F$, "<-")
+      },
+    )
+  ]
   $
     integral_(phi(supp omega)) r^* omega =^? integral_(psi(supp omega)) s^* omega
   $
@@ -74,6 +114,9 @@ U_1 union dots union U_n$
 Тогда $M$ можно разрезать на части $(n-1)$ - мерными многообразиями на части
 ${M_i} : supp omega inter M_i subset U_i$
 // Тут рисунок 3
+#figure(
+  image("figures/pic3.svg", width: 70%)
+)
 $
   integral_M omega := sum_i integral_(M_i) omega
 $
