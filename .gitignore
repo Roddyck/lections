@@ -1,1 +1,3 @@
 test
+**/*.pdf
+!**/figures/*.pdf
