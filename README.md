@@ -29,4 +29,4 @@ https://github.com/ThePrimeagen/tmux-sessionizer
 ```
 ## Todo (or not):
 - [ ] github-action, компилирующий исходники
-- [ ] Автоматические релизы?
+- [ ] Релизы?
