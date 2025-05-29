@@ -1,0 +1,130 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,%
+    text={180mm, 260mm},%
+    left=15mm, top=15mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[english, russian]{babel}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\DeclarePairedDelimiter\set\{\}
+
+\newcommand{\incfig}[1]{%
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf_tex}
+}
+
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{statement}{Утверждение}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{proposal}{Предложение}
+\newtheorem*{consequence}{Следствие}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{document}
+\title{УМФ. Лекция}
+\date{29 Мая 2025 г.}
+\maketitle
+
+\section*{\centering Проекционные методы}
+\subsection*{\centering Метод Ритца(-Бубнова-Галёркина)}
+\begin{equation}
+    \Delta u(x,y,z) = f(x,y,z)
+\end{equation}
+\begin{equation}
+    u_{\Gamma} = 0
+\end{equation}
+\begin{equation}
+  \begin{cases}
+    I(u) \to \min \quad u \in K \\
+    I(u) = \frac{1}{2} \iiint\limits_{\Omega} (u_x^2 + u_y^2 + u_z^2) dx dy dz -
+    \iiint f u dxdydz
+  \end{cases}
+\end{equation}
+\textbf{Задача 1}\\
+Найти $ u \in K $ 
+\[
+    a(u,v) = l(v) \ : \ \forall v \in K
+\]
+\textbf{Задача 2}
+\[
+  \begin{cases}
+    I(u) \to \min \quad u \in K \\
+    I(u) = \frac{1}{2} a(u,u) - l(u)
+  \end{cases}
+\]
+Задачи 1 и 2 эквивалентны
+
+ 
+Выделим подпространство
+\[
+    K_N \subset K
+\]
+\[
+  \begin{cases}
+    I(\widetilde{u}) \to \min \quad \widetilde{u} \in K_N \\
+    I(\widetilde{u}) = \frac{1}{2} a(\widetilde{u},\widetilde{u}) - l(\widetilde{u})
+  \end{cases}
+\]
+
+Пусть $ \set{\varphi}_{i=1}^{N} $ - базис
+
+Решение будем искать в виде:
+\[
+  \sum_{i=1}^{N} U_i \varphi_i(x), \quad \set{U_1, \dots, U_N}
+\]
+\[
+    I(\widetilde{u}, \widetilde{u}) = \frac{1}{2} a\left(\sum_{i=1}^{N} U_i \varphi_i(x),
+  \sum_{j=1}^{N} U_j \varphi_j(x)\right) - l\left(\sum_{k=1}^{N} U_k \varphi_k(x)\right)
+  \to \min
+\]
+\[
+    I(\widetilde{u}, \widetilde{u}) = \sum_{i=1}^{N} \sum_{j=1}^{N}
+    \frac{a(\varphi_i, \varphi_j}{2} U_i U_j - \sum_{k=1}^{N} l(\varphi_k)
+    U_k \to \min
+\]
+
+\[
+    \mathcal{F}(U_1, \dots, U_N) \to \min
+\]
+
+\textbf{Необходимые условия минимума}
+\[
+  \frac{\partial \mathcal{F}}{\partial U_n} = 0, \quad n = 1, \dots, N
+\]
+\[
+    \sum_{j=1}^{N} \frac{a(\varphi_n, \varphi_j)}{2} U_j + \sum_{i=1}^{N} 
+  \frac{a(\varphi_i, \varphi_n)}{2} U_i - l(\varphi_n) = 0
+\]
+\[
+    \sum_{i=1}^{N} a(\varphi_n, \varphi_i) U_i = l(\varphi_n), \quad n = 1, \dots, N
+\]
+
+\[
+    a(u,u) = 0 \iff u \equiv 0
+\]
+
+\[
+  (a(\varphi_n, \varphi_i)) \geq 0 \quad = 0 \iff a(\varphi_n, \varphi_i) \equiv 0
+\]
+
+Тогда система имеет единственное решение
+\end{document}
