@@ -3,7 +3,7 @@ selected=$(find ./sem6 ./test -maxdepth 1 -mindepth 1 | fzf)
 selected_name=$(basename $selected)
 
 if [[ -z $selected ]]; then 
-    exit 1
+    return 0
 fi
 
 cur_date=$(date +"%d-%m-%y")
