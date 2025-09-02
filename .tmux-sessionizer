@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
-selected=$(find ./sem6 ./test -maxdepth 1 -mindepth 1 | fzf)
+selected=$(find ./sem7 -maxdepth 1 -mindepth 1 | fzf)
 
 if [[ -z $selected ]]; then 
     return 0
 fi
 
 selected_name=$(basename $selected)
-
 
 cur_date=$(date +"%d-%m-%y")
 
