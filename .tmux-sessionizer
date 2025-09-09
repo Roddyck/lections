@@ -7,7 +7,7 @@ fi
 
 selected_name=$(basename $selected)
 
-cur_date=$(date +"%d-%m-%y")
+cur_date=$(date +"%Y-%m-%d")
 
 new_dir="$selected/lec-$cur_date"
 if [ -d $new_dir ]; then
