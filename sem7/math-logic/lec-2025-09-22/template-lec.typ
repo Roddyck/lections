@@ -1,4 +1,5 @@
 #let conf(title, doc) = {
+  import "@preview/rose-pine:0.2.0": apply, rose-pine
   import "@preview/fletcher:0.5.7" as fletcher: diagram, edge, node
   show heading: it => align(center, it)
 
@@ -42,7 +43,6 @@
   numbering: "(1)",
   content,
 )
-
 #let theorem(num, contents) = [
   #block(
     stroke: black,
@@ -60,36 +60,6 @@
     width: 100%,
   )[
     *Определение.* #contents
-  ]
-]
-
-#let note(contents) = [
-  #block(
-    stroke: black,
-    inset: 1em,
-    width: 100%,
-  )[
-    *Замечание.* #contents
-  ]
-]
-
-#let statement(contents) = [
-  #block(
-    stroke: black,
-    inset: 1em,
-    width: 100%,
-  )[
-    *Утверждение.* #contents
-  ]
-]
-
-#let conseq(contents) = [
-  #block(
-    stroke: black,
-    inset: 1em,
-    width: 100%,
-  )[
-    *Следствие.* #contents
   ]
 ]
 
